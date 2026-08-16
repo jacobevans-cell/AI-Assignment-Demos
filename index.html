@@ -98,13 +98,13 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  align-items: stretch;
 }
 
 .card {
   background: white;
   border-radius: 20px;
   padding: 25px;
-  min-height: 340px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 8px 25px rgba(0,0,0,.07);
@@ -148,8 +148,29 @@ main {
 .card p {
   color: #667085;
   line-height: 1.5;
-  margin-bottom: 25px;
+  margin-bottom: 18px;
 }
+
+/* PREVIEW IMAGE */
+
+.game-preview {
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+  margin: 5px 0 20px;
+  border: 1px solid #e4e7ec;
+  box-shadow: 0 6px 18px rgba(0,0,0,.10);
+}
+
+.preview-placeholder {
+  width: 100%;
+  height: 175px;
+  margin: 5px 0 20px;
+}
+
+/* BUTTONS */
 
 .button {
   margin-top: auto;
@@ -252,6 +273,7 @@ main {
 
 </header>
 
+
 <main>
 
 <section class="intro">
@@ -267,13 +289,16 @@ main {
 
 </section>
 
+
 <h2 class="section-title">Try the assignments</h2>
 
 <p class="section-subtitle">
   Each example demonstrates a different way AI can support classroom design.
 </p>
 
+
 <section class="grid">
+
 
 <!-- DECIMAL DECEPTION -->
 
@@ -291,11 +316,18 @@ main {
     avoid enemies, earn points, and unlock new themed levels.
   </p>
 
+  <img
+    src="decimal-deception-preview.png"
+    alt="Decimal Deception interactive math game"
+    class="game-preview"
+  >
+
   <a class="button" href="decimal-deception.html">
     OPEN DEMO
   </a>
 
 </article>
+
 
 <!-- VOLLEYBALL ACADEMY -->
 
@@ -320,11 +352,14 @@ main {
     topic, article, video, or existing lesson material.
   </p>
 
+  <div class="preview-placeholder"></div>
+
   <a class="button" href="volleyball-academy.html">
     OPEN DEMO
   </a>
 
 </article>
+
 
 <!-- FUTURE DEMO -->
 
@@ -341,13 +376,17 @@ main {
     immediate feedback, hints, scoring, challenges, and student choice.
   </p>
 
+  <div class="preview-placeholder"></div>
+
   <a class="button disabled">
     COMING SOON
   </a>
 
 </article>
 
+
 </section>
+
 
 <section class="how">
 
@@ -375,6 +414,7 @@ main {
 
     </div>
 
+
     <div class="step">
 
       <div class="step-number">STEP 2</div>
@@ -387,6 +427,7 @@ main {
       </p>
 
     </div>
+
 
     <div class="step">
 
