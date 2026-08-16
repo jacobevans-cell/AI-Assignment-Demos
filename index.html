@@ -38,6 +38,9 @@ body {
   --ela: #16a35a;
   --ela-soft: #eefbf3;
 
+  --science: #0891b2;
+  --science-soft: #ecfeff;
+
   --specials: #7556d8;
   --specials-soft: #f4f0ff;
 
@@ -406,6 +409,33 @@ main {
 }
 
 
+
+/* SCIENCE */
+
+.science-section .subject-header {
+  color: #08758d;
+  background: var(--science-soft);
+  border-color: var(--science);
+}
+
+.science-section .subject-header-icon {
+  background: #cffafe;
+}
+
+.science-section .subject-subtitle,
+.science-section .subject-tagline {
+  color: #0e7490;
+}
+
+.science-section .demo-type {
+  background: #e0f7fb;
+  color: #08758d;
+}
+
+.science-section .why {
+  background: #ecfeff;
+}
+
 /* SPECIALS */
 
 .specials-section .subject-header {
@@ -480,13 +510,18 @@ main {
   --accent: var(--math);
 }
 
-.volleyball-card,
-.spelling-card {
+.spelling-card,
+.reader-card {
   --accent: var(--ela);
 }
 
+.weather-card {
+  --accent: var(--science);
+}
+
 .spanish-card,
-.movement-card {
+.movement-card,
+.volleyball-card {
   --accent: var(--specials);
 }
 
@@ -1193,6 +1228,31 @@ main {
 }
 
 
+
+/* =========================================================
+   COMPACT EREADER CARD
+========================================================= */
+
+.reader-card .demo-visual {
+  background: linear-gradient(145deg,#16091f,#2a1239);
+}
+
+.reader-card .demo-preview {
+  background: #16091f;
+}
+
+.reader-card .reader-note {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  background: #eefaf2;
+  border: 1px solid #d5eedf;
+  border-radius: 10px;
+  color: #176d42;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
 /* =========================================================
    STAFF FINALE
 ========================================================= */
@@ -1647,8 +1707,8 @@ footer strong {
     </p>
 
     <p class="hero-small">
-      Seven working examples across mathematics, ELA &amp; literacy,
-      world language, and physical education.
+      Eight working examples across mathematics, ELA &amp; literacy,
+      K–1 science, world language, physical education, and extracurricular learning.
     </p>
 
     <div class="staff-accent-line"></div>
@@ -1698,9 +1758,9 @@ footer strong {
           </strong>
           The examples below include gamification,
           responsive scaffolding, interactive literature,
-          multimedia reading, word study,
+          word study, K–1 science with read-aloud access,
           differentiated language practice,
-          and adaptive physical education.
+          physical education, and extracurricular learning.
         </p>
 
 
@@ -2032,775 +2092,474 @@ footer strong {
 </section>
 
 
+
 <!-- =========================================================
      ELA & LITERACY
 ========================================================= -->
 
 <section class="subject-section ela-section">
-
   <div class="subject-header">
-
     <div class="subject-header-left">
-
-      <div class="subject-header-icon">
-        📚
-      </div>
-
+      <div class="subject-header-icon">📚</div>
       <div>
-
-        <h2>
-          ELA &amp; LITERACY
-        </h2>
-
-        <div class="subject-subtitle">
-          Literature • Informational Reading • Multimedia • Word Study
-        </div>
-
+        <h2>ELA &amp; LITERACY</h2>
+        <div class="subject-subtitle">Literature • Accessible Reading • Word Study</div>
       </div>
-
     </div>
-
-    <div class="subject-tagline">
-      Reading in different ways. Learning from the same text.
-    </div>
-
+    <div class="subject-tagline">Stronger readers. More ways into the text.</div>
   </div>
 
-
-  <!-- =====================================================
-       FEATURED EREADER
-  ====================================================== -->
-
-  <article class="featured-reader">
-
-    <div class="featured-reader-top">
-
-      <div class="featured-reader-meta">
-
-        <div class="featured-reader-icon">
-          📖
-        </div>
-
-        <div class="featured-reader-type">
-          ELA • INTERACTIVE LITERATURE • FEATURED EXAMPLE
-        </div>
-
-      </div>
-
-      <h3>
-        The Illustrated Classroom eReader
-      </h3>
-
-      <div class="reader-subtitle">
-        Featured Book: The Witches
-      </div>
-
-    </div>
-
-
-    <div class="featured-reader-body">
-
-
-      <div class="featured-reader-visual">
-
-        <a href="ereader-the-witches.html">
-
-          <img
-            src="Ereader The Witches by Roald Dahl preview.png"
-            alt="Feature overview of The Witches Illustrated Classroom eReader"
-            class="featured-reader-image"
-          >
-
-          <div class="reader-preview-badge">
-            OPEN FEATURED eREADER
-          </div>
-
-        </a>
-
-      </div>
-
-
-      <div class="featured-reader-content">
-
-
-        <div class="activity">
-
-          <span class="label">
-            ACTIVITY DESCRIPTION
-          </span>
-
-          <p>
-            A traditional classroom novel becomes an interactive
-            two-page reading experience with synchronized read-aloud,
-            live word highlighting, story artwork, navigation tools,
-            reading-progress controls, focus options,
-            and adjustable accessibility supports.
-          </p>
-
-        </div>
-
-
-        <div class="reader-alignment">
-
-          <strong>
-            ELA &amp; LITERACY ALIGNMENT
-          </strong>
-
-          <span>
-            Literature • Fluency • Reading Comprehension •
-            Multimedia Integration • Accessible Reading Support
-          </span>
-
-        </div>
-
-
-        <div class="reader-design">
-
-          <span class="label">
-            INTENTIONAL DESIGN
-          </span>
-
-          <p>
-            The goal is not to replace reading with technology.
-            The interface removes friction around reading while preserving
-            the complete text. Optional audio, synchronized highlighting,
-            focus tools, visual context, and navigation supports allow
-            different readers to remain engaged with the same book.
-          </p>
-
-          <p>
-            It also creates a practical classroom option when physical copies
-            are limited or unavailable but a teacher already has access to
-            an approved PDF or digital text. Instead of asking students to
-            scroll through a static document, that material can be transformed
-            into a more usable reading experience with navigation, read-aloud,
-            visual context, pacing controls, and accessibility supports.
-          </p>
-
-          <strong>
-            The book remains the lesson. The interface makes the book more accessible.
-          </strong>
-
-        </div>
-
-
-        <div class="reader-feature-title">
-          WHAT STUDENTS CAN USE
-        </div>
-
-
-        <div class="reader-feature-grid">
-
-          <div class="reader-feature">
-            🔊 Synchronized Read Aloud
-          </div>
-
-          <div class="reader-feature">
-            ✨ Live Word Highlighting
-          </div>
-
-          <div class="reader-feature">
-            📖 Realistic Two-Page View
-          </div>
-
-          <div class="reader-feature">
-            🎨 Changing Story Art
-          </div>
-
-          <div class="reader-feature">
-            🔗 Book Connection Context
-          </div>
-
-          <div class="reader-feature">
-            🎯 Focus Mode
-          </div>
-
-          <div class="reader-feature">
-            ☀️ Light Mode
-          </div>
-
-          <div class="reader-feature">
-            ⚡ Adjustable Read Speed
-          </div>
-
-          <div class="reader-feature">
-            🟨 Page or Bottom Highlight
-          </div>
-
-          <div class="reader-feature">
-            ⏯ Pause &amp; Stop Controls
-          </div>
-
-          <div class="reader-feature">
-            📍 Page Jump
-          </div>
-
-          <div class="reader-feature">
-            📈 Reading Progress Slider
-          </div>
-
-          <div class="reader-feature">
-            ⌨️ Keyboard Page Flipping
-          </div>
-
-          <div class="reader-feature">
-            ⛶ Fullscreen Reading
-          </div>
-
-        </div>
-
-
-        <a
-          href="ereader-the-witches.html"
-          class="reader-button"
-        >
-          OPEN THE ILLUSTRATED CLASSROOM eREADER
-        </a>
-
-      </div>
-
-    </div>
-
-  </article>
-
-
-  <!-- =====================================================
-       OTHER ELA EXAMPLES
-  ====================================================== -->
-
   <div class="subject-grid">
+    
+<article class="demo-card reader-card">
+  <div class="demo-visual">
+    <a href="ereader-the-witches.html">
+      <img src="Ereader The Witches by Roald Dahl preview.png"
+           alt="Preview of the Illustrated Classroom eReader"
+           class="demo-preview">
+      <div class="preview-badge">VIEW eREADER</div>
+    </a>
+  </div>
 
+  <div class="demo-content">
+    <div class="demo-meta">
+      <div class="demo-icon">📖</div>
+      <div class="demo-type">ELA • ACCESSIBLE DIGITAL READING</div>
+    </div>
 
-    <!-- VOLLEYBALL ACADEMY -->
+    <h3>Illustrated Classroom eReader</h3>
 
-    <article class="demo-card volleyball-card">
+    <div class="activity">
+      <span class="label">ACTIVITY DESCRIPTION</span>
+      <p>
+        A classroom novel becomes an interactive two-page reading experience
+        with synchronized read-aloud, live word highlighting, story artwork,
+        focus tools, navigation, adjustable speed, and reading-progress controls.
+      </p>
+    </div>
 
-      <div class="demo-visual">
-
-        <a href="volleyball-academy.html">
-
-          <img
-            src="volleyball-academy-preview.png"
-            alt="Preview of Volleyball Academy"
-            class="demo-preview"
-          >
-
-          <div class="preview-badge">
-            VIEW ELA LESSON
-          </div>
-
-        </a>
-
+    <div class="standard">
+      <div class="standard-code">ELA</div>
+      <div class="standard-text">
+        <strong>Literacy &amp; Accessibility Alignment</strong>
+        <span>Literature • Fluency • Comprehension • Multimedia • Accessible Reading Support</span>
       </div>
+    </div>
 
+    <div class="reader-note">
+      📄 Especially useful when approved digital text or a PDF is available but physical classroom copies are limited.
+    </div>
 
-      <div class="demo-content">
+    <div class="why">
+      <span class="label">INTENTIONAL DESIGN</span>
+      <p>
+        The goal is not to replace reading with technology. Audio, synchronized
+        highlighting, visual context, focus tools, and navigation remove barriers
+        while students remain engaged with the same complete text.
+      </p>
+      <span class="takeaway">
+        The book remains the lesson. The interface makes the book more accessible.
+      </span>
+    </div>
 
-        <div class="demo-meta">
+    <div class="features">
+      <span class="feature">🔊 Read Aloud</span>
+      <span class="feature">✨ Word Highlighting</span>
+      <span class="feature">🎯 Focus Mode</span>
+      <span class="feature">⚡ Reading Speed</span>
+      <span class="feature">🎨 Story Art</span>
+    </div>
 
-          <div class="demo-icon">🎥</div>
-
-          <div class="demo-type">
-            ELA • INTERACTIVE MULTIMEDIA LESSON
-          </div>
-
-        </div>
-
-        <h3>
-          Volleyball Academy
-        </h3>
-
-
-        <div class="activity">
-
-          <span class="label">
-            ACTIVITY DESCRIPTION
-          </span>
-
-          <p>
-            Students read informational text, analyze embedded YouTube videos,
-            answer comprehension questions, sort information,
-            and apply what they learn through eight interactive missions.
-          </p>
-
-        </div>
-
-
-        <div class="standard">
-
-          <div class="standard-code">
-            RI.1 &amp; RI.7
-          </div>
-
-          <div class="standard-text">
-
-            <strong>
-              Arizona ELA Alignment
-            </strong>
-
-            <span>
-              Informational reading plus integration of text,
-              visual, and multimedia sources.
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="ela-callout">
-          📚 The volleyball topic is the flavor. The learning design is ELA.
-        </div>
-
-
-        <div class="why">
-
-          <span class="label">
-            INTENTIONAL DESIGN
-          </span>
-
-          <p>
-            Separate web articles, instructional readings,
-            and YouTube videos became one sequenced ELA experience.
-            Students read closely, interpret multimedia,
-            respond, organize information,
-            and demonstrate understanding before progressing.
-          </p>
-
-          <span class="takeaway">
-            Existing resources became an interactive reading and comprehension lesson.
-          </span>
-
-        </div>
-
-
-        <div class="features">
-
-          <span class="feature">📄 Articles</span>
-          <span class="feature">🎥 YouTube Videos</span>
-          <span class="feature">✅ Comprehension</span>
-          <span class="feature">🧩 Drag &amp; Drop</span>
-
-        </div>
-
-
-        <a
-          href="volleyball-academy.html"
-          class="open-button"
-        >
-          OPEN VOLLEYBALL ELA LESSON
-        </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- SPELLING -->
+    <a href="ereader-the-witches.html" class="open-button">OPEN eREADER</a>
+  </div>
+</article>
 
     <article class="demo-card spelling-card">
-
-      <div class="demo-visual">
-
-        <a href="spelling-practice.html">
-
-          <img
-            src="spelling-practice-preview.png"
-            alt="Preview of Spelling Practice Lab"
-            class="demo-preview"
-          >
-
-          <div class="preview-badge">
+<div class="demo-visual">
+<a href="spelling-practice.html">
+<img alt="Preview of Spelling Practice Lab" class="demo-preview" src="spelling-practice-preview.png"/>
+<div class="preview-badge">
             VIEW ACTIVITY
           </div>
-
-        </a>
-
-      </div>
-
-
-      <div class="demo-content">
-
-        <div class="demo-meta">
-
-          <div class="demo-icon">🔤</div>
-
-          <div class="demo-type">
+</a>
+</div>
+<div class="demo-content">
+<div class="demo-meta">
+<div class="demo-icon">🔤</div>
+<div class="demo-type">
             ELA • MULTIMODAL WORD STUDY
           </div>
-
-        </div>
-
-        <h3>
+</div>
+<h3>
           Spelling Practice Lab
         </h3>
-
-
-        <div class="activity">
-
-          <span class="label">
+<div class="activity">
+<span class="label">
             ACTIVITY DESCRIPTION
           </span>
-
-          <p>
+<p>
             One spelling list becomes a complete study system
             with instructional flash cards, audio,
             visual word analysis, volleyball and soccer practice,
             and an independent spelling test.
           </p>
-
-        </div>
-
-
-        <div class="standard">
-
-          <div class="standard-code">
+</div>
+<div class="standard">
+<div class="standard-code">
             RF.3 &amp; L.2
           </div>
-
-          <div class="standard-text">
-
-            <strong>
+<div class="standard-text">
+<strong>
               Arizona ELA Alignment
             </strong>
-
-            <span>
+<span>
               Phonics, word analysis, language conventions,
               and grade-appropriate spelling.
             </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="why">
-
-          <span class="label">
+</div>
+</div>
+<div class="why">
+<span class="label">
             INTENTIONAL DESIGN
           </span>
-
-          <p>
+<p>
             Students see syllables, hear sound chunks,
             identify highlighted phonograms,
             study difficult spelling patterns,
             receive targeted “Watch For” hints,
             practice the words, and demonstrate independence.
           </p>
-
-          <span class="takeaway">
+<span class="takeaway">
             See it → hear it → break it apart → practice it → spell it.
           </span>
-
-        </div>
-
-
-        <div class="features">
-
-          <span class="feature">🔊 Audio</span>
-          <span class="feature">🔎 Phonograms</span>
-          <span class="feature">⭐ Watch For Hints</span>
-          <span class="feature">⚽🏐 Games</span>
-
-        </div>
-
-
-        <a
-          href="spelling-practice.html"
-          class="open-button"
-        >
+</div>
+<div class="features">
+<span class="feature">🔊 Audio</span>
+<span class="feature">🔎 Phonograms</span>
+<span class="feature">⭐ Watch For Hints</span>
+<span class="feature">⚽🏐 Games</span>
+</div>
+<a class="open-button" href="spelling-practice.html">
           OPEN SPELLING PRACTICE
         </a>
-
-      </div>
-
-    </article>
-
+</div>
+</article>
   </div>
-
 </section>
 
 
 <!-- =========================================================
-     SPECIALS
+     SCIENCE & DISCOVERY
+========================================================= -->
+
+<section class="subject-section science-section">
+  <div class="subject-header">
+    <div class="subject-header-left">
+      <div class="subject-header-icon">🔬</div>
+      <div>
+        <h2>SCIENCE &amp; DISCOVERY</h2>
+        <div class="subject-subtitle">Observe • Investigate • Evidence • Patterns</div>
+      </div>
+    </div>
+    <div class="subject-tagline">Real science thinking, designed for young learners.</div>
+  </div>
+
+  <div class="subject-grid">
+    
+<article class="demo-card weather-card">
+  <div class="demo-visual">
+    <a href="weather-watch-academy.html">
+      <img src="weather-watch-academy-preview.png"
+           alt="Preview of Weather Watch Academy K-1 science"
+           class="demo-preview">
+      <div class="preview-badge">VIEW K–1 SCIENCE</div>
+    </a>
+  </div>
+
+  <div class="demo-content">
+    <div class="demo-meta">
+      <div class="demo-icon">🌦️</div>
+      <div class="demo-type">K–1 • INTERACTIVE SCIENCE ACADEMY</div>
+    </div>
+
+    <h3>Weather Watch Academy</h3>
+
+    <div class="activity">
+      <span class="label">ACTIVITY DESCRIPTION</span>
+      <p>
+        Students become weather scientists through eight interactive missions.
+        They listen, observe, investigate temperature, precipitation, wind and
+        sky conditions, sort evidence, complete science checks, and build Weather IQ.
+      </p>
+    </div>
+
+    <div class="standard">
+      <div class="standard-code">K.E1U1.3</div>
+      <div class="standard-text">
+        <strong>Arizona Science Standard</strong>
+        <span>
+          Observe, record, and ask questions about temperature, precipitation,
+          and other weather data to identify patterns or changes in local weather.
+        </span>
+      </div>
+    </div>
+
+    <div class="why">
+      <span class="label">INTENTIONAL DESIGN</span>
+      <p>
+        The same deep interactive lesson structure used with older students is
+        redesigned for beginning readers through built-in read aloud, visual cues,
+        short text chunks, repeated routines, touch-friendly sorting, immediate
+        feedback, and clear mission progression.
+      </p>
+      <span class="takeaway">Same depth of thinking. A different level of access.</span>
+    </div>
+
+    <div class="features">
+      <span class="feature">🔊 Read Aloud</span>
+      <span class="feature">👀 Observation</span>
+      <span class="feature">🧩 Mini Challenges</span>
+      <span class="feature">🎯 Science Checks</span>
+      <span class="feature">🏆 Weather IQ</span>
+    </div>
+
+    <a href="weather-watch-academy.html" class="open-button">OPEN WEATHER WATCH ACADEMY</a>
+  </div>
+</article>
+
+  </div>
+</section>
+
+
+<!-- =========================================================
+     SPECIALS & EXTRACURRICULARS
 ========================================================= -->
 
 <section class="subject-section specials-section">
-
   <div class="subject-header">
-
     <div class="subject-header-left">
-
-      <div class="subject-header-icon">
-        ✨
-      </div>
-
+      <div class="subject-header-icon">✨</div>
       <div>
-
-        <h2>
-          SPECIALS &amp; EXPLORATORY
-        </h2>
-
-        <div class="subject-subtitle">
-          Language • Movement • Student Choice
-        </div>
-
+        <h2>SPECIALS &amp; EXTRACURRICULARS</h2>
+        <div class="subject-subtitle">World Language • Physical Education • Athletics • Student Interests</div>
       </div>
-
     </div>
-
-    <div class="subject-tagline">
-      Expanding voice. Building skills for life.
-    </div>
-
+    <div class="subject-tagline">Academic learning can travel far beyond a traditional classroom format.</div>
   </div>
 
-
   <div class="subject-grid">
-
-
-    <!-- SPANISH -->
-
     <article class="demo-card spanish-card">
-
-      <div class="demo-visual">
-
-        <a href="spanish-conversation-quest.html">
-
-          <img
-            src="spanish-conversation-quest-preview.png"
-            alt="Preview of Spanish Conversation Quest"
-            class="demo-preview"
-          >
-
-          <div class="preview-badge">
+<div class="demo-visual">
+<a href="spanish-conversation-quest.html">
+<img alt="Preview of Spanish Conversation Quest" class="demo-preview" src="spanish-conversation-quest-preview.png"/>
+<div class="preview-badge">
             VIEW ACTIVITY
           </div>
-
-        </a>
-
-      </div>
-
-
-      <div class="demo-content">
-
-        <div class="demo-meta">
-
-          <div class="demo-icon">💬</div>
-
-          <div class="demo-type">
+</a>
+</div>
+<div class="demo-content">
+<div class="demo-meta">
+<div class="demo-icon">💬</div>
+<div class="demo-type">
             WORLD LANGUAGE
           </div>
-
-        </div>
-
-        <h3>
+</div>
+<h3>
           Spanish Conversation Quest
         </h3>
-
-
-        <div class="activity">
-
-          <span class="label">
+<div class="activity">
+<span class="label">
             ACTIVITY DESCRIPTION
           </span>
-
-          <p>
+<p>
             Students practice Spanish through real-world conversation missions
             combining vocabulary, pronunciation,
             listening, sentence construction,
             conversation choices, feedback, and reflection.
           </p>
-
-        </div>
-
-
-        <div class="standard">
-
-          <div class="standard-code">
+</div>
+<div class="standard">
+<div class="standard-code">
             COMM.
           </div>
-
-          <div class="standard-text">
-
-            <strong>
+<div class="standard-text">
+<strong>
               World Language Alignment
             </strong>
-
-            <span>
+<span>
               Listening, interpretation, vocabulary,
               sentence construction, and interpersonal communication.
             </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="why">
-
-          <span class="label">
+</div>
+</div>
+<div class="why">
+<span class="label">
             INTENTIONAL DESIGN
           </span>
-
-          <p>
+<p>
             Beginner, Standard, and Challenge modes change
             the amount of English support, pronunciation help,
             hints, and independence while keeping
             the communication target consistent.
           </p>
-
-          <span class="takeaway">
+<span class="takeaway">
             Same communication goal. Different levels of scaffolding.
           </span>
-
-        </div>
-
-
-        <div class="features">
-
-          <span class="feature">🔊 Listening</span>
-          <span class="feature">💬 Conversation</span>
-          <span class="feature">🧩 Sentence Building</span>
-          <span class="feature">🎯 3 Support Levels</span>
-
-        </div>
-
-
-        <a
-          href="spanish-conversation-quest.html"
-          class="open-button"
-        >
+</div>
+<div class="features">
+<span class="feature">🔊 Listening</span>
+<span class="feature">💬 Conversation</span>
+<span class="feature">🧩 Sentence Building</span>
+<span class="feature">🎯 3 Support Levels</span>
+</div>
+<a class="open-button" href="spanish-conversation-quest.html">
           OPEN SPANISH QUEST
         </a>
-
-      </div>
-
-    </article>
-
-
-    <!-- MOVEMENT -->
-
+</div>
+</article>
     <article class="demo-card movement-card">
-
-      <div class="demo-visual">
-
-        <a href="movement-mission.html">
-
-          <img
-            src="movement-mission-preview.png"
-            alt="Preview of Movement Mission"
-            class="demo-preview"
-          >
-
-          <div class="preview-badge">
+<div class="demo-visual">
+<a href="movement-mission.html">
+<img alt="Preview of Movement Mission" class="demo-preview" src="movement-mission-preview.png"/>
+<div class="preview-badge">
             VIEW ACTIVITY
           </div>
-
-        </a>
-
-      </div>
-
-
-      <div class="demo-content">
-
-        <div class="demo-meta">
-
-          <div class="demo-icon">🏃</div>
-
-          <div class="demo-type">
+</a>
+</div>
+<div class="demo-content">
+<div class="demo-meta">
+<div class="demo-icon">🏃</div>
+<div class="demo-type">
             PHYSICAL EDUCATION
           </div>
-
-        </div>
-
-        <h3>
+</div>
+<h3>
           Movement Mission
         </h3>
-
-
-        <div class="activity">
-
-          <span class="label">
+<div class="activity">
+<span class="label">
             ACTIVITY DESCRIPTION
           </span>
-
-          <p>
+<p>
             Students create a personalized K–8 movement circuit
             using timed stations, coach cues, technique support,
             knowledge checks, reflection, XP,
             achievements, and progress tracking.
           </p>
-
-        </div>
-
-
-        <div class="standard">
-
-          <div class="standard-code">
+</div>
+<div class="standard">
+<div class="standard-code">
             K–8 PE
           </div>
-
-          <div class="standard-text">
-
-            <strong>
+<div class="standard-text">
+<strong>
               Physical Education Alignment
             </strong>
-
-            <span>
+<span>
               Movement competency, fitness,
               body control, movement knowledge, and reflection.
             </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="why">
-
-          <span class="label">
+</div>
+</div>
+<div class="why">
+<span class="label">
             INTENTIONAL DESIGN
           </span>
-
-          <p>
+<p>
             The actual circuit changes based on grade band,
             difficulty, available equipment,
             available space, and adapted movement needs.
             Customization changes the experience itself,
             not simply the color or theme.
           </p>
-
-          <span class="takeaway">
+<span class="takeaway">
             Same PE goals. Different training flavors.
           </span>
-
-        </div>
-
-
-        <div class="features">
-
-          <span class="feature">⏱️ Timers</span>
-          <span class="feature">🏀 Equipment Aware</span>
-          <span class="feature">❤️ Adapted Options</span>
-          <span class="feature">👩‍🏫 Teacher Mode</span>
-
-        </div>
-
-
-        <a
-          href="movement-mission.html"
-          class="open-button"
-        >
+</div>
+<div class="features">
+<span class="feature">⏱️ Timers</span>
+<span class="feature">🏀 Equipment Aware</span>
+<span class="feature">❤️ Adapted Options</span>
+<span class="feature">👩‍🏫 Teacher Mode</span>
+</div>
+<a class="open-button" href="movement-mission.html">
           OPEN MOVEMENT MISSION
         </a>
-
-      </div>
-
-    </article>
-
+</div>
+</article>
+    <article class="demo-card volleyball-card">
+<div class="demo-visual">
+<a href="volleyball-academy.html">
+<img alt="Preview of Volleyball Academy" class="demo-preview" src="volleyball-academy-preview.png"/>
+<div class="preview-badge">
+            VIEW ACTIVITY
+          </div>
+</a>
+</div>
+<div class="demo-content">
+<div class="demo-meta">
+<div class="demo-icon">🎥</div>
+<div class="demo-type">
+            EXTRACURRICULAR • ELA-RICH LEARNING
+          </div>
+</div>
+<h3>
+          Volleyball Academy
+        </h3>
+<div class="activity">
+<span class="label">
+            ACTIVITY DESCRIPTION
+          </span>
+<p>
+            Students read informational text, analyze embedded YouTube videos,
+            answer comprehension questions, sort information,
+            and apply what they learn through eight interactive missions.
+          </p>
+</div>
+<div class="standard">
+<div class="standard-code">
+            RI.1 &amp; RI.7
+          </div>
+<div class="standard-text">
+<strong>
+              Arizona ELA Alignment
+            </strong>
+<span>
+              Informational reading plus integration of text,
+              visual, and multimedia sources.
+            </span>
+</div>
+</div>
+<div class="ela-callout">
+          📚 A sports-based extracurricular experience that still requires real reading, multimedia analysis, and comprehension.
+        </div>
+<div class="why">
+<span class="label">
+            INTENTIONAL DESIGN
+          </span>
+<p>
+            Separate web articles, instructional readings,
+            and YouTube videos became one sequenced ELA experience.
+            Students read closely, interpret multimedia,
+            respond, organize information,
+            and demonstrate understanding before progressing.
+          </p>
+<span class="takeaway">
+            Existing resources became an interactive reading and comprehension lesson.
+          </span>
+</div>
+<div class="features">
+<span class="feature">📄 Articles</span>
+<span class="feature">🎥 YouTube Videos</span>
+<span class="feature">✅ Comprehension</span>
+<span class="feature">🧩 Drag &amp; Drop</span>
+</div>
+<a class="open-button" href="volleyball-academy.html">
+          OPEN VOLLEYBALL ACADEMY
+        </a>
+</div>
+</article>
   </div>
-
 </section>
 
 
