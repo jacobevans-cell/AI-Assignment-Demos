@@ -141,14 +141,53 @@ main {
 }
 
 .card h3 {
-  margin: 0 0 10px;
+  margin: 0 0 16px;
   font-size: 22px;
 }
 
 .card p {
   color: #667085;
   line-height: 1.5;
+}
+
+/* STAFF INFO SECTIONS */
+
+.info-section {
+  margin-bottom: 17px;
+}
+
+.info-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .6px;
+  color: #4f46e5;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.info-section p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.design-box {
+  background: #f5f3ff;
+  border-left: 4px solid #654cff;
+  padding: 12px 13px;
+  border-radius: 8px;
   margin-bottom: 18px;
+}
+
+.design-box .info-label {
+  color: #5037e8;
+}
+
+.design-box p {
+  margin: 0;
+  color: #505a6b;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 /* PREVIEW IMAGE */
@@ -159,7 +198,7 @@ main {
   object-fit: cover;
   object-position: center;
   border-radius: 14px;
-  margin: 5px 0 20px;
+  margin: 3px 0 20px;
   border: 1px solid #e4e7ec;
   box-shadow: 0 6px 18px rgba(0,0,0,.10);
 }
@@ -240,6 +279,7 @@ main {
 /* MOBILE */
 
 @media (max-width: 800px) {
+
   .grid,
   .steps {
     grid-template-columns: 1fr;
@@ -310,17 +350,58 @@ main {
 
   <h3>Decimal Deception</h3>
 
-  <p>
-    Escape a space station while practicing decimal operations.
-    Students choose a hero, complete missions, collect Power Crystals,
-    avoid enemies, earn points, and unlock new themed levels.
-  </p>
+
+  <div class="info-section">
+
+    <div class="info-label">
+      Activity Description
+    </div>
+
+    <p>
+      Students navigate a space-station adventure while solving decimal
+      problems. Correct answers help them complete missions, collect Power
+      Crystals, avoid enemies, and unlock new areas.
+    </p>
+
+  </div>
+
+
+  <div class="info-section">
+
+    <div class="info-label">
+      Arizona Math Standard
+    </div>
+
+    <p>
+      <strong>6.NS.B.3</strong> — Fluently add, subtract, multiply,
+      and divide multi-digit decimals using the standard algorithm.
+    </p>
+
+  </div>
+
+
+  <div class="design-box">
+
+    <div class="info-label">
+      Intentional Design
+    </div>
+
+    <p>
+      What if the same practice problems from a worksheet became part
+      of a game? The academic skill remains the focus, but repetitive
+      practice is built into missions, movement, challenges, immediate
+      feedback, and progression.
+    </p>
+
+  </div>
+
 
   <img
     src="decimal-deception-preview.png"
     alt="Decimal Deception interactive math game"
     class="game-preview"
   >
+
 
   <a class="button" href="decimal-deception.html">
     OPEN DEMO
@@ -398,11 +479,15 @@ main {
     should work.
   </p>
 
+
   <div class="steps">
+
 
     <div class="step">
 
-      <div class="step-number">STEP 1</div>
+      <div class="step-number">
+        STEP 1
+      </div>
 
       <strong>Describe the idea</strong>
 
@@ -417,7 +502,9 @@ main {
 
     <div class="step">
 
-      <div class="step-number">STEP 2</div>
+      <div class="step-number">
+        STEP 2
+      </div>
 
       <strong>Build & revise</strong>
 
@@ -431,7 +518,9 @@ main {
 
     <div class="step">
 
-      <div class="step-number">STEP 3</div>
+      <div class="step-number">
+        STEP 3
+      </div>
 
       <strong>Publish & share</strong>
 
@@ -441,6 +530,7 @@ main {
       </p>
 
     </div>
+
 
   </div>
 
