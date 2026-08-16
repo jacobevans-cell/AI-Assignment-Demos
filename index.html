@@ -26,59 +26,55 @@ html {
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #f3f6fa;
+  background: #f2f6fa;
   color: #18212f;
 }
 
 :root {
-  --navy: #0c1829;
-  --navy-light: #14263d;
-  --red: #ea0f3f;
-  --blue: #0050c8;
-  --green: #4bcc75;
-  --cyan: #00bddd;
-  --purple: #7253d6;
-  --orange: #f59b35;
-  --white: #ffffff;
-  --light: #f3f6fa;
-  --text: #18212f;
-  --muted: #667085;
-  --purple-soft: #f2efff;
+  --navy: #071a2b;
+  --navy2: #0c2844;
+  --blue: #075dcc;
+  --red: #f20d46;
+  --green: #29c56f;
+  --cyan: #06b9d4;
+  --purple: #7757d8;
+  --text: #172033;
+  --muted: #607086;
+  --line: #dce4ee;
+  --light: #f5f8fc;
 }
 
 
 /* =========================================================
-   EXPLORE BRAND BAR
+   BRAND BAR
 ========================================================= */
 
 .brand-bar {
   background: var(--navy);
   color: white;
-  padding: 14px 30px;
   border-bottom: 4px solid var(--red);
+  padding: 13px 24px;
 }
 
 .brand-inner {
-  width: min(1450px, 94%);
+  width: min(1740px, 97%);
   margin: auto;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 15px;
 }
 
 .brand-logo {
-  width: 70px;
-  height: 70px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
   display: block;
-
-  /* ONLY the Explore logo becomes white */
   filter: brightness(0) invert(1);
 }
 
 .brand-name {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 30px;
+  font-size: 29px;
   font-weight: bold;
 }
 
@@ -88,119 +84,78 @@ body {
 ========================================================= */
 
 .hero {
-
+  position: relative;
+  overflow: hidden;
   background:
     linear-gradient(
-      135deg,
-      #0c1829 0%,
-      #102b51 55%,
-      #0050c8 100%
+      120deg,
+      #071a2b 0%,
+      #07385d 55%,
+      #075dcc 100%
     );
-
   color: white;
-
-  text-align: center;
-
-  padding: 70px 20px 75px;
-
-  position: relative;
-
-  overflow: hidden;
+  padding: 62px 24px 66px;
 }
 
-.hero::after {
-
+.hero::before {
   content: "";
-
   position: absolute;
-
-  width: 450px;
-
-  height: 450px;
-
+  width: 550px;
+  height: 550px;
   border-radius: 50%;
-
-  background: rgba(255,255,255,.04);
-
-  right: -150px;
-
-  top: -180px;
+  background: rgba(255,255,255,.035);
+  top: -310px;
+  right: -120px;
 }
 
-.hero-content {
-
-  position: relative;
-
-  z-index: 2;
-
-  max-width: 1000px;
-
+.hero-inner {
+  width: min(1500px, 95%);
   margin: auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .badge {
-
   display: inline-block;
-
-  padding: 8px 17px;
-
   border: 1px solid rgba(255,255,255,.45);
-
-  border-radius: 30px;
-
-  font-size: 13px;
-
-  font-weight: bold;
-
-  letter-spacing: 1.3px;
-
-  margin-bottom: 20px;
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
 }
 
 .hero h1 {
-
-  margin: 0 0 16px;
-
-  font-size: clamp(44px, 6vw, 72px);
-
-  line-height: 1.05;
+  margin: 0;
+  font-size: clamp(46px, 5.4vw, 76px);
+  line-height: 1;
 }
 
 .hero h1 span {
-  color: #62dc8b;
+  color: #42dc88;
 }
 
 .hero-main {
-
-  max-width: 850px;
-
-  margin: auto;
-
-  font-size: 21px;
-
-  line-height: 1.55;
+  max-width: 900px;
+  margin: 20px auto 0;
+  font-size: 20px;
+  line-height: 1.5;
 }
 
 .hero-small {
-
-  margin-top: 25px;
-
-  font-size: 15px;
-
-  opacity: .82;
+  margin: 20px auto 0;
+  color: #ccd8e7;
+  font-size: 14px;
 }
 
-.hero-accent {
-
-  width: 120px;
-
+.hero-line {
+  width: 110px;
   height: 5px;
-
-  border-radius: 20px;
-
-  margin: 30px auto 0;
-
   background: var(--red);
+  border-radius: 99px;
+  margin: 28px auto 0;
 }
 
 
@@ -209,52 +164,44 @@ body {
 ========================================================= */
 
 main {
-
-  width: min(1500px, 94%);
-
+  width: min(1740px, 97%);
   margin: auto;
-
-  padding: 48px 0 75px;
+  padding: 42px 0 70px;
 }
 
 
 /* =========================================================
-   INTRO
+   INTRO / PURPOSE
 ========================================================= */
 
 .intro {
-
   background: white;
-
   border-radius: 20px;
-
-  padding: 32px 38px;
-
-  margin-bottom: 45px;
-
-  box-shadow: 0 10px 30px rgba(12,24,41,.08);
-
   border-top: 5px solid var(--blue);
+  padding: 28px 34px;
+  box-shadow: 0 10px 28px rgba(12,24,41,.07);
+  margin-bottom: 38px;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: .8fr 2.2fr;
+  gap: 35px;
+  align-items: center;
 }
 
 .intro h2 {
-
-  margin: 0 0 12px;
-
-  font-size: 28px;
-
   color: var(--navy);
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.15;
 }
 
 .intro p {
-
-  color: var(--muted);
-
-  line-height: 1.7;
-
-  font-size: 16px;
-
   margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 15px;
 }
 
 .intro strong {
@@ -267,554 +214,427 @@ main {
 ========================================================= */
 
 .section-heading {
-  margin-bottom: 25px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 22px;
 }
 
-.section-title {
-
-  font-size: 34px;
-
-  margin: 0 0 7px;
-
+.section-heading h2 {
   color: var(--navy);
+  font-size: 34px;
+  margin: 0 0 5px;
 }
 
-.section-subtitle {
-
+.section-heading p {
   color: var(--muted);
-
   margin: 0;
+  font-size: 15px;
+}
 
-  font-size: 16px;
+.section-note {
+  color: #718096;
+  font-size: 13px;
+  text-align: right;
 }
 
 
 /* =========================================================
-   ASSIGNMENT GRID
-
-   SIX DEMOS = 3 x 2
+   DEMO GRID
 ========================================================= */
 
-.grid {
-
+.demo-grid {
   display: grid;
-
   grid-template-columns: repeat(3, minmax(0, 1fr));
-
   gap: 24px;
-
   align-items: stretch;
 }
 
 
 /* =========================================================
-   CARDS
+   DEMO CARD
 ========================================================= */
 
-.card {
+.demo-card {
+  --accent: var(--blue);
 
   background: white;
-
-  border-radius: 20px;
-
-  padding: 26px;
-
-  min-width: 0;
+  border-radius: 21px;
+  border-top: 6px solid var(--accent);
+  box-shadow: 0 8px 26px rgba(12,24,41,.08);
+  overflow: hidden;
 
   display: flex;
-
   flex-direction: column;
 
-  box-shadow: 0 8px 25px rgba(12,24,41,.08);
-
   transition:
-    transform .2s,
-    box-shadow .2s;
-
-  border-top: 6px solid var(--blue);
+    transform .2s ease,
+    box-shadow .2s ease;
 }
 
-.card:hover {
-
-  transform: translateY(-5px);
-
-  box-shadow: 0 16px 38px rgba(12,24,41,.14);
+.demo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(12,24,41,.13);
 }
-
-
-/* INDIVIDUAL CARD COLORS */
 
 .decimal-card {
-  border-top-color: var(--blue);
+  --accent: #075dcc;
 }
 
 .volleyball-card {
-  border-top-color: var(--green);
+  --accent: #22b866;
 }
 
 .division-card {
-  border-top-color: var(--red);
+  --accent: #f20d46;
 }
 
 .spelling-card {
-  border-top-color: var(--blue);
+  --accent: #246fd4;
 }
 
 .spanish-card {
-  border-top-color: var(--purple);
+  --accent: #7757d8;
 }
 
 .movement-card {
-  border-top-color: var(--cyan);
+  --accent: #06a9c6;
 }
 
 
 /* =========================================================
-   CARD HEADER
+   CARD TOP
 ========================================================= */
 
-.card-head {
+.card-top {
+  padding: 22px 24px 17px;
+}
 
-  min-height: 125px;
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 12px;
 }
 
 .icon {
-
-  width: 52px;
-
-  height: 52px;
-
-  border-radius: 14px;
-
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
   background: #edf3ff;
-
+  border-radius: 13px;
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
-  font-size: 27px;
-
-  margin-bottom: 11px;
+  font-size: 24px;
 }
 
 .tag {
-
   display: inline-block;
-
-  width: fit-content;
-
   background: #e9f8fa;
-
   color: #08798b;
-
+  border-radius: 99px;
   padding: 5px 10px;
-
-  border-radius: 20px;
-
-  font-size: 11px;
-
-  font-weight: bold;
-
-  margin-bottom: 9px;
-
-  letter-spacing: .3px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .45px;
 }
 
 .spanish-card .tag {
-
-  background: #f0eaff;
-
-  color: #6543b8;
+  background: #f1ecff;
+  color: #6543ba;
 }
 
 .movement-card .tag {
-
-  background: #e4faff;
-
-  color: #007b93;
+  background: #e6faff;
+  color: #007e94;
 }
 
-.card h3 {
-
-  margin: 0;
-
-  font-size: 23px;
-
+.card-top h3 {
   color: var(--navy);
-}
-
-
-/* =========================================================
-   CONSISTENT CARD SECTIONS
-
-   MIN-HEIGHT KEEPS ALIGNMENT
-   WITHOUT CAUSING OVERLAP
-========================================================= */
-
-.card-section {
-
-  padding-top: 18px;
-}
-
-.activity-section {
-  min-height: 210px;
-}
-
-.standard-section {
-  min-height: 150px;
-}
-
-.build-section {
-  min-height: 225px;
-}
-
-.design-section {
-  min-height: 285px;
-}
-
-.section-label {
-
-  display: block;
-
-  color: var(--blue);
-
-  font-size: 13px;
-
-  font-weight: 900;
-
-  letter-spacing: .7px;
-
-  margin-bottom: 8px;
-}
-
-.spanish-card .section-label {
-  color: #6543b8;
-}
-
-.movement-card .section-label {
-  color: #008ba7;
-}
-
-.card-section p {
-
-  color: var(--muted);
-
-  line-height: 1.52;
-
-  margin: 0;
-
-  font-size: 14px;
-}
-
-
-/* =========================================================
-   WHAT WAS BUILT
-========================================================= */
-
-.build-box {
-
-  background: #f6f8fb;
-
-  border: 1px solid #e2e7ef;
-
-  border-radius: 12px;
-
-  padding: 16px;
-}
-
-.build-box ul {
-
-  margin: 10px 0 0;
-
-  padding-left: 18px;
-}
-
-.build-box li {
-
-  color: #566477;
-
-  font-size: 13px;
-
-  line-height: 1.46;
-
-  margin-bottom: 7px;
-}
-
-.build-box li:last-child {
-  margin-bottom: 0;
-}
-
-
-/* =========================================================
-   INTENTIONAL DESIGN
-========================================================= */
-
-.design-box {
-
-  background: var(--purple-soft);
-
-  border-left: 4px solid #5368ff;
-
-  border-radius: 10px;
-
-  padding: 16px;
-}
-
-.spanish-card .design-box {
-
-  background: #f4efff;
-
-  border-left-color: #7253d6;
-}
-
-.movement-card .design-box {
-
-  background: #ebfaff;
-
-  border-left-color: #00a8c7;
-}
-
-.design-box p {
-
-  color: #536177;
-
-  font-size: 14px;
-
-  line-height: 1.52;
-
+  font-size: 25px;
   margin: 0;
 }
 
-.design-emphasis {
-
-  display: block;
-
-  margin-top: 12px;
-
-  color: #344054;
-
-  font-weight: 800;
-
-  line-height: 1.45;
-}
-
 
 /* =========================================================
-   PREVIEW IMAGES
+   PREVIEW MOVED TO TOP
 ========================================================= */
 
-.preview-wrap {
-
-  margin-top: auto;
-
-  padding-top: 20px;
+.preview-link {
+  display: block;
+  position: relative;
+  margin: 0 24px;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #dfe6ef;
+  border: 1px solid #d7e0ea;
+  text-decoration: none;
 }
 
 .preview {
-
   width: 100%;
-
-  aspect-ratio: 16 / 9;
-
+  aspect-ratio: 16 / 8.6;
   object-fit: cover;
-
   object-position: center;
-
-  border-radius: 12px;
-
   display: block;
+  transition: transform .25s ease;
+}
 
-  border: 1px solid #d5dce6;
+.preview-link:hover .preview {
+  transform: scale(1.025);
+}
 
-  background: #edf1f6;
+.preview-overlay {
+  position: absolute;
+  inset: auto 12px 12px auto;
+  background: rgba(7,26,43,.88);
+  color: white;
+  border-radius: 99px;
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .4px;
+  backdrop-filter: blur(4px);
 }
 
 
 /* =========================================================
-   BUTTONS
+   CARD CONTENT
 ========================================================= */
 
-.button {
-
-  margin-top: 15px;
-
-  display: block;
-
-  text-align: center;
-
-  background: var(--blue);
-
-  color: white;
-
-  text-decoration: none;
-
-  padding: 14px;
-
-  border-radius: 9px;
-
-  font-weight: bold;
-
-  transition: .2s;
+.card-content {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
-.button:hover {
+.label {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: .7px;
+  font-weight: 900;
+  display: block;
+  margin-bottom: 6px;
+}
 
-  transform: translateY(-1px);
+.activity {
+  margin-bottom: 16px;
+}
 
+.activity p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.52;
+  margin: 0;
+}
+
+
+/* =========================================================
+   STANDARD
+========================================================= */
+
+.standard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 11px;
+  align-items: start;
+
+  border: 1px solid #e0e6ee;
+  background: #f7f9fc;
+  border-radius: 12px;
+
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.standard-code {
+  white-space: nowrap;
+  color: white;
+  background: var(--accent);
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.standard-text strong {
+  color: var(--navy);
+  font-size: 12px;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.standard-text span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   WHY THIS MATTERS
+========================================================= */
+
+.why {
+  background: #f2f0ff;
+  border-left: 4px solid var(--accent);
+  border-radius: 11px;
+  padding: 14px;
+  margin-bottom: 18px;
+}
+
+.movement-card .why {
+  background: #ebfbff;
+}
+
+.why p {
+  color: #536177;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.takeaway {
+  display: block;
+  color: #344054;
+  font-weight: 800;
+  line-height: 1.4;
+  margin-top: 8px;
+}
+
+
+/* =========================================================
+   FEATURE CHIPS
+========================================================= */
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 19px;
+}
+
+.feature {
+  background: #eef3f8;
+  color: #4a5c70;
+  border-radius: 99px;
+  padding: 6px 9px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.open-button {
+  display: block;
+  margin-top: auto;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background: var(--accent);
+  border-radius: 10px;
+  padding: 13px;
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+
+.open-button:hover {
   filter: brightness(.92);
 }
 
-.volleyball-card .button {
-  background: #249c52;
-}
-
-.division-card .button {
-  background: var(--red);
-}
-
-.spanish-card .button {
-  background: #7253d6;
-}
-
-.movement-card .button {
-  background: #009fbe;
-}
-
 
 /* =========================================================
-   SUBJECT RANGE STRIP
+   SUBJECT RANGE
 ========================================================= */
 
 .range-section {
-
-  margin-top: 55px;
-
+  margin-top: 46px;
   background: var(--navy);
-
   color: white;
-
-  border-radius: 24px;
-
-  padding: 38px;
-
-  overflow: hidden;
+  border-radius: 23px;
+  padding: 35px;
 }
 
-.range-heading {
-
-  text-align: center;
-
-  margin-bottom: 28px;
+.range-header {
+  display: grid;
+  grid-template-columns: .85fr 1.8fr;
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
-.range-heading h2 {
-
-  margin: 0 0 9px;
-
-  font-size: 32px;
+.range-header h2 {
+  margin: 0;
+  font-size: 31px;
 }
 
-.range-heading p {
-
-  margin: 0 auto;
-
-  max-width: 850px;
-
-  color: #cad7e5;
-
+.range-header p {
+  margin: 0;
+  color: #ccd8e5;
   line-height: 1.6;
 }
 
 .subject-grid {
-
   display: grid;
-
   grid-template-columns: repeat(6, 1fr);
-
   gap: 12px;
 }
 
-.subject-pill {
-
-  background: rgba(255,255,255,.08);
-
+.subject {
+  background: rgba(255,255,255,.075);
   border: 1px solid rgba(255,255,255,.12);
-
   border-radius: 14px;
-
   text-align: center;
-
-  padding: 18px 10px;
+  padding: 17px 10px;
 }
 
-.subject-pill .subject-icon {
-
-  font-size: 27px;
-
+.subject span {
+  font-size: 25px;
+  display: block;
   margin-bottom: 8px;
 }
 
-.subject-pill strong {
-
-  display: block;
-
-  font-size: 14px;
+.subject strong {
+  font-size: 13px;
 }
 
 
 /* =========================================================
-   FLAVOR SECTION
+   EXPLORE FLAVORS
 ========================================================= */
 
-.flavor-section {
-
+.flavors {
   margin-top: 35px;
-
   background: white;
-
-  border-radius: 24px;
-
-  padding: 42px;
-
-  box-shadow: 0 10px 32px rgba(12,24,41,.09);
-
+  border-radius: 23px;
+  padding: 38px;
+  box-shadow: 0 8px 25px rgba(12,24,41,.07);
   border-top: 6px solid var(--green);
 }
 
-.flavor-eyebrow {
-
-  color: #249c52;
-
-  font-size: 13px;
-
+.eyebrow {
+  color: #259b51;
+  font-size: 12px;
   font-weight: 900;
-
-  letter-spacing: 1.3px;
-
-  margin-bottom: 8px;
+  letter-spacing: 1.2px;
 }
 
-.flavor-section h2 {
-
+.flavors h2 {
   color: var(--navy);
-
-  font-size: 36px;
-
-  margin: 0 0 14px;
+  margin: 6px 0 10px;
+  font-size: 35px;
 }
 
 .flavor-lead {
-
-  max-width: 1100px;
-
   color: var(--muted);
-
-  font-size: 17px;
-
+  max-width: 1150px;
   line-height: 1.65;
-
   margin: 0;
 }
 
@@ -822,163 +642,93 @@ main {
   color: var(--navy);
 }
 
-
-/* FLAVOR FORMULA */
-
-.flavor-formula {
-
-  margin-top: 30px;
-
+.flavor-process {
   display: grid;
-
-  grid-template-columns:
-    1fr
-    auto
-    1fr
-    auto
-    1fr;
-
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 13px;
   align-items: stretch;
-
-  gap: 14px;
-}
-
-.formula-box {
-
-  background: #f6f8fb;
-
-  border-radius: 15px;
-
-  padding: 22px;
-
-  border: 1px solid #e1e7ef;
-}
-
-.formula-title {
-
-  color: var(--navy);
-
-  font-size: 17px;
-
-  font-weight: 900;
-
-  margin-bottom: 8px;
-}
-
-.formula-box p {
-
-  color: var(--muted);
-
-  font-size: 14px;
-
-  line-height: 1.5;
-
-  margin: 0;
-}
-
-.formula-arrow {
-
-  display: flex;
-
-  align-items: center;
-
-  font-size: 28px;
-
-  font-weight: 900;
-
-  color: var(--blue);
-}
-
-
-/* FLAVOR TYPES */
-
-.flavor-grid {
-
-  display: grid;
-
-  grid-template-columns: repeat(4, 1fr);
-
-  gap: 16px;
-
   margin-top: 28px;
 }
 
-.flavor-card {
-
-  border-radius: 15px;
-
+.flavor-step {
+  background: #f5f8fb;
+  border: 1px solid #e1e7ee;
+  border-radius: 14px;
   padding: 20px;
-
-  background: var(--navy);
-
-  color: white;
-
-  min-height: 180px;
 }
 
-.flavor-icon {
-
-  font-size: 26px;
-
-  margin-bottom: 10px;
-}
-
-.flavor-card strong {
-
+.flavor-step strong {
+  color: var(--navy);
   display: block;
-
-  font-size: 16px;
-
-  margin-bottom: 8px;
+  font-size: 17px;
+  margin-bottom: 6px;
 }
 
-.flavor-card p {
-
+.flavor-step p {
+  color: var(--muted);
   margin: 0;
-
-  color: #d7e0ea;
-
-  font-size: 14px;
-
+  font-size: 13px;
   line-height: 1.5;
 }
 
-.flavor-callout {
+.arrow {
+  display: flex;
+  align-items: center;
+  color: var(--blue);
+  font-weight: 900;
+  font-size: 26px;
+}
 
-  margin-top: 30px;
+.flavor-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 13px;
+  margin-top: 22px;
+}
 
-  border-radius: 16px;
+.flavor-option {
+  background: var(--navy);
+  color: white;
+  border-radius: 14px;
+  padding: 18px;
+}
 
-  background:
-    linear-gradient(
-      135deg,
-      #eef7ff,
-      #effcf4
-    );
+.flavor-option .flavor-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
 
-  padding: 24px;
+.flavor-option strong {
+  display: block;
+  margin-bottom: 6px;
+}
 
+.flavor-option p {
+  margin: 0;
+  color: #cad6e4;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.same-target {
+  margin-top: 22px;
+  border-radius: 14px;
+  padding: 21px 23px;
+  background: linear-gradient(135deg,#eef7ff,#effcf4);
   border-left: 5px solid var(--green);
 }
 
-.flavor-callout strong {
-
-  display: block;
-
+.same-target strong {
   color: var(--navy);
-
-  font-size: 20px;
-
-  margin-bottom: 7px;
+  display: block;
+  font-size: 19px;
+  margin-bottom: 5px;
 }
 
-.flavor-callout p {
-
-  color: #506176;
-
-  line-height: 1.6;
-
+.same-target p {
+  color: var(--muted);
   margin: 0;
+  line-height: 1.55;
 }
 
 
@@ -987,93 +737,65 @@ main {
 ========================================================= */
 
 .process {
-
   margin-top: 35px;
-
   background: white;
-
-  border-radius: 22px;
-
+  border-radius: 23px;
   padding: 35px;
-
   box-shadow: 0 8px 25px rgba(12,24,41,.07);
 }
 
 .process h2 {
-
   color: var(--navy);
-
-  margin: 0 0 8px;
-
-  font-size: 29px;
-}
-
-.process-intro {
-
-  color: var(--muted);
-
   margin: 0;
+  font-size: 30px;
 }
 
-.steps {
+.process-sub {
+  color: var(--muted);
+  margin: 7px 0 0;
+}
 
+.process-grid {
   display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 18px;
-
-  margin-top: 25px;
+  grid-template-columns: repeat(3,1fr);
+  gap: 16px;
+  margin-top: 24px;
 }
 
-.step {
-
+.process-card {
   background: #f6f8fb;
-
   border-radius: 14px;
-
-  padding: 21px;
-
+  padding: 20px;
   border-top: 4px solid var(--blue);
 }
 
-.step:nth-child(2) {
+.process-card:nth-child(2) {
   border-top-color: var(--red);
 }
 
-.step:nth-child(3) {
+.process-card:nth-child(3) {
   border-top-color: var(--green);
 }
 
-.step-number {
-
+.process-num {
+  font-size: 11px;
+  font-weight: 900;
   color: var(--blue);
-
-  font-size: 12px;
-
-  font-weight: 800;
-
   letter-spacing: 1px;
-
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 }
 
-.step strong {
-
+.process-card strong {
   color: var(--navy);
-
-  font-size: 17px;
+  display: block;
+  margin-bottom: 6px;
 }
 
-.step p {
-
+.process-card p {
   color: var(--muted);
-
-  font-size: 14px;
-
+  margin: 0;
+  font-size: 13px;
   line-height: 1.5;
-
-  margin-bottom: 0;
 }
 
 
@@ -1082,18 +804,12 @@ main {
 ========================================================= */
 
 footer {
-
   background: var(--navy);
-
-  color: #cbd5e1;
-
+  color: #cad5e3;
   text-align: center;
-
   padding: 26px 20px;
-
-  font-size: 13px;
-
   border-top: 4px solid var(--red);
+  font-size: 13px;
 }
 
 footer strong {
@@ -1105,88 +821,75 @@ footer strong {
    RESPONSIVE
 ========================================================= */
 
-@media (max-width: 1180px) {
+@media (max-width: 1200px) {
 
-  .grid {
-
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+  .demo-grid {
+    grid-template-columns: repeat(2,1fr);
   }
 
-  .card-head,
-  .activity-section,
-  .standard-section,
-  .build-section,
-  .design-section {
-
-    min-height: 0;
-  }
-
-  .subject-grid {
-
-    grid-template-columns:
-      repeat(3, 1fr);
-  }
-
-  .flavor-grid {
-
-    grid-template-columns:
-      repeat(2, 1fr);
-  }
-
-  .flavor-formula {
-
+  .intro-grid,
+  .range-header {
     grid-template-columns: 1fr;
   }
 
-  .formula-arrow {
+  .subject-grid {
+    grid-template-columns: repeat(3,1fr);
+  }
 
+  .flavor-options {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .flavor-process {
+    grid-template-columns: 1fr;
+  }
+
+  .arrow {
     justify-content: center;
-
     transform: rotate(90deg);
   }
+
 }
 
 
 @media (max-width: 700px) {
 
-  .grid,
+  .demo-grid,
   .subject-grid,
-  .flavor-grid,
-  .steps {
-
+  .flavor-options,
+  .process-grid {
     grid-template-columns: 1fr;
   }
 
+  .section-heading {
+    display: block;
+  }
+
+  .section-note {
+    text-align: left;
+    margin-top: 8px;
+  }
+
   .brand-logo {
-
-    width: 55px;
-
-    height: 55px;
+    width: 52px;
+    height: 52px;
   }
 
   .brand-name {
-
     font-size: 23px;
   }
 
   .hero {
-
-    padding: 55px 18px;
-  }
-
-  .hero-main {
-
-    font-size: 18px;
+    padding: 50px 16px;
   }
 
   .intro,
   .range-section,
-  .flavor-section,
+  .flavors,
   .process {
-
-    padding: 25px;
+    padding: 24px;
   }
+
 }
 
 </style>
@@ -1197,9 +900,9 @@ footer strong {
 <body>
 
 
-<!-- =====================================================
+<!-- =========================================================
      EXPLORE HEADER
-===================================================== -->
+========================================================= -->
 
 <div class="brand-bar">
 
@@ -1220,14 +923,13 @@ footer strong {
 </div>
 
 
-
-<!-- =====================================================
+<!-- =========================================================
      HERO
-===================================================== -->
+========================================================= -->
 
 <header class="hero">
 
-  <div class="hero-content">
+  <div class="hero-inner">
 
     <div class="badge">
       EXPLORE ACADEMY • STAFF AI SHOWCASE
@@ -1238,102 +940,101 @@ footer strong {
     </h1>
 
     <p class="hero-main">
-
       What happens when we take the curriculum we already teach
       and rethink how students experience it?
-
     </p>
 
     <p class="hero-small">
-
-      Six working examples across math, literacy,
-      world language, athletics, and interactive content.
-
+      Six working examples across core academics, world language,
+      athletics, and interactive content.
     </p>
 
-    <div class="hero-accent"></div>
+    <div class="hero-line"></div>
 
   </div>
 
 </header>
 
 
-
 <main>
 
 
-<!-- =====================================================
-     INTRO
-===================================================== -->
+<!-- =========================================================
+     WHY THIS EXISTS
+========================================================= -->
 
 <section class="intro">
 
-  <h2>
-    Built for the way we teach at Explore.
-  </h2>
+  <div class="intro-grid">
 
-  <p>
+    <h2>
+      Built for the way we teach at Explore.
+    </h2>
 
-    Explore already asks us to move beyond a single,
-    one-size-fits-all classroom experience.
+    <p>
+      Explore already asks us to move beyond a single,
+      one-size-fits-all classroom experience.
+      These projects demonstrate how AI can help teachers
+      <strong>
+        preserve the learning target while changing the student experience.
+      </strong>
+      The same curriculum can become a game, multimedia lesson,
+      responsive scaffold, multimodal study system,
+      real-world conversation, or personalized movement circuit.
+    </p>
 
-    These projects demonstrate how AI can help a teacher
-    <strong>
-      preserve the academic target while changing the way
-      students experience the learning.
-    </strong>
-
-    The same standard can become a game, an interactive lesson,
-    a guided scaffold, a multimodal study system,
-    a real-world conversation, or a personalized movement circuit.
-
-  </p>
+  </div>
 
 </section>
 
 
-
-<!-- =====================================================
-     ASSIGNMENTS HEADER
-===================================================== -->
+<!-- =========================================================
+     ASSIGNMENTS
+========================================================= -->
 
 <div class="section-heading">
 
-  <h2 class="section-title">
-    Explore the assignments
-  </h2>
+  <div>
 
-  <p class="section-subtitle">
+    <h2>
+      Explore the assignments
+    </h2>
 
-    Six instructional challenges.
-    Six intentionally different approaches.
+    <p>
+      Open a demo and experience it from the student's point of view.
+    </p>
 
-  </p>
+  </div>
+
+  <div class="section-note">
+    Same learning goals.<br>
+    Very different experiences.
+  </div>
 
 </div>
 
 
-
-<!-- =====================================================
-     SIX ASSIGNMENTS
-===================================================== -->
-
-<section class="grid">
+<section class="demo-grid">
 
 
+<!-- =========================================================
+     DECIMAL DECEPTION
+========================================================= -->
 
-<!-- =====================================================
-     1. DECIMAL DECEPTION
-===================================================== -->
+<article class="demo-card decimal-card">
 
-<article class="card decimal-card">
+  <div class="card-top">
 
-  <div class="card-head">
+    <div class="card-meta">
 
-    <div class="icon">🚀</div>
+      <div class="icon">
+        🚀
+      </div>
 
-    <div class="tag">
-      GAMIFIED MATH
+      <div class="tag">
+        GAMIFIED MATH
+      </div>
+
     </div>
 
     <h3>
@@ -1343,113 +1044,10 @@ footer strong {
   </div>
 
 
-  <div class="card-section activity-section">
-
-    <span class="section-label">
-      ACTIVITY DESCRIPTION
-    </span>
-
-    <p>
-
-      Students enter a playable space-station adventure
-      built around decimal operations.
-
-      They choose a character, navigate rooms, avoid enemies,
-      restore six Power Crystals through math missions,
-      earn points, preserve lives, unlock portals,
-      and progress through themed levels.
-
-    </p>
-
-  </div>
-
-
-  <div class="card-section standard-section">
-
-    <span class="section-label">
-      ARIZONA STANDARD
-    </span>
-
-    <p>
-
-      <strong>6.NS.B.3</strong><br>
-
-      Fluently add, subtract, multiply,
-      and divide multi-digit decimals
-      using the standard algorithm.
-
-    </p>
-
-  </div>
-
-
-  <div class="card-section build-section">
-
-    <div class="build-box">
-
-      <span class="section-label">
-        WHAT WAS BUILT
-      </span>
-
-      <ul>
-
-        <li>
-          Five selectable student characters
-        </li>
-
-        <li>
-          Six Power Crystal math missions
-        </li>
-
-        <li>
-          Lives, enemies, scoring, portals,
-          and themed level progression
-        </li>
-
-        <li>
-          Problem-specific Math Scanner hints
-          and permanent Decimal Guide
-        </li>
-
-      </ul>
-
-    </div>
-
-  </div>
-
-
-  <div class="card-section design-section">
-
-    <div class="design-box">
-
-      <span class="section-label">
-        INTENTIONAL DESIGN
-      </span>
-
-      <p>
-
-        The goal was not to remove the decimal practice.
-        The goal was to redesign the experience surrounding it.
-
-        Students still have to solve the mathematics correctly,
-        but those problems now control their progress
-        through a larger interactive mission.
-
-      </p>
-
-      <span class="design-emphasis">
-
-        The worksheet did not disappear.
-        It became the engine of the experience.
-
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div class="preview-wrap">
+  <a
+    href="decimal_deception_math_scanner_guide.html"
+    class="preview-link"
+  >
 
     <img
       src="decimal-deception-preview.png"
@@ -1457,11 +1055,86 @@ footer strong {
       class="preview"
     >
 
+    <div class="preview-overlay">
+      VIEW ACTIVITY
+    </div>
+
+  </a>
+
+
+  <div class="card-content">
+
+    <div class="activity">
+
+      <span class="label">
+        ACTIVITY
+      </span>
+
+      <p>
+        Students navigate a space-station adventure while solving
+        decimal operations. Correct answers restore Power Crystals,
+        protect lives, unlock portals, and move students through
+        new themed levels.
+      </p>
+
+    </div>
+
+
+    <div class="standard">
+
+      <div class="standard-code">
+        6.NS.B.3
+      </div>
+
+      <div class="standard-text">
+
+        <strong>
+          Arizona Math Standard
+        </strong>
+
+        <span>
+          Add, subtract, multiply, and divide multi-digit decimals.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="why">
+
+      <span class="label">
+        WHY THIS MATTERS
+      </span>
+
+      <p>
+        Traditional decimal practice became the engine of a playable game.
+        Problem-specific Math Scanner hints and a permanent Decimal Guide
+        provide support without removing the mathematics.
+      </p>
+
+      <span class="takeaway">
+        The academic work stays intact. The experience surrounding it changes.
+      </span>
+
+    </div>
+
+
+    <div class="features">
+
+      <span class="feature">🎮 Game Progression</span>
+      <span class="feature">💡 Targeted Hints</span>
+      <span class="feature">📘 Decimal Guide</span>
+      <span class="feature">🏆 Scoring</span>
+
+    </div>
+
+
     <a
-      class="button"
       href="decimal_deception_math_scanner_guide.html"
+      class="open-button"
     >
-      OPEN DEMO
+      OPEN DECIMAL DECEPTION
     </a>
 
   </div>
@@ -1469,19 +1142,24 @@ footer strong {
 </article>
 
 
+<!-- =========================================================
+     VOLLEYBALL ACADEMY
+========================================================= -->
 
-<!-- =====================================================
-     2. VOLLEYBALL ACADEMY
-===================================================== -->
+<article class="demo-card volleyball-card">
 
-<article class="card volleyball-card">
+  <div class="card-top">
 
-  <div class="card-head">
+    <div class="card-meta">
 
-    <div class="icon">🏐</div>
+      <div class="icon">
+        🏐
+      </div>
 
-    <div class="tag">
-      INTERACTIVE MULTIMEDIA LESSON
+      <div class="tag">
+        INTERACTIVE MULTIMEDIA LESSON
+      </div>
+
     </div>
 
     <h3>
@@ -1491,114 +1169,10 @@ footer strong {
   </div>
 
 
-  <div class="card-section activity-section">
-
-    <span class="section-label">
-      ACTIVITY DESCRIPTION
-    </span>
-
-    <p>
-
-      Students complete eight role-based learning missions
-      covering positions, responsibilities, strategy,
-      fundamentals, and film study.
-
-      Missions combine deeper reading,
-      real game situations, multimedia,
-      comprehension checks, and application.
-
-    </p>
-
-  </div>
-
-
-  <div class="card-section standard-section">
-
-    <span class="section-label">
-      ARIZONA ELA ALIGNMENT
-    </span>
-
-    <p>
-
-      <strong>Grades 4–5 RI.1 &amp; RI.7</strong><br>
-
-      Students use information from informational text,
-      visuals, and multimedia sources
-      to demonstrate understanding.
-
-    </p>
-
-  </div>
-
-
-  <div class="card-section build-section">
-
-    <div class="build-box">
-
-      <span class="section-label">
-        WHAT WAS BUILT
-      </span>
-
-      <ul>
-
-        <li>
-          Eight instructional missions
-        </li>
-
-        <li>
-          5–7 understanding checks per section
-        </li>
-
-        <li>
-          Embedded videos, readings,
-          multiple choice, and drag-and-drop
-        </li>
-
-        <li>
-          Saved progress, scoring,
-          feedback, mastery, and high scores
-        </li>
-
-      </ul>
-
-    </div>
-
-  </div>
-
-
-  <div class="card-section design-section">
-
-    <div class="design-box">
-
-      <span class="section-label">
-        INTENTIONAL DESIGN
-      </span>
-
-      <p>
-
-        This began as separate web articles,
-        instructional readings, and YouTube videos.
-
-        Instead of sending students between resources,
-        the content was transformed into one sequenced assignment
-        requiring students to read, watch, respond,
-        sort, decide, and apply what they learned.
-
-      </p>
-
-      <span class="design-emphasis">
-
-        Volleyball is simply the example.
-        The same structure could be built around almost any content.
-
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div class="preview-wrap">
+  <a
+    href="volleyball-academy.html"
+    class="preview-link"
+  >
 
     <img
       src="volleyball-academy-preview.png"
@@ -1606,11 +1180,85 @@ footer strong {
       class="preview"
     >
 
+    <div class="preview-overlay">
+      VIEW ACTIVITY
+    </div>
+
+  </a>
+
+
+  <div class="card-content">
+
+    <div class="activity">
+
+      <span class="label">
+        ACTIVITY
+      </span>
+
+      <p>
+        Eight volleyball missions combine instructional reading,
+        embedded videos, game situations, comprehension checks,
+        drag-and-drop activities, feedback, and progress tracking.
+      </p>
+
+    </div>
+
+
+    <div class="standard">
+
+      <div class="standard-code">
+        RI.1 / RI.7
+      </div>
+
+      <div class="standard-text">
+
+        <strong>
+          Arizona ELA Alignment
+        </strong>
+
+        <span>
+          Use information from text, visual, and multimedia sources.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="why">
+
+      <span class="label">
+        WHY THIS MATTERS
+      </span>
+
+      <p>
+        Separate articles, readings, and YouTube videos became
+        one sequenced assignment requiring students to read,
+        watch, respond, sort, decide, and apply information.
+      </p>
+
+      <span class="takeaway">
+        Volleyball is the flavor. The same structure can organize almost any content.
+      </span>
+
+    </div>
+
+
+    <div class="features">
+
+      <span class="feature">🎥 Video</span>
+      <span class="feature">📚 Reading</span>
+      <span class="feature">🧩 Drag & Drop</span>
+      <span class="feature">💾 Saved Progress</span>
+
+    </div>
+
+
     <a
-      class="button"
       href="volleyball-academy.html"
+      class="open-button"
     >
-      OPEN DEMO
+      OPEN VOLLEYBALL ACADEMY
     </a>
 
   </div>
@@ -1618,19 +1266,24 @@ footer strong {
 </article>
 
 
+<!-- =========================================================
+     LONG DIVISION QUEST
+========================================================= -->
 
-<!-- =====================================================
-     3. LONG DIVISION QUEST
-===================================================== -->
+<article class="demo-card division-card">
 
-<article class="card division-card">
+  <div class="card-top">
 
-  <div class="card-head">
+    <div class="card-meta">
 
-    <div class="icon">➗</div>
+      <div class="icon">
+        ➗
+      </div>
 
-    <div class="tag">
-      RESPONSIVE MATH SCAFFOLD
+      <div class="tag">
+        RESPONSIVE MATH SCAFFOLD
+      </div>
+
     </div>
 
     <h3>
@@ -1640,113 +1293,10 @@ footer strong {
   </div>
 
 
-  <div class="card-section activity-section">
-
-    <span class="section-label">
-      ACTIVITY DESCRIPTION
-    </span>
-
-    <p>
-
-      Students solve long division directly inside
-      an aligned division structure,
-      one digit and one decision at a time.
-
-      The program guides students through
-      Divide → Multiply → Subtract → Bring Down
-      while preserving the actual algorithm.
-
-    </p>
-
-  </div>
-
-
-  <div class="card-section standard-section">
-
-    <span class="section-label">
-      ARIZONA STANDARD
-    </span>
-
-    <p>
-
-      <strong>5.NBT.B.6</strong><br>
-
-      Find whole-number quotients using place value,
-      properties of operations,
-      and multiplication/division relationships.
-
-    </p>
-
-  </div>
-
-
-  <div class="card-section build-section">
-
-    <div class="build-box">
-
-      <span class="section-label">
-        WHAT WAS BUILT
-      </span>
-
-      <ul>
-
-        <li>
-          Aligned digit-by-digit input
-        </li>
-
-        <li>
-          Divide → Multiply → Subtract → Bring Down coaching
-        </li>
-
-        <li>
-          Visual grouping hints
-          explaining quotient decisions
-        </li>
-
-        <li>
-          XP, accuracy, streaks,
-          ratings, missions, and hint tracking
-        </li>
-
-      </ul>
-
-    </div>
-
-  </div>
-
-
-  <div class="card-section design-section">
-
-    <div class="design-box">
-
-      <span class="section-label">
-        INTENTIONAL DESIGN
-      </span>
-
-      <p>
-
-        A traditional worksheet often reveals only
-        that the final quotient is incorrect.
-
-        This activity watches the student's process
-        and responds to the specific digit and step
-        where the thinking breaks down.
-
-      </p>
-
-      <span class="design-emphasis">
-
-        The scaffold responds to the process,
-        not simply the final answer.
-
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div class="preview-wrap">
+  <a
+    href="long-division-quest.html"
+    class="preview-link"
+  >
 
     <img
       src="long-division-quest-preview.png"
@@ -1754,11 +1304,86 @@ footer strong {
       class="preview"
     >
 
+    <div class="preview-overlay">
+      VIEW ACTIVITY
+    </div>
+
+  </a>
+
+
+  <div class="card-content">
+
+    <div class="activity">
+
+      <span class="label">
+        ACTIVITY
+      </span>
+
+      <p>
+        Students solve long division directly inside an aligned
+        division structure, one digit and one step at a time,
+        using Divide → Multiply → Subtract → Bring Down.
+      </p>
+
+    </div>
+
+
+    <div class="standard">
+
+      <div class="standard-code">
+        5.NBT.B.6
+      </div>
+
+      <div class="standard-text">
+
+        <strong>
+          Arizona Math Standard
+        </strong>
+
+        <span>
+          Find whole-number quotients using place-value reasoning.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="why">
+
+      <span class="label">
+        WHY THIS MATTERS
+      </span>
+
+      <p>
+        Instead of waiting until the final quotient is wrong,
+        the program follows the student's actual process
+        and responds to the precise digit or step
+        where understanding breaks down.
+      </p>
+
+      <span class="takeaway">
+        Feedback happens during the thinking, not only after the answer.
+      </span>
+
+    </div>
+
+
+    <div class="features">
+
+      <span class="feature">🪜 Step-by-Step</span>
+      <span class="feature">👀 Visual Groups</span>
+      <span class="feature">💡 Optional Hints</span>
+      <span class="feature">📈 Accuracy</span>
+
+    </div>
+
+
     <a
-      class="button"
       href="long-division-quest.html"
+      class="open-button"
     >
-      OPEN DEMO
+      OPEN LONG DIVISION QUEST
     </a>
 
   </div>
@@ -1766,19 +1391,24 @@ footer strong {
 </article>
 
 
+<!-- =========================================================
+     SPELLING PRACTICE LAB
+========================================================= -->
 
-<!-- =====================================================
-     4. SPELLING PRACTICE LAB
-===================================================== -->
+<article class="demo-card spelling-card">
 
-<article class="card spelling-card">
+  <div class="card-top">
 
-  <div class="card-head">
+    <div class="card-meta">
 
-    <div class="icon">🔤</div>
+      <div class="icon">
+        🔤
+      </div>
 
-    <div class="tag">
-      MULTIMODAL WORD STUDY
+      <div class="tag">
+        MULTIMODAL WORD STUDY
+      </div>
+
     </div>
 
     <h3>
@@ -1788,118 +1418,10 @@ footer strong {
   </div>
 
 
-  <div class="card-section activity-section">
-
-    <span class="section-label">
-      ACTIVITY DESCRIPTION
-    </span>
-
-    <p>
-
-      One spelling list becomes a complete
-      study-and-practice system.
-
-      Students study instructional flash cards,
-      hear words and sentences,
-      practice through volleyball or soccer gameplay,
-      and finish with an independent spelling test.
-
-    </p>
-
-  </div>
-
-
-  <div class="card-section standard-section">
-
-    <span class="section-label">
-      ARIZONA ELA ALIGNMENT
-    </span>
-
-    <p>
-
-      <strong>Grades 4–5 RF.3 &amp; L.2</strong><br>
-
-      Apply grade-level phonics,
-      word-analysis skills,
-      language conventions,
-      and accurate spelling.
-
-    </p>
-
-  </div>
-
-
-  <div class="card-section build-section">
-
-    <div class="build-box">
-
-      <span class="section-label">
-        WHAT WAS BUILT
-      </span>
-
-      <ul>
-
-        <li>
-          Syllable breakdowns and whole-word pronunciation
-        </li>
-
-        <li>
-          Clickable Sound It Out chunks
-          with individual audio
-        </li>
-
-        <li>
-          Automatically highlighted
-          multi-letter phonograms
-        </li>
-
-        <li>
-          Watch For hints, visuals,
-          examples, games, and testing
-        </li>
-
-      </ul>
-
-    </div>
-
-  </div>
-
-
-  <div class="card-section design-section">
-
-    <div class="design-box">
-
-      <span class="section-label">
-        INTENTIONAL DESIGN
-      </span>
-
-      <p>
-
-        This was built beyond simple memorization.
-
-        Students can see the structure of a word,
-        hear its pronunciation,
-        isolate sound chunks,
-        identify phonograms,
-        study spelling patterns,
-        practice in context,
-        and then demonstrate independence.
-
-      </p>
-
-      <span class="design-emphasis">
-
-        See it → hear it → break it apart →
-        study it → practice it → spell it independently.
-
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div class="preview-wrap">
+  <a
+    href="spelling-practice.html"
+    class="preview-link"
+  >
 
     <img
       src="spelling-practice-preview.png"
@@ -1907,11 +1429,86 @@ footer strong {
       class="preview"
     >
 
+    <div class="preview-overlay">
+      VIEW ACTIVITY
+    </div>
+
+  </a>
+
+
+  <div class="card-content">
+
+    <div class="activity">
+
+      <span class="label">
+        ACTIVITY
+      </span>
+
+      <p>
+        One spelling list becomes a full study system with
+        instructional flash cards, audio, volleyball and soccer practice,
+        visual word analysis, and independent testing.
+      </p>
+
+    </div>
+
+
+    <div class="standard">
+
+      <div class="standard-code">
+        RF.3 / L.2
+      </div>
+
+      <div class="standard-text">
+
+        <strong>
+          Arizona ELA Alignment
+        </strong>
+
+        <span>
+          Phonics, word analysis, language conventions, and spelling.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="why">
+
+      <span class="label">
+        WHY THIS MATTERS
+      </span>
+
+      <p>
+        Students see syllables, hear sound chunks,
+        identify highlighted phonograms, study difficult patterns,
+        receive targeted hints, practice the words,
+        and eventually spell them independently.
+      </p>
+
+      <span class="takeaway">
+        See it → hear it → break it apart → practice it → spell it.
+      </span>
+
+    </div>
+
+
+    <div class="features">
+
+      <span class="feature">🔊 Audio</span>
+      <span class="feature">🧩 Phonograms</span>
+      <span class="feature">⭐ Watch For</span>
+      <span class="feature">⚽🏐 Games</span>
+
+    </div>
+
+
     <a
-      class="button"
       href="spelling-practice.html"
+      class="open-button"
     >
-      OPEN DEMO
+      OPEN SPELLING PRACTICE
     </a>
 
   </div>
@@ -1919,19 +1516,24 @@ footer strong {
 </article>
 
 
+<!-- =========================================================
+     SPANISH CONVERSATION QUEST
+========================================================= -->
 
-<!-- =====================================================
-     5. SPANISH CONVERSATION QUEST
-===================================================== -->
+<article class="demo-card spanish-card">
 
-<article class="card spanish-card">
+  <div class="card-top">
 
-  <div class="card-head">
+    <div class="card-meta">
 
-    <div class="icon">💬</div>
+      <div class="icon">
+        💬
+      </div>
 
-    <div class="tag">
-      WORLD LANGUAGE • DIFFERENTIATED PRACTICE
+      <div class="tag">
+        WORLD LANGUAGE
+      </div>
+
     </div>
 
     <h3>
@@ -1941,118 +1543,10 @@ footer strong {
   </div>
 
 
-  <div class="card-section activity-section">
-
-    <span class="section-label">
-      ACTIVITY DESCRIPTION
-    </span>
-
-    <p>
-
-      Students build practical Spanish through
-      short real-world conversation missions.
-
-      They study vocabulary,
-      hear pronunciation,
-      complete listening tasks,
-      construct sentences,
-      interpret meaning,
-      choose conversational responses,
-      and apply language in realistic contexts.
-
-    </p>
-
-  </div>
-
-
-  <div class="card-section standard-section">
-
-    <span class="section-label">
-      WORLD LANGUAGE ALIGNMENT
-    </span>
-
-    <p>
-
-      Students practice the core communication modes
-      of listening, interpretation,
-      interpersonal communication,
-      vocabulary development,
-      and sentence construction.
-
-    </p>
-
-  </div>
-
-
-  <div class="card-section build-section">
-
-    <div class="build-box">
-
-      <span class="section-label">
-        WHAT WAS BUILT
-      </span>
-
-      <ul>
-
-        <li>
-          Beginner, Standard,
-          and Challenge support levels
-        </li>
-
-        <li>
-          Four real-world conversation missions
-        </li>
-
-        <li>
-          Vocabulary study, pronunciation,
-          listening, recall, and sentence building
-        </li>
-
-        <li>
-          XP, streaks, mastery,
-          immediate feedback, and reflection
-        </li>
-
-      </ul>
-
-    </div>
-
-  </div>
-
-
-  <div class="card-section design-section">
-
-    <div class="design-box">
-
-      <span class="section-label">
-        INTENTIONAL DESIGN
-      </span>
-
-      <p>
-
-        The same conversational objective can be experienced
-        at different levels of support.
-
-        Beginner learners receive more English
-        and pronunciation assistance,
-        while Challenge mode reduces support
-        and increases independence.
-
-      </p>
-
-      <span class="design-emphasis">
-
-        Same communication goal.
-        Different levels of scaffolding.
-
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div class="preview-wrap">
+  <a
+    href="spanish-conversation-quest.html"
+    class="preview-link"
+  >
 
     <img
       src="spanish-conversation-quest-preview.png"
@@ -2060,11 +1554,87 @@ footer strong {
       class="preview"
     >
 
+    <div class="preview-overlay">
+      VIEW ACTIVITY
+    </div>
+
+  </a>
+
+
+  <div class="card-content">
+
+    <div class="activity">
+
+      <span class="label">
+        ACTIVITY
+      </span>
+
+      <p>
+        Students practice Spanish through real-world missions
+        combining vocabulary, pronunciation, listening,
+        sentence construction, comprehension,
+        conversation choices, and reflection.
+      </p>
+
+    </div>
+
+
+    <div class="standard">
+
+      <div class="standard-code">
+        COMM.
+      </div>
+
+      <div class="standard-text">
+
+        <strong>
+          World Language Alignment
+        </strong>
+
+        <span>
+          Listening, interpretation, vocabulary, and interpersonal communication.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="why">
+
+      <span class="label">
+        WHY THIS MATTERS
+      </span>
+
+      <p>
+        Beginner, Standard, and Challenge modes change
+        the amount of English support, pronunciation help,
+        hints, and independence while keeping
+        the communication target consistent.
+      </p>
+
+      <span class="takeaway">
+        Same communication goal. Different levels of scaffolding.
+      </span>
+
+    </div>
+
+
+    <div class="features">
+
+      <span class="feature">🔊 Listening</span>
+      <span class="feature">💬 Conversation</span>
+      <span class="feature">🧩 Syntax</span>
+      <span class="feature">🎯 3 Support Levels</span>
+
+    </div>
+
+
     <a
-      class="button"
       href="spanish-conversation-quest.html"
+      class="open-button"
     >
-      OPEN DEMO
+      OPEN SPANISH QUEST
     </a>
 
   </div>
@@ -2072,19 +1642,24 @@ footer strong {
 </article>
 
 
+<!-- =========================================================
+     MOVEMENT MISSION
+========================================================= -->
 
-<!-- =====================================================
-     6. MOVEMENT MISSION
-===================================================== -->
+<article class="demo-card movement-card">
 
-<article class="card movement-card">
+  <div class="card-top">
 
-  <div class="card-head">
+    <div class="card-meta">
 
-    <div class="icon">🏃</div>
+      <div class="icon">
+        🏃
+      </div>
 
-    <div class="tag">
-      PHYSICAL EDUCATION • ADAPTIVE CIRCUITS
+      <div class="tag">
+        PHYSICAL EDUCATION
+      </div>
+
     </div>
 
     <h3>
@@ -2094,117 +1669,10 @@ footer strong {
   </div>
 
 
-  <div class="card-section activity-section">
-
-    <span class="section-label">
-      ACTIVITY DESCRIPTION
-    </span>
-
-    <p>
-
-      Students build a personalized K–8 movement circuit
-      and move through timed physical-education stations.
-
-      The activity provides coach cues,
-      technique tips, rest periods,
-      movement knowledge checks,
-      reflection, progress tracking,
-      XP, and achievements.
-
-    </p>
-
-  </div>
-
-
-  <div class="card-section standard-section">
-
-    <span class="section-label">
-      PHYSICAL EDUCATION ALIGNMENT
-    </span>
-
-    <p>
-
-      Supports movement competency,
-      physical fitness,
-      body control,
-      movement knowledge,
-      goal setting,
-      reflection,
-      and responsible participation.
-
-    </p>
-
-  </div>
-
-
-  <div class="card-section build-section">
-
-    <div class="build-box">
-
-      <span class="section-label">
-        WHAT WAS BUILT
-      </span>
-
-      <ul>
-
-        <li>
-          K–2, 3–5, and 6–8 grade-band options
-        </li>
-
-        <li>
-          Explorer, Athlete, and Elite challenge levels
-        </li>
-
-        <li>
-          Equipment-aware and space-aware circuits
-        </li>
-
-        <li>
-          Adapted movement, timers,
-          coach cues, reflections, XP,
-          records, and teacher quick-launch
-        </li>
-
-      </ul>
-
-    </div>
-
-  </div>
-
-
-  <div class="card-section design-section">
-
-    <div class="design-box">
-
-      <span class="section-label">
-        INTENTIONAL DESIGN
-      </span>
-
-      <p>
-
-        This activity demonstrates customization
-        that goes beyond changing colors or themes.
-
-        The actual student experience can change
-        based on grade band, challenge level,
-        available equipment, available space,
-        and movement needs.
-
-      </p>
-
-      <span class="design-emphasis">
-
-        Same PE goals.
-        Different training flavors.
-
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div class="preview-wrap">
+  <a
+    href="movement-mission.html"
+    class="preview-link"
+  >
 
     <img
       src="movement-mission-preview.png"
@@ -2212,11 +1680,88 @@ footer strong {
       class="preview"
     >
 
+    <div class="preview-overlay">
+      VIEW ACTIVITY
+    </div>
+
+  </a>
+
+
+  <div class="card-content">
+
+    <div class="activity">
+
+      <span class="label">
+        ACTIVITY
+      </span>
+
+      <p>
+        Students create a personalized K–8 movement circuit
+        using timed stations, coach cues, technique support,
+        knowledge checks, reflection, XP,
+        achievements, and progress tracking.
+      </p>
+
+    </div>
+
+
+    <div class="standard">
+
+      <div class="standard-code">
+        K–8 PE
+      </div>
+
+      <div class="standard-text">
+
+        <strong>
+          Physical Education Alignment
+        </strong>
+
+        <span>
+          Movement competency, fitness, body control, knowledge, and reflection.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="why">
+
+      <span class="label">
+        WHY THIS MATTERS
+      </span>
+
+      <p>
+        The actual activity changes based on grade band,
+        challenge level, available equipment,
+        available space, and adapted movement needs.
+        The customization affects the learning experience,
+        not merely its appearance.
+      </p>
+
+      <span class="takeaway">
+        Same PE goals. Different training flavors.
+      </span>
+
+    </div>
+
+
+    <div class="features">
+
+      <span class="feature">⏱️ Timers</span>
+      <span class="feature">🏀 Equipment Aware</span>
+      <span class="feature">❤️ Adapted Options</span>
+      <span class="feature">👩‍🏫 Teacher Mode</span>
+
+    </div>
+
+
     <a
-      class="button"
       href="movement-mission.html"
+      class="open-button"
     >
-      OPEN DEMO
+      OPEN MOVEMENT MISSION
     </a>
 
   </div>
@@ -2227,26 +1772,24 @@ footer strong {
 </section>
 
 
-
-<!-- =====================================================
+<!-- =========================================================
      SUBJECT RANGE
-===================================================== -->
+========================================================= -->
 
 <section class="range-section">
 
-  <div class="range-heading">
+  <div class="range-header">
 
     <h2>
-      One Tool. Many Classrooms.
+      One Tool.<br>
+      Many Classrooms.
     </h2>
 
     <p>
-
-      These examples are intentionally spread across different subjects.
-      The point is not one specific app.
-      The point is what becomes possible when teachers can design
-      interactive experiences around the learning they already teach.
-
+      These examples intentionally cross subject areas.
+      The showcase is not about one app or one type of lesson.
+      It is about giving teachers another way to turn
+      existing curriculum into interactive student experiences.
     </p>
 
   </div>
@@ -2254,69 +1797,34 @@ footer strong {
 
   <div class="subject-grid">
 
-    <div class="subject-pill">
-
-      <div class="subject-icon">➗</div>
-
-      <strong>
-        Mathematics
-      </strong>
-
+    <div class="subject">
+      <span>➗</span>
+      <strong>Mathematics</strong>
     </div>
 
-
-    <div class="subject-pill">
-
-      <div class="subject-icon">📚</div>
-
-      <strong>
-        ELA
-      </strong>
-
+    <div class="subject">
+      <span>📚</span>
+      <strong>ELA</strong>
     </div>
 
-
-    <div class="subject-pill">
-
-      <div class="subject-icon">🔤</div>
-
-      <strong>
-        Word Study
-      </strong>
-
+    <div class="subject">
+      <span>🔤</span>
+      <strong>Word Study</strong>
     </div>
 
-
-    <div class="subject-pill">
-
-      <div class="subject-icon">💬</div>
-
-      <strong>
-        World Language
-      </strong>
-
+    <div class="subject">
+      <span>💬</span>
+      <strong>World Language</strong>
     </div>
 
-
-    <div class="subject-pill">
-
-      <div class="subject-icon">🏃</div>
-
-      <strong>
-        Physical Education
-      </strong>
-
+    <div class="subject">
+      <span>🏃</span>
+      <strong>Physical Education</strong>
     </div>
 
-
-    <div class="subject-pill">
-
-      <div class="subject-icon">✨</div>
-
-      <strong>
-        What's Next?
-      </strong>
-
+    <div class="subject">
+      <span>🎨</span>
+      <strong>What's Next?</strong>
     </div>
 
   </div>
@@ -2324,121 +1832,85 @@ footer strong {
 </section>
 
 
+<!-- =========================================================
+     FLAVORS
+========================================================= -->
 
-<!-- =====================================================
-     EXPLORE FLAVOR CONNECTION
-===================================================== -->
+<section class="flavors">
 
-<section class="flavor-section">
-
-  <div class="flavor-eyebrow">
-
+  <div class="eyebrow">
     THE EXPLORE CONNECTION
-
   </div>
 
-
   <h2>
-
     Build the Flavor
-
   </h2>
 
-
   <p class="flavor-lead">
-
     Explore's model recognizes that students do not all need
-    the exact same experience to reach the same academic destination.
-
-    AI gives teachers another way to extend that idea.
-
+    the exact same experience to reach the same destination.
+    AI can help extend that philosophy by allowing teachers to
     <strong>
-
-      Preserve the standard and rigor,
-      while customizing the context,
-      scaffolding, feedback,
-      presentation, challenge,
-      or type of interaction.
-
+      preserve the standard and rigor while changing the context,
+      scaffolding, modality, challenge, feedback,
+      or student pathway.
     </strong>
-
   </p>
 
 
+  <div class="flavor-process">
 
-  <div class="flavor-formula">
+    <div class="flavor-step">
 
-
-    <div class="formula-box">
-
-      <div class="formula-title">
-
+      <strong>
         1. Keep the Target
-
-      </div>
+      </strong>
 
       <p>
-
-        Start with the standard,
-        skill, text, vocabulary,
-        assessment target,
-        movement objective,
-        or learning goal.
-
+        Start with the standard, skill, text,
+        vocabulary, assessment target,
+        movement objective, or learning goal.
       </p>
 
     </div>
 
 
-    <div class="formula-arrow">
-
+    <div class="arrow">
       →
-
     </div>
 
 
-    <div class="formula-box">
+    <div class="flavor-step">
 
-      <div class="formula-title">
-
+      <strong>
         2. Design the Flavor
-
-      </div>
+      </strong>
 
       <p>
-
-        Change the theme,
-        context, interaction,
-        level of scaffolding,
+        Change the theme, context,
+        interaction, scaffolding,
         modality, difficulty,
-        or student pathway.
-
+        or type of practice.
       </p>
 
     </div>
 
 
-    <div class="formula-arrow">
-
+    <div class="arrow">
       →
-
     </div>
 
 
-    <div class="formula-box">
+    <div class="flavor-step">
 
-      <div class="formula-title">
-
+      <strong>
         3. Reach the Same Mastery
-
-      </div>
+      </strong>
 
       <p>
-
-        The student experience may be different,
+        The experience may look different,
         but the underlying learning expectation
         remains intentional and measurable.
-
       </p>
 
     </div>
@@ -2446,120 +1918,80 @@ footer strong {
   </div>
 
 
+  <div class="flavor-options">
 
-  <div class="flavor-grid">
-
-
-    <div class="flavor-card">
+    <div class="flavor-option">
 
       <div class="flavor-icon">
-
         🚀 🐉 🏀
-
       </div>
 
       <strong>
-
-        Interest-Based Flavors
-
+        Interest
       </strong>
 
       <p>
-
         Space, sports, fantasy,
         animals, cooking, racing,
-        history, music,
-        or another context connected
-        to student interest.
-
+        history, music, and more.
       </p>
 
     </div>
 
 
-
-    <div class="flavor-card">
+    <div class="flavor-option">
 
       <div class="flavor-icon">
-
         📖 🎥 🎮
-
       </div>
 
       <strong>
-
-        Learning-Mode Flavors
-
+        Learning Mode
       </strong>
 
       <p>
-
-        Reading, video,
-        audio, simulation,
-        guided practice,
-        interactive games,
-        visual models,
-        or combinations of several modes.
-
+        Reading, video, audio,
+        simulations, games,
+        models, or guided practice.
       </p>
 
     </div>
 
 
-
-    <div class="flavor-card">
+    <div class="flavor-option">
 
       <div class="flavor-icon">
-
         🧠 💡 🪜
-
       </div>
 
       <strong>
-
-        Support Flavors
-
+        Support
       </strong>
 
       <p>
-
-        Visual hints,
-        chunked directions,
-        read-aloud support,
-        modeling,
-        coaching,
-        pronunciation assistance,
-        or reduced scaffolding.
-
+        Read-alouds, visual hints,
+        chunking, modeling,
+        coaching, and optional scaffolds.
       </p>
 
     </div>
 
 
-
-    <div class="flavor-card">
+    <div class="flavor-option">
 
       <div class="flavor-icon">
-
         🎯 📈 🏆
-
       </div>
 
       <strong>
-
-        Mastery Flavors
-
+        Mastery
       </strong>
 
       <p>
-
         Immediate feedback,
         retries, reteaching,
         challenge levels,
-        progress indicators,
-        reflection,
-        or additional practice.
-
+        and progress indicators.
       </p>
 
     </div>
@@ -2567,28 +1999,17 @@ footer strong {
   </div>
 
 
-
-  <div class="flavor-callout">
+  <div class="same-target">
 
     <strong>
-
       Same target. Different path.
-
     </strong>
 
     <p>
-
-      A student working on decimals,
-      vocabulary, reading comprehension,
-      Spanish conversation,
-      or a PE movement objective
-      does not necessarily need the exact same experience
-      as every other student.
-
-      AI can make those different pathways
-      far more practical for teachers to design,
-      revise, reuse, and personalize.
-
+      Students can work toward the same academic or performance goal
+      through different themes, supports, levels of independence,
+      and types of interaction. AI can make those different pathways
+      far more practical for teachers to design, revise, and reuse.
     </p>
 
   </div>
@@ -2596,118 +2017,80 @@ footer strong {
 </section>
 
 
-
-<!-- =====================================================
+<!-- =========================================================
      PROCESS
-===================================================== -->
+========================================================= -->
 
 <section class="process">
 
   <h2>
-
     How were these built?
-
   </h2>
 
-
-  <p class="process-intro">
-
-    The process begins with instructional design,
-    not programming.
-
+  <p class="process-sub">
+    The process begins with instructional design, not programming.
   </p>
 
 
-  <div class="steps">
+  <div class="process-grid">
 
+    <div class="process-card">
 
-    <div class="step">
-
-      <div class="step-number">
-
+      <div class="process-num">
         STEP 1
-
       </div>
 
       <strong>
-
         Start with the learning
-
       </strong>
 
       <p>
-
-        Identify the standard,
-        student need,
-        existing resource,
-        practice problem,
-        lesson,
-        assessment,
-        or instructional challenge.
-
+        Identify the standard, student need,
+        resource, lesson, assessment,
+        practice problem, or instructional challenge.
       </p>
 
     </div>
 
 
+    <div class="process-card">
 
-    <div class="step">
-
-      <div class="step-number">
-
+      <div class="process-num">
         STEP 2
-
       </div>
 
       <strong>
-
         Design the experience
-
       </strong>
 
       <p>
-
         Decide what students should do,
         where support is needed,
         how feedback should work,
-        and which flavor could make
-        the learning more meaningful.
-
+        and what flavor best supports the goal.
       </p>
 
     </div>
 
 
+    <div class="process-card">
 
-    <div class="step">
-
-      <div class="step-number">
-
+      <div class="process-num">
         STEP 3
-
       </div>
 
       <strong>
-
         Build, test &amp; revise
-
       </strong>
 
       <p>
-
-        AI helps build and revise the technology.
-
-        The teacher continues testing,
-        adjusting rigor,
-        refining directions,
-        improving scaffolds,
-        and deciding whether
-        the experience actually supports learning.
-
+        AI helps build the technology.
+        The teacher tests, adjusts rigor,
+        improves scaffolds, and determines
+        whether the experience supports learning.
       </p>
 
     </div>
-
 
   </div>
 
@@ -2717,13 +2100,10 @@ footer strong {
 </main>
 
 
-
 <footer>
 
   <strong>
-
     Explore Academy AI Assignment Lab
-
   </strong>
 
   <br>
