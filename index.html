@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Explore Academy | AI Assignment Lab</title>
@@ -26,22 +23,29 @@ html {
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #f2f6fa;
+  background: #f3f6fa;
   color: #18212f;
 }
 
 :root {
   --navy: #071a2b;
   --navy2: #0c2844;
-  --blue: #075dcc;
-  --red: #f20d46;
-  --green: #29c56f;
-  --cyan: #06b9d4;
-  --purple: #7757d8;
-  --text: #172033;
-  --muted: #607086;
-  --line: #dce4ee;
-  --light: #f5f8fc;
+
+  --math: #1467d8;
+  --math-soft: #edf5ff;
+
+  --ela: #16a35a;
+  --ela-soft: #eefbf3;
+
+  --specials: #7556d8;
+  --specials-soft: #f4f0ff;
+
+  --red: #ef1245;
+  --cyan: #06a9c6;
+
+  --text: #18212f;
+  --muted: #617086;
+  --line: #dfe6ef;
 }
 
 
@@ -51,13 +55,13 @@ body {
 
 .brand-bar {
   background: var(--navy);
-  color: white;
   border-bottom: 4px solid var(--red);
-  padding: 13px 24px;
+  color: white;
+  padding: 12px 24px;
 }
 
 .brand-inner {
-  width: min(1740px, 97%);
+  width: min(1760px, 97%);
   margin: auto;
   display: flex;
   align-items: center;
@@ -65,10 +69,12 @@ body {
 }
 
 .brand-logo {
-  width: 64px;
-  height: 64px;
+  width: 62px;
+  height: 62px;
   object-fit: contain;
   display: block;
+
+  /* ONLY logo becomes white */
   filter: brightness(0) invert(1);
 }
 
@@ -93,30 +99,35 @@ body {
       #07385d 55%,
       #075dcc 100%
     );
+
   color: white;
-  padding: 62px 24px 66px;
+  padding: 58px 20px 63px;
+  text-align: center;
 }
 
-.hero::before {
+.hero::after {
   content: "";
   position: absolute;
-  width: 550px;
-  height: 550px;
+  width: 520px;
+  height: 520px;
+  right: -160px;
+  top: -270px;
   border-radius: 50%;
-  background: rgba(255,255,255,.035);
-  top: -310px;
-  right: -120px;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow:
+    0 0 0 35px rgba(255,255,255,.025),
+    0 0 0 70px rgba(255,255,255,.02),
+    0 0 0 105px rgba(255,255,255,.015);
 }
 
 .hero-inner {
-  width: min(1500px, 95%);
-  margin: auto;
-  text-align: center;
   position: relative;
   z-index: 2;
+  width: min(1500px, 95%);
+  margin: auto;
 }
 
-.badge {
+.hero-badge {
   display: inline-block;
   border: 1px solid rgba(255,255,255,.45);
   border-radius: 999px;
@@ -129,24 +140,24 @@ body {
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(46px, 5.4vw, 76px);
-  line-height: 1;
+  font-size: clamp(45px, 5vw, 74px);
+  line-height: 1.04;
 }
 
 .hero h1 span {
-  color: #42dc88;
+  color: #3cdb87;
 }
 
 .hero-main {
-  max-width: 900px;
-  margin: 20px auto 0;
+  max-width: 920px;
+  margin: 19px auto 0;
   font-size: 20px;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .hero-small {
-  margin: 20px auto 0;
-  color: #ccd8e7;
+  margin-top: 20px;
+  color: #cfd9e6;
   font-size: 14px;
 }
 
@@ -154,101 +165,194 @@ body {
   width: 110px;
   height: 5px;
   background: var(--red);
-  border-radius: 99px;
-  margin: 28px auto 0;
+  border-radius: 20px;
+  margin: 27px auto 0;
 }
 
 
 /* =========================================================
-   MAIN
+   PAGE
 ========================================================= */
 
 main {
-  width: min(1740px, 97%);
+  width: min(1760px, 97%);
   margin: auto;
-  padding: 42px 0 70px;
+  padding: 40px 0 70px;
 }
 
 
 /* =========================================================
-   INTRO / PURPOSE
+   EXPLORE PURPOSE
 ========================================================= */
 
-.intro {
-  background: white;
-  border-radius: 20px;
-  border-top: 5px solid var(--blue);
-  padding: 28px 34px;
-  box-shadow: 0 10px 28px rgba(12,24,41,.07);
-  margin-bottom: 38px;
-}
-
-.intro-grid {
+.purpose {
   display: grid;
-  grid-template-columns: .8fr 2.2fr;
+  grid-template-columns: 1.1fr 2fr;
   gap: 35px;
   align-items: center;
+
+  background: white;
+  border-radius: 20px;
+  padding: 28px 34px;
+  border-top: 5px solid #1467d8;
+  box-shadow: 0 9px 27px rgba(12,24,41,.07);
+  margin-bottom: 43px;
 }
 
-.intro h2 {
+.purpose-title {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.purpose-icon {
+  width: 68px;
+  height: 68px;
+  flex: 0 0 68px;
+  border-radius: 50%;
+  background: #eaf3ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.purpose h2 {
   color: var(--navy);
   margin: 0;
-  font-size: 30px;
-  line-height: 1.15;
+  font-size: 29px;
+  line-height: 1.18;
 }
 
-.intro p {
+.purpose p {
   margin: 0;
   color: var(--muted);
-  line-height: 1.65;
   font-size: 15px;
+  line-height: 1.65;
 }
 
-.intro strong {
+.purpose strong {
   color: var(--navy);
 }
 
 
 /* =========================================================
-   SECTION HEADING
+   SUBJECT SECTION
 ========================================================= */
 
-.section-heading {
+.subject-section {
+  margin-bottom: 43px;
+}
+
+.subject-header {
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
   gap: 25px;
-  margin-bottom: 22px;
+
+  padding: 15px 18px;
+  border-radius: 15px 15px 0 0;
+  border-bottom: 2px solid;
+
+  margin-bottom: 17px;
 }
 
-.section-heading h2 {
-  color: var(--navy);
-  font-size: 34px;
-  margin: 0 0 5px;
+.subject-header-left {
+  display: flex;
+  align-items: center;
+  gap: 13px;
 }
 
-.section-heading p {
-  color: var(--muted);
+.subject-header-icon {
+  width: 47px;
+  height: 47px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.subject-header h2 {
   margin: 0;
-  font-size: 15px;
+  font-size: 29px;
 }
 
-.section-note {
-  color: #718096;
+.subject-subtitle {
+  margin: 2px 0 0;
   font-size: 13px;
+  font-weight: 700;
+}
+
+.subject-tagline {
+  font-size: 13px;
+  font-weight: 800;
   text-align: right;
 }
 
 
+/* MATH */
+
+.math-section .subject-header {
+  color: #0f57ba;
+  background: #edf5ff;
+  border-color: var(--math);
+}
+
+.math-section .subject-header-icon {
+  background: #dcecff;
+}
+
+.math-section .subject-subtitle,
+.math-section .subject-tagline {
+  color: #2d69b6;
+}
+
+
+/* ELA */
+
+.ela-section .subject-header {
+  color: #128147;
+  background: #eefbf3;
+  border-color: var(--ela);
+}
+
+.ela-section .subject-header-icon {
+  background: #dff6e8;
+}
+
+.ela-section .subject-subtitle,
+.ela-section .subject-tagline {
+  color: #238457;
+}
+
+
+/* SPECIALS */
+
+.specials-section .subject-header {
+  color: #6546c3;
+  background: #f4f0ff;
+  border-color: var(--specials);
+}
+
+.specials-section .subject-header-icon {
+  background: #e8e0ff;
+}
+
+.specials-section .subject-subtitle,
+.specials-section .subject-tagline {
+  color: #7356c3;
+}
+
+
 /* =========================================================
-   DEMO GRID
+   TWO-COLUMN CARDS
 ========================================================= */
 
-.demo-grid {
+.subject-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  align-items: stretch;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
 }
 
 
@@ -257,178 +361,180 @@ main {
 ========================================================= */
 
 .demo-card {
-  --accent: var(--blue);
+  --accent: var(--math);
 
   background: white;
-  border-radius: 21px;
-  border-top: 6px solid var(--accent);
-  box-shadow: 0 8px 26px rgba(12,24,41,.08);
+  border-radius: 19px;
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--accent);
+  box-shadow: 0 8px 25px rgba(12,24,41,.07);
   overflow: hidden;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 43% 57%;
+  min-height: 410px;
 
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
 .demo-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(12,24,41,.13);
+  box-shadow: 0 17px 38px rgba(12,24,41,.12);
 }
 
 .decimal-card {
-  --accent: #075dcc;
-}
-
-.volleyball-card {
-  --accent: #22b866;
+  --accent: #1467d8;
 }
 
 .division-card {
-  --accent: #f20d46;
+  --accent: #1467d8;
+}
+
+.volleyball-card {
+  --accent: #16a35a;
 }
 
 .spelling-card {
-  --accent: #246fd4;
+  --accent: #16a35a;
 }
 
 .spanish-card {
-  --accent: #7757d8;
+  --accent: #7556d8;
 }
 
 .movement-card {
-  --accent: #06a9c6;
+  --accent: #7556d8;
 }
 
 
 /* =========================================================
-   CARD TOP
+   VISUAL SIDE
 ========================================================= */
 
-.card-top {
-  padding: 22px 24px 17px;
-}
-
-.card-meta {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  margin-bottom: 12px;
-}
-
-.icon {
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
-  background: #edf3ff;
-  border-radius: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-}
-
-.tag {
-  display: inline-block;
-  background: #e9f8fa;
-  color: #08798b;
-  border-radius: 99px;
-  padding: 5px 10px;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: .45px;
-}
-
-.spanish-card .tag {
-  background: #f1ecff;
-  color: #6543ba;
-}
-
-.movement-card .tag {
-  background: #e6faff;
-  color: #007e94;
-}
-
-.card-top h3 {
-  color: var(--navy);
-  font-size: 25px;
-  margin: 0;
-}
-
-
-/* =========================================================
-   PREVIEW MOVED TO TOP
-========================================================= */
-
-.preview-link {
-  display: block;
+.demo-visual {
   position: relative;
-  margin: 0 24px;
-  border-radius: 15px;
-  overflow: hidden;
-  background: #dfe6ef;
-  border: 1px solid #d7e0ea;
+  background: #e9eef4;
+  min-width: 0;
+}
+
+.demo-visual a {
+  display: block;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
 }
 
-.preview {
+.demo-preview {
   width: 100%;
-  aspect-ratio: 16 / 8.6;
+  height: 100%;
+  min-height: 410px;
   object-fit: cover;
   object-position: center;
   display: block;
   transition: transform .25s ease;
 }
 
-.preview-link:hover .preview {
-  transform: scale(1.025);
+.demo-card:hover .demo-preview {
+  transform: scale(1.02);
 }
 
-.preview-overlay {
+.preview-badge {
   position: absolute;
-  inset: auto 12px 12px auto;
-  background: rgba(7,26,43,.88);
+  right: 13px;
+  bottom: 13px;
+
+  background: rgba(7,26,43,.9);
   color: white;
-  border-radius: 99px;
+
+  border-radius: 999px;
   padding: 8px 12px;
+
   font-size: 11px;
   font-weight: 900;
   letter-spacing: .4px;
-  backdrop-filter: blur(4px);
 }
 
 
 /* =========================================================
-   CARD CONTENT
+   CONTENT SIDE
 ========================================================= */
 
-.card-content {
-  padding: 20px 24px 24px;
+.demo-content {
+  padding: 23px;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  min-width: 0;
 }
 
+.demo-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 11px;
+}
+
+.demo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  flex: 0 0 42px;
+  background: #edf3ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.demo-type {
+  display: inline-block;
+  background: #e9f8fa;
+  color: #08798b;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .4px;
+}
+
+.ela-section .demo-type {
+  background: #e8f8ee;
+  color: #16854c;
+}
+
+.specials-section .demo-type {
+  background: #eee8ff;
+  color: #674ab7;
+}
+
+.demo-content h3 {
+  margin: 0 0 15px;
+  color: var(--navy);
+  font-size: 24px;
+}
+
+
+/* =========================================================
+   ACTIVITY
+========================================================= */
+
 .label {
+  display: block;
   color: var(--accent);
   font-size: 11px;
-  letter-spacing: .7px;
   font-weight: 900;
-  display: block;
-  margin-bottom: 6px;
+  letter-spacing: .7px;
+  margin-bottom: 5px;
 }
 
 .activity {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .activity p {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.52;
   margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.48;
 }
 
 
@@ -439,38 +545,40 @@ main {
 .standard {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 11px;
-  align-items: start;
+  gap: 10px;
+  align-items: center;
 
-  border: 1px solid #e0e6ee;
   background: #f7f9fc;
-  border-radius: 12px;
+  border: 1px solid #e0e6ee;
+  border-radius: 11px;
 
-  padding: 12px 14px;
-  margin-bottom: 16px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
 }
 
 .standard-code {
-  white-space: nowrap;
-  color: white;
   background: var(--accent);
+  color: white;
   border-radius: 8px;
   padding: 6px 8px;
+
   font-size: 11px;
   font-weight: 900;
+  white-space: nowrap;
 }
 
 .standard-text strong {
+  display: block;
   color: var(--navy);
   font-size: 12px;
-  display: block;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
 .standard-text span {
+  display: block;
   color: var(--muted);
-  font-size: 12px;
-  line-height: 1.4;
+  font-size: 11px;
+  line-height: 1.35;
 }
 
 
@@ -479,30 +587,35 @@ main {
 ========================================================= */
 
 .why {
-  background: #f2f0ff;
+  background: #f3f1ff;
   border-left: 4px solid var(--accent);
-  border-radius: 11px;
-  padding: 14px;
-  margin-bottom: 18px;
+  border-radius: 10px;
+  padding: 12px 13px;
+  margin-bottom: 14px;
 }
 
-.movement-card .why {
-  background: #ebfbff;
+.ela-section .why {
+  background: #eefaf2;
+}
+
+.specials-section .why {
+  background: #f4f0ff;
 }
 
 .why p {
-  color: #536177;
-  font-size: 13px;
-  line-height: 1.5;
   margin: 0;
+  color: #536177;
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 .takeaway {
   display: block;
+  margin-top: 7px;
   color: #344054;
-  font-weight: 800;
-  line-height: 1.4;
-  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.35;
 }
 
 
@@ -513,16 +626,16 @@ main {
 .features {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
-  margin-bottom: 19px;
+  gap: 6px;
+  margin-bottom: 15px;
 }
 
 .feature {
-  background: #eef3f8;
-  color: #4a5c70;
-  border-radius: 99px;
-  padding: 6px 9px;
-  font-size: 11px;
+  background: #eef3f7;
+  color: #516174;
+  border-radius: 999px;
+  padding: 5px 8px;
+  font-size: 10px;
   font-weight: 700;
 }
 
@@ -536,12 +649,16 @@ main {
   margin-top: auto;
   text-align: center;
   text-decoration: none;
-  color: white;
+
   background: var(--accent);
-  border-radius: 10px;
-  padding: 13px;
+  color: white;
+
+  padding: 12px;
+  border-radius: 9px;
+
+  font-size: 12px;
   font-weight: 900;
-  letter-spacing: .2px;
+  letter-spacing: .3px;
 }
 
 .open-button:hover {
@@ -550,184 +667,157 @@ main {
 
 
 /* =========================================================
-   SUBJECT RANGE
+   ELA EMPHASIS CALLOUT
 ========================================================= */
 
-.range-section {
-  margin-top: 46px;
-  background: var(--navy);
-  color: white;
-  border-radius: 23px;
-  padding: 35px;
-}
+.ela-callout {
+  margin: 14px 0 15px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  background: #eaf9f0;
+  border: 1px solid #cfeeda;
 
-.range-header {
-  display: grid;
-  grid-template-columns: .85fr 1.8fr;
-  gap: 30px;
-  align-items: center;
-  margin-bottom: 25px;
-}
-
-.range-header h2 {
-  margin: 0;
-  font-size: 31px;
-}
-
-.range-header p {
-  margin: 0;
-  color: #ccd8e5;
-  line-height: 1.6;
-}
-
-.subject-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
-}
-
-.subject {
-  background: rgba(255,255,255,.075);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 14px;
-  text-align: center;
-  padding: 17px 10px;
-}
-
-.subject span {
-  font-size: 25px;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.subject strong {
-  font-size: 13px;
+  color: #176d42;
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 800;
 }
 
 
 /* =========================================================
-   EXPLORE FLAVORS
+   EXPLORE CONNECTION
 ========================================================= */
 
-.flavors {
-  margin-top: 35px;
+.explore-connection {
+  margin-top: 48px;
   background: white;
-  border-radius: 23px;
-  padding: 38px;
-  box-shadow: 0 8px 25px rgba(12,24,41,.07);
-  border-top: 6px solid var(--green);
+  border-radius: 22px;
+  border-top: 6px solid #29c56f;
+  padding: 35px;
+  box-shadow: 0 8px 26px rgba(12,24,41,.07);
 }
 
 .eyebrow {
-  color: #259b51;
+  color: #229a55;
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 1.2px;
 }
 
-.flavors h2 {
+.explore-connection h2 {
+  margin: 6px 0 11px;
   color: var(--navy);
-  margin: 6px 0 10px;
-  font-size: 35px;
+  font-size: 34px;
 }
 
-.flavor-lead {
-  color: var(--muted);
+.connection-intro {
   max-width: 1150px;
-  line-height: 1.65;
   margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 15px;
 }
 
-.flavor-lead strong {
+.connection-intro strong {
   color: var(--navy);
 }
 
-.flavor-process {
+
+/* =========================================================
+   SAME TARGET FLOW
+========================================================= */
+
+.flavor-flow {
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr;
   gap: 13px;
   align-items: stretch;
-  margin-top: 28px;
+  margin-top: 25px;
 }
 
-.flavor-step {
-  background: #f5f8fb;
-  border: 1px solid #e1e7ee;
-  border-radius: 14px;
-  padding: 20px;
-}
-
-.flavor-step strong {
-  color: var(--navy);
-  display: block;
-  font-size: 17px;
-  margin-bottom: 6px;
-}
-
-.flavor-step p {
-  color: var(--muted);
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.arrow {
-  display: flex;
-  align-items: center;
-  color: var(--blue);
-  font-weight: 900;
-  font-size: 26px;
-}
-
-.flavor-options {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 13px;
-  margin-top: 22px;
-}
-
-.flavor-option {
-  background: var(--navy);
-  color: white;
-  border-radius: 14px;
+.flow-box {
+  background: #f6f8fb;
+  border: 1px solid #e0e6ee;
+  border-radius: 13px;
   padding: 18px;
 }
 
-.flavor-option .flavor-icon {
-  font-size: 24px;
-  margin-bottom: 8px;
-}
-
-.flavor-option strong {
+.flow-box strong {
   display: block;
+  color: var(--navy);
   margin-bottom: 6px;
+  font-size: 16px;
 }
 
-.flavor-option p {
+.flow-box p {
   margin: 0;
-  color: #cad6e4;
+  color: var(--muted);
   font-size: 13px;
   line-height: 1.45;
 }
 
+.flow-arrow {
+  display: flex;
+  align-items: center;
+  color: #1467d8;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   FLAVOR OPTIONS
+========================================================= */
+
+.flavor-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 13px;
+  margin-top: 21px;
+}
+
+.flavor-card {
+  background: var(--navy);
+  color: white;
+  border-radius: 13px;
+  padding: 18px;
+}
+
+.flavor-icon {
+  font-size: 23px;
+  margin-bottom: 8px;
+}
+
+.flavor-card strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.flavor-card p {
+  margin: 0;
+  color: #cbd6e3;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
 .same-target {
-  margin-top: 22px;
-  border-radius: 14px;
-  padding: 21px 23px;
-  background: linear-gradient(135deg,#eef7ff,#effcf4);
-  border-left: 5px solid var(--green);
+  margin-top: 21px;
+  padding: 20px 22px;
+  border-radius: 13px;
+  background: linear-gradient(135deg,#edf7ff,#effcf4);
+  border-left: 5px solid #29c56f;
 }
 
 .same-target strong {
-  color: var(--navy);
   display: block;
+  color: var(--navy);
   font-size: 19px;
   margin-bottom: 5px;
 }
 
 .same-target p {
-  color: var(--muted);
   margin: 0;
+  color: var(--muted);
   line-height: 1.55;
 }
 
@@ -737,51 +827,61 @@ main {
 ========================================================= */
 
 .process {
-  margin-top: 35px;
+  margin-top: 34px;
   background: white;
-  border-radius: 23px;
-  padding: 35px;
-  box-shadow: 0 8px 25px rgba(12,24,41,.07);
+  border-radius: 21px;
+  padding: 31px;
+  box-shadow: 0 8px 24px rgba(12,24,41,.07);
+}
+
+.process-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.process-icon {
+  font-size: 32px;
 }
 
 .process h2 {
-  color: var(--navy);
   margin: 0;
-  font-size: 30px;
+  color: var(--navy);
+  font-size: 28px;
 }
 
 .process-sub {
+  margin: 5px 0 0;
   color: var(--muted);
-  margin: 7px 0 0;
 }
 
 .process-grid {
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  gap: 16px;
-  margin-top: 24px;
+  gap: 15px;
+  margin-top: 22px;
 }
 
 .process-card {
   background: #f6f8fb;
-  border-radius: 14px;
-  padding: 20px;
-  border-top: 4px solid var(--blue);
+  border-radius: 13px;
+  padding: 19px;
+  border-top: 4px solid var(--math);
 }
 
 .process-card:nth-child(2) {
-  border-top-color: var(--red);
+  border-top-color: var(--ela);
 }
 
 .process-card:nth-child(3) {
-  border-top-color: var(--green);
+  border-top-color: var(--specials);
 }
 
-.process-num {
+.process-number {
   font-size: 11px;
   font-weight: 900;
-  color: var(--blue);
   letter-spacing: 1px;
+  color: #1467d8;
   margin-bottom: 7px;
 }
 
@@ -793,9 +893,9 @@ main {
 
 .process-card p {
   color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
   margin: 0;
-  font-size: 13px;
-  line-height: 1.5;
 }
 
 
@@ -805,9 +905,9 @@ main {
 
 footer {
   background: var(--navy);
-  color: #cad5e3;
+  color: #cad5e2;
   text-align: center;
-  padding: 26px 20px;
+  padding: 25px 20px;
   border-top: 4px solid var(--red);
   font-size: 13px;
 }
@@ -821,32 +921,46 @@ footer strong {
    RESPONSIVE
 ========================================================= */
 
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
 
-  .demo-grid {
+  .demo-card {
+    grid-template-columns: 1fr;
+  }
+
+  .demo-preview {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 8;
+  }
+
+  .purpose {
+    grid-template-columns: 1fr;
+  }
+
+  .flavor-grid {
     grid-template-columns: repeat(2,1fr);
   }
 
-  .intro-grid,
-  .range-header {
-    grid-template-columns: 1fr;
-  }
+}
+
+
+@media (max-width: 950px) {
 
   .subject-grid {
-    grid-template-columns: repeat(3,1fr);
-  }
-
-  .flavor-options {
-    grid-template-columns: repeat(2,1fr);
-  }
-
-  .flavor-process {
     grid-template-columns: 1fr;
   }
 
-  .arrow {
+  .flavor-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-arrow {
     justify-content: center;
     transform: rotate(90deg);
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
   }
 
 }
@@ -854,46 +968,45 @@ footer strong {
 
 @media (max-width: 700px) {
 
-  .demo-grid,
-  .subject-grid,
-  .flavor-options,
-  .process-grid {
-    grid-template-columns: 1fr;
+  main {
+    width: 94%;
   }
 
-  .section-heading {
+  .brand-logo {
+    width: 51px;
+    height: 51px;
+  }
+
+  .brand-name {
+    font-size: 22px;
+  }
+
+  .hero {
+    padding: 48px 16px;
+  }
+
+  .subject-header {
     display: block;
   }
 
-  .section-note {
+  .subject-tagline {
     text-align: left;
     margin-top: 8px;
   }
 
-  .brand-logo {
-    width: 52px;
-    height: 52px;
+  .flavor-grid {
+    grid-template-columns: 1fr;
   }
 
-  .brand-name {
-    font-size: 23px;
-  }
-
-  .hero {
-    padding: 50px 16px;
-  }
-
-  .intro,
-  .range-section,
-  .flavors,
+  .purpose,
+  .explore-connection,
   .process {
-    padding: 24px;
+    padding: 22px;
   }
 
 }
 
 </style>
-
 </head>
 
 
@@ -931,7 +1044,7 @@ footer strong {
 
   <div class="hero-inner">
 
-    <div class="badge">
+    <div class="hero-badge">
       EXPLORE ACADEMY • STAFF AI SHOWCASE
     </div>
 
@@ -945,8 +1058,8 @@ footer strong {
     </p>
 
     <p class="hero-small">
-      Six working examples across core academics, world language,
-      athletics, and interactive content.
+      Six working examples across mathematics, ELA &amp; literacy,
+      world language, and physical education.
     </p>
 
     <div class="hero-line"></div>
@@ -960,872 +1073,314 @@ footer strong {
 
 
 <!-- =========================================================
-     WHY THIS EXISTS
+     PURPOSE
 ========================================================= -->
 
-<section class="intro">
+<section class="purpose">
 
-  <div class="intro-grid">
+  <div class="purpose-title">
+
+    <div class="purpose-icon">
+      🎯
+    </div>
 
     <h2>
       Built for the way we teach at Explore.
     </h2>
 
-    <p>
-      Explore already asks us to move beyond a single,
-      one-size-fits-all classroom experience.
-      These projects demonstrate how AI can help teachers
-      <strong>
-        preserve the learning target while changing the student experience.
-      </strong>
-      The same curriculum can become a game, multimedia lesson,
-      responsive scaffold, multimodal study system,
-      real-world conversation, or personalized movement circuit.
-    </p>
-
   </div>
+
+  <p>
+    Explore already asks us to move beyond a single,
+    one-size-fits-all classroom experience.
+    These projects demonstrate how AI can help teachers
+    <strong>
+      preserve the learning target while changing the way
+      students experience the learning.
+    </strong>
+    The examples below include gamification, responsive scaffolding,
+    multimedia reading, word study, differentiated language practice,
+    and adaptive physical education.
+  </p>
 
 </section>
 
 
 <!-- =========================================================
-     ASSIGNMENTS
+     MATHEMATICS
 ========================================================= -->
 
-<div class="section-heading">
+<section class="subject-section math-section">
 
-  <div>
+  <div class="subject-header">
 
-    <h2>
-      Explore the assignments
-    </h2>
+    <div class="subject-header-left">
 
-    <p>
-      Open a demo and experience it from the student's point of view.
-    </p>
-
-  </div>
-
-  <div class="section-note">
-    Same learning goals.<br>
-    Very different experiences.
-  </div>
-
-</div>
-
-
-<section class="demo-grid">
-
-
-<!-- =========================================================
-     DECIMAL DECEPTION
-========================================================= -->
-
-<article class="demo-card decimal-card">
-
-  <div class="card-top">
-
-    <div class="card-meta">
-
-      <div class="icon">
-        🚀
-      </div>
-
-      <div class="tag">
-        GAMIFIED MATH
-      </div>
-
-    </div>
-
-    <h3>
-      Decimal Deception
-    </h3>
-
-  </div>
-
-
-  <a
-    href="decimal_deception_math_scanner_guide.html"
-    class="preview-link"
-  >
-
-    <img
-      src="decimal-deception-preview.png"
-      alt="Preview of Decimal Deception"
-      class="preview"
-    >
-
-    <div class="preview-overlay">
-      VIEW ACTIVITY
-    </div>
-
-  </a>
-
-
-  <div class="card-content">
-
-    <div class="activity">
-
-      <span class="label">
-        ACTIVITY
-      </span>
-
-      <p>
-        Students navigate a space-station adventure while solving
-        decimal operations. Correct answers restore Power Crystals,
-        protect lives, unlock portals, and move students through
-        new themed levels.
-      </p>
-
-    </div>
-
-
-    <div class="standard">
-
-      <div class="standard-code">
-        6.NS.B.3
-      </div>
-
-      <div class="standard-text">
-
-        <strong>
-          Arizona Math Standard
-        </strong>
-
-        <span>
-          Add, subtract, multiply, and divide multi-digit decimals.
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <div class="why">
-
-      <span class="label">
-        WHY THIS MATTERS
-      </span>
-
-      <p>
-        Traditional decimal practice became the engine of a playable game.
-        Problem-specific Math Scanner hints and a permanent Decimal Guide
-        provide support without removing the mathematics.
-      </p>
-
-      <span class="takeaway">
-        The academic work stays intact. The experience surrounding it changes.
-      </span>
-
-    </div>
-
-
-    <div class="features">
-
-      <span class="feature">🎮 Game Progression</span>
-      <span class="feature">💡 Targeted Hints</span>
-      <span class="feature">📘 Decimal Guide</span>
-      <span class="feature">🏆 Scoring</span>
-
-    </div>
-
-
-    <a
-      href="decimal_deception_math_scanner_guide.html"
-      class="open-button"
-    >
-      OPEN DECIMAL DECEPTION
-    </a>
-
-  </div>
-
-</article>
-
-
-<!-- =========================================================
-     VOLLEYBALL ACADEMY
-========================================================= -->
-
-<article class="demo-card volleyball-card">
-
-  <div class="card-top">
-
-    <div class="card-meta">
-
-      <div class="icon">
-        🏐
-      </div>
-
-      <div class="tag">
-        INTERACTIVE MULTIMEDIA LESSON
-      </div>
-
-    </div>
-
-    <h3>
-      Volleyball Academy
-    </h3>
-
-  </div>
-
-
-  <a
-    href="volleyball-academy.html"
-    class="preview-link"
-  >
-
-    <img
-      src="volleyball-academy-preview.png"
-      alt="Preview of Volleyball Academy"
-      class="preview"
-    >
-
-    <div class="preview-overlay">
-      VIEW ACTIVITY
-    </div>
-
-  </a>
-
-
-  <div class="card-content">
-
-    <div class="activity">
-
-      <span class="label">
-        ACTIVITY
-      </span>
-
-      <p>
-        Eight volleyball missions combine instructional reading,
-        embedded videos, game situations, comprehension checks,
-        drag-and-drop activities, feedback, and progress tracking.
-      </p>
-
-    </div>
-
-
-    <div class="standard">
-
-      <div class="standard-code">
-        RI.1 / RI.7
-      </div>
-
-      <div class="standard-text">
-
-        <strong>
-          Arizona ELA Alignment
-        </strong>
-
-        <span>
-          Use information from text, visual, and multimedia sources.
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <div class="why">
-
-      <span class="label">
-        WHY THIS MATTERS
-      </span>
-
-      <p>
-        Separate articles, readings, and YouTube videos became
-        one sequenced assignment requiring students to read,
-        watch, respond, sort, decide, and apply information.
-      </p>
-
-      <span class="takeaway">
-        Volleyball is the flavor. The same structure can organize almost any content.
-      </span>
-
-    </div>
-
-
-    <div class="features">
-
-      <span class="feature">🎥 Video</span>
-      <span class="feature">📚 Reading</span>
-      <span class="feature">🧩 Drag & Drop</span>
-      <span class="feature">💾 Saved Progress</span>
-
-    </div>
-
-
-    <a
-      href="volleyball-academy.html"
-      class="open-button"
-    >
-      OPEN VOLLEYBALL ACADEMY
-    </a>
-
-  </div>
-
-</article>
-
-
-<!-- =========================================================
-     LONG DIVISION QUEST
-========================================================= -->
-
-<article class="demo-card division-card">
-
-  <div class="card-top">
-
-    <div class="card-meta">
-
-      <div class="icon">
+      <div class="subject-header-icon">
         ➗
       </div>
 
-      <div class="tag">
-        RESPONSIVE MATH SCAFFOLD
-      </div>
+      <div>
 
-    </div>
+        <h2>
+          MATHEMATICS
+        </h2>
 
-    <h3>
-      Long Division Quest
-    </h3>
-
-  </div>
-
-
-  <a
-    href="long-division-quest.html"
-    class="preview-link"
-  >
-
-    <img
-      src="long-division-quest-preview.png"
-      alt="Preview of Long Division Quest"
-      class="preview"
-    >
-
-    <div class="preview-overlay">
-      VIEW ACTIVITY
-    </div>
-
-  </a>
-
-
-  <div class="card-content">
-
-    <div class="activity">
-
-      <span class="label">
-        ACTIVITY
-      </span>
-
-      <p>
-        Students solve long division directly inside an aligned
-        division structure, one digit and one step at a time,
-        using Divide → Multiply → Subtract → Bring Down.
-      </p>
-
-    </div>
-
-
-    <div class="standard">
-
-      <div class="standard-code">
-        5.NBT.B.6
-      </div>
-
-      <div class="standard-text">
-
-        <strong>
-          Arizona Math Standard
-        </strong>
-
-        <span>
-          Find whole-number quotients using place-value reasoning.
-        </span>
+        <div class="subject-subtitle">
+          Practice • Problem Solving • Scaffolding
+        </div>
 
       </div>
 
     </div>
 
-
-    <div class="why">
-
-      <span class="label">
-        WHY THIS MATTERS
-      </span>
-
-      <p>
-        Instead of waiting until the final quotient is wrong,
-        the program follows the student's actual process
-        and responds to the precise digit or step
-        where understanding breaks down.
-      </p>
-
-      <span class="takeaway">
-        Feedback happens during the thinking, not only after the answer.
-      </span>
-
+    <div class="subject-tagline">
+      Building confidence. Deepening understanding.
     </div>
-
-
-    <div class="features">
-
-      <span class="feature">🪜 Step-by-Step</span>
-      <span class="feature">👀 Visual Groups</span>
-      <span class="feature">💡 Optional Hints</span>
-      <span class="feature">📈 Accuracy</span>
-
-    </div>
-
-
-    <a
-      href="long-division-quest.html"
-      class="open-button"
-    >
-      OPEN LONG DIVISION QUEST
-    </a>
-
-  </div>
-
-</article>
-
-
-<!-- =========================================================
-     SPELLING PRACTICE LAB
-========================================================= -->
-
-<article class="demo-card spelling-card">
-
-  <div class="card-top">
-
-    <div class="card-meta">
-
-      <div class="icon">
-        🔤
-      </div>
-
-      <div class="tag">
-        MULTIMODAL WORD STUDY
-      </div>
-
-    </div>
-
-    <h3>
-      Spelling Practice Lab
-    </h3>
-
-  </div>
-
-
-  <a
-    href="spelling-practice.html"
-    class="preview-link"
-  >
-
-    <img
-      src="spelling-practice-preview.png"
-      alt="Preview of Spelling Practice Lab"
-      class="preview"
-    >
-
-    <div class="preview-overlay">
-      VIEW ACTIVITY
-    </div>
-
-  </a>
-
-
-  <div class="card-content">
-
-    <div class="activity">
-
-      <span class="label">
-        ACTIVITY
-      </span>
-
-      <p>
-        One spelling list becomes a full study system with
-        instructional flash cards, audio, volleyball and soccer practice,
-        visual word analysis, and independent testing.
-      </p>
-
-    </div>
-
-
-    <div class="standard">
-
-      <div class="standard-code">
-        RF.3 / L.2
-      </div>
-
-      <div class="standard-text">
-
-        <strong>
-          Arizona ELA Alignment
-        </strong>
-
-        <span>
-          Phonics, word analysis, language conventions, and spelling.
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <div class="why">
-
-      <span class="label">
-        WHY THIS MATTERS
-      </span>
-
-      <p>
-        Students see syllables, hear sound chunks,
-        identify highlighted phonograms, study difficult patterns,
-        receive targeted hints, practice the words,
-        and eventually spell them independently.
-      </p>
-
-      <span class="takeaway">
-        See it → hear it → break it apart → practice it → spell it.
-      </span>
-
-    </div>
-
-
-    <div class="features">
-
-      <span class="feature">🔊 Audio</span>
-      <span class="feature">🧩 Phonograms</span>
-      <span class="feature">⭐ Watch For</span>
-      <span class="feature">⚽🏐 Games</span>
-
-    </div>
-
-
-    <a
-      href="spelling-practice.html"
-      class="open-button"
-    >
-      OPEN SPELLING PRACTICE
-    </a>
-
-  </div>
-
-</article>
-
-
-<!-- =========================================================
-     SPANISH CONVERSATION QUEST
-========================================================= -->
-
-<article class="demo-card spanish-card">
-
-  <div class="card-top">
-
-    <div class="card-meta">
-
-      <div class="icon">
-        💬
-      </div>
-
-      <div class="tag">
-        WORLD LANGUAGE
-      </div>
-
-    </div>
-
-    <h3>
-      Spanish Conversation Quest
-    </h3>
-
-  </div>
-
-
-  <a
-    href="spanish-conversation-quest.html"
-    class="preview-link"
-  >
-
-    <img
-      src="spanish-conversation-quest-preview.png"
-      alt="Preview of Spanish Conversation Quest"
-      class="preview"
-    >
-
-    <div class="preview-overlay">
-      VIEW ACTIVITY
-    </div>
-
-  </a>
-
-
-  <div class="card-content">
-
-    <div class="activity">
-
-      <span class="label">
-        ACTIVITY
-      </span>
-
-      <p>
-        Students practice Spanish through real-world missions
-        combining vocabulary, pronunciation, listening,
-        sentence construction, comprehension,
-        conversation choices, and reflection.
-      </p>
-
-    </div>
-
-
-    <div class="standard">
-
-      <div class="standard-code">
-        COMM.
-      </div>
-
-      <div class="standard-text">
-
-        <strong>
-          World Language Alignment
-        </strong>
-
-        <span>
-          Listening, interpretation, vocabulary, and interpersonal communication.
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <div class="why">
-
-      <span class="label">
-        WHY THIS MATTERS
-      </span>
-
-      <p>
-        Beginner, Standard, and Challenge modes change
-        the amount of English support, pronunciation help,
-        hints, and independence while keeping
-        the communication target consistent.
-      </p>
-
-      <span class="takeaway">
-        Same communication goal. Different levels of scaffolding.
-      </span>
-
-    </div>
-
-
-    <div class="features">
-
-      <span class="feature">🔊 Listening</span>
-      <span class="feature">💬 Conversation</span>
-      <span class="feature">🧩 Syntax</span>
-      <span class="feature">🎯 3 Support Levels</span>
-
-    </div>
-
-
-    <a
-      href="spanish-conversation-quest.html"
-      class="open-button"
-    >
-      OPEN SPANISH QUEST
-    </a>
-
-  </div>
-
-</article>
-
-
-<!-- =========================================================
-     MOVEMENT MISSION
-========================================================= -->
-
-<article class="demo-card movement-card">
-
-  <div class="card-top">
-
-    <div class="card-meta">
-
-      <div class="icon">
-        🏃
-      </div>
-
-      <div class="tag">
-        PHYSICAL EDUCATION
-      </div>
-
-    </div>
-
-    <h3>
-      Movement Mission
-    </h3>
-
-  </div>
-
-
-  <a
-    href="movement-mission.html"
-    class="preview-link"
-  >
-
-    <img
-      src="movement-mission-preview.png"
-      alt="Preview of Movement Mission"
-      class="preview"
-    >
-
-    <div class="preview-overlay">
-      VIEW ACTIVITY
-    </div>
-
-  </a>
-
-
-  <div class="card-content">
-
-    <div class="activity">
-
-      <span class="label">
-        ACTIVITY
-      </span>
-
-      <p>
-        Students create a personalized K–8 movement circuit
-        using timed stations, coach cues, technique support,
-        knowledge checks, reflection, XP,
-        achievements, and progress tracking.
-      </p>
-
-    </div>
-
-
-    <div class="standard">
-
-      <div class="standard-code">
-        K–8 PE
-      </div>
-
-      <div class="standard-text">
-
-        <strong>
-          Physical Education Alignment
-        </strong>
-
-        <span>
-          Movement competency, fitness, body control, knowledge, and reflection.
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <div class="why">
-
-      <span class="label">
-        WHY THIS MATTERS
-      </span>
-
-      <p>
-        The actual activity changes based on grade band,
-        challenge level, available equipment,
-        available space, and adapted movement needs.
-        The customization affects the learning experience,
-        not merely its appearance.
-      </p>
-
-      <span class="takeaway">
-        Same PE goals. Different training flavors.
-      </span>
-
-    </div>
-
-
-    <div class="features">
-
-      <span class="feature">⏱️ Timers</span>
-      <span class="feature">🏀 Equipment Aware</span>
-      <span class="feature">❤️ Adapted Options</span>
-      <span class="feature">👩‍🏫 Teacher Mode</span>
-
-    </div>
-
-
-    <a
-      href="movement-mission.html"
-      class="open-button"
-    >
-      OPEN MOVEMENT MISSION
-    </a>
-
-  </div>
-
-</article>
-
-
-</section>
-
-
-<!-- =========================================================
-     SUBJECT RANGE
-========================================================= -->
-
-<section class="range-section">
-
-  <div class="range-header">
-
-    <h2>
-      One Tool.<br>
-      Many Classrooms.
-    </h2>
-
-    <p>
-      These examples intentionally cross subject areas.
-      The showcase is not about one app or one type of lesson.
-      It is about giving teachers another way to turn
-      existing curriculum into interactive student experiences.
-    </p>
 
   </div>
 
 
   <div class="subject-grid">
 
-    <div class="subject">
-      <span>➗</span>
-      <strong>Mathematics</strong>
-    </div>
 
-    <div class="subject">
-      <span>📚</span>
-      <strong>ELA</strong>
-    </div>
+    <!-- DECIMAL DECEPTION -->
 
-    <div class="subject">
-      <span>🔤</span>
-      <strong>Word Study</strong>
-    </div>
+    <article class="demo-card decimal-card">
 
-    <div class="subject">
-      <span>💬</span>
-      <strong>World Language</strong>
-    </div>
+      <div class="demo-visual">
 
-    <div class="subject">
-      <span>🏃</span>
-      <strong>Physical Education</strong>
-    </div>
+        <a href="decimal_deception_math_scanner_guide.html">
 
-    <div class="subject">
-      <span>🎨</span>
-      <strong>What's Next?</strong>
-    </div>
+          <img
+            src="decimal-deception-preview.png"
+            alt="Preview of Decimal Deception"
+            class="demo-preview"
+          >
+
+          <div class="preview-badge">
+            VIEW ACTIVITY
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <div class="demo-content">
+
+        <div class="demo-meta">
+
+          <div class="demo-icon">
+            🚀
+          </div>
+
+          <div class="demo-type">
+            GAMIFIED MATH
+          </div>
+
+        </div>
+
+        <h3>
+          Decimal Deception
+        </h3>
+
+
+        <div class="activity">
+
+          <span class="label">
+            ACTIVITY DESCRIPTION
+          </span>
+
+          <p>
+            Students navigate a space-station adventure while solving
+            decimal operations. Correct answers restore Power Crystals,
+            preserve lives, unlock portals, and move students
+            through new themed levels.
+          </p>
+
+        </div>
+
+
+        <div class="standard">
+
+          <div class="standard-code">
+            6.NS.B.3
+          </div>
+
+          <div class="standard-text">
+
+            <strong>
+              Arizona Math Standard
+            </strong>
+
+            <span>
+              Add, subtract, multiply, and divide multi-digit decimals.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="why">
+
+          <span class="label">
+            INTENTIONAL DESIGN
+          </span>
+
+          <p>
+            Traditional decimal practice became the engine of a playable game.
+            Problem-specific Math Scanner hints and a permanent Decimal Guide
+            provide support without removing the mathematics.
+          </p>
+
+          <span class="takeaway">
+            The academic work stays intact. The experience surrounding it changes.
+          </span>
+
+        </div>
+
+
+        <div class="features">
+
+          <span class="feature">🎮 Game Progression</span>
+          <span class="feature">💡 Targeted Hints</span>
+          <span class="feature">📘 Decimal Guide</span>
+          <span class="feature">🏆 Scoring</span>
+
+        </div>
+
+
+        <a
+          href="decimal_deception_math_scanner_guide.html"
+          class="open-button"
+        >
+          OPEN DECIMAL DECEPTION
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- LONG DIVISION -->
+
+    <article class="demo-card division-card">
+
+      <div class="demo-visual">
+
+        <a href="long-division-quest.html">
+
+          <img
+            src="long-division-quest-preview.png"
+            alt="Preview of Long Division Quest"
+            class="demo-preview"
+          >
+
+          <div class="preview-badge">
+            VIEW ACTIVITY
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <div class="demo-content">
+
+        <div class="demo-meta">
+
+          <div class="demo-icon">
+            ➗
+          </div>
+
+          <div class="demo-type">
+            RESPONSIVE MATH SCAFFOLD
+          </div>
+
+        </div>
+
+        <h3>
+          Long Division Quest
+        </h3>
+
+
+        <div class="activity">
+
+          <span class="label">
+            ACTIVITY DESCRIPTION
+          </span>
+
+          <p>
+            Students solve long division directly inside an aligned
+            division structure, one digit and one step at a time,
+            following Divide → Multiply → Subtract → Bring Down.
+          </p>
+
+        </div>
+
+
+        <div class="standard">
+
+          <div class="standard-code">
+            5.NBT.B.6
+          </div>
+
+          <div class="standard-text">
+
+            <strong>
+              Arizona Math Standard
+            </strong>
+
+            <span>
+              Find whole-number quotients using place-value reasoning.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="why">
+
+          <span class="label">
+            INTENTIONAL DESIGN
+          </span>
+
+          <p>
+            Instead of waiting until the final quotient is incorrect,
+            the activity follows the student's actual process and responds
+            to the exact digit or step where understanding breaks down.
+          </p>
+
+          <span class="takeaway">
+            Feedback happens during the thinking, not only after the answer.
+          </span>
+
+        </div>
+
+
+        <div class="features">
+
+          <span class="feature">🪜 Step-by-Step</span>
+          <span class="feature">👀 Visual Groups</span>
+          <span class="feature">💡 Optional Hints</span>
+          <span class="feature">📈 Accuracy Tracking</span>
+
+        </div>
+
+
+        <a
+          href="long-division-quest.html"
+          class="open-button"
+        >
+          OPEN LONG DIVISION QUEST
+        </a>
+
+      </div>
+
+    </article>
 
   </div>
 
@@ -1833,10 +1388,588 @@ footer strong {
 
 
 <!-- =========================================================
-     FLAVORS
+     ELA & LITERACY
 ========================================================= -->
 
-<section class="flavors">
+<section class="subject-section ela-section">
+
+  <div class="subject-header">
+
+    <div class="subject-header-left">
+
+      <div class="subject-header-icon">
+        📚
+      </div>
+
+      <div>
+
+        <h2>
+          ELA &amp; LITERACY
+        </h2>
+
+        <div class="subject-subtitle">
+          Reading • Multimedia • Word Study
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="subject-tagline">
+      Stronger readers. Smarter thinkers.
+    </div>
+
+  </div>
+
+
+  <div class="subject-grid">
+
+
+    <!-- VOLLEYBALL ACADEMY -->
+
+    <article class="demo-card volleyball-card">
+
+      <div class="demo-visual">
+
+        <a href="volleyball-academy.html">
+
+          <img
+            src="volleyball-academy-preview.png"
+            alt="Preview of Volleyball Academy"
+            class="demo-preview"
+          >
+
+          <div class="preview-badge">
+            VIEW ELA LESSON
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <div class="demo-content">
+
+        <div class="demo-meta">
+
+          <div class="demo-icon">
+            🎥
+          </div>
+
+          <div class="demo-type">
+            ELA • INTERACTIVE MULTIMEDIA LESSON
+          </div>
+
+        </div>
+
+        <h3>
+          Volleyball Academy
+        </h3>
+
+
+        <div class="activity">
+
+          <span class="label">
+            ACTIVITY DESCRIPTION
+          </span>
+
+          <p>
+            Students read informational text, analyze embedded YouTube videos,
+            answer comprehension questions, sort information,
+            and apply what they learn through eight interactive missions.
+          </p>
+
+        </div>
+
+
+        <div class="standard">
+
+          <div class="standard-code">
+            RI.1 &amp; RI.7
+          </div>
+
+          <div class="standard-text">
+
+            <strong>
+              Arizona ELA Alignment
+            </strong>
+
+            <span>
+              Informational reading + integration of text,
+              visual, and multimedia sources.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="ela-callout">
+          📚 The volleyball topic is the flavor. The learning design is ELA.
+        </div>
+
+
+        <div class="why">
+
+          <span class="label">
+            INTENTIONAL DESIGN
+          </span>
+
+          <p>
+            Separate web articles, instructional readings,
+            and YouTube videos were transformed into one sequenced ELA experience.
+            Students must read closely, interpret multimedia,
+            respond, organize information, and demonstrate understanding.
+          </p>
+
+          <span class="takeaway">
+            Existing resources became an interactive reading and comprehension lesson.
+          </span>
+
+        </div>
+
+
+        <div class="features">
+
+          <span class="feature">📄 Articles</span>
+          <span class="feature">🎥 YouTube Videos</span>
+          <span class="feature">✅ Comprehension</span>
+          <span class="feature">🧩 Drag &amp; Drop</span>
+
+        </div>
+
+
+        <a
+          href="volleyball-academy.html"
+          class="open-button"
+        >
+          OPEN VOLLEYBALL ELA LESSON
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- SPELLING PRACTICE -->
+
+    <article class="demo-card spelling-card">
+
+      <div class="demo-visual">
+
+        <a href="spelling-practice.html">
+
+          <img
+            src="spelling-practice-preview.png"
+            alt="Preview of Spelling Practice Lab"
+            class="demo-preview"
+          >
+
+          <div class="preview-badge">
+            VIEW ACTIVITY
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <div class="demo-content">
+
+        <div class="demo-meta">
+
+          <div class="demo-icon">
+            🔤
+          </div>
+
+          <div class="demo-type">
+            ELA • MULTIMODAL WORD STUDY
+          </div>
+
+        </div>
+
+        <h3>
+          Spelling Practice Lab
+        </h3>
+
+
+        <div class="activity">
+
+          <span class="label">
+            ACTIVITY DESCRIPTION
+          </span>
+
+          <p>
+            One spelling list becomes a complete study system
+            with instructional flash cards, audio,
+            visual word analysis, volleyball and soccer practice,
+            and an independent spelling test.
+          </p>
+
+        </div>
+
+
+        <div class="standard">
+
+          <div class="standard-code">
+            RF.3 &amp; L.2
+          </div>
+
+          <div class="standard-text">
+
+            <strong>
+              Arizona ELA Alignment
+            </strong>
+
+            <span>
+              Phonics, word analysis, language conventions,
+              and grade-appropriate spelling.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="why">
+
+          <span class="label">
+            INTENTIONAL DESIGN
+          </span>
+
+          <p>
+            Students see syllables, hear sound chunks,
+            identify highlighted phonograms,
+            study difficult spelling patterns,
+            receive targeted “Watch For” hints,
+            practice the words, and demonstrate independence.
+          </p>
+
+          <span class="takeaway">
+            See it → hear it → break it apart → practice it → spell it.
+          </span>
+
+        </div>
+
+
+        <div class="features">
+
+          <span class="feature">🔊 Audio</span>
+          <span class="feature">🔎 Phonograms</span>
+          <span class="feature">⭐ Watch For Hints</span>
+          <span class="feature">⚽🏐 Games</span>
+
+        </div>
+
+
+        <a
+          href="spelling-practice.html"
+          class="open-button"
+        >
+          OPEN SPELLING PRACTICE
+        </a>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SPECIALS & EXPLORATORY
+========================================================= -->
+
+<section class="subject-section specials-section">
+
+  <div class="subject-header">
+
+    <div class="subject-header-left">
+
+      <div class="subject-header-icon">
+        ✨
+      </div>
+
+      <div>
+
+        <h2>
+          SPECIALS &amp; EXPLORATORY
+        </h2>
+
+        <div class="subject-subtitle">
+          Language • Movement • Student Choice
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="subject-tagline">
+      Expanding voice. Building skills for life.
+    </div>
+
+  </div>
+
+
+  <div class="subject-grid">
+
+
+    <!-- SPANISH -->
+
+    <article class="demo-card spanish-card">
+
+      <div class="demo-visual">
+
+        <a href="spanish-conversation-quest.html">
+
+          <img
+            src="spanish-conversation-quest-preview.png"
+            alt="Preview of Spanish Conversation Quest"
+            class="demo-preview"
+          >
+
+          <div class="preview-badge">
+            VIEW ACTIVITY
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <div class="demo-content">
+
+        <div class="demo-meta">
+
+          <div class="demo-icon">
+            💬
+          </div>
+
+          <div class="demo-type">
+            WORLD LANGUAGE
+          </div>
+
+        </div>
+
+        <h3>
+          Spanish Conversation Quest
+        </h3>
+
+
+        <div class="activity">
+
+          <span class="label">
+            ACTIVITY DESCRIPTION
+          </span>
+
+          <p>
+            Students practice Spanish through real-world conversation missions
+            combining vocabulary, pronunciation,
+            listening, sentence construction,
+            conversation choices, feedback, and reflection.
+          </p>
+
+        </div>
+
+
+        <div class="standard">
+
+          <div class="standard-code">
+            COMM.
+          </div>
+
+          <div class="standard-text">
+
+            <strong>
+              World Language Alignment
+            </strong>
+
+            <span>
+              Listening, interpretation, vocabulary,
+              sentence construction, and interpersonal communication.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="why">
+
+          <span class="label">
+            INTENTIONAL DESIGN
+          </span>
+
+          <p>
+            Beginner, Standard, and Challenge modes change
+            the amount of English support, pronunciation help,
+            hints, and independence while keeping
+            the communication target consistent.
+          </p>
+
+          <span class="takeaway">
+            Same communication goal. Different levels of scaffolding.
+          </span>
+
+        </div>
+
+
+        <div class="features">
+
+          <span class="feature">🔊 Listening</span>
+          <span class="feature">💬 Conversation</span>
+          <span class="feature">🧩 Sentence Building</span>
+          <span class="feature">🎯 3 Support Levels</span>
+
+        </div>
+
+
+        <a
+          href="spanish-conversation-quest.html"
+          class="open-button"
+        >
+          OPEN SPANISH QUEST
+        </a>
+
+      </div>
+
+    </article>
+
+
+    <!-- MOVEMENT MISSION -->
+
+    <article class="demo-card movement-card">
+
+      <div class="demo-visual">
+
+        <a href="movement-mission.html">
+
+          <img
+            src="movement-mission-preview.png"
+            alt="Preview of Movement Mission"
+            class="demo-preview"
+          >
+
+          <div class="preview-badge">
+            VIEW ACTIVITY
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <div class="demo-content">
+
+        <div class="demo-meta">
+
+          <div class="demo-icon">
+            🏃
+          </div>
+
+          <div class="demo-type">
+            PHYSICAL EDUCATION
+          </div>
+
+        </div>
+
+        <h3>
+          Movement Mission
+        </h3>
+
+
+        <div class="activity">
+
+          <span class="label">
+            ACTIVITY DESCRIPTION
+          </span>
+
+          <p>
+            Students create a personalized K–8 movement circuit
+            using timed stations, coach cues, technique support,
+            knowledge checks, reflection, XP,
+            achievements, and progress tracking.
+          </p>
+
+        </div>
+
+
+        <div class="standard">
+
+          <div class="standard-code">
+            K–8 PE
+          </div>
+
+          <div class="standard-text">
+
+            <strong>
+              Physical Education Alignment
+            </strong>
+
+            <span>
+              Movement competency, fitness,
+              body control, movement knowledge, and reflection.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="why">
+
+          <span class="label">
+            INTENTIONAL DESIGN
+          </span>
+
+          <p>
+            The actual circuit changes based on grade band,
+            difficulty, available equipment,
+            available space, and adapted movement needs.
+            Customization changes the experience itself,
+            not simply the color or theme.
+          </p>
+
+          <span class="takeaway">
+            Same PE goals. Different training flavors.
+          </span>
+
+        </div>
+
+
+        <div class="features">
+
+          <span class="feature">⏱️ Timers</span>
+          <span class="feature">🏀 Equipment Aware</span>
+          <span class="feature">❤️ Adapted Options</span>
+          <span class="feature">👩‍🏫 Teacher Mode</span>
+
+        </div>
+
+
+        <a
+          href="movement-mission.html"
+          class="open-button"
+        >
+          OPEN MOVEMENT MISSION
+        </a>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     EXPLORE CONNECTION
+========================================================= -->
+
+<section class="explore-connection">
 
   <div class="eyebrow">
     THE EXPLORE CONNECTION
@@ -1846,41 +1979,41 @@ footer strong {
     Build the Flavor
   </h2>
 
-  <p class="flavor-lead">
+  <p class="connection-intro">
     Explore's model recognizes that students do not all need
     the exact same experience to reach the same destination.
     AI can help extend that philosophy by allowing teachers to
     <strong>
-      preserve the standard and rigor while changing the context,
-      scaffolding, modality, challenge, feedback,
-      or student pathway.
+      preserve the academic or performance target while changing
+      the context, scaffolding, modality, challenge,
+      feedback, or student pathway.
     </strong>
   </p>
 
 
-  <div class="flavor-process">
+  <div class="flavor-flow">
 
-    <div class="flavor-step">
+    <div class="flow-box">
 
       <strong>
         1. Keep the Target
       </strong>
 
       <p>
-        Start with the standard, skill, text,
-        vocabulary, assessment target,
-        movement objective, or learning goal.
+        Start with the standard, learning objective,
+        skill, text, vocabulary,
+        movement objective, or assessment goal.
       </p>
 
     </div>
 
 
-    <div class="arrow">
+    <div class="flow-arrow">
       →
     </div>
 
 
-    <div class="flavor-step">
+    <div class="flow-box">
 
       <strong>
         2. Design the Flavor
@@ -1889,27 +2022,27 @@ footer strong {
       <p>
         Change the theme, context,
         interaction, scaffolding,
-        modality, difficulty,
+        modality, challenge level,
         or type of practice.
       </p>
 
     </div>
 
 
-    <div class="arrow">
+    <div class="flow-arrow">
       →
     </div>
 
 
-    <div class="flavor-step">
+    <div class="flow-box">
 
       <strong>
         3. Reach the Same Mastery
       </strong>
 
       <p>
-        The experience may look different,
-        but the underlying learning expectation
+        The student experience may look different,
+        but the underlying expectation
         remains intentional and measurable.
       </p>
 
@@ -1918,28 +2051,28 @@ footer strong {
   </div>
 
 
-  <div class="flavor-options">
+  <div class="flavor-grid">
 
-    <div class="flavor-option">
+    <div class="flavor-card">
 
       <div class="flavor-icon">
         🚀 🐉 🏀
       </div>
 
       <strong>
-        Interest
+        Interest-Based
       </strong>
 
       <p>
         Space, sports, fantasy,
-        animals, cooking, racing,
-        history, music, and more.
+        animals, cooking, history,
+        music, or another student interest.
       </p>
 
     </div>
 
 
-    <div class="flavor-option">
+    <div class="flavor-card">
 
       <div class="flavor-icon">
         📖 🎥 🎮
@@ -1951,14 +2084,14 @@ footer strong {
 
       <p>
         Reading, video, audio,
-        simulations, games,
-        models, or guided practice.
+        simulation, guided practice,
+        games, or visual models.
       </p>
 
     </div>
 
 
-    <div class="flavor-option">
+    <div class="flavor-card">
 
       <div class="flavor-icon">
         🧠 💡 🪜
@@ -1970,14 +2103,15 @@ footer strong {
 
       <p>
         Read-alouds, visual hints,
-        chunking, modeling,
-        coaching, and optional scaffolds.
+        chunking, models,
+        pronunciation support,
+        coaching, and scaffolds.
       </p>
 
     </div>
 
 
-    <div class="flavor-option">
+    <div class="flavor-card">
 
       <div class="flavor-icon">
         🎯 📈 🏆
@@ -1989,7 +2123,7 @@ footer strong {
 
       <p>
         Immediate feedback,
-        retries, reteaching,
+        retries, targeted reteaching,
         challenge levels,
         and progress indicators.
       </p>
@@ -2006,10 +2140,11 @@ footer strong {
     </strong>
 
     <p>
-      Students can work toward the same academic or performance goal
-      through different themes, supports, levels of independence,
-      and types of interaction. AI can make those different pathways
-      far more practical for teachers to design, revise, and reuse.
+      A student can work toward the same standard or performance goal
+      through a different theme, level of support,
+      degree of independence, or type of interaction.
+      AI can make those different pathways far more practical
+      for teachers to build, revise, and reuse.
     </p>
 
   </div>
@@ -2018,25 +2153,37 @@ footer strong {
 
 
 <!-- =========================================================
-     PROCESS
+     HOW THESE ARE BUILT
 ========================================================= -->
 
 <section class="process">
 
-  <h2>
-    How were these built?
-  </h2>
+  <div class="process-title">
 
-  <p class="process-sub">
-    The process begins with instructional design, not programming.
-  </p>
+    <div class="process-icon">
+      ⚙️
+    </div>
+
+    <div>
+
+      <h2>
+        How these are built
+      </h2>
+
+      <p class="process-sub">
+        The process begins with instructional design, not programming.
+      </p>
+
+    </div>
+
+  </div>
 
 
   <div class="process-grid">
 
     <div class="process-card">
 
-      <div class="process-num">
+      <div class="process-number">
         STEP 1
       </div>
 
@@ -2046,8 +2193,9 @@ footer strong {
 
       <p>
         Identify the standard, student need,
-        resource, lesson, assessment,
-        practice problem, or instructional challenge.
+        existing resource, assessment,
+        lesson, practice problem,
+        or instructional challenge.
       </p>
 
     </div>
@@ -2055,7 +2203,7 @@ footer strong {
 
     <div class="process-card">
 
-      <div class="process-num">
+      <div class="process-number">
         STEP 2
       </div>
 
@@ -2067,7 +2215,7 @@ footer strong {
         Decide what students should do,
         where support is needed,
         how feedback should work,
-        and what flavor best supports the goal.
+        and which flavor best supports the goal.
       </p>
 
     </div>
@@ -2075,7 +2223,7 @@ footer strong {
 
     <div class="process-card">
 
-      <div class="process-num">
+      <div class="process-number">
         STEP 3
       </div>
 
@@ -2086,8 +2234,9 @@ footer strong {
       <p>
         AI helps build the technology.
         The teacher tests, adjusts rigor,
-        improves scaffolds, and determines
-        whether the experience supports learning.
+        improves scaffolds, revises directions,
+        and determines whether the experience
+        actually supports learning.
       </p>
 
     </div>
@@ -2114,5 +2263,4 @@ footer strong {
 
 
 </body>
-
 </html>
