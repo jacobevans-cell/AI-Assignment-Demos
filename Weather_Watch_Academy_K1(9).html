@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Weather Watch Academy - Unit 1</title>
+<style>
+:root{--bg:#071c2d;--panel:#0b3450;--panel2:#13556f;--ink:#fff;--muted:#d7eef7;--p:#38bdf8;--pink:#60a5fa;--cyan:#67e8f9;--gold:#fbbf24;--green:#34d399;--red:#fb7185}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at top,#1d7aa0 0,#0b3f63 20%,#071c2d 48%);color:var(--ink);min-height:100vh}
+button,a{font:inherit} .wrap{max-width:1050px;margin:auto;padding:18px} .top{position:sticky;top:0;z-index:20;background:#071c2dea;backdrop-filter:blur(12px);border-bottom:1px solid #ffffff20}
+.topin{max-width:1050px;margin:auto;padding:10px 18px;display:flex;gap:14px;align-items:center} .brand{font-weight:1000;white-space:nowrap} .meter{height:11px;background:#ffffff18;border-radius:99px;overflow:hidden;flex:1} .fill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--p),var(--pink));transition:.25s} .score{font-weight:900;white-space:nowrap}
+.hero{text-align:center;padding:34px 8px 15px} .hero h1{font-size:clamp(36px,7vw,72px);line-height:.95;margin:10px 0;letter-spacing:-3px} .hero p{max-width:760px;margin:12px auto;color:var(--muted);font-size:18px;line-height:1.55}
+.pill{display:inline-flex;background:var(--gold);color:#261500;font-weight:1000;padding:7px 13px;border-radius:999px;transform:rotate(-1deg)} .player{margin:20px auto;display:flex;gap:8px;justify-content:center;flex-wrap:wrap} input{padding:12px 14px;border-radius:13px;border:1px solid #ffffff2a;background:#ffffff0e;color:white;min-width:230px;font-size:16px}
+.primary{border:0;background:linear-gradient(90deg,var(--p),var(--pink));color:white;font-weight:900;padding:12px 18px;border-radius:13px;cursor:pointer} .secondary{border:1px solid #ffffff33;background:#ffffff10;color:white;font-weight:800;padding:10px 14px;border-radius:12px;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:22px 0} .module{background:linear-gradient(145deg,var(--panel),var(--panel2));border:1px solid #ffffff20;border-radius:22px;padding:18px;cursor:pointer;transition:.15s;position:relative;overflow:hidden} .module:hover{transform:translateY(-3px);border-color:#ffffff55} .module.done:after{content:"✓ MASTERED";position:absolute;right:10px;top:10px;background:#064e3b;color:#b7ffe5;font-weight:900;font-size:11px;padding:5px 8px;border-radius:999px} .module .emoji{font-size:38px} .module h3{font-size:22px;margin:7px 0 4px} .module p{color:var(--muted);margin:0} .module small{color:var(--gold);font-weight:900}
+.card{background:linear-gradient(145deg,var(--panel),var(--panel2));border:1px solid #ffffff20;border-radius:25px;padding:25px;margin:18px 0;box-shadow:0 18px 50px #0005} .kicker{color:var(--gold);font-weight:1000;letter-spacing:1.5px;font-size:12px} .bigicon{font-size:46px} h2{font-size:clamp(28px,5vw,44px);margin:4px 0} .subtitle{color:var(--cyan);font-weight:900;font-size:18px} .readcard{background:#ffffff0b;border:1px solid #ffffff17;border-radius:18px;padding:18px;margin:12px 0} .readcard h3{margin:0 0 7px;font-size:21px} .readcard p{color:#f3ecff;line-height:1.65;font-size:17px;margin:0}
+.callout{margin:16px 0;padding:14px 16px;border-radius:15px;background:#0ea5e91c;border-left:5px solid var(--cyan)} .qbox{margin-top:20px;padding-top:20px;border-top:1px solid #ffffff25} .qtitle{font-weight:1000;color:var(--gold);letter-spacing:.5px} .choices{display:grid;gap:9px;margin-top:12px} .choice{background:#ffffff0b;color:white;border:2px solid #ffffff22;border-radius:14px;padding:13px 15px;text-align:left;cursor:pointer} .choice:hover{border-color:var(--p);transform:translateY(-1px)} .choice.correct{background:#064e3b;border-color:var(--green)} .choice.wrong{background:#651a2a;border-color:var(--red)} .choice:disabled{cursor:default} .activity-box{margin:20px 0;padding:18px;border:1px solid #ffffff24;border-radius:18px;background:#ffffff08}
+.activity-head{display:flex;gap:10px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+.activity-title{font-size:21px;font-weight:1000}.activity-help{color:var(--muted);font-size:13px}
+.drag-bank{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}
+.drag-card{background:#ffffff12;border:2px solid #ffffff28;border-radius:13px;padding:10px 12px;cursor:grab;user-select:none;font-weight:800}
+.drag-card.selected{border-color:var(--gold);background:#fbbf2420}
+.drag-card.placed{opacity:.45;cursor:default}
+.drop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.drop-zone{min-height:115px;border:2px dashed #ffffff35;border-radius:15px;padding:12px;background:#00000016}
+.drop-zone.over{border-color:var(--cyan);background:#22d3ee12}
+.drop-zone h4{margin:0 0 8px}.drop-items{display:flex;flex-wrap:wrap;gap:7px}
+.drop-chip{font-size:13px;background:#ffffff12;border-radius:10px;padding:7px 9px}
+.activity-feedback{min-height:24px;margin-top:10px;font-weight:900}
+.activity-feedback.good{color:#8ff7d0}.activity-feedback.bad{color:#ffb3c0}
+.feedback{display:none;padding:13px 15px;margin-top:11px;border-radius:13px;font-weight:700} .feedback.good{display:block;background:#064e3b} .feedback.bad{display:block;background:#651a2a}
+.navrow{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-top:20px} .hidden{display:none!important} .source{color:#bfeeff;font-size:13px;word-break:break-all} .video{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:18px;margin:16px 0;background:#000} .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.results{text-align:center} .rank{font-size:clamp(38px,7vw,65px);font-weight:1000;color:var(--gold)} .statsgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0} .stat{background:#ffffff0c;border-radius:15px;padding:16px} .stat b{font-size:26px;display:block} .tiny{font-size:13px;color:var(--muted)} .teacher{background:#ffffff09;padding:12px;border-radius:14px;margin-top:15px}
+.welcome{display:none;margin:16px auto 4px;max-width:680px;background:linear-gradient(135deg,#22d3ee18,#8b5cf633,#ec489922);border:1px solid #ffffff2b;border-radius:20px;padding:18px;text-align:left}
+.welcome.show{display:block;animation:pop .28s ease-out}
+@keyframes pop{from{transform:scale(.96);opacity:.2}to{transform:scale(1);opacity:1}}
+.welcome-name{font-size:28px;font-weight:1000}.welcome-sub{color:var(--muted);margin-top:4px}
+.name-status{margin-top:8px;min-height:24px;font-weight:900;color:var(--cyan)}
+.leaderboard{margin-top:18px}
+.leader-row{display:grid;grid-template-columns:42px 1fr auto;gap:10px;align-items:center;padding:11px 12px;border-bottom:1px solid #ffffff18}
+.leader-row:last-child{border-bottom:0}.leader-rank{font-weight:1000;color:var(--gold);text-align:center}
+.leader-name{font-weight:800}.leader-score{font-weight:1000;color:var(--cyan)}
+.danger{border:1px solid #fb718577;background:#fb718512;color:#ffd6de;font-weight:800;padding:10px 14px;border-radius:12px;cursor:pointer}
+.danger:hover{background:#fb718525}
+.flash{animation:flash .5s ease}
+@keyframes flash{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+@media print{.top,.primary,.secondary,.navrow{display:none!important} body{background:white;color:black} .card,.module,.readcard{background:white!important;color:black!important;box-shadow:none;border:1px solid #bbb} .readcard p,.module p,.tiny{color:#333!important}}
+
+/* ===== K-1 READ ALOUD ACCESSIBILITY ===== */
+.read-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0 16px;padding:10px 12px;border:1px solid #ffffff24;border-radius:14px;background:#00000018}
+.speak-btn,.pause-speak-btn{border:1px solid #67e8f9;background:#083344;color:#ecfeff;font-weight:900;padding:9px 12px;border-radius:11px;cursor:pointer}
+.speak-btn:hover,.pause-speak-btn:hover{background:#164e63}.pause-speak-btn:disabled{opacity:.45;cursor:not-allowed}
+.speed-wrap{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:12px;font-weight:800}.speed-wrap input{min-width:110px;width:130px;padding:0}
+.readcard{position:relative}.card-speak{float:right;margin:0 0 8px 10px;border:1px solid #67e8f966;background:#22d3ee16;color:#cffafe;border-radius:10px;padding:6px 9px;cursor:pointer;font-weight:900}
+.q-speak{margin-left:8px;border:1px solid #ffffff33;background:#ffffff10;color:white;border-radius:9px;padding:5px 8px;cursor:pointer;font-size:12px}
+.readalong{display:none!important}.speech-word{border-radius:4px;padding:1px 1px;transition:background .08s,color .08s,box-shadow .08s}.speech-word.current{background:var(--gold);color:#201000;font-weight:1000;box-shadow:0 0 0 2px #fbbf2444}.speech-word.spoken{background:#fbbf2412}.standard-card{border-color:#22d3ee55}.standard-text{font-size:18px;line-height:1.55;color:#f3ecff}
+
+
+/* ===== TIGHTENED UI PASS ===== */
+/* Preserve the original academy mechanics; reduce visual sprawl and improve hierarchy. */
+.wrap{max-width:1120px;padding:14px 18px 28px}
+.topin{max-width:1120px;padding:9px 18px;gap:12px}
+.hero{padding:24px 8px 10px}
+.hero h1{font-size:clamp(36px,6.3vw,66px);margin:7px 0;letter-spacing:-2.5px}
+.hero p{max-width:820px;margin:9px auto;font-size:16px;line-height:1.45}
+.pill{padding:6px 12px;font-size:12px}
+.player{margin:13px auto;gap:8px}
+.name-status{margin-top:4px;min-height:18px;font-size:14px}
+.welcome{margin:10px auto 2px;padding:14px 16px;border-radius:17px}
+.welcome-name{font-size:24px}
+
+/* Standard banner: important, but not taller than the mission map it introduces. */
+.standard-card{margin:13px 0 16px;padding:18px 20px;border-radius:20px;box-shadow:0 12px 32px #0004}
+.standard-card h2{font-size:clamp(25px,3.4vw,37px);margin:4px 0 8px;line-height:1.08}
+.standard-text{font-size:16px;line-height:1.48;margin:6px 0 10px;max-width:920px}
+.standard-card .speak-btn{padding:7px 11px;font-size:13px;margin-right:8px}
+.standard-card .tiny{display:inline;color:#cbe7f0;font-size:12px}
+
+/* Mission map: same eight cards, tighter and more uniform. */
+.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}
+.module{min-height:176px;padding:15px 16px 14px;border-radius:19px;display:flex;flex-direction:column;align-items:flex-start}
+.module .emoji{font-size:32px;line-height:1;margin:8px 0 4px}
+.module h3{font-size:20px;line-height:1.14;margin:5px 0 5px}
+.module p{font-size:14px;line-height:1.3;margin-top:auto}
+.module small{font-size:12px}
+.module.done:after{right:8px;top:8px;font-size:10px;padding:4px 7px}
+
+/* General cards and lesson header. */
+.card{padding:20px;margin:14px 0;border-radius:21px;box-shadow:0 14px 38px #0004}
+.bigicon{font-size:39px;line-height:1.05;margin-top:3px}
+h2{font-size:clamp(27px,4.3vw,40px);line-height:1.08}
+.subtitle{font-size:16px}
+.read-tools{margin:10px 0 12px;padding:8px 10px;gap:7px;border-radius:12px}
+.speak-btn,.pause-speak-btn{padding:7px 10px;font-size:12px;border-radius:9px}
+.speed-wrap{margin-left:auto}
+.speed-wrap input{min-width:95px;width:115px}
+
+/* Learning cards: retain all five, but eliminate the tall stacked-page feeling. */
+.readcard{padding:14px 15px;margin:9px 0;border-radius:15px;overflow:hidden}
+.readcard h3{font-size:18px;line-height:1.2;margin:0 82px 5px 0}
+.readcard p{font-size:15.5px;line-height:1.5}
+.card-speak{float:none;position:absolute;right:11px;top:11px;margin:0;padding:5px 8px;font-size:11px;border-radius:8px}
+
+.callout{margin:11px 0;padding:10px 12px;border-radius:12px;font-size:14px;line-height:1.4}
+.activity-box{margin:13px 0;padding:14px;border-radius:15px}
+.activity-title{font-size:18px}
+.activity-help{font-size:12px;max-width:520px}
+.drag-bank{gap:7px;margin:10px 0}
+.drag-card{padding:8px 10px;font-size:14px;border-radius:10px}
+.drop-grid{gap:8px}
+.drop-zone{min-height:92px;padding:10px;border-radius:12px}
+.drop-zone h4{font-size:14px;margin:0 0 6px}
+.drop-chip{font-size:12px;padding:6px 7px}
+.activity-feedback{min-height:20px;margin-top:8px;font-size:14px}
+
+.qbox{margin-top:14px;padding-top:14px}
+.qtitle{font-size:12px}
+.qbox h3{font-size:19px;line-height:1.3;margin:8px 0}
+.choices{gap:7px;margin-top:9px}
+.choice{padding:10px 12px;border-radius:11px;font-size:14px;line-height:1.35}
+.feedback{padding:10px 12px;margin-top:8px;border-radius:10px;font-size:14px}
+.navrow{margin-top:14px}
+.source{font-size:11px;margin:11px 0 0;opacity:.85}
+.video{margin:11px 0;border-radius:14px}
+
+.statsgrid{margin:13px 0;gap:8px}.stat{padding:12px;border-radius:12px}.stat b{font-size:23px}
+.results .rank{font-size:clamp(34px,6vw,56px)}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .module{min-height:158px}
+  .speed-wrap{margin-left:0}
+}
+@media(max-width:560px){
+  .wrap{padding:10px 11px 22px}
+  .topin{padding:8px 10px;gap:8px}.brand{font-size:12px}.score{font-size:11px}.meter{height:8px}
+  .hero{padding:17px 3px 7px}.hero h1{font-size:39px;letter-spacing:-1.8px}.hero p{font-size:14px}
+  .grid{grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+  .module{min-height:147px;padding:12px;border-radius:15px}.module .emoji{font-size:27px}.module h3{font-size:17px}.module p{font-size:12px}
+  .standard-card{padding:14px 15px}.standard-card h2{font-size:24px}.standard-text{font-size:14.5px}.standard-card .tiny{display:block;margin-top:7px}
+  .card{padding:14px;border-radius:16px}.readcard{padding:12px}.readcard h3{font-size:17px}.readcard p{font-size:14.5px}
+  .read-tools{align-items:flex-start}.speed-wrap{width:100%;justify-content:space-between}.speed-wrap input{flex:1;width:auto}
+  .drop-grid{grid-template-columns:1fr}.choice{font-size:13px}
+}
+
+
+/* ===== KINDER VISUAL UPGRADE: pictures + gentle motion ===== */
+.module::before{content:"";position:absolute;width:90px;height:90px;border-radius:50%;right:-28px;top:-30px;background:radial-gradient(circle,#ffffff18,transparent 68%);animation:softPulse 3.2s ease-in-out infinite}
+.module .emoji{display:inline-block;filter:drop-shadow(0 7px 8px #0005);animation:weatherBob 2.8s ease-in-out infinite;transform-origin:center}
+.module:nth-child(2n) .emoji{animation-delay:.35s}.module:nth-child(3n) .emoji{animation-delay:.7s}
+@keyframes weatherBob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(3deg)}}
+@keyframes softPulse{0%,100%{transform:scale(.9);opacity:.55}50%{transform:scale(1.12);opacity:1}}
+.lesson-picture{position:relative;min-height:210px;margin:14px 0 12px;border:1px solid #ffffff2c;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#6fd3ff 0 58%,#85d67b 58% 100%);box-shadow:inset 0 -18px 45px #0001,0 12px 30px #0003}
+.lesson-picture .sun{position:absolute;left:7%;top:13%;font-size:64px;animation:sunGlow 2.8s ease-in-out infinite}
+.lesson-picture .cloud-a{position:absolute;left:31%;top:15%;font-size:73px;animation:cloudDrift 6s ease-in-out infinite}
+.lesson-picture .cloud-b{position:absolute;right:8%;top:28%;font-size:54px;animation:cloudDrift 7.5s ease-in-out infinite reverse}
+.lesson-picture .ground-icon{position:absolute;left:50%;bottom:13px;transform:translateX(-50%);font-size:82px;filter:drop-shadow(0 8px 6px #0003)}
+.lesson-picture .fx{position:absolute;inset:0;pointer-events:none}
+.lesson-picture .visual-label{position:absolute;left:16px;bottom:14px;max-width:62%;padding:8px 12px;border-radius:999px;background:#06283bdc;border:1px solid #ffffff44;color:white;font-weight:900;font-size:14px;backdrop-filter:blur(5px)}
+.lesson-picture .visual-badge{position:absolute;right:14px;top:14px;padding:7px 10px;border-radius:999px;background:#fff7;color:#083047;font-size:12px;font-weight:1000;backdrop-filter:blur(4px)}
+@keyframes sunGlow{0%,100%{transform:scale(1) rotate(0);filter:drop-shadow(0 0 4px #ffe36a)}50%{transform:scale(1.08) rotate(8deg);filter:drop-shadow(0 0 17px #ffe36a)}}
+@keyframes cloudDrift{0%,100%{transform:translateX(-7px)}50%{transform:translateX(14px)}}
+.rain-drop{position:absolute;top:38%;font-size:25px;animation:rainFall 1.25s linear infinite}.rain-drop.r2{left:57%;animation-delay:.35s}.rain-drop.r3{left:68%;animation-delay:.7s}.rain-drop.r1{left:47%}
+@keyframes rainFall{0%{transform:translateY(-8px);opacity:0}20%{opacity:1}100%{transform:translateY(95px);opacity:0}}
+.wind-line{position:absolute;right:10%;font-size:42px;animation:windSlide 1.9s ease-in-out infinite}.wind-line.w1{top:42%}.wind-line.w2{top:61%;right:19%;animation-delay:.45s}
+@keyframes windSlide{0%,100%{transform:translateX(-8px);opacity:.6}50%{transform:translateX(16px);opacity:1}}
+.temp-bubble{position:absolute;right:12%;bottom:20px;font-size:64px;animation:tempBounce 1.8s ease-in-out infinite}@keyframes tempBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.data-card-mini{position:absolute;right:8%;bottom:14px;font-size:72px;animation:dataTilt 2.4s ease-in-out infinite}@keyframes dataTilt{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
+.sparkle{position:absolute;font-size:25px;animation:sparkle 1.7s ease-in-out infinite}.sparkle.s1{left:20%;top:58%}.sparkle.s2{right:23%;top:20%;animation-delay:.55s}@keyframes sparkle{0%,100%{transform:scale(.7) rotate(0);opacity:.35}50%{transform:scale(1.25) rotate(25deg);opacity:1}}
+.card-picture{float:left;width:74px;height:74px;margin:0 12px 7px 0;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:44px;background:linear-gradient(145deg,#ffffff18,#22d3ee15);border:1px solid #ffffff25;box-shadow:0 8px 16px #0002;animation:tinyFloat 3s ease-in-out infinite}
+@keyframes tinyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.readcard::after{content:"";display:block;clear:both}
+.video-kid-wrap{margin:14px 0 16px;padding:12px;border-radius:20px;background:linear-gradient(145deg,#ffffff12,#22d3ee10);border:1px solid #67e8f944}
+.video-kid-head{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-weight:1000}.video-kid-head .tv{font-size:30px;animation:weatherBob 2.5s ease-in-out infinite}.video-kid-head small{display:block;color:var(--muted);font-weight:700;margin-top:2px}
+.video{margin:0;border:3px solid #ffffff22;box-shadow:0 10px 24px #0004}.video iframe{background:#00131e}
+.kindertip{display:inline-flex;align-items:center;gap:7px;margin-top:8px;padding:7px 10px;border-radius:999px;background:#fbbf241d;border:1px solid #fbbf2455;color:#ffecad;font-size:12px;font-weight:900}
+@media(max-width:650px){.lesson-picture{min-height:180px}.lesson-picture .ground-icon{font-size:64px}.lesson-picture .sun{font-size:50px}.lesson-picture .cloud-a{font-size:58px}.lesson-picture .visual-label{max-width:75%;font-size:12px}.card-picture{width:60px;height:60px;font-size:36px}.readcard h3{margin-right:76px}}
+
+
+/* ===== DISTINCT MISSION PICTURE CLUES + 1G CHANGING DAYS ===== */
+.pattern-days{display:flex;align-items:center;justify-content:center;gap:22px;padding:45px 90px 52px;background:linear-gradient(180deg,#71d7ff 0 64%,#8bd57d 64% 100%)}
+.pattern-day{position:relative;z-index:2;width:155px;height:126px;border-radius:20px;background:#ffffffdd;border:3px solid #ffffff;box-shadow:0 10px 22px #06324b35;display:grid;grid-template-rows:auto 1fr auto;place-items:center;padding:9px;color:#07334a;animation:dayPop 7.5s ease-in-out infinite;opacity:.48;transform:scale(.92)}
+.pattern-day b{font-size:13px;color:#07516e}.pattern-day span{font-size:49px;filter:drop-shadow(0 5px 5px #0002)}.pattern-day small{font-size:23px;font-weight:1000}
+.pattern-day.day2{animation-delay:2.5s}.pattern-day.day3{animation-delay:5s}.pattern-arrow{font-size:32px;font-weight:1000;color:#07516e;animation:arrowPulse 1.5s ease-in-out infinite}
+.pattern-magnify{position:absolute;right:6%;bottom:20%;font-size:60px;animation:weatherBob 2.6s ease-in-out infinite}
+@keyframes dayPop{0%,30%,100%{opacity:.48;transform:scale(.92)}5%,25%{opacity:1;transform:scale(1.08);box-shadow:0 0 0 5px #fff8,0 13px 28px #06324b55}}
+@keyframes arrowPulse{0%,100%{transform:translateX(0);opacity:.55}50%{transform:translateX(5px);opacity:1}}
+@media(max-width:700px){.pattern-days{gap:7px;padding:48px 12px 58px}.pattern-day{width:28%;height:112px}.pattern-day span{font-size:39px}.pattern-day small{font-size:19px}.pattern-arrow{font-size:20px}.pattern-magnify{display:none}}
+
+
+/* ===== FULL-PAGE WEATHER BACKGROUND ===== */
+body{
+  background:
+    radial-gradient(circle at 14% 13%,rgba(255,220,72,.17) 0 4%,transparent 10%),
+    radial-gradient(ellipse at 78% 18%,rgba(255,255,255,.10) 0 8%,transparent 18%),
+    radial-gradient(ellipse at 27% 56%,rgba(255,255,255,.07) 0 7%,transparent 17%),
+    linear-gradient(180deg,#062f49 0%,#07566d 38%,#0a6072 62%,#06394e 100%);
+  background-attachment:fixed;
+}
+body::before,body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
+body::before{
+  background:
+    radial-gradient(ellipse at 8% 25%,rgba(255,255,255,.10) 0 4%,transparent 12%),
+    radial-gradient(ellipse at 58% 10%,rgba(255,255,255,.09) 0 5%,transparent 14%),
+    radial-gradient(ellipse at 91% 42%,rgba(255,255,255,.08) 0 5%,transparent 14%);
+  animation:wholeSkyDrift 24s ease-in-out infinite alternate;
+}
+body::after{
+  background-image:
+    linear-gradient(115deg,transparent 0 47%,rgba(103,232,249,.055) 48% 49%,transparent 50%),
+    linear-gradient(115deg,transparent 0 67%,rgba(103,232,249,.04) 68% 69%,transparent 70%);
+  background-size:190px 190px,260px 260px;opacity:.55;
+  animation:weatherRainDrift 18s linear infinite;
+}
+@keyframes wholeSkyDrift{from{transform:translate3d(-2%,0,0) scale(1)}to{transform:translate3d(3%,2%,0) scale(1.05)}}
+@keyframes weatherRainDrift{from{background-position:0 0,0 0}to{background-position:190px 380px,260px 520px}}
+@media(prefers-reduced-motion:reduce){body::before,body::after{animation:none}}
+</style>
+</head>
+<body>
+<div class="top"><div class="topin"><div class="brand">🌦️ WEATHER WATCH ACADEMY</div><div class="meter"><div id="overallFill" class="fill"></div></div><div class="score"><span id="score">0</span> WEATHER IQ</div></div></div>
+<main class="wrap">
+<section id="home">
+  <div class="hero">
+    <div class="pill">UNIT 1 • WEATHER SCIENCE</div>
+    <h1>WEATHER WATCH<br>ACADEMY</h1>
+    <p>Eight science missions. Listen, observe, investigate, and use evidence. Learn one part of weather, complete a hands-on style challenge, prove what you know, and build your Weather IQ.</p>
+    <div class="player">
+      <input id="name" placeholder="Scientist name">
+      <button id="lockNameBtn" class="primary" type="button">START MY WEATHER PROFILE</button>
+    </div>
+    <div id="nameStatus" class="name-status"></div>
+    <div id="welcomeCard" class="welcome">
+      <div class="kicker">SCIENTIST PROFILE ACTIVE</div>
+      <div id="welcomeName" class="welcome-name">🏐 Welcome!</div>
+      <div id="welcomeSub" class="welcome-sub">Your weather mission map is ready.</div>
+    </div>
+    <div class="tiny">Each scientist name gets its own saved progress on this browser/device.</div>
+    <div class="player">
+      <button id="leaderboardBtn" class="secondary" type="button">🏆 VIEW HIGHSCORES</button>
+      <button id="resetBtn" class="danger" type="button">↻ RESET THIS SCIENTIST</button>
+    </div>
+  </div>
+
+  <div class="card standard-card"><div class="kicker">ARIZONA SCIENCE STANDARD • K.E1U1.3</div><h2>🌵 Weather Scientists Observe Patterns</h2><p class="standard-text"><span class="speech-word" data-speech-start="35">Observe,</span> <span class="speech-word" data-speech-start="44">record,</span> <span class="speech-word" data-speech-start="52">and</span> <span class="speech-word" data-speech-start="56">ask</span> <span class="speech-word" data-speech-start="60">questions</span> <span class="speech-word" data-speech-start="70">about</span> <span class="speech-word" data-speech-start="76">temperature,</span> <span class="speech-word" data-speech-start="89">precipitation,</span> <span class="speech-word" data-speech-start="104">and</span> <span class="speech-word" data-speech-start="108">other</span> <span class="speech-word" data-speech-start="114">weather</span> <span class="speech-word" data-speech-start="122">data</span> <span class="speech-word" data-speech-start="127">to</span> <span class="speech-word" data-speech-start="130">identify</span> <span class="speech-word" data-speech-start="139">patterns</span> <span class="speech-word" data-speech-start="148">or</span> <span class="speech-word" data-speech-start="151">changes</span> <span class="speech-word" data-speech-start="159">in</span> <span class="speech-word" data-speech-start="162">local</span> <span class="speech-word" data-speech-start="168">weather.</span></p><button class="speak-btn" type="button" onclick="speakStandard()">🔊 READ STANDARD</button><div class="tiny">Designed for Kindergarten–Grade 1 access: full science thinking with built-in read aloud.</div></div>
+  <div id="moduleGrid" class="grid"></div>
+  <div class="card">
+    <div class="kicker">HOW IT WORKS</div><h2>Learn → Observe → Prove It</h2>
+    <div class="statsgrid"><div class="stat">📖<b>READ</b><span class="tiny">Short science lessons</span></div><div class="stat">🎮<b>DECIDE</b><span class="tiny">Weather investigations</span></div><div class="stat">🧠<b>PROVE</b><span class="tiny">Evidence checks</span></div><div class="stat">🏆<b>MASTER</b><span class="tiny">Earn Weather IQ</span></div></div>
+  </div>
+</section>
+
+<section id="lesson" class="hidden"></section>
+
+<section id="leaderboard" class="card hidden">
+ <div class="kicker">LOCAL WEATHER HIGHSCORES</div>
+ <h2>🏆 Weather IQ Leaderboard</h2>
+ <p class="tiny">This leaderboard ranks scientist profiles saved on this browser/device.</p>
+ <div id="leaderRows" class="leaderboard"></div>
+ <div class="navrow">
+   <button id="closeLeaderboardBtn" class="secondary" type="button">← BACK TO ACADEMY</button>
+   <button id="clearProfilesBtn" class="danger" type="button">CLEAR ALL LOCAL SCIENTISTS</button>
+ </div>
+</section>
+
+<section id="final" class="card results hidden">
+ <div class="bigicon">🏆</div><div class="kicker">UNIT 1 COMPLETE</div>
+ <h2 id="finalName">Weather IQ Report</h2><div id="rank" class="rank"></div>
+ <p id="summary"></p>
+ <div class="statsgrid"><div class="stat"><b id="fscore">0</b><span class="tiny">WEATHER IQ</span></div><div class="stat"><b id="fmods">0/8</b><span class="tiny">MISSIONS MASTERED</span></div><div class="stat"><b id="fpct">0%</b><span class="tiny">ACCURACY</span></div></div>
+ <button class="primary" onclick="goHome()">RETURN TO ACADEMY</button>
+</section>
+</main>
+<div id="readAlong" class="readalong" aria-live="polite"></div>
+<script>
+
+/* ===== WEATHER ACADEMY READ ALOUD ===== */
+let academySpeech=null, academySpeechPaused=false, academySpeechRate=.85, academySpeechGeneration=0;
+let academySpeechTarget=null;
+let academyHighlightTimer=null, academyHighlightStart=0, academyHighlightPauseStarted=0, academyHighlightPausedMs=0, academyBoundarySeen=false, academyReadText='';
+function naturalVoice(){
+ if(!('speechSynthesis' in window)) return null;
+ const vs=speechSynthesis.getVoices();
+ const prefs=[/Microsoft.*Aria.*Natural/i,/Microsoft.*Jenny.*Natural/i,/Microsoft.*Guy.*Natural/i,/Google US English/i,/Google.*English/i,/^Samantha$/i,/^Alex$/i];
+ for(const rx of prefs){const v=vs.find(x=>rx.test(x.name)&&/^en/i.test(x.lang||''));if(v)return v}
+ return vs.find(v=>/^en-US/i.test(v.lang||''))||vs.find(v=>/^en/i.test(v.lang||''))||vs[0]||null;
+}
+function speechWordMarkup(text,offset=0){
+ const str=String(text||''); let out='', last=0; const rx=/\S+/g; let m;
+ while((m=rx.exec(str))){out+=escapeHtml(str.slice(last,m.index));out+=`<span class="speech-word" data-speech-start="${offset+m.index}">${escapeHtml(m[0])}</span>`;last=m.index+m[0].length}
+ return out+escapeHtml(str.slice(last));
+}
+function stopHighlightTracker(){
+ if(academyHighlightTimer){cancelAnimationFrame(academyHighlightTimer);academyHighlightTimer=null}
+ academyHighlightStart=0;academyHighlightPauseStarted=0;academyHighlightPausedMs=0;academyBoundarySeen=false;academyReadText='';
+}
+function clearSpeechHighlight(){
+ stopHighlightTracker();
+ document.querySelectorAll('.speech-word.current,.speech-word.spoken').forEach(x=>x.classList.remove('current','spoken'));
+ academySpeechTarget=null;
+}
+function renderSpeechHighlight(charIndex=0){
+ if(!academySpeechTarget)return;
+ const words=[...academySpeechTarget.querySelectorAll('.speech-word')]; if(!words.length)return;
+ let idx=0; for(let i=0;i<words.length;i++){if(Number(words[i].dataset.speechStart)<=charIndex)idx=i;else break}
+ words.forEach((w,i)=>{w.classList.toggle('current',i===idx);w.classList.toggle('spoken',i<idx)});
+ const currentWord=words[idx]; if(currentWord && !isElementInViewport(currentWord)) currentWord.scrollIntoView({block:'center',behavior:'smooth'});
+}
+function isElementInViewport(el){const r=el.getBoundingClientRect();return r.top>=0&&r.bottom<=(window.innerHeight||document.documentElement.clientHeight)}
+function estimatedCharIndex(){
+ if(!academyHighlightStart||!academyReadText)return 0;
+ const now=performance.now();
+ const pausedNow=academySpeechPaused&&academyHighlightPauseStarted ? now-academyHighlightPauseStarted : 0;
+ const elapsed=Math.max(0,now-academyHighlightStart-academyHighlightPausedMs-pausedNow);
+ // Speech synthesis averages roughly 13–15 characters per second near 1x.
+ // This fallback only drives highlighting when the browser stops sending boundary events.
+ const charsPerSecond=14.2*Math.max(.45,academySpeechRate);
+ return Math.min(academyReadText.length-1,Math.floor(elapsed/1000*charsPerSecond));
+}
+function startHighlightTracker(text){
+ stopHighlightTracker();
+ academyReadText=String(text||'');academyHighlightStart=performance.now();academyBoundarySeen=false;
+ const tick=()=>{
+   if(!academySpeech||!academySpeechTarget)return;
+   // Give native word-boundary events priority. If none arrive (common in some
+   // Chrome/Windows voice combinations), advance with a timing fallback.
+   if(!academySpeechPaused&&!academyBoundarySeen)renderSpeechHighlight(estimatedCharIndex());
+   academyHighlightTimer=requestAnimationFrame(tick);
+ };
+ academyHighlightTimer=requestAnimationFrame(tick);
+}
+function noteSpeechBoundary(charIndex){
+ academyBoundarySeen=true;
+ renderSpeechHighlight(charIndex);
+ // Some voices fire one boundary event and then go silent. Re-enable fallback
+ // shortly afterward unless another boundary arrives.
+ clearTimeout(noteSpeechBoundary._t);
+ noteSpeechBoundary._t=setTimeout(()=>{academyBoundarySeen=false},650);
+}
+
+function setSpeechUI(on){
+ const b=document.getElementById('pauseSpeakBtn');
+ if(b){b.disabled=!on;b.textContent=academySpeechPaused?'▶ RESUME':'⏸ PAUSE'}
+}
+function stopAcademySpeech(){
+ academySpeechGeneration++;
+ if('speechSynthesis' in window)speechSynthesis.cancel();
+ academySpeech=null;academySpeechPaused=false;
+ setSpeechUI(false);clearSpeechHighlight();
+}
+function setSpeechSpeed(v){
+ academySpeechRate=Number(v)||.85;
+ const x=document.getElementById('speechSpeedVal');
+ if(x)x.textContent=academySpeechRate.toFixed(2)+'×';
+}
+
+/*
+ PRECISION TRACKING
+ ------------------
+ Browser speech boundary events are inconsistent across Chrome/Edge voices.
+ For K–1 tracking, visible marked words are spoken as the sequencing units.
+ The word is highlighted in the utterance onstart event, so speech and visual
+ tracking cannot drift apart over a paragraph.
+*/
+function precisionWordsFromTargets(targets){
+ const list=[];
+ (Array.isArray(targets)?targets:[targets]).filter(Boolean).forEach(target=>{
+   [...target.querySelectorAll('.speech-word')].forEach((el,i,arr)=>{
+     let spoken=(el.textContent||'').trim();
+     if(!spoken)return;
+     // Give headings a natural stopping point without changing the printed text.
+     if(el.parentElement && el.parentElement.tagName==='H3' && i===arr.length-1 && !/[.!?]$/.test(spoken)) spoken+='.';
+     list.push({el,target,spoken});
+   });
+ });
+ return list;
+}
+function speakPrecisionTargets(targets,onComplete){
+ if(!('speechSynthesis' in window)){alert('Read Aloud is not supported in this browser.');return}
+ stopAcademySpeech();
+ const words=precisionWordsFromTargets(targets);
+ if(!words.length){if(onComplete)onComplete();return}
+ const gen=++academySpeechGeneration;
+ let pos=0;
+ setSpeechUI(true);
+
+ const speakNext=()=>{
+   if(gen!==academySpeechGeneration)return;
+   if(pos>=words.length){
+     academySpeech=null;academySpeechPaused=false;setSpeechUI(false);
+     setTimeout(clearSpeechHighlight,450);
+     if(onComplete)onComplete();
+     return;
+   }
+   const item=words[pos++];
+   academySpeechTarget=item.target;
+   const u=new SpeechSynthesisUtterance(item.spoken);
+   const v=naturalVoice(); if(v)u.voice=v;
+   u.rate=academySpeechRate;u.pitch=1;u.volume=1;
+   academySpeech=u;
+   u.onstart=()=>{
+     if(gen!==academySpeechGeneration)return;
+     academySpeechPaused=false;setSpeechUI(true);
+     // Highlight this exact DOM word. No timer, no guessed character position.
+     document.querySelectorAll('.speech-word.current').forEach(x=>x.classList.remove('current'));
+     item.el.classList.add('current');
+     let prev=item.el.previousElementSibling;
+     if(!isElementInViewport(item.el)) item.el.scrollIntoView({block:'center',behavior:'smooth'});
+   };
+   const finish=()=>{
+     if(gen!==academySpeechGeneration)return;
+     item.el.classList.remove('current');
+     item.el.classList.add('spoken');
+     // Yield one frame so the next word highlight visibly advances.
+     requestAnimationFrame(speakNext);
+   };
+   u.onend=finish;
+   u.onerror=finish;
+   speechSynthesis.speak(u);
+ };
+ speakNext();
+}
+
+function speakText(text,target=null){
+ // Marked lesson/standard text uses precision sequencing.
+ if(target && target.querySelector && target.querySelector('.speech-word')){
+   speakPrecisionTargets(target);
+   return;
+ }
+ // Unmarked text (question/activity narration) can use a normal utterance.
+ if(!('speechSynthesis' in window)){alert('Read Aloud is not supported in this browser.');return}
+ stopAcademySpeech();
+ const readText=String(text||'').trim();if(!readText)return;
+ const gen=++academySpeechGeneration,u=new SpeechSynthesisUtterance(readText),v=naturalVoice();
+ if(v)u.voice=v;u.rate=academySpeechRate;u.pitch=1;u.volume=1;academySpeech=u;
+ u.onstart=()=>{if(gen!==academySpeechGeneration)return;academySpeechPaused=false;setSpeechUI(true)};
+ const done=()=>{if(gen!==academySpeechGeneration)return;academySpeech=null;academySpeechPaused=false;setSpeechUI(false)};
+ u.onend=done;u.onerror=done;speechSynthesis.speak(u);
+}
+function toggleSpeechPause(){
+ if(!academySpeech||!('speechSynthesis' in window))return;
+ if(speechSynthesis.paused||academySpeechPaused){speechSynthesis.resume();academySpeechPaused=false}
+ else{speechSynthesis.pause();academySpeechPaused=true}
+ setSpeechUI(true);
+}
+function speakCard(ci){
+ if(current===null)return;
+ const el=document.querySelector(`.readcard[data-card-index="${ci}"]`);
+ speakPrecisionTargets(el);
+}
+function readCurrentLesson(){
+ if(current===null)return;
+ const els=[...document.querySelectorAll('#lesson .readcard[data-card-index]')];
+ speakPrecisionTargets(els);
+}
+function speakStandard(){
+ const el=document.querySelector('.standard-card');
+ speakPrecisionTargets(el);
+}
+function speakQuestion(){
+ if(current===null)return;
+ const q=modules[current].questions[qi];
+ speakText(q[0]+'. '+currentChoices.map((a,i)=>String.fromCharCode(65+i)+'. '+a.text).join('. '));
+}
+function speakActivity(){
+ if(current===null)return;
+ const box=document.querySelector('.activity-box');
+ if(!box)return;
+ // Use the same exact-word precision reader as the lesson cards. The narration
+ // now follows only words that are visibly printed in the mini challenge.
+ const targets=[...box.querySelectorAll('.activity-track')];
+ speakPrecisionTargets(targets);
+}
+if('speechSynthesis' in window)speechSynthesis.onvoiceschanged=()=>naturalVoice();
+
+const modules=[{"id":"1A","title":"Weather Watcher Lab","icon":"🌦️","subtitle":"Observe Like a Scientist","source":"https://www.weather.gov/mrx/education","video":"https://www.youtube.com/embed/Uo8lbeVVb4M?start=0&end=120&rel=0","cards":[["Weather Is What the Air Is Like","Weather tells us what it is like outside right now. It can be sunny, cloudy, rainy, windy, hot, warm, cool, or cold. Weather can change from one day to the next. Scientists do not guess. They look closely and describe what they observe."],["Use Your Senses Safely","A weather watcher can look at the sky, feel whether the air seems warm or cool, and notice whether leaves or flags are moving. We never stare at the Sun. We use safe observations and weather tools to learn about the air and sky."],["Weather Has Parts","Scientists can describe several parts of weather. Temperature tells how hot or cold the air is. Precipitation is water that falls from the sky. Wind is moving air. Clouds and sunshine are also clues about the weather we observe."],["Observe, Then Record","Scientists write or draw what they notice so they can remember it later. A weather journal might show a sun picture, a cloud picture, a temperature number, or a wind symbol. Recording makes it easier to compare one day with another."],["Look for Change","Weather does not always stay the same. A morning can begin cool and become warmer. A sunny day can become cloudy. Scientists compare observations to notice what changed and what stayed the same."]],"questions":[["What does weather tell us?",["What the air and sky are like now","What a classroom looks like inside","What food we will eat for lunch","What book we will read today"],0,"Weather describes conditions in the air and sky at a place and time."],["Which is a weather observation?",["The sky is cloudy today","My backpack is blue today","The desk has four legs","The book is on the shelf"],0,"Clouds are part of weather, so a cloudy sky is a weather observation."],["Why do scientists record weather?",["So they can compare days later","So the weather will stop changing","So clouds will move more slowly","So the Sun will stay in one place"],0,"Records help scientists compare observations and find patterns or changes."],["Which clue can show that air is moving?",["A flag is waving outside","A chair is under a table","A pencil is on the floor","A book is closed tightly"],0,"A moving flag can be evidence of wind, which is moving air."],["Which question would help a scientist study local weather?",["Did the temperature change today?","What color is my backpack today?","Which snack tastes the best today?","How many books are on the shelf?"],0,"Scientists ask questions about weather observations and data, such as how temperature changed."],["Monday is sunny. Tuesday is rainy. What happened?",["The weather changed","The weather stayed the same","The days became shorter","The classroom moved outside"],0,"Sunny changing to rainy is a change in weather."],["Which student is acting most like a scientist?",["Mia looks, records, and compares","Leo guesses without looking outside","Ava copies a friend's weather chart","Noah chooses his favorite weather"],0,"Scientists use observations and evidence, then record and compare what they find."]],"activity":{"title":"Weather or Not?","bins":["WEATHER CLUE","NOT A WEATHER CLUE"],"items":[["Clouds cover the sky",0],["A flag is moving",0],["The air feels hot",0],["A backpack is purple",1],["Rain is falling",0],["A desk has four legs",1]]}},{"id":"1B","title":"Temperature Lab","icon":"🌡️","subtitle":"Hot, Warm, Cool & Cold","source":"https://www.weather.gov/mrx/education","video":"https://www.youtube.com/embed/Uo8lbeVVb4M?start=112&end=185&rel=0","cards":[["Temperature Describes the Air","Temperature tells how hot or cold the air is. We can use words such as hot, warm, cool, and cold. Scientists use a thermometer when they want a number that tells the temperature."],["A Thermometer Is a Tool","A thermometer measures temperature. The number can help us compare days. A higher temperature usually means warmer air. A lower temperature usually means cooler air."],["Compare Two Days","Suppose Monday is 60 degrees and Tuesday is 70 degrees. Tuesday has the higher temperature, so Tuesday is warmer. We can compare numbers to describe how the weather changed."],["Temperature Can Change in One Day","The air may be cool in the morning and warmer in the afternoon. That is a temperature change. Scientists can measure more than once to see how the temperature changes over time."],["Use Evidence, Not Clothing Alone","A coat can be a clue that someone expects cold weather, but the thermometer gives stronger temperature evidence. Scientists use tools and observations together when they describe weather."]],"questions":[["What does temperature tell us?",["How hot or cold the air is","How fast a cloud can count","How many trees are outside","How loud the playground sounds"],0,"Temperature describes how hot or cold the air is."],["Which tool measures temperature?",["A thermometer","A rain gauge","A wind sock","A magnifying glass"],0,"A thermometer is the tool used to measure temperature."],["Monday is 50°. Tuesday is 70°. Which day is warmer?",["Tuesday is warmer","Monday is warmer","Both are the same","There is no temperature"],0,"70 is higher than 50, so Tuesday is warmer."],["The morning is 50°. The afternoon is 70°. What changed?",["The air became warmer","The air became colder","The temperature stayed equal","The rain became a thermometer"],0,"The temperature increased from 50 to 70 degrees."],["Which sentence uses temperature evidence?",["It is 70° on the thermometer","I hope today feels very warm","My favorite season is summer","That cloud looks like a rabbit"],0,"A thermometer reading is direct evidence about temperature."],["If a temperature number gets lower, what usually happens?",["The air becomes cooler","The air becomes brighter","The wind becomes a cloud","The rain becomes louder"],0,"A lower temperature means cooler air."],["Why might scientists measure temperature each day?",["To find patterns and changes","To make every day the same","To keep clouds from forming","To choose the day's lunch"],0,"Repeated measurements help scientists identify patterns and changes."]],"activity":{"title":"Temperature Detective Sort","bins":["WARMER","COOLER"],"items":[["70° compared with 60°",0],["80° compared with 70°",0],["40° compared with 60°",1],["50° compared with 70°",1],["70° compared with 50°",0],["40° compared with 60°",1]]}},{"id":"1C","title":"Precipitation Station","icon":"🌧️","subtitle":"Water Falling From the Sky","source":"https://www.weather.gov/mrx/education","video":"https://www.youtube.com/embed/MI-z2MxQ5nE?start=0&end=120&rel=0","cards":[["Precipitation Falls From Clouds","Precipitation is water that falls from the sky. Rain, snow, sleet, and hail are kinds of precipitation. When no water is falling from the sky, we can record no precipitation."],["Rain Is Liquid Water","Rain falls as drops of liquid water. We can observe drops falling, wet sidewalks, puddles, or water collecting in a rain gauge. These are pieces of evidence that rain happened."],["Snow and Hail Are Frozen Water","Snow is made of ice crystals. Hail is made of pieces or balls of ice that fall from storm clouds. Both are frozen forms of precipitation, even though they do not look the same."],["A Rain Gauge Collects Water","A rain gauge is a tool that catches and measures rain. Scientists can compare how much rain fell on different days. A day with more collected water had more rainfall."],["Record What You Observe","A weather chart can show rain, snow, hail, or no precipitation. Recording the kind and amount helps scientists compare days and notice patterns in wet and dry weather."]],"questions":[["What is precipitation?",["Water that falls from the sky","Air that moves past a flag","Heat measured by a thermometer","Light that comes from a lamp"],0,"Precipitation is water, liquid or frozen, that falls from the atmosphere."],["Which is liquid precipitation?",["Rain","Snow","Hail","Wind"],0,"Rain falls as liquid water drops."],["Which observation is evidence that it rained?",["Puddles formed on the sidewalk","The flag stayed completely still","The thermometer showed a number","The sky became dark at night"],0,"Puddles can be evidence that rainwater collected on the ground."],["What does a rain gauge help measure?",["How much rain fell","How hot the air is","How fast clouds move","How bright the Sun looks"],0,"A rain gauge collects rain so the amount can be measured."],["Which two are frozen precipitation?",["Snow and hail","Rain and wind","Clouds and fog","Sun and shade"],0,"Snow and hail are made of frozen water."],["Monday has no rain. Tuesday has rain. What can we say?",["Precipitation changed","Temperature must be equal","Wind stopped forever","The weather stayed identical"],0,"The precipitation changed from none to rain."],["Why record precipitation each day?",["To compare wet and dry days","To make the rain fall harder","To turn snow into sunshine","To make every cloud disappear"],0,"Daily records help reveal patterns and changes in precipitation."]],"activity":{"title":"Precipitation or Nope?","bins":["PRECIPITATION","NOT PRECIPITATION"],"items":[["Rain",0],["Snow",0],["Hail",0],["Wind",1],["Sunshine",1],["Sleet",0]]}},{"id":"1D","title":"Wind Detective Center","icon":"💨","subtitle":"Find Evidence of Moving Air","source":"https://www.weather.gov/education","video":"https://www.youtube.com/embed/0yXC45dgmSs?start=0&end=120&rel=0","cards":[["Wind Is Moving Air","We cannot usually see air itself, but we can see what moving air does. Wind can move leaves, bend grass, wave flags, spin pinwheels, and push clouds across the sky."],["Look for Evidence","If a flag hangs straight down, the air may be calm. If the flag stretches and flaps, wind is moving it. Scientists use what they can observe as evidence."],["Wind Can Be Gentle or Strong","Some wind is light and barely moves leaves. Stronger wind can move branches and make objects blow around. Weather watchers can describe wind as calm, light, or strong without needing complicated numbers."],["Tools Help Us Observe","A windsock shows the direction air is moving. An anemometer measures wind speed. Young scientists can also use simple clues such as flags, streamers, and leaves to compare wind."],["Wind Changes Too","The morning might be calm, but the afternoon can become windy. Recording wind each day helps scientists notice when wind changes and whether windy days happen in a pattern."]],"questions":[["What is wind?",["Air that is moving","Water that is falling","Heat from a thermometer","A kind of cloud"],0,"Wind is moving air."],["Which is evidence of wind?",["Leaves are blowing across the ground","A rock is sitting on the ground","A closed book is on a desk","A clock is hanging on a wall"],0,"Blowing leaves show that moving air is pushing them."],["A flag hangs straight down. What is the best observation?",["The air may be calm","The wind must be very strong","Rain is falling from the flag","The temperature is exactly 90°"],0,"A still flag can be evidence of calm or very light wind."],["Which tool can show wind direction?",["A windsock","A thermometer","A rain gauge","A ruler"],0,"A windsock points with the moving air and helps show wind direction."],["Morning is calm. Afternoon flags flap hard. What changed?",["The wind became stronger","The air became rain","The thermometer became shorter","The clouds became a tool"],0,"More flag movement is evidence that wind increased."],["Why can scientists study wind if they cannot see air?",["They observe what the air moves","They pretend they can see air","They only study wind indoors","They ask the wind to stop"],0,"Scientists can use the effects of moving air as evidence."],["Which record would help compare wind for a week?",["A daily chart of calm, light, or strong","A list of favorite playground games","A drawing of classroom furniture","A count of books on a shelf"],0,"A daily wind chart provides weather data that can be compared."]],"activity":{"title":"Wind Evidence Sort","bins":["SHOWS WIND","DOES NOT SHOW WIND"],"items":[["Flag flapping",0],["Pinwheel spinning",0],["Leaves blowing",0],["Rock sitting still",1],["Book on a shelf",1],["Streamer waving",0]]}},{"id":"1E","title":"Sky & Cloud Watch","icon":"☁️","subtitle":"Read the Sky","source":"https://www.weather.gov/education","video":"https://www.youtube.com/embed/DigBbR3FeP8?start=0&end=120&rel=0","cards":[["Look Up for Weather Clues","The sky gives us weather clues. A sky can be clear, partly cloudy, cloudy, or rainy. Weather watchers describe what they really see instead of choosing the kind of sky they like best."],["Clouds Are Tiny Water Droplets or Ice","Clouds form when water in the air becomes tiny droplets or ice crystals. We do not need to know every cloud name to make careful K–1 observations. We can notice how much of the sky is covered."],["Clear and Cloudy Are Different","A clear sky has few or no clouds. A cloudy sky has clouds covering much or most of what we can see. Partly cloudy means we can see both clouds and large areas of open sky."],["Clouds Can Change","Clouds may move in or move away. A clear morning can become cloudy later. Recording sky conditions more than once can show that weather changes during a day."],["Sky Clues Work With Other Data","Clouds alone do not tell the whole weather story. Scientists also observe temperature, precipitation, and wind. Putting several clues together gives a stronger description of the weather."]],"questions":[["Which sky has few or no clouds?",["A clear sky","A cloudy sky","A rainy sky","A foggy window"],0,"Clear means few or no clouds are covering the sky."],["Which note belongs in a weather record?",["Clouds cover most of the sky","Clouds are my favorite to draw","I wish the clouds were purple","The cloud looks like my dog"],0,"A weather record should describe what is actually observed, such as how much of the sky clouds cover."],["What does partly cloudy mean?",["Clouds and open sky are both visible","Every part of the sky is covered","No clouds can be seen anywhere","Rain must be falling right now"],0,"Partly cloudy means only part of the sky is covered by clouds."],["Morning is clear. Afternoon is cloudy. What happened?",["The sky condition changed","The sky stayed exactly the same","The thermometer became a cloud","The day changed into a week"],0,"The observed sky changed from clear to cloudy."],["Why observe clouds with temperature and wind?",["More clues give a fuller weather picture","Clouds can measure every weather part","Temperature only matters on rainy days","Wind can only happen without clouds"],0,"Scientists combine different observations to describe weather more completely."],["Which statement is an observation, not a preference?",["Clouds cover most of the sky","Cloudy days are the best days","I wish the sky were sunny","Rainy weather is my favorite"],0,"An observation describes evidence you can notice, not what you prefer."],["What should a weather watcher do if clouds move in?",["Record the new sky condition","Keep the old record unchanged","Say the sky can never change","Erase all earlier observations"],0,"Scientists update records when conditions change."]],"activity":{"title":"Sky Condition Sort","bins":["CLEAR / MOSTLY CLEAR","CLOUDY / PARTLY CLOUDY"],"items":[["No clouds are visible",0],["Only one tiny cloud",0],["Clouds cover most of the sky",1],["Clouds and blue sky both show",1],["Bright open sky",0],["Many clouds fill the sky",1]]}},{"id":"1F","title":"Weather Recorder Lab","icon":"📝","subtitle":"Turn Observations Into Data","source":"https://www.weather.gov/mrx/education","video":"https://www.youtube.com/embed/Uo8lbeVVb4M?start=20&end=80&rel=0","cards":[["Scientists Keep Weather Records","A weather record saves what was observed. For young scientists, a chart can include the day, temperature, sky, precipitation, and wind. Pictures and simple words can be real scientific data."],["Use the Same Categories","If we record the same weather parts each day, comparisons become easier. For example, record temperature, sky, rain, and wind every morning. A consistent chart helps us notice what changed."],["Pictures Can Carry Data","A sun symbol can mean clear or sunny. A raindrop can mean rain. A wind symbol can mean windy. Symbols make a chart easier to read, but everyone using the chart should know what each symbol means."],["One Day Is Information; Many Days Show More","A single weather observation tells us about one moment. Several days of observations let us compare. We can count sunny days, find the warmest day, or notice when rain happened."],["Good Records Match the Observation","Scientists record what happened, not what they hoped would happen. If it rains, the chart should show rain. Accurate records are important because later thinking depends on the data being correct."]],"questions":[["What is the job of a weather record?",["Save observations so they can be compared","Change the weather for the next day","Make every temperature number higher","Choose which clouds may enter the sky"],0,"A record preserves observations for later comparison."],["Why record the same weather parts each day?",["It makes days easier to compare","It makes weather stay the same","It keeps the Sun from setting","It stops the wind from moving"],0,"Consistent categories make patterns and changes easier to see."],["What could ☀️ mean on a weather chart?",["Sunny or clear sky","Strong rain is falling","The air is always cold","Wind is moving very fast"],0,"A sun symbol can represent a sunny or clear sky condition."],["Which chart entry is most scientific?",["Tuesday: 72°, sunny, no rain","Tuesday: the weather was perfect","Tuesday: I wanted it to snow","Tuesday: outside was my favorite"],0,"The first choice records specific observable weather data."],["Why are several days of data useful?",["They let us look for patterns","They guarantee tomorrow's weather","They make every day identical","They remove the need to observe"],0,"Multiple observations can reveal repeats, differences, and trends."],["It rains, but Sam records sunny. What is the problem?",["The record does not match the evidence","The rain gauge is measuring wind","The thermometer is too colorful","The day has too many weather parts"],0,"Scientific records should accurately match observations."],["Which information belongs on a weather chart?",["Temperature, sky, rain, and wind","Favorite snack, game, and color","Desk number, pencil, and backpack","Story title, page, and character"],0,"Temperature, sky, precipitation, and wind are weather data."]],"activity":{"title":"Weather Data or Not?","bins":["BELONGS ON WEATHER CHART","DOES NOT BELONG"],"items":[["72° temperature",0],["Sunny sky",0],["Light wind",0],["Favorite ice cream",1],["Rain today",0],["Desk color",1]]}},{"id":"1G","title":"Pattern Hunter HQ","icon":"📊","subtitle":"Compare Days & Find What Changed","source":"https://www.weather.gov/mrx/education","video":"https://www.youtube.com/embed/Uo8lbeVVb4M?start=70&end=130&rel=0","cards":[["A Pattern Is Something We Notice Repeating","When we record weather for many days, we may see something happen again and again. Three sunny days in a row is a simple pattern. Patterns come from data, not from guessing."],["Compare Temperatures","Look at 60°, 65°, and 70°. The numbers are getting higher, so the days are getting warmer. Look at 75°, 70°, and 65°. The numbers are getting lower, so the days are getting cooler."],["Count Weather Types","A picture graph can help us count. If a week has four sunny symbols and one rainy symbol, sunny weather happened more often. Counting lets young scientists support an answer with evidence."],["Find What Changed and What Stayed","Maybe the sky changed from sunny to cloudy while the temperature stayed 70°. Scientists can notice more than one weather part at a time. Some conditions can change while others stay the same."],["Patterns Help Us Make Careful Predictions","A pattern can help us make a reasonable prediction, but it is not a promise. If mornings have been cool and afternoons warmer for several days, we might predict another warmer afternoon. Scientists still observe to see what really happens."]],"questions":[["Temperatures are 60°, 65°, 70°. What pattern do you see?",["The days are getting warmer","The days are getting colder","The temperatures are all equal","The rain is getting stronger"],0,"The numbers increase each day, showing a warming pattern."],["Temperatures are 78°, 72°, 66°. What pattern do you see?",["The days are getting cooler","The days are getting warmer","The sky is becoming sunnier","The wind is staying identical"],0,"The temperatures decrease, showing a cooling pattern."],["A week has ☀️ ☀️ 🌧️ ☀️ ☀️. Which happened most?",["Sunny weather","Rainy weather","Snowy weather","Windy weather"],0,"There are four sunny symbols and one rainy symbol."],["Monday and Tuesday are both 70°, but the sky changes. What stayed the same?",["The temperature","The sky condition","The day name","The precipitation must be rain"],0,"Both days have the same temperature even though another weather part changed."],["Why is counting symbols useful?",["It gives evidence for a pattern","It changes the weather outside","It makes a chart more colorful","It tells us every future day"],0,"Counts are data that can support a claim about what happened most often."],["Cool mornings and warm afternoons happened three days. What is a careful prediction?",["Tomorrow afternoon may be warmer too","Tomorrow must be exactly the same","It can never be cool again","Rain is impossible tomorrow"],0,"Patterns can support a prediction, but they do not guarantee it."],["What should scientists do after making a prediction?",["Observe and check what really happens","Change the data to match the guess","Stop collecting weather information","Erase all the earlier records"],0,"Scientists compare predictions with new observations."]],"activity":{"title":"Pattern or No Pattern?","bins":["SHOWS A PATTERN","DOES NOT SUPPORT THAT CLAIM"],"items":[["60°, 65°, 70° = getting warmer",0],["75°, 70°, 65° = getting cooler",0],["☀️ ☀️ ☀️ 🌧️ = mostly sunny",0],["One rainy day = it always rains",1],["One hot day = every day is hot",1],["Three calm mornings = calm happened repeatedly",0]]}},{"id":"1H","title":"Junior Meteorologist Command Center","icon":"🧑‍🔬","subtitle":"Use All the Weather Evidence","source":"https://www.weather.gov/education","video":"https://www.youtube.com/embed/dLQ0lHpyZd8?start=55&end=125&rel=0","cards":[["Meteorologists Study Weather","A meteorologist is a scientist who studies the atmosphere and weather. Meteorologists use observations, tools, maps, and computer data. In this mission, you will think like one using simple K–1 weather evidence."],["Put the Clues Together","A strong weather description uses more than one clue. You might say, 'It is 68°, cloudy, and windy with no rain.' Temperature, sky, wind, and precipitation work together to describe the day."],["Evidence Supports a Claim","A claim is what you think the data show. Evidence is the information that supports the claim. If temperatures are 60°, 65°, and 70°, the claim 'It is getting warmer' is supported by the rising numbers."],["Predictions Are Careful, Not Certain","Meteorologists make predictions from evidence and patterns, but weather can still change. Scientists use words such as may, likely, or probably because a prediction is not the same as knowing the future."],["Keep Observing","Finishing a chart is not the end of science. New observations can strengthen a pattern or show something different. Good scientists are ready to update their thinking when new evidence arrives."]],"questions":[["Which question could a meteorologist ask about local weather data?",["Did our temperature change this week?","Which playground game is most fun?","What color should our pencils be?","Which story should we read next?"],0,"Meteorologists ask questions about weather observations and data, including changes over time."],["Which is the strongest weather description?",["72°, cloudy, light wind, no rain","The weather is nice today","I like the sky this morning","Outside feels like my favorite day"],0,"The first choice combines several specific weather observations."],["Data are 60°, 65°, 70°. Which claim is supported?",["The temperature is getting warmer","The temperature is getting colder","The temperature never changes","The rain is getting heavier"],0,"The increasing temperatures support the claim that it is getting warmer."],["Which is evidence from a weather chart?",["Four of five days were sunny","Sunny days are always the best","I hope tomorrow will be sunny","Yellow is my favorite chart color"],0,"A count from the weather chart is evidence because it comes from recorded observations."],["Four of five days are sunny. What is a careful prediction?",["Tomorrow may be sunny again","Tomorrow must be sunny","Rain can never happen again","The temperature must be 100°"],0,"A repeated pattern can support a careful prediction, but not a guarantee."],["New data do not match your prediction. What should a scientist do?",["Update the thinking using new evidence","Change the new data to match","Pretend the observation did not happen","Stop observing weather forever"],0,"Scientists revise ideas when new evidence shows something different."],["Which action best completes Weather Watch Academy?",["Observe, record, compare, and explain","Guess, erase, copy, and stop","Choose favorites and ignore data","Watch one day and never check again"],0,"The standard's core work is observing, recording, comparing, and using patterns or changes as evidence."]],"activity":{"title":"Meteorologist Evidence Check","bins":["USES WEATHER EVIDENCE","DOES NOT USE EVIDENCE"],"items":[["The thermometer reads 70°",0],["Four days were sunny",0],["The flag is flapping",0],["I just like rainy days",1],["The rain gauge collected water",0],["I guessed without looking",1]]}}];
+const PROFILE_KEY="weather_profiles_v1";
+const ACTIVE_KEY="weather_active_scientist_v1";
+function blankState(name=""){return {name,score:0,done:{},correct:0,attempted:0}}
+function keyFor(name){return String(name||"").trim().toLowerCase()}
+function loadProfiles(){try{return JSON.parse(localStorage.getItem(PROFILE_KEY)||"{}")}catch(e){return {}}}
+function saveProfiles(p){localStorage.setItem(PROFILE_KEY,JSON.stringify(p))}
+let profiles=loadProfiles();
+let activeName=localStorage.getItem(ACTIVE_KEY)||"";
+let state=(activeName && profiles[keyFor(activeName)]) ? profiles[keyFor(activeName)] : blankState(activeName);
+let current=null, qi=0, moduleCorrect=0, locked=false, currentChoices=[], activityDone=false, activityState=null;
+
+function persist(){
+  if(state.name){
+    profiles=loadProfiles();
+    profiles[keyFor(state.name)]=state;
+    saveProfiles(profiles);
+    localStorage.setItem(ACTIVE_KEY,state.name);
+    activeName=state.name;
+  }
+  updateTop();
+}
+
+function saveName(){
+  const input=document.getElementById("name");
+  const typed=(input.value||"").trim();
+  const status=document.getElementById("nameStatus");
+  if(!typed){status.textContent="Enter a scientist name first.";input.focus();return;}
+  profiles=loadProfiles();
+  const k=keyFor(typed);
+  if(profiles[k]){
+    state=profiles[k];
+    state.name=typed;
+    status.textContent="✓ Returning scientist loaded.";
+    showWelcome("Welcome back, "+typed+"!","Your saved missions and Weather IQ are loaded. Keep investigating.");
+  } else {
+    state=blankState(typed);
+    profiles[k]=state;
+    saveProfiles(profiles);
+    status.textContent="✓ New scientist profile created.";
+    showWelcome("Welcome to the Academy, "+typed+"!","Your first mission is waiting. Build your Weather IQ one observation at a time.");
+  }
+  activeName=typed;
+  localStorage.setItem(ACTIVE_KEY,typed);
+  persist();
+  renderGrid();
+}
+
+function showWelcome(title,sub){
+  const c=document.getElementById("welcomeCard");
+  document.getElementById("welcomeName").textContent="🌦️ "+title;
+  document.getElementById("welcomeSub").textContent=sub;
+  c.classList.remove("show"); void c.offsetWidth; c.classList.add("show");
+}
+// duplicate legacy saveName removed; the full profile-aware saveName above is used
+function updateTop(){document.getElementById("score").textContent=state.score;let d=Object.keys(state.done).length;document.getElementById("overallFill").style.width=(d/modules.length*100)+"%"}
+function renderGrid(){
+ const input=document.getElementById("name");
+ input.value=state.name||activeName||"";
+ const g=document.getElementById("moduleGrid");
+ g.innerHTML="";
+ modules.forEach((m,i)=>{
+   const el=document.createElement("div");
+   el.className="module"+(state.done[m.id]?" done":"");
+   el.onclick=()=>openModule(i);
+   el.innerHTML=`<small>${m.id}</small><div class="emoji">${m.icon}</div><h3>${m.title}</h3><p>${m.subtitle}</p>`;
+   g.appendChild(el);
+ });
+ updateTop();
+}
+function openModule(i){
+ stopAcademySpeech();
+ current=i;qi=0;moduleCorrect=0;locked=false;activityDone=false;activityState=null;
+ document.getElementById("home").classList.add("hidden");document.getElementById("final").classList.add("hidden");document.getElementById("leaderboard").classList.add("hidden");document.getElementById("lesson").classList.remove("hidden");renderLesson();scrollTo(0,0)
+}
+function shuffledQuestion(q){
+ const items=q[1].map((text,originalIndex)=>({text,correct:originalIndex===q[2]}));
+ for(let i=items.length-1;i>0;i--){
+   const j=Math.floor(Math.random()*(i+1));
+   [items[i],items[j]]=[items[j],items[i]];
+ }
+ return items;
+}
+
+function shuffleArray(arr){
+ const copy=arr.slice();
+ for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]]}
+ return copy;
+}
+function activityMarkup(a){
+ if(!activityState){
+   activityState={items:shuffleArray(a.items.map((x,i)=>({text:x[0],bin:x[1],id:i,placed:null}))),selected:null};
+ }
+ const helpText="Drag each card into a bin. On a Chromebook touchscreen, tap a card and then tap a bin.";
+ const feedbackText=activityDone?"Challenge complete. Now prove it in the questions.":"Place all six cards to unlock the understanding check.";
+ return `<div class="activity-box">
+   <div class="activity-head">
+     <div><div class="kicker">MINI CHALLENGE</div><div class="activity-title activity-track">🧩 ${speechWordMarkup(a.title)}</div><button class="q-speak" type="button" onclick="speakActivity()">🔊 Hear challenge</button></div>
+     <div class="activity-help activity-track">${speechWordMarkup(helpText)}</div>
+   </div>
+   <div id="dragBank" class="drag-bank activity-track">
+     ${activityState.items.filter(x=>x.placed===null).map(x=>`<div class="drag-card" draggable="true" data-item="${x.id}">${speechWordMarkup(x.text)}</div>`).join("")}
+   </div>
+   <div class="drop-grid">
+     ${a.bins.map((b,bi)=>`<div class="drop-zone" data-bin="${bi}"><h4 class="activity-track">${speechWordMarkup(b)}</h4><div class="drop-items">${activityState.items.filter(x=>x.placed===bi).map(x=>`<span class="drop-chip activity-track">${speechWordMarkup(x.text)}</span>`).join("")}</div></div>`).join("")}
+   </div>
+   <div id="activityFeedback" class="activity-feedback activity-track">${activityDone?"✅ ":""}${speechWordMarkup(feedbackText)}</div>
+ </div>`;
+}
+function setupActivity(){
+ const box=document.querySelector(".activity-box");
+ if(!box || activityDone)return;
+ let dragged=null;
+ document.querySelectorAll(".drag-card").forEach(card=>{
+   card.addEventListener("dragstart",()=>{dragged=Number(card.dataset.item)});
+   card.addEventListener("click",()=>{
+     document.querySelectorAll(".drag-card").forEach(c=>c.classList.remove("selected"));
+     const id=Number(card.dataset.item);
+     activityState.selected=(activityState.selected===id?null:id);
+     if(activityState.selected!==null)card.classList.add("selected");
+   });
+ });
+ document.querySelectorAll(".drop-zone").forEach(zone=>{
+   zone.addEventListener("dragover",e=>{e.preventDefault();zone.classList.add("over")});
+   zone.addEventListener("dragleave",()=>zone.classList.remove("over"));
+   zone.addEventListener("drop",e=>{e.preventDefault();zone.classList.remove("over");if(dragged!==null)placeActivityItem(dragged,Number(zone.dataset.bin))});
+   zone.addEventListener("click",()=>{if(activityState.selected!==null)placeActivityItem(activityState.selected,Number(zone.dataset.bin))});
+ });
+}
+function placeActivityItem(id,bin){
+ const item=activityState.items.find(x=>x.id===id);
+ if(!item || item.placed!==null)return;
+ const fb=document.getElementById("activityFeedback");
+ if(item.bin===bin){
+   item.placed=bin;
+   activityState.selected=null;
+   const left=activityState.items.filter(x=>x.placed===null).length;
+   if(left===0){
+     activityDone=true;
+     fb.className="activity-feedback good";
+     fb.textContent="✅ PERFECT SORT! Understanding check unlocked.";
+   }
+   renderLesson();
+ }else{
+   activityState.selected=null;
+   fb.className="activity-feedback bad";
+   fb.textContent="❌ Not that bin. Think about the role and try again.";
+   document.querySelectorAll(".drag-card").forEach(c=>c.classList.remove("selected"));
+ }
+}
+
+
+function lessonVisualMarkup(m){
+ const scenes={
+  "1A":{ground:"🧒🔎",label:"Look closely. What weather clues can you find?",extra:'<span class="sparkle s1">✨</span><span class="sparkle s2">✨</span>'},
+  "1B":{ground:"🏡",label:"Temperature tells how warm or cool the air is.",extra:'<span class="temp-bubble">🌡️</span>'},
+  "1C":{ground:"☔",label:"Watch for water falling from clouds.",extra:'<span class="rain-drop r1">💧</span><span class="rain-drop r2">💧</span><span class="rain-drop r3">💧</span>'},
+  "1D":{ground:"🚩",label:"We see wind by watching what the air moves.",extra:'<span class="wind-line w1">💨</span><span class="wind-line w2">💨</span>'},
+  "1E":{ground:"👀",label:"Sky watchers describe sunshine and clouds.",extra:'<span class="sparkle s1">✨</span>'},
+  "1F":{ground:"✏️",label:"Weather scientists draw and record what they observe.",extra:'<span class="data-card-mini">📋</span>'},
+  "1G":{ground:"🔎",label:"Compare several days and hunt for a pattern.",extra:'<span class="data-card-mini">📊</span><span class="sparkle s2">✨</span>'},
+  "1H":{ground:"🧑‍🔬",label:"Put all the clues together like a meteorologist.",extra:'<span class="data-card-mini">🗺️</span><span class="sparkle s1">✨</span>'}
+ };
+ const x=scenes[m.id]||scenes["1A"];
+ if(m.id==="1G") return `<div class="lesson-picture pattern-days" aria-hidden="true">
+   <div class="pattern-day day1"><b>DAY 1</b><span>🌤️</span><small>60°</small></div>
+   <div class="pattern-arrow">→</div>
+   <div class="pattern-day day2"><b>DAY 2</b><span>☀️</span><small>65°</small></div>
+   <div class="pattern-arrow">→</div>
+   <div class="pattern-day day3"><b>DAY 3</b><span>☀️</span><small>70°</small></div>
+   <span class="pattern-magnify">🔎</span>
+   <div class="visual-badge">3-DAY WEATHER CLUE</div>
+   <div class="visual-label">60° → 65° → 70° &nbsp; What pattern do you notice?</div>
+ </div>`;
+ return `<div class="lesson-picture" aria-hidden="true"><span class="sun">☀️</span><span class="cloud-a">☁️</span><span class="cloud-b">☁️</span><span class="ground-icon">${x.ground}</span><div class="fx">${x.extra}</div><div class="visual-badge">${m.id==="1B"?"TEMPERATURE CLUE":m.id==="1C"?"PRECIPITATION CLUE":m.id==="1D"?"WIND CLUE":m.id==="1E"?"SKY CLUE":m.id==="1F"?"RECORDING CLUE":m.id==="1H"?"FORECAST CLUE":"OBSERVATION CLUE"}</div><div class="visual-label">${x.label}</div></div>`;
+}
+function cardPictureFor(moduleId,ci){
+ const icons={
+  "1A":["🌤️","👀","🌡️","📝","🔄"],
+  "1B":["🌡️","🔢","↕️","🌅","🧥"],
+  "1C":["🌧️","💧","❄️","🧪","📝"],
+  "1D":["💨","🚩","🍃","🧦","👀"],
+  "1E":["☀️","☁️","🌥️","🌧️","👀"],
+  "1F":["📝","📅","☀️","📊","✅"],
+  "1G":["🔁","🌡️","📊","🔄","🔮"],
+  "1H":["🧑‍🔬","🧩","🔎","🔮","👀"]
+ };
+ return (icons[moduleId]||icons["1A"])[ci]||"🌦️";
+}
+
+function renderLesson(){
+ const m=modules[current], q=m.questions[qi], lesson=document.getElementById("lesson");
+ currentChoices=shuffledQuestion(q);
+ const cards=m.cards.map((c,ci)=>{const bodyOffset=c[0].length+2;return `<div class="readcard" data-card-index="${ci}"><button class="card-speak" type="button" onclick="speakCard(${ci})">🔊 Read</button><div class="card-picture" aria-hidden="true">${cardPictureFor(m.id,ci)}</div><h3>${speechWordMarkup(c[0],0)}</h3><p>${speechWordMarkup(c[1],bodyOffset)}</p></div>`}).join("");
+ const video=m.video?`<div class="video-kid-wrap"><div class="video-kid-head"><span class="tv">📺</span><div>WATCH & WONDER<small>A short kid-friendly video connected to this mission.</small></div></div><div class="video"><iframe src="${m.video}" title="Kid-friendly ${m.title} science video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="kindertip">👀 Watch for one clue you learned in the lesson.</div></div>`:""; const act=activityMarkup(m.activity);
+ lesson.innerHTML=`<div class="card">
+ <div class="kicker">${m.id} • MISSION ${current+1} OF ${modules.length}</div><div class="bigicon">${m.icon}</div><h2>${m.title}</h2><div class="subtitle">${m.subtitle}</div>
+ <div class="read-tools"><button class="speak-btn" type="button" onclick="readCurrentLesson()">🔊 READ LESSON</button><button id="pauseSpeakBtn" class="pause-speak-btn" type="button" onclick="toggleSpeechPause()" disabled>⏸ PAUSE</button><label class="speed-wrap">Speed <input id="speechSpeed" type="range" min="0.55" max="1.35" step="0.05" value="0.85" oninput="setSpeechSpeed(this.value)"><b id="speechSpeedVal">0.85×</b></label></div>
+ ${lessonVisualMarkup(m)}${video}${cards}${act}
+ <div class="callout">🎯 <b>SCIENCE CHECK:</b> Listen or read carefully. Answer order changes, and choices stay similar in length, so scientists must use the lesson and evidence.</div>
+ <div class="qbox"><div class="qtitle">CHECK ${qi+1} OF ${m.questions.length}</div><h3>${q[0]} <button class="q-speak" type="button" onclick="speakQuestion()">🔊 Hear question</button></h3><div class="choices">${currentChoices.map((a,j)=>`<button class="choice" ${activityDone?"":"disabled"} onclick="answer(${j},this)">${String.fromCharCode(65+j)}. ${a.text}</button>`).join("")}</div><div id="fb" class="feedback"></div></div>
+ <div class="navrow"><button class="secondary" onclick="goHome()">← Weather Map</button><button id="next" class="primary hidden" onclick="nextQuestion()">${qi===m.questions.length-1?"FINISH MISSION ✓":"NEXT CHECK →"}</button></div>
+ <p class="source">Source / further reading: ${m.source}</p>
+ </div>`;
+ locked=false;
+ setupActivity();
+}
+function answer(choice,btn){
+ if(locked)return;
+ locked=true;
+ state.attempted++;
+ const q=modules[current].questions[qi];
+ const buttons=[...document.querySelectorAll(".choice")];
+ const fb=document.getElementById("fb");
+ const correctIndex=currentChoices.findIndex(x=>x.correct);
+ buttons.forEach((b,j)=>{b.disabled=true;if(j===correctIndex)b.classList.add("correct")});
+ if(currentChoices[choice].correct){
+   moduleCorrect++; state.correct++;
+   fb.className="feedback good";
+   fb.innerHTML="✅ GREAT OBSERVATION! "+q[3];
+ } else {
+   btn.classList.add("wrong");
+   fb.className="feedback bad";
+   fb.innerHTML="❌ Reset and read the evidence. "+q[3]+" <br><b>Best answer:</b> "+currentChoices[correctIndex].text;
+ }
+ document.getElementById("next").classList.remove("hidden");
+ persist();
+}
+function nextQuestion(){
+ stopAcademySpeech();
+ const m=modules[current];
+ if(qi<m.questions.length-1){qi++;renderLesson();document.querySelector("#lesson .card").scrollIntoView()}
+ else finishModule()
+}
+function finishModule(){
+ const m=modules[current], max=m.questions.length, earned=Math.round(moduleCorrect/max*100);
+ if(!state.done[m.id]) state.score += earned;
+ else state.score += Math.max(0,earned-state.done[m.id].score);
+ state.done[m.id]={score:Math.max(earned,state.done[m.id]?.score||0),correct:moduleCorrect,max:max};
+ persist();
+ const lesson=document.getElementById("lesson");
+ let label=earned===100?"SCIENCE MASTER":earned>=80?"WEATHER READY":earned>=60?"STRONG OBSERVER":"KEEP INVESTIGATING";
+ lesson.innerHTML=`<div class="card results"><div class="bigicon">${m.icon}</div><div class="kicker">${m.id} COMPLETE</div><h2>${m.title}</h2><div class="rank">${label}</div><p>You earned <b>${earned} Weather IQ</b> on this mission.</p><div class="statsgrid"><div class="stat"><b>${moduleCorrect}/${max}</b><span class="tiny">CORRECT</span></div><div class="stat"><b>${earned}</b><span class="tiny">WEATHER IQ</span></div></div><div class="navrow"><button class="secondary" onclick="openModule(${current})">REPLAY MISSION</button><button class="primary" onclick="afterMission()">CONTINUE →</button></div></div>`;scrollTo(0,0)
+}
+function afterMission(){if(Object.keys(state.done).length===modules.length)showFinal();else goHome()}
+function showFinal(){
+ document.getElementById("lesson").classList.add("hidden");document.getElementById("home").classList.add("hidden");document.getElementById("leaderboard").classList.add("hidden");document.getElementById("final").classList.remove("hidden");
+ const pct=state.attempted?Math.round(state.correct/state.attempted*100):0, d=Object.keys(state.done).length;
+ document.getElementById("finalName").textContent=(state.name||"Scientist")+"'s Weather IQ Report";
+ document.getElementById("fscore").textContent=state.score;document.getElementById("fmods").textContent=d+"/8";document.getElementById("fpct").textContent=pct+"%";
+ let rank=state.score>=750?"CHIEF METEOROLOGIST":state.score>=650?"WEATHER EXPERT":state.score>=500?"PATTERN PRO":"SKY SPOTTER";
+ document.getElementById("rank").textContent=rank;
+ document.getElementById("summary").textContent="You completed the weather science unit: observation, temperature, precipitation, wind, sky conditions, recording data, patterns, and evidence-based predictions.";
+ scrollTo(0,0)
+}
+function goHome(){
+ stopAcademySpeech();
+ document.getElementById("lesson").classList.add("hidden");
+ document.getElementById("final").classList.add("hidden");
+ document.getElementById("leaderboard").classList.add("hidden");
+ document.getElementById("home").classList.remove("hidden");
+ renderGrid();scrollTo(0,0);
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+function showLeaderboard(){
+ profiles=loadProfiles();
+ const board=Object.values(profiles).filter(p=>p&&p.name).map(p=>({...p,pct:p.attempted?Math.round(p.correct/p.attempted*100):0,missions:Object.keys(p.done||{}).length})).sort((a,b)=>b.score-a.score||b.pct-a.pct||b.missions-a.missions);
+ document.getElementById("home").classList.add("hidden");
+ document.getElementById("lesson").classList.add("hidden");
+ document.getElementById("final").classList.add("hidden");
+ document.getElementById("leaderboard").classList.remove("hidden");
+ document.getElementById("leaderRows").innerHTML=board.length?board.map((p,i)=>`<div class="leader-row"><div class="leader-rank">${i+1}</div><div><div class="leader-name">${escapeHtml(p.name)}</div><div class="tiny">${p.missions}/8 missions • ${p.pct}% accuracy</div></div><div class="leader-score">${p.score} W-IQ</div></div>`).join(""):'<div class="readcard"><p>No scientist scores saved yet.</p></div>';
+ scrollTo(0,0);
+}
+let resetArmed=false;
+let resetTimer=null;
+function resetProgress(){
+ const btn=document.getElementById("resetBtn");
+ const status=document.getElementById("nameStatus");
+
+ if(!state.name){
+   status.textContent="Start a scientist profile before resetting.";
+   return;
+ }
+
+ // Avoid browser confirm() dialogs, which can be blocked inside previews.
+ if(!resetArmed){
+   resetArmed=true;
+   btn.textContent="⚠ CLICK AGAIN TO CONFIRM RESET";
+   status.textContent="Click RESET again to erase "+state.name+"'s score and mastered missions.";
+   clearTimeout(resetTimer);
+   resetTimer=setTimeout(()=>{
+     resetArmed=false;
+     btn.textContent="↻ RESET THIS SCIENTIST";
+     status.textContent="";
+   },5000);
+   return;
+ }
+
+ clearTimeout(resetTimer);
+ resetArmed=false;
+
+ const nm=state.name;
+
+ // Replace the active scientist state with a truly blank profile.
+ state=blankState(nm);
+ profiles=loadProfiles();
+ profiles[keyFor(nm)]=JSON.parse(JSON.stringify(state));
+ saveProfiles(profiles);
+ localStorage.setItem(ACTIVE_KEY,nm);
+
+ // Remove legacy data from earlier versions.
+ localStorage.removeItem("weather_unit1");
+
+ // Clear all live lesson/activity state as well.
+ current=null;
+ qi=0;
+ moduleCorrect=0;
+ locked=false;
+ currentChoices=[];
+ activityDone=false;
+ activityState=null;
+
+ // Force every visible score/progress/completion element back to zero.
+ document.getElementById("lesson").innerHTML="";
+ document.getElementById("final").classList.add("hidden");
+ document.getElementById("leaderboard").classList.add("hidden");
+ document.getElementById("home").classList.remove("hidden");
+ document.getElementById("score").textContent="0";
+ document.getElementById("overallFill").style.width="0%";
+ btn.textContent="↻ RESET THIS SCIENTIST";
+
+ // Rebuild the academy map FROM THE BLANK STATE, removing MASTERED badges.
+ renderGrid();
+
+ status.textContent="✓ RESET COMPLETE: 0 IQ and 0 mastered missions.";
+ showWelcome(nm+" is reset!","Fresh forecast. Fresh score. All eight missions are open again.");
+ scrollTo(0,0);
+}
+let clearArmed=false;
+function clearProfiles(){
+ const btn=document.getElementById("clearProfilesBtn");
+ if(!clearArmed){
+   clearArmed=true;
+   btn.textContent="⚠ CLICK AGAIN TO CLEAR ALL";
+   setTimeout(()=>{clearArmed=false;btn.textContent="CLEAR ALL LOCAL SCIENTISTS";},5000);
+   return;
+ }
+ clearArmed=false;
+ localStorage.removeItem(PROFILE_KEY);
+ localStorage.removeItem(ACTIVE_KEY);
+ localStorage.removeItem("weather_unit1");
+ profiles={};activeName="";state=blankState("");
+ document.getElementById("name").value="";
+ document.getElementById("nameStatus").textContent="All local scientist profiles cleared.";
+ document.getElementById("welcomeCard").classList.remove("show");
+ btn.textContent="CLEAR ALL LOCAL SCIENTISTS";
+ updateTop();showLeaderboard();
+}
+document.getElementById("lockNameBtn").addEventListener("click",saveName);
+document.getElementById("name").addEventListener("keydown",e=>{if(e.key==="Enter")saveName()});
+document.getElementById("leaderboardBtn").addEventListener("click",showLeaderboard);
+document.getElementById("resetBtn").addEventListener("click",resetProgress);
+document.getElementById("closeLeaderboardBtn").addEventListener("click",goHome);
+document.getElementById("clearProfilesBtn").addEventListener("click",clearProfiles);
+
+renderGrid();
+if(state.name) showWelcome("Welcome back, "+state.name+"!","Your saved academy progress is loaded.");
+</script>
+</body></html>
