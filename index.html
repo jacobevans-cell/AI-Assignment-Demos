@@ -43,7 +43,7 @@ body {
 }
 
 .hero p {
-  max-width: 760px;
+  max-width: 800px;
   margin: auto;
   font-size: 19px;
   line-height: 1.5;
@@ -58,7 +58,7 @@ body {
 /* MAIN */
 
 main {
-  width: min(1200px, 92%);
+  width: min(1550px, 96%);
   margin: auto;
   padding: 45px 0 70px;
 }
@@ -68,7 +68,7 @@ main {
 .intro {
   background: white;
   border-radius: 20px;
-  padding: 28px;
+  padding: 30px;
   margin-bottom: 40px;
   box-shadow: 0 10px 30px rgba(0,0,0,.07);
 }
@@ -98,7 +98,7 @@ main {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
   align-items: stretch;
 }
@@ -156,7 +156,7 @@ main {
   font-size: 22px;
 }
 
-/* CONTENT AREA */
+/* CONTENT */
 
 .card-content {
   min-height: 470px;
@@ -176,7 +176,7 @@ main {
   margin: 0;
 }
 
-/* INTENTIONAL DESIGN BOX */
+/* INTENTIONAL DESIGN */
 
 .design-box {
   background: #f3f1ff;
@@ -196,7 +196,7 @@ main {
   font-size: 14px;
 }
 
-/* PREVIEW AREA */
+/* PREVIEW */
 
 .preview-area {
   margin-top: auto;
@@ -225,6 +225,8 @@ main {
   justify-content: center;
   color: #98a2b3;
   font-weight: bold;
+  text-align: center;
+  padding: 15px;
 }
 
 /* BUTTON */
@@ -293,9 +295,17 @@ main {
   font-size: 14px;
 }
 
-/* MOBILE */
+/* RESPONSIVE */
 
-@media (max-width: 800px) {
+@media (max-width: 1200px) {
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 700px) {
 
   .grid,
   .steps {
@@ -307,10 +317,7 @@ main {
   }
 
   .card-top,
-  .card-content {
-    min-height: auto;
-  }
-
+  .card-content,
   .design-box {
     min-height: auto;
   }
@@ -371,7 +378,9 @@ main {
 <section class="grid">
 
 
+<!-- ================================================= -->
 <!-- DECIMAL DECEPTION -->
+<!-- ================================================= -->
 
 <article class="card">
 
@@ -444,7 +453,9 @@ main {
 </article>
 
 
+<!-- ================================================= -->
 <!-- VOLLEYBALL ACADEMY -->
+<!-- ================================================= -->
 
 <article class="card">
 
@@ -520,7 +531,9 @@ main {
 </article>
 
 
-<!-- PRACTICE AND REVIEW -->
+<!-- ================================================= -->
+<!-- PRACTICE & REVIEW -->
+<!-- ================================================= -->
 
 <article class="card">
 
@@ -579,6 +592,67 @@ main {
 </article>
 
 
+<!-- ================================================= -->
+<!-- FOURTH DEMO -->
+<!-- ================================================= -->
+
+<article class="card">
+
+  <div class="card-top">
+
+    <div class="icon">✨</div>
+
+    <div class="tag">MORE POSSIBILITIES</div>
+
+    <h3>Another Approach</h3>
+
+  </div>
+
+
+  <div class="card-content">
+
+    <div class="info-title">
+      COMING NEXT
+    </div>
+
+    <p>
+      This space will showcase a fourth type of AI-supported classroom
+      assignment so staff can compare several different approaches.
+    </p>
+
+
+    <div class="design-box">
+
+      <div class="info-title">
+        THE IDEA
+      </div>
+
+      <p>
+        AI-created assignments do not have to follow one format. Games,
+        simulations, reading activities, guided practice, projects, and
+        interactive assessments can all be designed around the learning goal.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="preview-area">
+
+    <div class="preview-placeholder">
+      FOURTH DEMO COMING SOON
+    </div>
+
+    <a class="button disabled">
+      COMING SOON
+    </a>
+
+  </div>
+
+</article>
+
+
 </section>
 
 
@@ -590,6 +664,7 @@ main {
     The teacher doesn't need to be a programmer. The process starts with
     describing what students should learn and how the activity should work.
   </p>
+
 
   <div class="steps">
 
