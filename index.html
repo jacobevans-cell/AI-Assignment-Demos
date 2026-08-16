@@ -23,6 +23,10 @@ body {
   color: #18212f;
 }
 
+/* =====================================================
+   EXPLORE COLORS
+===================================================== */
+
 :root {
   --navy: #0c1829;
   --navy-light: #14263d;
@@ -33,11 +37,12 @@ body {
   --light: #f3f6fa;
   --text: #18212f;
   --muted: #667085;
+  --purple-soft: #f2efff;
 }
 
-/* =========================================
-   TOP BRAND BAR
-========================================= */
+/* =====================================================
+   BRAND BAR
+===================================================== */
 
 .brand-bar {
   background: var(--navy);
@@ -54,7 +59,6 @@ body {
   gap: 16px;
 }
 
-/* FIXED LOGO */
 .brand-logo {
   width: 70px;
   height: 70px;
@@ -68,9 +72,9 @@ body {
   font-weight: bold;
 }
 
-/* =========================================
+/* =====================================================
    HERO
-========================================= */
+===================================================== */
 
 .hero {
   background:
@@ -148,9 +152,9 @@ body {
   background: var(--red);
 }
 
-/* =========================================
+/* =====================================================
    MAIN
-========================================= */
+===================================================== */
 
 main {
   width: min(1500px, 94%);
@@ -158,9 +162,9 @@ main {
   padding: 48px 0 75px;
 }
 
-/* =========================================
+/* =====================================================
    INTRO
-========================================= */
+===================================================== */
 
 .intro {
   background: white;
@@ -188,9 +192,9 @@ main {
   color: var(--navy);
 }
 
-/* =========================================
+/* =====================================================
    SECTION HEADER
-========================================= */
+===================================================== */
 
 .section-heading {
   margin-bottom: 25px;
@@ -208,9 +212,9 @@ main {
   font-size: 16px;
 }
 
-/* =========================================
+/* =====================================================
    ASSIGNMENT GRID
-========================================= */
+===================================================== */
 
 .grid {
   display: grid;
@@ -219,19 +223,31 @@ main {
   align-items: stretch;
 }
 
-/* =========================================
-   CARDS
-========================================= */
+/* =====================================================
+   CARD
+===================================================== */
 
 .card {
   background: white;
   border-radius: 20px;
   padding: 24px;
   min-width: 0;
-  display: flex;
-  flex-direction: column;
+
+  display: grid;
+
+  grid-template-rows:
+    130px
+    205px
+    170px
+    240px
+    250px
+    auto;
+
+  gap: 0;
+
   box-shadow: 0 8px 25px rgba(12,24,41,.08);
   transition: transform .2s, box-shadow .2s;
+
   border-top: 5px solid var(--blue);
 }
 
@@ -252,9 +268,13 @@ main {
   box-shadow: 0 16px 38px rgba(12,24,41,.14);
 }
 
-/* =========================================
+/* =====================================================
    CARD HEADER
-========================================= */
+===================================================== */
+
+.card-head {
+  overflow: hidden;
+}
 
 .icon {
   width: 52px;
@@ -265,7 +285,7 @@ main {
   align-items: center;
   justify-content: center;
   font-size: 27px;
-  margin-bottom: 14px;
+  margin-bottom: 11px;
 }
 
 .tag {
@@ -277,66 +297,107 @@ main {
   border-radius: 20px;
   font-size: 11px;
   font-weight: bold;
-  margin-bottom: 11px;
+  margin-bottom: 9px;
   letter-spacing: .3px;
 }
 
 .card h3 {
-  margin: 0 0 18px;
+  margin: 0;
   font-size: 22px;
   color: var(--navy);
 }
 
-/* =========================================
-   CARD CONTENT
-========================================= */
+/* =====================================================
+   CONSISTENT CONTENT SECTIONS
+===================================================== */
 
-.info-section {
-  margin-bottom: 18px;
+.card-section {
+  padding-top: 14px;
+  overflow: hidden;
 }
 
-.info-label {
+.section-label {
   display: block;
   color: var(--blue);
   font-size: 13px;
-  font-weight: 800;
-  letter-spacing: .6px;
-  margin-bottom: 6px;
-}
-
-.info-section p {
-  color: var(--muted);
-  line-height: 1.5;
-  margin: 0;
-  font-size: 14px;
-}
-
-.design-box {
-  background: #f1efff;
-  border-left: 4px solid #5368ff;
-  border-radius: 10px;
-  padding: 14px;
-  margin-bottom: 20px;
-}
-
-.design-box .info-label {
+  font-weight: 900;
+  letter-spacing: .7px;
   margin-bottom: 7px;
 }
 
-.design-box p {
-  color: #58677d;
+.card-section p {
+  color: var(--muted);
+  line-height: 1.48;
+  margin: 0;
   font-size: 14px;
-  line-height: 1.5;
+}
+
+/* =====================================================
+   FEATURE BUILD BOX
+===================================================== */
+
+.build-box {
+  background: #f6f8fb;
+  border: 1px solid #e2e7ef;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.build-box ul {
+  margin: 9px 0 0;
+  padding-left: 18px;
+}
+
+.build-box li {
+  color: #566477;
+  font-size: 13px;
+  line-height: 1.42;
+  margin-bottom: 5px;
+}
+
+.build-box li:last-child {
+  margin-bottom: 0;
+}
+
+/* =====================================================
+   INTENTIONAL DESIGN
+===================================================== */
+
+.design-box {
+  background: var(--purple-soft);
+  border-left: 4px solid #5368ff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.design-box .section-label {
+  margin-bottom: 8px;
+}
+
+.design-box p {
+  color: #536177;
+  font-size: 14px;
+  line-height: 1.48;
   margin: 0;
 }
 
-/* =========================================
-   PREVIEW IMAGE
-========================================= */
+.design-emphasis {
+  display: block;
+  margin-top: 10px;
+  color: #344054;
+  font-weight: 800;
+}
+
+/* =====================================================
+   PREVIEW
+===================================================== */
 
 .preview-wrap {
-  margin-top: auto;
-  padding-top: 16px;
+  align-self: end;
 }
 
 .preview {
@@ -350,9 +411,9 @@ main {
   background: #edf1f6;
 }
 
-/* =========================================
+/* =====================================================
    BUTTONS
-========================================= */
+===================================================== */
 
 .button {
   margin-top: 15px;
@@ -388,9 +449,9 @@ main {
   background: #c20c34;
 }
 
-/* =========================================
+/* =====================================================
    EXPLORE SECTION
-========================================= */
+===================================================== */
 
 .explore-section {
   margin-top: 55px;
@@ -425,7 +486,7 @@ main {
 
 .explore-intro {
   color: #d5deea;
-  max-width: 900px;
+  max-width: 950px;
   line-height: 1.6;
   font-size: 16px;
 }
@@ -457,7 +518,7 @@ main {
 }
 
 .explore-idea:nth-child(4) {
-  border-top: 4px solid #ffffff;
+  border-top: 4px solid white;
 }
 
 .explore-idea strong {
@@ -473,9 +534,9 @@ main {
   margin: 0;
 }
 
-/* =========================================
-   PROCESS SECTION
-========================================= */
+/* =====================================================
+   PROCESS
+===================================================== */
 
 .process {
   margin-top: 35px;
@@ -546,9 +607,9 @@ main {
   margin-bottom: 0;
 }
 
-/* =========================================
+/* =====================================================
    FOOTER
-========================================= */
+===================================================== */
 
 footer {
   background: var(--navy);
@@ -563,14 +624,24 @@ footer strong {
   color: white;
 }
 
-/* =========================================
+/* =====================================================
    RESPONSIVE
-========================================= */
+===================================================== */
 
 @media (max-width: 1250px) {
 
   .grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card {
+    grid-template-rows:
+      auto
+      auto
+      auto
+      auto
+      auto
+      auto;
   }
 
   .explore-ideas {
@@ -617,9 +688,9 @@ footer strong {
 
 <body>
 
-<!-- ======================================
+<!-- =====================================================
      EXPLORE BRAND BAR
-======================================= -->
+===================================================== -->
 
 <div class="brand-bar">
 
@@ -639,9 +710,9 @@ footer strong {
 
 </div>
 
-<!-- ======================================
+<!-- =====================================================
      HERO
-======================================= -->
+===================================================== -->
 
 <header class="hero">
 
@@ -662,7 +733,7 @@ footer strong {
 
     <p class="hero-small">
       Four working examples of standards-based lessons, practice,
-      and instructional content redesigned with AI.
+      scaffolding, and instructional content redesigned with AI.
     </p>
 
     <div class="hero-accent"></div>
@@ -673,9 +744,9 @@ footer strong {
 
 <main>
 
-<!-- ======================================
+<!-- =====================================================
      INTRO
-======================================= -->
+===================================================== -->
 
 <section class="intro">
 
@@ -686,18 +757,18 @@ footer strong {
   <p>
     These are not mockups or screenshots.
     <strong>Every example below is a working student activity.</strong>
-    Each one began with something teachers already use:
-    standards, practice problems, instructional readings,
-    videos, vocabulary, or skill practice.
-    AI was then used as a design and development tool to turn
-    that material into a more interactive student experience.
+    Each project started with an instructional goal and then went through
+    repeated rounds of planning, testing, revising, troubleshooting,
+    scaffolding, visual design, and classroom-focused refinement.
+    The examples below show what AI can help build when the
+    <strong>teacher remains the instructional designer.</strong>
   </p>
 
 </section>
 
-<!-- ======================================
+<!-- =====================================================
      ASSIGNMENTS
-======================================= -->
+===================================================== -->
 
 <div class="section-heading">
 
@@ -706,71 +777,109 @@ footer strong {
   </h2>
 
   <p class="section-subtitle">
-    Open any example and experience it from the student's point of view.
+    Four different instructional problems. Four intentionally different solutions.
   </p>
 
 </div>
 
 <section class="grid">
 
-<!-- ======================================
+<!-- =====================================================
      DECIMAL DECEPTION
-======================================= -->
+===================================================== -->
 
 <article class="card">
 
-  <div class="icon">🚀</div>
+  <div class="card-head">
 
-  <div class="tag">
-    GAMIFIED MATH
+    <div class="icon">🚀</div>
+
+    <div class="tag">
+      GAMIFIED MATH
+    </div>
+
+    <h3>
+      Decimal Deception
+    </h3>
+
   </div>
 
-  <h3>
-    Decimal Deception
-  </h3>
 
-  <div class="info-section">
+  <div class="card-section">
 
-    <span class="info-label">
+    <span class="section-label">
       ACTIVITY DESCRIPTION
     </span>
 
     <p>
-      Students navigate a space-station adventure while solving
-      decimal problems. Correct answers help them complete missions,
-      collect Power Crystals, avoid enemies, and unlock new areas.
+      Students enter a playable space-station adventure built around
+      decimal operations. They choose a character, navigate rooms,
+      avoid moving enemies, restore six Power Crystals by completing
+      math missions, earn points, preserve lives, unlock the portal,
+      and progress into new themed levels.
     </p>
 
   </div>
 
-  <div class="info-section">
 
-    <span class="info-label">
-      ARIZONA MATH STANDARD
+  <div class="card-section">
+
+    <span class="section-label">
+      ARIZONA STANDARD
     </span>
 
     <p>
-      <strong>6.NS.B.3</strong> — Fluently add, subtract,
-      multiply, and divide multi-digit decimals using the
-      standard algorithm.
+      <strong>6.NS.B.3</strong><br>
+      Fluently add, subtract, multiply, and divide multi-digit decimals
+      using the standard algorithm.
     </p>
 
   </div>
 
-  <div class="design-box">
 
-    <span class="info-label">
-      INTENTIONAL DESIGN
-    </span>
+  <div class="card-section">
 
-    <p>
-      What if the same practice problems from a worksheet became
-      part of a game? The academic skill remains the focus, but
-      repetitive practice is built into missions, movement,
-      challenges, immediate feedback, and progression.
-    </p>
+    <div class="build-box">
+
+      <span class="section-label">
+        WHAT WAS BUILT
+      </span>
+
+      <ul>
+        <li>Five selectable student characters</li>
+        <li>Six math missions tied to Power Crystals</li>
+        <li>Lives, enemies, scoring, portal progression, and themed levels</li>
+        <li>Math Scanner support and immediate answer feedback</li>
+      </ul>
+
+    </div>
 
   </div>
+
+
+  <div class="card-section">
+
+    <div class="design-box">
+
+      <span class="section-label">
+        INTENTIONAL DESIGN
+      </span>
+
+      <p>
+        The goal was not to make decimal practice easier. It was to make
+        students willing to do more of it. Traditional practice problems
+        became the mechanism for progressing through the game, so the
+        mathematics still controls success.
+      </p>
+
+      <span class="design-emphasis">
+        The worksheet did not disappear. It became the engine of the experience.
+      </span>
+
+    </div>
+
+  </div>
+
 
   <div class="preview-wrap">
 
@@ -780,10 +889,7 @@ footer strong {
       class="preview"
     >
 
-    <a
-      class="button"
-      href="decimal-deception.html"
-    >
+    <a class="button" href="decimal-deception.html">
       OPEN DEMO
     </a>
 
@@ -791,67 +897,103 @@ footer strong {
 
 </article>
 
-<!-- ======================================
+<!-- =====================================================
      VOLLEYBALL ACADEMY
-======================================= -->
+===================================================== -->
 
 <article class="card">
 
-  <div class="icon">🏐</div>
+  <div class="card-head">
 
-  <div class="tag">
-    INTERACTIVE LESSON
+    <div class="icon">🏐</div>
+
+    <div class="tag">
+      INTERACTIVE MULTIMEDIA LESSON
+    </div>
+
+    <h3>
+      Volleyball Academy
+    </h3>
+
   </div>
 
-  <h3>
-    Volleyball Academy
-  </h3>
 
-  <div class="info-section">
+  <div class="card-section">
 
-    <span class="info-label">
+    <span class="section-label">
       ACTIVITY DESCRIPTION
     </span>
 
     <p>
-      Students work through volleyball missions combining reading,
-      videos, game situations, multiple-choice comprehension checks,
-      drag-and-drop activities, immediate feedback, scoring,
-      and progress tracking.
+      Students complete eight role-based learning missions covering
+      libero, setter, outside hitter, middle blocker, defensive specialist,
+      bench responsibilities, volleyball basics, and film study.
+      Each mission combines deeper reading, real game situations,
+      multimedia, comprehension checks, and application.
     </p>
 
   </div>
 
-  <div class="info-section">
 
-    <span class="info-label">
-      LEARNING CONTENT
+  <div class="card-section">
+
+    <span class="section-label">
+      ARIZONA ELA ALIGNMENT
     </span>
 
     <p>
-      The lesson was created from existing instructional resources,
-      including web articles, instructional reading, and YouTube
-      videos. Students process the information and apply what they
-      learn to interactive challenges.
+      <strong>Grades 4–5 RI.1 & RI.7</strong><br>
+      Use details and evidence from informational text and integrate
+      information presented through text, visual, and multimedia sources.
     </p>
 
   </div>
 
-  <div class="design-box">
 
-    <span class="info-label">
-      INTENTIONAL DESIGN
-    </span>
+  <div class="card-section">
 
-    <p>
-      Instead of simply giving students links to articles and videos,
-      the resources were transformed into one structured interactive
-      assignment. Students read, watch, respond, sort, make decisions,
-      and demonstrate understanding before progressing.
-      <strong>Volleyball is simply the example.</strong>
-    </p>
+    <div class="build-box">
+
+      <span class="section-label">
+        WHAT WAS BUILT
+      </span>
+
+      <ul>
+        <li>Eight complete role-based instructional missions</li>
+        <li>5–7 understanding checks within each mission</li>
+        <li>Embedded video, reading sections, multiple choice, and drag-and-drop</li>
+        <li>Saved student progress, IQ scoring, high scores, feedback, and reset tools</li>
+      </ul>
+
+    </div>
 
   </div>
+
+
+  <div class="card-section">
+
+    <div class="design-box">
+
+      <span class="section-label">
+        INTENTIONAL DESIGN
+      </span>
+
+      <p>
+        This began as separate web articles, instructional information,
+        and YouTube videos. Instead of asking students to jump between
+        resources, they were reorganized into one sequenced experience
+        that requires students to read, watch, analyze, answer, sort,
+        and apply information before progressing.
+      </p>
+
+      <span class="design-emphasis">
+        Volleyball is the content. The design model could be used with almost any subject.
+      </span>
+
+    </div>
+
+  </div>
+
 
   <div class="preview-wrap">
 
@@ -861,10 +1003,7 @@ footer strong {
       class="preview"
     >
 
-    <a
-      class="button"
-      href="volleyball-academy.html"
-    >
+    <a class="button" href="volleyball-academy.html">
       OPEN DEMO
     </a>
 
@@ -872,66 +1011,104 @@ footer strong {
 
 </article>
 
-<!-- ======================================
+<!-- =====================================================
      LONG DIVISION QUEST
-======================================= -->
+===================================================== -->
 
 <article class="card">
 
-  <div class="icon">➗</div>
+  <div class="card-head">
 
-  <div class="tag">
-    GUIDED MATH PRACTICE
+    <div class="icon">➗</div>
+
+    <div class="tag">
+      GUIDED MATH PRACTICE
+    </div>
+
+    <h3>
+      Long Division Quest
+    </h3>
+
   </div>
 
-  <h3>
-    Long Division Quest
-  </h3>
 
-  <div class="info-section">
+  <div class="card-section">
 
-    <span class="info-label">
+    <span class="section-label">
       ACTIVITY DESCRIPTION
     </span>
 
     <p>
-      Students solve long-division problems one aligned step at a time.
-      The program guides them through Divide, Multiply, Subtract,
-      and Bring Down while tracking accuracy, hints, streaks,
-      progress, and XP.
+      Students complete long division directly inside a correctly aligned
+      division structure, one digit and one decision at a time.
+      The program guides them through Divide → Multiply → Subtract →
+      Bring Down while preserving the actual standard algorithm instead
+      of replacing it with multiple choice.
     </p>
 
   </div>
 
-  <div class="info-section">
 
-    <span class="info-label">
-      INSTRUCTIONAL SUPPORT
+  <div class="card-section">
+
+    <span class="section-label">
+      ARIZONA STANDARD
     </span>
 
     <p>
-      Students work directly inside the long-division structure.
-      Prompts focus attention on the exact digit and step they are
-      working on, while visual grouping models help students understand
-      how many groups fit into a number before entering the quotient digit.
+      <strong>5.NBT.B.6</strong><br>
+      Find whole-number quotients of whole numbers using strategies
+      based on place value, properties of operations, and the relationship
+      between multiplication and division.
     </p>
 
   </div>
 
-  <div class="design-box">
 
-    <span class="info-label">
-      INTENTIONAL DESIGN
-    </span>
+  <div class="card-section">
 
-    <p>
-      Long division is a multi-step process, so the interface was
-      intentionally designed to mirror the algorithm. Students receive
-      targeted prompts, optional hints, and visual grouping support
-      exactly when they need it.
-    </p>
+    <div class="build-box">
+
+      <span class="section-label">
+        WHAT WAS BUILT
+      </span>
+
+      <ul>
+        <li>Digit-by-digit aligned long-division input</li>
+        <li>Divide, Multiply, Subtract, Bring Down coaching sequence</li>
+        <li>Visual grouping hints showing why a quotient digit works</li>
+        <li>XP, accuracy, streaks, ratings, hint-use tracking, and five-problem missions</li>
+      </ul>
+
+    </div>
 
   </div>
+
+
+  <div class="card-section">
+
+    <div class="design-box">
+
+      <span class="section-label">
+        INTENTIONAL DESIGN
+      </span>
+
+      <p>
+        A worksheet usually tells a student that the final answer is wrong.
+        This system was designed to identify the exact step where the
+        thinking breaks down. Students work in the correct place-value
+        column and receive targeted support without having the problem
+        solved for them.
+      </p>
+
+      <span class="design-emphasis">
+        The scaffold responds to the student's process, not just the final answer.
+      </span>
+
+    </div>
+
+  </div>
+
 
   <div class="preview-wrap">
 
@@ -941,10 +1118,7 @@ footer strong {
       class="preview"
     >
 
-    <a
-      class="button"
-      href="long-division-quest.html"
-    >
+    <a class="button" href="long-division-quest.html">
       OPEN DEMO
     </a>
 
@@ -952,73 +1126,103 @@ footer strong {
 
 </article>
 
-<!-- ======================================
-     SPELLING PRACTICE
-======================================= -->
+<!-- =====================================================
+     SPELLING PRACTICE LAB
+===================================================== -->
 
 <article class="card">
 
-  <div class="icon">🔤</div>
+  <div class="card-head">
 
-  <div class="tag">
-    LITERACY & WORD STUDY
+    <div class="icon">🔤</div>
+
+    <div class="tag">
+      MULTIMODAL WORD STUDY
+    </div>
+
+    <h3>
+      Spelling Practice Lab
+    </h3>
+
   </div>
 
-  <h3>
-    Spelling Practice Lab
-  </h3>
 
-  <div class="info-section">
+  <div class="card-section">
 
-    <span class="info-label">
+    <span class="section-label">
       ACTIVITY DESCRIPTION
     </span>
 
     <p>
-      One spelling list becomes a complete study system.
-      Students can study detailed flash cards, practice through
-      volleyball or soccer games, hear words and sentences aloud,
-      and complete an independent spelling test.
+      One spelling list becomes a complete study-and-practice system.
+      Students can deeply study each word through instructional flash cards,
+      practice the same words through volleyball or soccer gameplay,
+      hear words and sentences aloud, and finish with an independent
+      listen-and-type spelling test.
     </p>
 
   </div>
 
-  <div class="info-section">
 
-    <span class="info-label">
-      WORD STUDY PEDAGOGY
+  <div class="card-section">
+
+    <span class="section-label">
+      ARIZONA ELA STANDARDS
     </span>
 
     <p>
-      Each word was intentionally broken apart to teach more than
-      memorization. Students study syllables, pronunciation,
-      sound chunks, phonograms, spelling patterns, word structure,
-      visual examples, and targeted spelling reminders before
-      practicing independently.
+      <strong>4–5.RF.3 & 4–5.L.2</strong><br>
+      Apply grade-level phonics and word-analysis skills and demonstrate
+      command of conventions, including accurate grade-appropriate spelling.
     </p>
 
   </div>
 
-  <div class="design-box">
 
-    <span class="info-label">
-      INTENTIONAL DESIGN
-    </span>
+  <div class="card-section">
 
-    <p>
-      The flash cards make the structure of each word visible.
-      Multi-letter phonograms are automatically highlighted,
-      difficult patterns receive targeted “Watch For” hints,
-      and individual sound chunks can be heard aloud.
-      <br><br>
-      <strong>
-        Students can see it, hear it, break it apart,
-        study the pattern, practice it, apply it in a game,
-        and finally spell it independently.
-      </strong>
-    </p>
+    <div class="build-box">
+
+      <span class="section-label">
+        WHAT WAS BUILT
+      </span>
+
+      <ul>
+        <li>Syllable breakdowns and whole-word pronunciation support</li>
+        <li>Clickable Sound It Out chunks with individual audio</li>
+        <li>Phonograms with multi-letter patterns automatically highlighted</li>
+        <li>“Watch For” spelling hints, examples, visuals, games, and independent testing</li>
+      </ul>
+
+    </div>
 
   </div>
+
+
+  <div class="card-section">
+
+    <div class="design-box">
+
+      <span class="section-label">
+        INTENTIONAL DESIGN
+      </span>
+
+      <p>
+        This was deliberately built beyond simple memorization.
+        The flash cards expose the structure of each word through syllables,
+        sounds, phonograms, patterns, pronunciation, definitions,
+        examples, and targeted reminders. Students then encounter the
+        same words through multiple modes before independent assessment.
+      </p>
+
+      <span class="design-emphasis">
+        See it → hear it → break it apart → study the pattern → practice it → use it → spell it independently.
+      </span>
+
+    </div>
+
+  </div>
+
 
   <div class="preview-wrap">
 
@@ -1028,10 +1232,7 @@ footer strong {
       class="preview"
     >
 
-    <a
-      class="button"
-      href="spelling-practice.html"
-    >
+    <a class="button" href="spelling-practice.html">
       OPEN DEMO
     </a>
 
@@ -1041,9 +1242,9 @@ footer strong {
 
 </section>
 
-<!-- ======================================
-     EXPLORE CONNECTION
-======================================= -->
+<!-- =====================================================
+     WHAT THIS SHOWS
+===================================================== -->
 
 <section class="explore-section">
 
@@ -1054,11 +1255,9 @@ footer strong {
     </h2>
 
     <p class="explore-intro">
-      The point isn't to replace curriculum or instruction with AI.
-      The opportunity is to use AI to help teachers redesign
-      materials they already have into experiences that give students
-      more opportunities to interact, practice, receive feedback,
-      and demonstrate understanding.
+      These examples are intentionally different. They show that AI does not
+      require teachers to abandon curriculum or replace instruction.
+      It can be used to rethink the experience surrounding the learning goal.
     </p>
 
     <div class="explore-ideas">
@@ -1070,48 +1269,50 @@ footer strong {
         </strong>
 
         <p>
-          Turn repetitive skill practice into missions,
-          challenges, simulations, games, or guided practice.
+          Keep the academic problems but surround them with missions,
+          progression, choices, and meaningful feedback.
         </p>
 
       </div>
 
+
       <div class="explore-idea">
 
         <strong>
-          📚 Content → Interaction
+          📚 Resources → Lesson
         </strong>
 
         <p>
-          Combine readings, videos, and instructional resources
-          into one structured learning experience.
+          Turn articles, videos, readings, and teacher-created materials
+          into one organized interactive learning sequence.
         </p>
 
       </div>
 
+
       <div class="explore-idea">
 
         <strong>
-          🧠 Skill → Scaffolding
+          🧠 Procedure → Scaffold
         </strong>
 
         <p>
-          Build hints, models, immediate feedback, and step-by-step
-          support directly into independent student practice.
+          Build coaching, models, hints, and immediate feedback directly
+          around the exact step where students need support.
         </p>
 
       </div>
 
+
       <div class="explore-idea">
 
         <strong>
-          🎯 Idea → Prototype
+          🔤 Practice → Learning System
         </strong>
 
         <p>
-          A teacher can describe an instructional idea, test it,
-          revise it, and turn it into a working classroom tool
-          without starting as a programmer.
+          Take one learning target and create multiple ways to study,
+          hear, analyze, practice, apply, and assess it.
         </p>
 
       </div>
@@ -1122,9 +1323,9 @@ footer strong {
 
 </section>
 
-<!-- ======================================
+<!-- =====================================================
      PROCESS
-======================================= -->
+===================================================== -->
 
 <section class="process">
 
@@ -1133,7 +1334,7 @@ footer strong {
   </h2>
 
   <p class="process-intro">
-    The process begins with instruction, not code.
+    The process begins with instructional design, not code.
   </p>
 
   <div class="steps">
@@ -1149,11 +1350,12 @@ footer strong {
       </strong>
 
       <p>
-        Identify the standard, skill, lesson content,
-        student need, or existing classroom material.
+        Identify the standard, student need, existing resource,
+        practice problem, lesson, assessment, or instructional challenge.
       </p>
 
     </div>
+
 
     <div class="step">
 
@@ -1162,16 +1364,17 @@ footer strong {
       </div>
 
       <strong>
-        Design the experience
+        Design & iterate
       </strong>
 
       <p>
-        Describe how students should interact with the content,
-        where they need support, and what successful learning
-        should look like.
+        Describe the desired student experience. Test each version,
+        identify weaknesses, add scaffolds, change interactions,
+        refine directions, and keep revising.
       </p>
 
     </div>
+
 
     <div class="step">
 
@@ -1180,13 +1383,13 @@ footer strong {
       </div>
 
       <strong>
-        Build, test & revise
+        Teacher remains the designer
       </strong>
 
       <p>
-        AI helps generate the webpage. The teacher tests it,
-        identifies problems, requests changes, and continues
-        revising until the activity works for students.
+        AI helps generate and revise the technology, but the teacher
+        determines the learning goal, pedagogy, feedback,
+        difficulty, content, and final classroom experience.
       </p>
 
     </div>
