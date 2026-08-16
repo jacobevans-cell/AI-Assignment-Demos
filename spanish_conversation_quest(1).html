@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spanish Conversation Quest</title>
+  <style>
+    :root{
+      --bg:#f6f8fc;
+      --panel:#ffffff;
+      --text:#1d2433;
+      --muted:#667085;
+      --border:#d9dfeb;
+      --accent:#6f42c1;
+      --accent2:#3c82f6;
+      --accent-soft:#efe9ff;
+      --good:#2e8b57;
+      --bad:#b84a4a;
+      --chip:#f2f4f7;
+      --shadow:0 10px 30px rgba(30,41,59,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:linear-gradient(180deg,#f8fbff 0%,var(--bg) 100%);
+      color:var(--text);
+      min-height:100vh;
+    }
+    button,input{font:inherit}
+    button{cursor:pointer}
+    .app{max-width:1120px;margin:auto;padding:24px}
+    .hidden{display:none!important}
+    .hero{
+      background:
+        radial-gradient(circle at 85% 20%,rgba(60,130,246,.16),transparent 28%),
+        linear-gradient(135deg,var(--accent-soft),#fff 62%);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:26px;
+      overflow:hidden;
+      position:relative;
+      box-shadow:var(--shadow)
+    }
+    .hero:after{
+      content:"¡HOLA!";
+      position:absolute;right:18px;top:0;
+      font-size:82px;font-weight:900;opacity:.055;transform:rotate(-8deg)
+    }
+    h1,h2,h3,p{margin-top:0}
+    h1{font-size:clamp(2rem,4vw,3.4rem);margin-bottom:10px}
+    h2{font-size:2rem}
+    .badge{
+      display:inline-flex;align-items:center;gap:6px;
+      background:var(--chip);border:1px solid var(--border);
+      border-radius:999px;padding:6px 10px;font-size:.83rem;font-weight:700
+    }
+    .badges{display:flex;gap:8px;flex-wrap:wrap}
+    .grid{display:grid;gap:14px}
+    .grid-4{grid-template-columns:repeat(4,1fr)}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    .card,.metric,.mission{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:20px;
+      box-shadow:var(--shadow)
+    }
+    .card{padding:20px}
+    .metric{padding:16px}
+    .metric .label{font-size:.85rem;color:var(--muted)}
+    .metric .value{font-size:1.7rem;font-weight:800;margin-top:3px}
+    .section-title{font-size:1.1rem;font-weight:800;margin-bottom:12px}
+    .mission{
+      padding:18px;text-align:left;width:100%;transition:.18s ease
+    }
+    .mission:hover{transform:translateY(-3px);border-color:var(--accent)}
+    .mission-row{display:flex;gap:14px;align-items:flex-start}
+    .mission-icon{
+      width:58px;height:58px;border-radius:16px;
+      display:grid;place-items:center;font-size:30px;
+      background:linear-gradient(135deg,var(--accent-soft),#eaf4ff)
+    }
+    .mission h3{margin-bottom:3px}
+    .muted{color:var(--muted)}
+    .small{font-size:.9rem}
+    .primary,.secondary{
+      border-radius:14px;padding:11px 16px;font-weight:800;border:1px solid transparent
+    }
+    .primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:white}
+    .secondary{background:white;border-color:var(--border);color:var(--text)}
+    .primary:hover,.secondary:hover{filter:brightness(.98);transform:translateY(-1px)}
+    .radio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .level-card{
+      border:1px solid var(--border);border-radius:16px;padding:14px;background:#fff;
+      display:flex;gap:10px;align-items:flex-start
+    }
+    .callout{
+      border:1px solid #cfd6e5;
+      background:#f7f9fd;border-radius:18px;padding:16px;line-height:1.5
+    }
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .progress{
+      height:11px;border-radius:999px;background:var(--chip);overflow:hidden
+    }
+    .progress > div{
+      height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease
+    }
+    .speaker{
+      width:78px;height:78px;border-radius:50%;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--accent-soft),#edf6ff);font-size:36px;border:1px solid var(--border)
+    }
+    .dialogue{display:flex;gap:16px;align-items:flex-start}
+    .bubble{
+      position:relative;border:1px solid var(--border);border-radius:18px;padding:16px;background:#fff;flex:1
+    }
+    .bubble:before{
+      content:"";position:absolute;left:-8px;top:26px;width:14px;height:14px;
+      background:#fff;border-left:1px solid var(--border);border-bottom:1px solid var(--border);transform:rotate(45deg)
+    }
+    .options{display:grid;gap:10px}
+    .option{
+      width:100%;text-align:left;border:1px solid var(--border);border-radius:14px;
+      padding:13px 14px;background:#fff;transition:.15s
+    }
+    .option:hover{border-color:var(--accent);background:#fbf9ff}
+    .option.correct{outline:2px solid var(--good);background:#eef8f2}
+    .option.wrong{outline:2px solid var(--bad);background:#fff0f0}
+    .word{
+      border:1px solid var(--border);border-radius:12px;padding:10px 13px;
+      background:var(--chip);user-select:none
+    }
+    button.word{cursor:pointer}
+    .word.used{opacity:.35;pointer-events:none}
+    .buildzone{
+      min-height:62px;border:2px dashed var(--border);border-radius:16px;padding:10px;
+      display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:#fbfcfe
+    }
+    .feedback{border:1px solid var(--border);border-radius:16px;padding:13px 15px}
+    .feedback.good{background:#eef8f2}
+    .feedback.bad{background:#fff0f0}
+    .footer-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+    .center{text-align:center}
+    .mission-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+    details summary{cursor:pointer;font-weight:700}
+    .pill-row{display:flex;gap:8px;flex-wrap:wrap}
+    .screen{display:grid;gap:18px}
+    @media(max-width:800px){
+      .grid-4,.grid-3,.grid-2,.radio-grid{grid-template-columns:1fr}
+      .dialogue{flex-direction:column}
+      .speaker{width:64px;height:64px}
+      .app{padding:14px}
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <section id="menuScreen" class="screen">
+    <div class="hero">
+      <span class="badge">Interactive World Language Lab</span>
+      <h1>Spanish Conversation Quest 🇪🇸</h1>
+      <p>Practice listening, vocabulary, sentence construction, reading comprehension, and real-world communication through short Spanish missions.</p>
+      <div class="badges">
+        <span class="badge">🔊 Listening</span>
+        <span class="badge">💬 Conversation</span>
+        <span class="badge">🧩 Syntax</span>
+        <span class="badge">📚 Vocabulary</span>
+        <span class="badge">🎯 Immediate Feedback</span>
+      </div>
+    </div>
+
+    <div class="grid grid-4">
+      <div class="metric"><div class="label">XP</div><div id="menuXP" class="value">0</div></div>
+      <div class="metric"><div class="label">Missions</div><div id="menuMissions" class="value">0/4</div></div>
+      <div class="metric"><div class="label">Best Streak</div><div id="menuStreak" class="value">0</div></div>
+      <div class="metric"><div class="label">Mastery</div><div id="menuMastery" class="value">0%</div></div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">1. Choose your support level</div>
+      <div class="radio-grid">
+        <label class="level-card">
+          <input type="radio" name="level" value="beginner" checked>
+          <span><strong>🌱 Beginner</strong><br><span class="small muted">English support + pronunciation help</span></span>
+        </label>
+        <label class="level-card">
+          <input type="radio" name="level" value="standard">
+          <span><strong>⭐ Standard</strong><br><span class="small muted">Spanish first + optional hints</span></span>
+        </label>
+        <label class="level-card">
+          <input type="radio" name="level" value="challenge">
+          <span><strong>🔥 Challenge</strong><br><span class="small muted">Minimal English + shuffled harder practice</span></span>
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">2. Choose a mission</div>
+      <div id="missionGrid" class="grid grid-2"></div>
+    </div>
+
+    <div class="callout">
+      <strong>Academic focus:</strong> interpretive listening and reading, interpersonal communication, vocabulary in context, syntax and word order, question-response relationships, and culturally appropriate language choices.
+    </div>
+  </section>
+
+
+  <section id="learnScreen" class="screen hidden">
+    <div class="topbar">
+      <button id="learnBackBtn" class="secondary" type="button">← Missions</button>
+      <div class="pill-row">
+        <span id="learnMissionBadge" class="badge"></span>
+        <span id="learnProgressBadge" class="badge"></span>
+      </div>
+    </div>
+
+    <div class="hero">
+      <span class="badge">WORD LEARNING LAB</span>
+      <h2 style="margin-top:10px">Study the Words Before the Mission</h2>
+      <p>Hear each word, learn what it means, see it used in context, and mark it when you know it.</p>
+    </div>
+
+    <div class="grid grid-4">
+      <div class="metric"><div class="label">Words</div><div id="learnWordCount" class="value">0</div></div>
+      <div class="metric"><div class="label">Mastered</div><div id="learnMastered" class="value">0</div></div>
+      <div class="metric"><div class="label">Need Practice</div><div id="learnPractice" class="value">0</div></div>
+      <div class="metric"><div class="label">Study Progress</div><div id="learnPercent" class="value">0%</div></div>
+    </div>
+
+    <div class="card screen">
+      <div class="mission-meta">
+        <div>
+          <div class="small muted">Vocabulary Card</div>
+          <h2 id="learnSpanish" style="margin:4px 0 0"></h2>
+        </div>
+        <span id="learnCardNumber" class="badge"></span>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="callout">
+          <div class="small muted">Meaning</div>
+          <div id="learnEnglish" style="font-size:1.35rem;font-weight:800;margin-top:5px"></div>
+        </div>
+        <div class="callout">
+          <div class="small muted">Pronunciation Help</div>
+          <div id="learnPronunciation" style="font-size:1.15rem;font-weight:800;margin-top:5px"></div>
+        </div>
+      </div>
+
+      <div class="card" style="box-shadow:none;background:#fbfcff">
+        <div class="small muted">Example in Context</div>
+        <div id="learnExampleEs" style="font-size:1.15rem;font-weight:800;margin-top:6px"></div>
+        <div id="learnExampleEn" class="small muted" style="margin-top:5px"></div>
+      </div>
+
+      <div class="badges">
+        <button id="hearWordBtn" class="secondary" type="button">🔊 Hear Word</button>
+        <button id="hearExampleBtn" class="secondary" type="button">🔊 Hear Example</button>
+        <button id="flipMeaningBtn" class="secondary" type="button">🙈 Hide / Show Meaning</button>
+      </div>
+
+      <div>
+        <div class="small muted" style="margin-bottom:7px">How well do you know this word?</div>
+        <div class="grid grid-3">
+          <button id="practiceWordBtn" class="option" type="button">🔁 Need Practice</button>
+          <button id="learningWordBtn" class="option" type="button">🧠 Learning It</button>
+          <button id="masterWordBtn" class="option" type="button">✅ I Know It</button>
+        </div>
+      </div>
+
+      <div class="progress"><div id="learnProgressBar" style="width:0%"></div></div>
+
+      <div class="footer-actions" style="justify-content:space-between">
+        <button id="prevWordBtn" class="secondary" type="button">← Previous Word</button>
+        <button id="nextWordBtn" class="primary" type="button">Next Word →</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Quick Recall Check</div>
+      <p class="small muted">After studying, test yourself without leaving learning mode.</p>
+      <div id="recallArea"></div>
+      <div class="footer-actions" style="margin-top:12px">
+        <button id="newRecallBtn" class="secondary" type="button">New Recall Word</button>
+        <button id="startMissionFromLearnBtn" class="primary" type="button">Start Conversation Mission →</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="gameScreen" class="screen hidden">
+    <div class="topbar">
+      <button id="backBtn" class="secondary" type="button">← Missions</button>
+      <div class="pill-row"><span id="levelBadge" class="badge"></span><span id="stageBadge" class="badge"></span></div>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="metric"><div class="label">XP</div><div id="xp" class="value">0</div></div>
+      <div class="metric"><div class="label">Streak</div><div id="streak" class="value">0🔥</div></div>
+      <div class="metric"><div class="label">Accuracy</div><div id="accuracy" class="value">100%</div></div>
+    </div>
+
+    <div>
+      <div class="mission-meta small"><strong id="missionTitle"></strong><span id="progressText"></span></div>
+      <div class="progress"><div id="progressBar" style="width:0%"></div></div>
+    </div>
+
+    <div class="card">
+      <div class="small muted">Learning Target</div>
+      <div id="learningTarget" style="margin-top:5px;font-weight:800"></div>
+    </div>
+
+    <div id="activityArea"></div>
+    <div id="feedback" class="feedback hidden" aria-live="polite"></div>
+    <div id="nextWrap" class="footer-actions hidden">
+      <button id="nextBtn" class="primary" type="button">Next Stage →</button>
+    </div>
+  </section>
+
+  <section id="completeScreen" class="screen hidden">
+    <div class="hero center">
+      <div style="font-size:54px">🏆</div>
+      <h2>¡Misión completada!</h2>
+      <p id="completeTitle"></p>
+    </div>
+
+    <div class="grid grid-4">
+      <div class="metric"><div class="label">Mission XP</div><div id="finalXP" class="value"></div></div>
+      <div class="metric"><div class="label">Accuracy</div><div id="finalAccuracy" class="value"></div></div>
+      <div class="metric"><div class="label">Stars</div><div id="finalStars" class="value"></div></div>
+      <div class="metric"><div class="label">Best Streak</div><div id="finalStreak" class="value"></div></div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Reflection</div>
+      <p class="small muted">Which language skill required the most thinking?</p>
+      <div id="reflectionChoices" class="grid grid-2"></div>
+      <div id="reflectionResult" style="margin-top:12px"></div>
+    </div>
+
+    <div class="footer-actions" style="justify-content:center">
+      <button id="replayBtn" class="secondary" type="button">↻ Replay Mission</button>
+      <button id="newMissionBtn" class="primary" type="button">Choose New Mission</button>
+    </div>
+  </section>
+</div>
+
+<script>
+const missions = [
+  {
+    id:'meet', icon:'👋', title:'Meet Someone', subtitle:'Greetings & introductions',
+    target:'I can greet someone, ask and answer basic personal questions, and introduce myself in Spanish.',
+    vocab:['hola','adiós','me llamo','¿cómo te llamas?','mucho gusto','bien','gracias'],
+    wordDetails:[
+      {es:'hola',en:'hello',pron:'OH-lah',exEs:'Hola, me llamo Ana.',exEn:'Hello, my name is Ana.'},
+      {es:'adiós',en:'goodbye',pron:'ah-DYOS',exEs:'Adiós. Hasta mañana.',exEn:'Goodbye. See you tomorrow.'},
+      {es:'me llamo',en:'my name is / I am called',pron:'meh YAH-moh',exEs:'Me llamo Carlos.',exEn:'My name is Carlos.'},
+      {es:'¿cómo te llamas?',en:'what is your name?',pron:'KOH-moh teh YAH-mahs',exEs:'Hola. ¿Cómo te llamas?',exEn:'Hello. What is your name?'},
+      {es:'mucho gusto',en:'nice to meet you',pron:'MOO-choh GOOS-toh',exEs:'Mucho gusto, Elena.',exEn:'Nice to meet you, Elena.'},
+      {es:'bien',en:'well / fine',pron:'byen',exEs:'Estoy bien, gracias.',exEn:'I am fine, thank you.'},
+      {es:'gracias',en:'thank you',pron:'GRAH-syahs',exEs:'Gracias por tu ayuda.',exEn:'Thank you for your help.'}
+    ],
+    stages:[
+      {type:'listen', prompt:'Listen and choose the meaning.', spanish:'¿Cómo te llamas?', answer:'What is your name?', choices:['What is your name?','How old are you?','Where are you from?','How are you?'], tip:'Cómo = how; te llamas is used when asking someone’s name.'},
+      {type:'conversation', speaker:'👧', spanish:'Hola. Me llamo Sofía. ¿Cómo te llamas?', answer:'Me llamo Mateo.', choices:['Me llamo Mateo.','Tengo hambre.','Son las dos.','Hasta mañana.'], tip:'Use “Me llamo…” to say “My name is…”'},
+      {type:'build', prompt:'Build the sentence: “Nice to meet you.”', words:['gusto','Mucho'], answer:['Mucho','gusto'], translation:'Nice to meet you.'},
+      {type:'match', prompt:'Which phrase best completes this exchange?', spanish:'A: Hola, Ana.\\nB: ________, Luis.', answer:'Hola', choices:['Hola','Adiós','Por favor','De nada'], tip:'A greeting should be answered with another appropriate greeting.'},
+      {type:'conversation', speaker:'🧑', spanish:'Mucho gusto.', answer:'Igualmente.', choices:['Igualmente.','No tengo lápiz.','Me gusta correr.','Está debajo.'], tip:'“Igualmente” means “Likewise / same here.”'}
+    ]
+  },
+  {
+    id:'cafe', icon:'☕', title:'At the Café', subtitle:'Food, drinks & polite ordering',
+    target:'I can identify common foods and use polite expressions to order something in Spanish.',
+    vocab:['quiero','quisiera','agua','jugo','pan','por favor','gracias'],
+    wordDetails:[
+      {es:'quiero',en:'I want',pron:'KYEH-roh',exEs:'Quiero agua.',exEn:'I want water.'},
+      {es:'quisiera',en:'I would like',pron:'kee-SYEH-rah',exEs:'Quisiera un jugo, por favor.',exEn:'I would like a juice, please.'},
+      {es:'agua',en:'water',pron:'AH-gwah',exEs:'El agua está fría.',exEn:'The water is cold.'},
+      {es:'jugo',en:'juice',pron:'HOO-goh',exEs:'Quiero jugo de naranja.',exEn:'I want orange juice.'},
+      {es:'pan',en:'bread',pron:'pahn',exEs:'Quisiera pan, por favor.',exEn:'I would like bread, please.'},
+      {es:'por favor',en:'please',pron:'pohr fah-VOHR',exEs:'Agua, por favor.',exEn:'Water, please.'},
+      {es:'gracias',en:'thank you',pron:'GRAH-syahs',exEs:'Gracias por la comida.',exEn:'Thank you for the food.'}
+    ],
+    stages:[
+      {type:'listen', prompt:'Listen and choose the best meaning.', spanish:'Quisiera agua, por favor.', answer:'I would like water, please.', choices:['I would like water, please.','I need the menu now.','The water is cold.','Where is the café?'], tip:'“Quisiera” is a polite way to say “I would like.”'},
+      {type:'conversation', speaker:'🧑‍🍳', spanish:'Buenas tardes. ¿Qué desea?', answer:'Quisiera un jugo, por favor.', choices:['Quisiera un jugo, por favor.','Me llamo jugo.','El jugo está escuela.','¿Cuántos años tienes?'], tip:'Choose a response that actually answers what you would like to order.'},
+      {type:'build', prompt:'Build a polite order for bread.', words:['favor','Quisiera','por','pan'], answer:['Quisiera','pan','por','favor'], translation:'I would like bread, please.'},
+      {type:'match', prompt:'Choose the most appropriate response.', spanish:'Mesero: Aquí tiene su agua.', answer:'Gracias.', choices:['Gracias.','¿Cómo te llamas?','No es azul.','Tengo doce años.'], tip:'When someone gives you your order, “Gracias” is appropriate.'},
+      {type:'conversation', speaker:'🧑‍🍳', spanish:'¿Algo más?', answer:'No, gracias.', choices:['No, gracias.','Soy de Arizona.','Está a la derecha.','Tengo un hermano.'], tip:'“¿Algo más?” asks whether you want anything else.'}
+    ]
+  },
+  {
+    id:'school', icon:'🏫', title:'Around School', subtitle:'Objects, requests & classroom language',
+    target:'I can understand and use familiar classroom words and simple requests in Spanish.',
+    vocab:['lápiz','papel','libro','mesa','silla','necesito','¿puedo?'],
+    wordDetails:[
+      {es:'lápiz',en:'pencil',pron:'LAH-pees',exEs:'Necesito un lápiz.',exEn:'I need a pencil.'},
+      {es:'papel',en:'paper',pron:'pah-PEL',exEs:'Tengo una hoja de papel.',exEn:'I have a sheet of paper.'},
+      {es:'libro',en:'book',pron:'LEE-broh',exEs:'Abre el libro.',exEn:'Open the book.'},
+      {es:'mesa',en:'table / desk',pron:'MEH-sah',exEs:'El libro está en la mesa.',exEn:'The book is on the table.'},
+      {es:'silla',en:'chair',pron:'SEE-yah',exEs:'La silla está aquí.',exEn:'The chair is here.'},
+      {es:'necesito',en:'I need',pron:'neh-seh-SEE-toh',exEs:'Necesito papel.',exEn:'I need paper.'},
+      {es:'¿puedo?',en:'may I? / can I?',pron:'PWEH-doh',exEs:'¿Puedo usar un lápiz?',exEn:'May I use a pencil?'}
+    ],
+    stages:[
+      {type:'listen', prompt:'Listen. What does the student need?', spanish:'Necesito un lápiz.', answer:'A pencil', choices:['A pencil','A book','A chair','A backpack'], tip:'“Necesito” means “I need.”'},
+      {type:'conversation', speaker:'👩‍🏫', spanish:'¿Tienes papel?', answer:'Sí, tengo papel.', choices:['Sí, tengo papel.','Me llamo papel.','Quisiera leche.','Está muy lejos.'], tip:'The question asks whether you have paper.'},
+      {type:'build', prompt:'Build: “Can I use a pencil?”', words:['un','¿Puedo','lápiz','usar'], answer:['¿Puedo','usar','un','lápiz'], translation:'Can I use a pencil?'},
+      {type:'match', prompt:'Which object is “el libro”?', spanish:'el libro', answer:'📘 Book', choices:['📘 Book','✏️ Pencil','🪑 Chair','📄 Paper'], tip:'Libro = book.'},
+      {type:'conversation', speaker:'👩‍🏫', spanish:'Abre el libro, por favor.', answer:'Open the book.', choices:['Open the book.','Close the door.','Write your name.','Pick up the pencil.'], tip:'“Abre” means “open.”'}
+    ]
+  },
+  {
+    id:'town', icon:'🗺️', title:'Around Town', subtitle:'Places & directions',
+    target:'I can identify familiar places and interpret basic location and direction phrases in Spanish.',
+    vocab:['derecha','izquierda','cerca','lejos','parque','escuela','biblioteca'],
+    wordDetails:[
+      {es:'derecha',en:'right',pron:'deh-REH-chah',exEs:'Está a la derecha.',exEn:'It is to the right.'},
+      {es:'izquierda',en:'left',pron:'ees-KYEHR-dah',exEs:'La escuela está a la izquierda.',exEn:'The school is to the left.'},
+      {es:'cerca',en:'near / close',pron:'SEHR-kah',exEs:'El parque está cerca.',exEn:'The park is nearby.'},
+      {es:'lejos',en:'far',pron:'LEH-hohs',exEs:'La biblioteca está lejos.',exEn:'The library is far away.'},
+      {es:'parque',en:'park',pron:'PAHR-keh',exEs:'Vamos al parque.',exEn:'We are going to the park.'},
+      {es:'escuela',en:'school',pron:'ehs-KWEH-lah',exEs:'La escuela está cerca.',exEn:'The school is nearby.'},
+      {es:'biblioteca',en:'library',pron:'bee-blee-oh-TEH-kah',exEs:'La biblioteca está a la derecha.',exEn:'The library is to the right.'}
+    ],
+    stages:[
+      {type:'listen', prompt:'Listen and choose the direction.', spanish:'A la derecha.', answer:'To the right', choices:['To the right','To the left','Straight ahead','Behind you'], tip:'Derecha = right.'},
+      {type:'conversation', speaker:'🧭', spanish:'¿Dónde está la biblioteca?', answer:'Está cerca del parque.', choices:['Está cerca del parque.','Me llamo biblioteca.','Quiero una pizza.','Tengo diez años.'], tip:'“¿Dónde está...?” asks where something is.'},
+      {type:'build', prompt:'Build: “The school is to the left.”', words:['izquierda','La','a','escuela','está','la'], answer:['La','escuela','está','a','la','izquierda'], translation:'The school is to the left.'},
+      {type:'match', prompt:'Choose the correct meaning.', spanish:'cerca', answer:'near', choices:['near','far','right','street'], tip:'Cerca means near or close.'},
+      {type:'conversation', speaker:'🚶', spanish:'¿Está lejos el parque?', answer:'No, está cerca.', choices:['No, está cerca.','Sí, me llamo parque.','Quisiera agua.','Tengo un libro.'], tip:'“Lejos” and “cerca” are opposites.'}
+    ]
+  }
+];
+
+const state={
+  mission:null,
+  level:'beginner',
+  stage:0,
+  xp:0,
+  missionXP:0,
+  streak:0,
+  bestStreak:0,
+  correct:0,
+  attempts:0,
+  answered:false,
+  completed:new Set(),
+  totalCorrect:0,
+  totalAttempts:0,
+  selectedWords:[],
+  learnMission:null,
+  learnIndex:0,
+  wordMastery:{},
+  meaningVisible:true
+};
+
+const $=id=>document.getElementById(id);
+
+function renderMissions(){
+  $('missionGrid').innerHTML='';
+  missions.forEach(m=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='mission';
+    b.innerHTML=`
+      <div class="mission-row">
+        <div class="mission-icon">${m.icon}</div>
+        <div style="flex:1">
+          <div class="mission-meta">
+            <h3>${m.title}</h3>
+            ${state.completed.has(m.id)?'<span class="badge">✓ Complete</span>':''}
+          </div>
+          <div class="small muted">${m.subtitle}</div>
+          <div class="small" style="margin-top:10px"><strong>Vocabulary:</strong> ${m.vocab.slice(0,4).join(' • ')}…</div>
+          <div class="badges" style="margin-top:12px">
+            <span class="badge">📖 Learn Words</span>
+            <span class="badge">🎮 Practice Mission</span>
+          </div>
+        </div>
+      </div>`;
+    b.addEventListener('click',()=>openLearning(m.id));
+    $('missionGrid').appendChild(b);
+  });
+  updateMenuStats();
+}
+
+function updateMenuStats(){
+  $('menuXP').textContent=state.xp;
+  $('menuMissions').textContent=`${state.completed.size}/4`;
+  $('menuStreak').textContent=state.bestStreak;
+  const mastery=state.totalAttempts?Math.round(state.totalCorrect/state.totalAttempts*100):0;
+  $('menuMastery').textContent=mastery+'%';
+}
+
+document.querySelectorAll('input[name="level"]').forEach(r=>{
+  r.addEventListener('change',e=>state.level=e.target.value);
+});
+
+
+function openLearning(id){
+  state.learnMission=missions.find(m=>m.id===id);
+  state.learnIndex=0;
+  state.meaningVisible=true;
+  $('menuScreen').classList.add('hidden');
+  $('gameScreen').classList.add('hidden');
+  $('completeScreen').classList.add('hidden');
+  $('learnScreen').classList.remove('hidden');
+  renderLearnCard();
+  renderRecall();
+}
+
+function masteryKey(){
+  return `${state.learnMission.id}:${state.learnIndex}`;
+}
+
+function renderLearnCard(){
+  const m=state.learnMission;
+  const w=m.wordDetails[state.learnIndex];
+  $('learnMissionBadge').textContent=`${m.icon} ${m.title}`;
+  $('learnProgressBadge').textContent=`Word ${state.learnIndex+1} of ${m.wordDetails.length}`;
+  $('learnWordCount').textContent=m.wordDetails.length;
+  $('learnSpanish').textContent=w.es;
+  $('learnEnglish').textContent=state.meaningVisible?w.en:'••••••••';
+  $('learnPronunciation').textContent=w.pron;
+  $('learnExampleEs').textContent=w.exEs;
+  $('learnExampleEn').textContent=state.meaningVisible?w.exEn:'Translation hidden';
+  $('learnCardNumber').textContent=`${state.learnIndex+1}/${m.wordDetails.length}`;
+  $('learnProgressBar').style.width=`${((state.learnIndex+1)/m.wordDetails.length)*100}%`;
+
+  const statuses=m.wordDetails.map((_,i)=>state.wordMastery[`${m.id}:${i}`]||'unseen');
+  const mastered=statuses.filter(x=>x==='mastered').length;
+  const practice=statuses.filter(x=>x==='practice').length;
+  const studied=statuses.filter(x=>x!=='unseen').length;
+  $('learnMastered').textContent=mastered;
+  $('learnPractice').textContent=practice;
+  $('learnPercent').textContent=Math.round(studied/m.wordDetails.length*100)+'%';
+
+  document.querySelectorAll('#practiceWordBtn,#learningWordBtn,#masterWordBtn').forEach(b=>{
+    b.style.outline='none';
+    b.style.background='#fff';
+  });
+
+  const current=state.wordMastery[masteryKey()];
+  if(current==='practice') $('practiceWordBtn').style.outline='2px solid #b84a4a';
+  if(current==='learning') $('learningWordBtn').style.outline='2px solid #d49a22';
+  if(current==='mastered') $('masterWordBtn').style.outline='2px solid #2e8b57';
+}
+
+function setWordStatus(status){
+  state.wordMastery[masteryKey()]=status;
+  renderLearnCard();
+}
+
+function nextLearnWord(delta){
+  const len=state.learnMission.wordDetails.length;
+  state.learnIndex=(state.learnIndex+delta+len)%len;
+  state.meaningVisible=true;
+  renderLearnCard();
+}
+
+function renderRecall(){
+  const m=state.learnMission;
+  const idx=Math.floor(Math.random()*m.wordDetails.length);
+  const correct=m.wordDetails[idx];
+  const distractors=shuffle(m.wordDetails.filter((_,i)=>i!==idx)).slice(0,3);
+  const choices=shuffle([correct,...distractors]);
+
+  $('recallArea').innerHTML=`
+    <div class="callout">
+      <div class="small muted">What does this mean?</div>
+      <div style="font-size:1.35rem;font-weight:800;margin-top:6px">${correct.es}</div>
+      <div class="badges" style="margin-top:12px"><button type="button" class="secondary recallSpeak">🔊 Hear It</button></div>
+    </div>
+    <div id="recallOptions" class="options" style="margin-top:12px"></div>
+    <div id="recallFeedback" class="feedback hidden" style="margin-top:12px"></div>`;
+
+  $('recallArea').querySelector('.recallSpeak').addEventListener('click',()=>speak(correct.es));
+  const box=$('recallOptions');
+  choices.forEach(c=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='option';
+    b.textContent=c.en;
+    b.addEventListener('click',()=>{
+      box.querySelectorAll('button').forEach(x=>x.disabled=true);
+      if(c.es===correct.es){
+        b.classList.add('correct');
+        $('recallFeedback').className='feedback good';
+        $('recallFeedback').innerHTML=`<strong>✓ Correct.</strong> ${correct.es} means <strong>${correct.en}</strong>.`;
+      }else{
+        b.classList.add('wrong');
+        [...box.children].forEach(x=>{if(x.textContent===correct.en)x.classList.add('correct')});
+        $('recallFeedback').className='feedback bad';
+        $('recallFeedback').innerHTML=`<strong>Keep studying.</strong> ${correct.es} means <strong>${correct.en}</strong>.`;
+      }
+    });
+    box.appendChild(b);
+  });
+}
+
+$('learnBackBtn').addEventListener('click',showMenu);
+$('hearWordBtn').addEventListener('click',()=>speak(state.learnMission.wordDetails[state.learnIndex].es));
+$('hearExampleBtn').addEventListener('click',()=>speak(state.learnMission.wordDetails[state.learnIndex].exEs));
+$('flipMeaningBtn').addEventListener('click',()=>{
+  state.meaningVisible=!state.meaningVisible;
+  renderLearnCard();
+});
+$('practiceWordBtn').addEventListener('click',()=>setWordStatus('practice'));
+$('learningWordBtn').addEventListener('click',()=>setWordStatus('learning'));
+$('masterWordBtn').addEventListener('click',()=>setWordStatus('mastered'));
+$('prevWordBtn').addEventListener('click',()=>nextLearnWord(-1));
+$('nextWordBtn').addEventListener('click',()=>nextLearnWord(1));
+$('newRecallBtn').addEventListener('click',renderRecall);
+$('startMissionFromLearnBtn').addEventListener('click',()=>startMission(state.learnMission.id));
+
+function startMission(id){
+  state.mission=missions.find(m=>m.id===id);
+  state.stage=0;
+  state.missionXP=0;
+  state.streak=0;
+  state.correct=0;
+  state.attempts=0;
+  state.answered=false;
+  $('menuScreen').classList.add('hidden');
+  $('completeScreen').classList.add('hidden');
+  $('gameScreen').classList.remove('hidden');
+  renderStage();
+}
+
+function renderStage(){
+  const m=state.mission;
+  const s=m.stages[state.stage];
+  state.answered=false;
+  state.selectedWords=[];
+
+  $('feedback').classList.add('hidden');
+  $('feedback').classList.remove('good','bad');
+  $('nextWrap').classList.add('hidden');
+  $('missionTitle').textContent=`${m.icon} ${m.title}`;
+  $('learningTarget').textContent=m.target;
+  $('levelBadge').textContent={
+    beginner:'🌱 Beginner',
+    standard:'⭐ Standard',
+    challenge:'🔥 Challenge'
+  }[state.level];
+  $('stageBadge').textContent=`Stage ${state.stage+1} of ${m.stages.length}`;
+  $('progressText').textContent=`${state.stage}/${m.stages.length} complete`;
+  $('progressBar').style.width=`${state.stage/m.stages.length*100}%`;
+
+  updateStats();
+
+  if(s.type==='listen') renderListen(s);
+  else if(s.type==='conversation') renderConversation(s);
+  else if(s.type==='build') renderBuild(s);
+  else renderMatch(s);
+}
+
+function supportText(s){
+  if(state.level==='beginner'){
+    return s.tip?`<div class="callout small"><strong>Language clue:</strong> ${s.tip}</div>`:'';
+  }
+  if(state.level==='standard'){
+    return s.tip?`<details><summary>Need a hint?</summary><div class="small" style="margin-top:8px">${s.tip}</div></details>`:'';
+  }
+  return '';
+}
+
+function audioButton(text){
+  return `<button type="button" class="secondary speakBtn" data-say="${text.replaceAll('"','&quot;')}">🔊 Hear Spanish</button>`;
+}
+
+function attachSpeak(){
+  document.querySelectorAll('.speakBtn').forEach(b=>{
+    b.addEventListener('click',()=>speak(b.dataset.say));
+  });
+}
+
+function speak(text){
+  if('speechSynthesis' in window){
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='es-MX';
+    u.rate=.82;
+    speechSynthesis.speak(u);
+  }else{
+    alert('Speech playback is not supported in this browser.');
+  }
+}
+
+function renderListen(s){
+  $('activityArea').innerHTML=`
+    <div class="card screen">
+      <div>
+        <span class="badge">LISTEN & INTERPRET</span>
+        <h3 style="margin-top:10px">${s.prompt}</h3>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">🎧</div>
+        <div>
+          ${audioButton(s.spanish)}
+          ${state.level==='beginner'?`<div class="small" style="margin-top:8px">Spanish: <strong>${s.spanish}</strong></div>`:''}
+        </div>
+      </div>
+      <div id="options" class="options"></div>
+      ${supportText(s)}
+    </div>`;
+  renderOptions(s);
+  attachSpeak();
+}
+
+function renderConversation(s){
+  $('activityArea').innerHTML=`
+    <div class="card screen">
+      <div>
+        <span class="badge">CONVERSATION</span>
+        <h3 style="margin-top:10px">Choose the best response.</h3>
+      </div>
+      <div class="dialogue">
+        <div class="speaker">${s.speaker}</div>
+        <div class="bubble">
+          <div style="font-weight:800">${s.spanish}</div>
+          ${state.level==='beginner'?'<div class="small muted" style="margin-top:5px">Use context to choose the response that makes sense.</div>':''}
+          <div style="margin-top:12px">${audioButton(s.spanish)}</div>
+        </div>
+      </div>
+      <div id="options" class="options"></div>
+      ${supportText(s)}
+    </div>`;
+  renderOptions(s);
+  attachSpeak();
+}
+
+function renderMatch(s){
+  $('activityArea').innerHTML=`
+    <div class="card screen">
+      <div>
+        <span class="badge">VOCABULARY IN CONTEXT</span>
+        <h3 style="margin-top:10px">${s.prompt}</h3>
+      </div>
+      <div class="callout">
+        <div style="white-space:pre-line;font-weight:800">${s.spanish}</div>
+        ${s.spanish?`<div style="margin-top:12px">${audioButton(s.spanish)}</div>`:''}
+      </div>
+      <div id="options" class="options"></div>
+      ${supportText(s)}
+    </div>`;
+  renderOptions(s);
+  attachSpeak();
+}
+
+function renderOptions(s){
+  const box=$('options');
+  let choices=[...s.choices];
+  if(state.level==='challenge') choices=shuffle(choices);
+
+  choices.forEach(c=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='option';
+    b.textContent=c;
+    b.addEventListener('click',()=>checkChoice(b,c,s.answer,s));
+    box.appendChild(b);
+  });
+}
+
+function renderBuild(s){
+  const shuffled=shuffle([...s.words]);
+  $('activityArea').innerHTML=`
+    <div class="card screen">
+      <div>
+        <span class="badge">BUILD THE SENTENCE</span>
+        <h3 style="margin-top:10px">${s.prompt}</h3>
+        ${state.level==='beginner'?`<div class="small muted">English: ${s.translation}</div>`:''}
+      </div>
+      <div>
+        <div class="small" style="margin-bottom:7px">Your sentence</div>
+        <div id="buildZone" class="buildzone">
+          <span class="small muted">Select words below in the correct order.</span>
+        </div>
+      </div>
+      <div>
+        <div class="small" style="margin-bottom:7px">Word bank</div>
+        <div id="wordBank" class="badges"></div>
+      </div>
+      <div class="badges">
+        <button id="undoWord" type="button" class="secondary">↶ Undo</button>
+        <button id="clearWords" type="button" class="secondary">Clear</button>
+        <button id="checkBuild" type="button" class="primary">Check Sentence</button>
+      </div>
+    </div>`;
+
+  const bank=$('wordBank');
+  shuffled.forEach((w,i)=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='word';
+    b.textContent=w;
+    b.dataset.i=i;
+    b.addEventListener('click',()=>{
+      if(state.answered)return;
+      b.classList.add('used');
+      state.selectedWords.push({word:w,el:b});
+      drawBuild();
+    });
+    bank.appendChild(b);
+  });
+
+  $('undoWord').addEventListener('click',()=>{
+    const last=state.selectedWords.pop();
+    if(last){
+      last.el.classList.remove('used');
+      drawBuild();
+    }
+  });
+
+  $('clearWords').addEventListener('click',()=>{
+    state.selectedWords.forEach(x=>x.el.classList.remove('used'));
+    state.selectedWords=[];
+    drawBuild();
+  });
+
+  $('checkBuild').addEventListener('click',()=>checkBuild(s));
+}
+
+function drawBuild(){
+  const z=$('buildZone');
+  z.innerHTML='';
+  if(!state.selectedWords.length){
+    z.innerHTML='<span class="small muted">Select words below in the correct order.</span>';
+    return;
+  }
+  state.selectedWords.forEach(x=>{
+    const span=document.createElement('span');
+    span.className='word';
+    span.textContent=x.word;
+    z.appendChild(span);
+  });
+}
+
+function checkBuild(s){
+  if(state.answered || !state.selectedWords.length)return;
+  const attempt=state.selectedWords.map(x=>x.word);
+  const ok=JSON.stringify(attempt)===JSON.stringify(s.answer);
+  record(ok,s,`Correct word order: <strong>${s.answer.join(' ')}</strong>`);
+}
+
+function checkChoice(button,choice,answer,s){
+  if(state.answered)return;
+  document.querySelectorAll('.option').forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===answer)b.classList.add('correct');
+  });
+  if(choice!==answer)button.classList.add('wrong');
+  record(choice===answer,s,`Best answer: <strong>${answer}</strong>`);
+}
+
+function record(ok,s,explain){
+  state.answered=true;
+  state.attempts++;
+  state.totalAttempts++;
+
+  if(ok){
+    state.correct++;
+    state.totalCorrect++;
+    state.streak++;
+    state.bestStreak=Math.max(state.bestStreak,state.streak);
+
+    const gain=state.level==='challenge'?120:state.level==='standard'?100:80;
+    state.xp+=gain;
+    state.missionXP+=gain;
+    showFeedback(true,`¡Excelente! +${gain} XP. ${explain}`);
+  }else{
+    state.streak=0;
+    showFeedback(false,`Not quite. ${explain}${s.tip?` ${s.tip}`:''}`);
+  }
+
+  updateStats();
+  $('nextWrap').classList.remove('hidden');
+}
+
+function showFeedback(ok,msg){
+  const f=$('feedback');
+  f.classList.remove('hidden','good','bad');
+  f.classList.add(ok?'good':'bad');
+  f.innerHTML=`<strong>${ok?'✓ Correct':'↻ Learn from it'}</strong><div style="margin-top:4px">${msg}</div>`;
+}
+
+function updateStats(){
+  $('xp').textContent=state.xp;
+  $('streak').textContent=state.streak+'🔥';
+  $('accuracy').textContent=(state.attempts?Math.round(state.correct/state.attempts*100):100)+'%';
+}
+
+$('nextBtn').addEventListener('click',()=>{
+  state.stage++;
+  if(state.stage>=state.mission.stages.length) completeMission();
+  else renderStage();
+});
+
+$('backBtn').addEventListener('click',showMenu);
+
+function completeMission(){
+  state.completed.add(state.mission.id);
+  $('gameScreen').classList.add('hidden');
+  $('completeScreen').classList.remove('hidden');
+
+  const acc=Math.round(state.correct/state.attempts*100);
+  const stars=acc>=90?'⭐⭐⭐':acc>=70?'⭐⭐':'⭐';
+
+  $('completeTitle').textContent=`${state.mission.title} • ${state.mission.target}`;
+  $('finalXP').textContent=state.missionXP;
+  $('finalAccuracy').textContent=acc+'%';
+  $('finalStars').textContent=stars;
+  $('finalStreak').textContent=state.bestStreak;
+
+  const reflections=['🔊 Listening','💬 Choosing a response','🧩 Building sentences','📚 Vocabulary'];
+  const box=$('reflectionChoices');
+  box.innerHTML='';
+  $('reflectionResult').textContent='';
+
+  reflections.forEach(r=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='option';
+    b.textContent=r;
+    b.addEventListener('click',()=>{
+      $('reflectionResult').innerHTML=`You identified <strong>${r}</strong> as your biggest thinking challenge. Knowing which skill needs attention helps you choose what to practice next.`;
+    });
+    box.appendChild(b);
+  });
+}
+
+function showMenu(){
+  $('gameScreen').classList.add('hidden');
+  $('completeScreen').classList.add('hidden');
+  $('learnScreen').classList.add('hidden');
+  $('menuScreen').classList.remove('hidden');
+  renderMissions();
+}
+
+$('newMissionBtn').addEventListener('click',showMenu);
+$('replayBtn').addEventListener('click',()=>startMission(state.mission.id));
+
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+renderMissions();
+</script>
+</body>
+</html>

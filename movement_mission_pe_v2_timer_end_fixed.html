@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Movement Mission - Interactive PE Training</title>
+<style>
+:root{
+  --bg:#081427; --panel:#10223d; --panel2:#173152; --text:#f6fbff; --muted:#b9c9da;
+  --accent:#44d7ff; --accent2:#8dff9b; --gold:#ffd75b; --danger:#ff6b6b; --purple:#b88cff;
+  --shadow:0 18px 50px rgba(0,0,0,.28); --radius:24px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:
+radial-gradient(circle at 20% 10%,rgba(68,215,255,.13),transparent 35%),
+radial-gradient(circle at 80% 0%,rgba(184,140,255,.12),transparent 35%),
+linear-gradient(160deg,#07101e,#0b1c33 55%,#07101e);color:var(--text);min-height:100vh}
+button,input,select,textarea{font:inherit}
+button{border:0;cursor:pointer}
+.app{max-width:1180px;margin:0 auto;padding:22px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.03em}
+.brand-badge{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,var(--accent),var(--purple));box-shadow:var(--shadow)}
+.small{font-size:.9rem;color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--text);font-weight:800;font-size:.85rem}
+.screen{display:none}.screen.active{display:block}
+.hero{padding:38px;border-radius:32px;background:linear-gradient(145deg,rgba(23,49,82,.95),rgba(11,28,51,.96));box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.08)}
+.eyebrow{font-weight:900;color:var(--accent2);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem}
+h1{font-size:clamp(2.4rem,7vw,5.4rem);line-height:.92;margin:12px 0 16px;letter-spacing:-.05em}
+h2{font-size:clamp(1.7rem,4vw,2.5rem);margin:8px 0 16px}
+h3{margin:0 0 10px}.lead{font-size:1.1rem;color:var(--muted);max-width:760px;line-height:1.6}
+.grid{display:grid;gap:16px}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-6{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:linear-gradient(145deg,rgba(16,34,61,.96),rgba(12,27,48,.96));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.select-card{transition:.2s transform,.2s border,.2s background;min-height:150px;text-align:left;color:var(--text);width:100%}
+.select-card:hover,.select-card.selected{transform:translateY(-3px);border-color:var(--accent);background:linear-gradient(145deg,rgba(24,61,96,.98),rgba(15,40,67,.98))}
+.select-card .icon{font-size:2.2rem}.select-card strong{display:block;font-size:1.15rem;margin:8px 0 5px}.select-card span{color:var(--muted);line-height:1.45}
+.field{display:flex;flex-direction:column;gap:8px}.field label{font-weight:800}.field input,.field select,.field textarea{background:#09182b;color:var(--text);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}.btn{padding:14px 20px;border-radius:14px;font-weight:900;background:linear-gradient(135deg,var(--accent),#58ffa8);color:#04111f;box-shadow:0 8px 24px rgba(68,215,255,.18)}.btn.secondary{background:#1b3558;color:var(--text);box-shadow:none;border:1px solid rgba(255,255,255,.1)}.btn.gold{background:linear-gradient(135deg,var(--gold),#ff9e57)}.btn.danger{background:#4c2430;color:#fff}.btn:disabled{opacity:.45;cursor:not-allowed}
+.section-title{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:26px 0 14px}.section-title p{margin:0;color:var(--muted)}
+.choice-row{display:flex;flex-wrap:wrap;gap:10px}.choice{padding:11px 15px;border-radius:999px;background:#142a49;color:var(--text);border:1px solid rgba(255,255,255,.08);font-weight:800}.choice.selected{background:var(--accent);color:#03111e;border-color:transparent}
+.setup-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:15px}.mini-stat{padding:14px;border-radius:16px;background:#0a1a30}.mini-stat b{display:block;font-size:1.1rem;margin-top:3px}
+.progress-shell{height:16px;background:#081528;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .35s ease}
+.station-wrap{display:grid;grid-template-columns:1.4fr .6fr;gap:18px}.station-card{min-height:620px;display:flex;flex-direction:column}.station-icon{font-size:5.8rem;line-height:1}.station-name{font-size:clamp(2.2rem,6vw,4.5rem);margin:6px 0 8px;letter-spacing:-.04em}.instruction{font-size:1.2rem;line-height:1.55;color:#eaf5ff;max-width:780px}.goal-box{padding:18px;border-radius:18px;background:rgba(68,215,255,.09);border:1px solid rgba(68,215,255,.26);margin:18px 0}.goal-box .goal{font-size:1.25rem;font-weight:900}.tip{padding:16px;border-radius:16px;background:rgba(255,215,91,.08);border:1px solid rgba(255,215,91,.22);color:#fff4c7}.timer{font-variant-numeric:tabular-nums;font-size:clamp(4rem,14vw,9rem);font-weight:1000;letter-spacing:-.08em;text-align:center;margin:auto 0 8px}.timer-label{text-align:center;font-size:1.2rem;font-weight:900;color:var(--accent2)}
+.side-panel{display:flex;flex-direction:column;gap:14px}.stat{padding:18px;border-radius:18px;background:#0b1a30}.stat .value{font-size:2rem;font-weight:1000}.stat .label{color:var(--muted);font-size:.9rem}.cue{font-size:1.05rem;font-weight:800;color:var(--gold)}
+.rest-screen{text-align:center;padding:44px}.rest-icon{font-size:5rem}.rest-next{font-size:1.3rem;color:var(--muted)}
+.question{font-size:1.25rem;font-weight:900;margin-bottom:16px}.answer{display:block;width:100%;padding:14px 16px;margin:9px 0;background:#132b49;color:#fff;border-radius:14px;text-align:left;font-weight:800;border:1px solid rgba(255,255,255,.08)}.answer.correct{background:#194b35}.answer.wrong{background:#5a2530}
+.badges{display:flex;flex-wrap:wrap;gap:10px}.badge{padding:10px 12px;border-radius:14px;background:#122844;border:1px solid rgba(255,255,255,.08);font-size:.9rem}.badge.locked{opacity:.35;filter:grayscale(1)}
+.result-big{text-align:center;font-size:4.7rem;margin:10px 0}.score{font-size:3rem;font-weight:1000;text-align:center;color:var(--gold)}
+.mode-tabs{display:flex;gap:10px;margin:18px 0}.mode-tab{flex:1;padding:13px;border-radius:14px;background:#142a49;color:#fff;font-weight:900}.mode-tab.active{background:var(--accent);color:#03111e}
+.notice{padding:14px 16px;border-radius:16px;background:rgba(184,140,255,.1);border:1px solid rgba(184,140,255,.2);color:#ece3ff}
+.footer{text-align:center;color:#7891aa;padding:30px 0 10px;font-size:.85rem}
+@media(max-width:850px){.grid-3,.grid-6,.grid-2,.station-wrap,.setup-summary{grid-template-columns:1fr}.hero{padding:24px}.station-card{min-height:auto}.timer{margin:25px 0}.side-panel{display:grid;grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.app{padding:12px}.topbar{align-items:flex-start}.brand .small{display:none}.side-panel{grid-template-columns:1fr}.btn{width:100%}.hero{border-radius:22px}.station-icon{font-size:4.5rem}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand"><div class="brand-badge">🏃</div><div>MOVEMENT MISSION<div class="small">Interactive K–8 PE Training</div></div></div>
+    <div class="pill" id="topProgress">0 XP</div>
+  </div>
+
+  <section id="home" class="screen active">
+    <div class="hero">
+      <div class="eyebrow">Choose. Move. Improve.</div>
+      <h1>Movement<br>Mission</h1>
+      <p class="lead">Build a personalized movement circuit, follow coach cues, beat the timer, reflect on your effort, and grow your movement record. The screen does the organizing. You do the moving.</p>
+      <div class="actions">
+        <button class="btn" onclick="showScreen('setup')">Start Student Mission</button>
+        <button class="btn secondary" onclick="showTeacher()">Teacher Quick-Launch</button>
+        <button class="btn secondary" onclick="showScreen('records'); renderRecords()">Movement Record</button>
+      </div>
+    </div>
+    <div class="section-title"><div><h2>Mission Types</h2><p>Different training flavors, same focus on purposeful movement.</p></div></div>
+    <div class="grid grid-6" id="homeMissionGrid"></div>
+  </section>
+
+  <section id="setup" class="screen">
+    <div class="card">
+      <div class="eyebrow">Student Mission Setup</div><h2>Build Your Training Mission</h2>
+      <div class="grid grid-2">
+        <div class="field"><label for="studentName">Student Name</label><input id="studentName" placeholder="Enter first name" maxlength="24"></div>
+        <div class="field"><label for="gradeBand">Grade Band</label><select id="gradeBand"><option value="K-2">K–2</option><option value="3-5" selected>3–5</option><option value="6-8">6–8</option></select></div>
+      </div>
+    </div>
+
+    <div class="section-title"><div><h2>1. Choose Your Mission</h2><p>Or choose Mystery Mission for a mixed circuit.</p></div></div>
+    <div class="grid grid-6" id="missionGrid"></div>
+
+    <div class="section-title"><div><h2>2. Choose Your Challenge</h2><p>Difficulty changes work time and, when appropriate, the movement itself.</p></div></div>
+    <div class="grid grid-3" id="difficultyGrid"></div>
+
+    <div class="section-title"><div><h2>3. Equipment & Space</h2></div></div>
+    <div class="card grid grid-2">
+      <div><h3>Equipment Available</h3><div class="choice-row" id="equipmentChoices"></div></div>
+      <div><h3>Space Available</h3><div class="choice-row" id="spaceChoices"></div></div>
+    </div>
+
+    <div class="section-title"><div><h2>4. Movement Options</h2></div></div>
+    <div class="card">
+      <label class="choice" style="display:inline-flex;align-items:center;gap:10px"><input id="adaptiveToggle" type="checkbox"> Use low-impact / adapted movement options when available</label>
+      <div class="notice" style="margin-top:14px">Safety: Check your space, keep distance from others, move under control, and stop if something hurts. Always follow your teacher’s directions.</div>
+      <div class="actions"><button class="btn" onclick="startStudentMission(false)">Create My Mission</button><button class="btn gold" onclick="startStudentMission(true)">🎲 Surprise Me</button><button class="btn secondary" onclick="showScreen('home')">Back</button></div>
+    </div>
+  </section>
+
+  <section id="teacher" class="screen">
+    <div class="card"><div class="eyebrow">Teacher Mode</div><h2>Quick-Launch Class Circuit</h2><p class="lead">Set one circuit for the whole class. Great for PE, classroom movement breaks, stations, or projected whole-group use.</p>
+      <div class="grid grid-3">
+        <div class="field"><label>Grade Band</label><select id="tGrade"><option>K-2</option><option selected>3-5</option><option>6-8</option></select></div>
+        <div class="field"><label>Mission Type</label><select id="tMission"></select></div>
+        <div class="field"><label>Stations</label><select id="tStations"><option>3</option><option selected>5</option><option>8</option><option>10</option></select></div>
+        <div class="field"><label>Work Time</label><select id="tWork"><option value="20">20 sec</option><option value="30" selected>30 sec</option><option value="45">45 sec</option><option value="60">60 sec</option></select></div>
+        <div class="field"><label>Rest Time</label><select id="tRest"><option value="10">10 sec</option><option value="15" selected>15 sec</option><option value="20">20 sec</option><option value="30">30 sec</option></select></div>
+        <div class="field"><label>Difficulty</label><select id="tDifficulty"><option>Explorer</option><option selected>Athlete</option><option>Elite</option></select></div>
+        <div class="field"><label>Equipment</label><select id="tEquipment"><option>No Equipment</option><option>Ball</option><option>Cones</option><option>Jump Rope</option><option>Beanbag</option><option>Hula Hoop</option></select></div>
+        <div class="field"><label>Space</label><select id="tSpace"><option>Small Space</option><option selected>Gym Space</option><option>Outdoor Space</option></select></div>
+        <div class="field"><label>Adaptation</label><select id="tAdapted"><option value="false" selected>Standard</option><option value="true">Low-Impact / Adapted</option></select></div>
+      </div>
+      <div class="actions"><button class="btn" onclick="startTeacherMission()">Create Class Mission</button><button class="btn secondary" onclick="showScreen('home')">Back</button></div>
+    </div>
+  </section>
+
+  <section id="station" class="screen">
+    <div class="progress-shell"><div class="progress-fill" id="missionProgress"></div></div>
+    <div style="display:flex;justify-content:space-between;gap:10px;margin:10px 0 16px"><div class="pill" id="stationCounter">Station 1 of 5</div><div class="pill" id="missionLabel">Mission</div></div>
+    <div class="station-wrap">
+      <div class="card station-card">
+        <div class="station-icon" id="stationIcon">🏃</div>
+        <div class="eyebrow" id="stationCategory">AGILITY</div>
+        <div class="station-name" id="stationName">Quick Feet</div>
+        <div class="instruction" id="stationInstruction"></div>
+        <div class="goal-box"><div class="small">YOUR GOAL</div><div class="goal" id="stationGoal"></div></div>
+        <div class="tip"><strong>Technique Tip:</strong> <span id="stationTip"></span></div>
+        <div class="timer" id="timer">00:30</div>
+        <div class="timer-label" id="timerLabel">READY WHEN YOU ARE</div>
+        <div class="actions" style="justify-content:center">
+          <button class="btn secondary" onclick="speakCurrent()">🔊 Hear Directions</button>
+          <button class="btn" id="startTimerBtn" onclick="startStationTimer()">▶ Start Station</button>
+          <button class="btn secondary" id="completeBtn" onclick="completeStation()" disabled>Complete Station</button>
+        </div>
+      </div>
+      <div class="side-panel">
+        <div class="stat"><div class="label">MISSION XP</div><div class="value" id="missionXP">0</div></div>
+        <div class="stat"><div class="label">CHALLENGE</div><div class="value" style="font-size:1.35rem" id="difficultyLabel">Athlete</div></div>
+        <div class="stat"><div class="label">GRADE</div><div class="value" style="font-size:1.35rem" id="gradeLabel">3–5</div></div>
+        <div class="stat"><div class="label">COACH CUE</div><div class="cue" id="coachCue">Control first. Speed second.</div></div>
+        <button class="btn secondary" onclick="toggleAdapted()" id="adaptBtn">Use Adapted Option</button>
+        <button class="btn danger" onclick="endMissionEarly()">End Mission</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="rest" class="screen">
+    <div class="card rest-screen"><div class="rest-icon">💧</div><div class="eyebrow">Station Complete</div><h2>Rest & Reset</h2><div class="timer" id="restTimer">00:15</div><div class="rest-next">Next: <strong id="nextStationName"></strong></div><p class="small">Grab water if needed. Check your space and get ready.</p><button class="btn" id="skipRestBtn" onclick="skipRest()">Skip Rest</button></div>
+  </section>
+
+  <section id="coachQuestion" class="screen">
+    <div class="card"><div class="eyebrow">Quick Coach Question</div><h2>Movement Knowledge</h2><div class="question" id="questionText"></div><div id="answers"></div><div id="questionFeedback" class="notice" style="display:none;margin-top:14px"></div><div class="actions"><button class="btn" id="continueQuestionBtn" onclick="continueAfterQuestion()" style="display:none">Continue Mission</button></div></div>
+  </section>
+
+  <section id="reflection" class="screen">
+    <div class="card"><div class="eyebrow">Mission Reflection</div><h2>How Did That Feel?</h2>
+      <div class="grid grid-3" id="feelGrid"></div>
+      <div class="section-title"><div><h2>Which skill did you use the most?</h2></div></div>
+      <div class="choice-row" id="skillChoices"></div>
+      <div class="section-title"><div><h2>Rate Your Movement</h2></div></div>
+      <div class="grid grid-3"><div class="field"><label>Control</label><select id="rControl"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></div><div class="field"><label>Effort</label><select id="rEffort"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></div><div class="field"><label>Focus</label><select id="rFocus"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></div></div>
+      <div class="field" style="margin-top:16px"><label>Optional: What did you improve today?</label><textarea id="rNote" rows="3" placeholder="Example: I stayed more balanced during the reaches."></textarea></div>
+      <div class="actions"><button class="btn" onclick="finishMission()">Finish Mission</button></div>
+    </div>
+  </section>
+
+  <section id="complete" class="screen">
+    <div class="card"><div class="result-big">🏆</div><div class="eyebrow" style="text-align:center">Mission Complete</div><h2 style="text-align:center" id="completeTitle">Great work!</h2><div class="score" id="completeXP">0 XP</div>
+      <div class="setup-summary"><div class="mini-stat"><span class="small">Stations</span><b id="completeStations">0</b></div><div class="mini-stat"><span class="small">Mission</span><b id="completeMission">—</b></div><div class="mini-stat"><span class="small">Challenge</span><b id="completeDifficulty">—</b></div><div class="mini-stat"><span class="small">Feeling</span><b id="completeFeeling">—</b></div></div>
+      <div class="section-title"><div><h2>Achievements</h2><p>Progress is based on participation and completed movement, not being faster than somebody else.</p></div></div><div class="badges" id="earnedBadges"></div>
+      <div class="actions" style="justify-content:center"><button class="btn" onclick="showScreen('setup')">New Mission</button><button class="btn gold" onclick="quickRandomAgain()">🎲 Random Mission</button><button class="btn secondary" onclick="showScreen('home')">Main Menu</button></div>
+    </div>
+  </section>
+
+  <section id="records" class="screen">
+    <div class="card"><div class="eyebrow">Saved on This Device</div><h2>Movement Record</h2><div class="setup-summary" id="recordStats"></div><div class="section-title"><div><h2>Badges</h2></div></div><div class="badges" id="recordBadges"></div><div class="actions"><button class="btn secondary" onclick="showScreen('home')">Back</button><button class="btn danger" onclick="resetRecords()">Reset Local Progress</button></div></div>
+  </section>
+
+  <div class="footer">Movement Mission • single-file browser activity • progress saves only on this device</div>
+</div>
+<script>
+const missions = {
+  "Speed & Agility": {icon:"🏃", desc:"Quick feet, reaction, direction changes, and controlled speed.", categories:["Agility","Cardio"]},
+  "Strength": {icon:"💪", desc:"Bodyweight strength, posture, and muscular endurance.", categories:["Strength"]},
+  "Balance & Control": {icon:"⚖️", desc:"Stability, body awareness, and controlled movement.", categories:["Balance","Coordination"]},
+  "Cardio Challenge": {icon:"❤️", desc:"Continuous movement designed to raise your heart rate.", categories:["Cardio","Agility"]},
+  "Coordination": {icon:"🎯", desc:"Hand-eye, foot-eye, rhythm, and cross-body movement.", categories:["Coordination","Balance"]},
+  "Mystery Mission": {icon:"🎲", desc:"A randomized mix from every movement category.", categories:["Agility","Cardio","Strength","Balance","Coordination"]}
+};
+const difficulties = {
+  Explorer:{icon:"🌱", desc:"Simpler movement and shorter work periods.", time:20},
+  Athlete:{icon:"🔥", desc:"Standard grade-level challenge.", time:30},
+  Elite:{icon:"⚡", desc:"Longer work periods and advanced variations.", time:45}
+};
+const equipmentList=["No Equipment","Ball","Cones","Jump Rope","Beanbag","Hula Hoop"];
+const spaces=["Small Space","Gym Space","Outdoor Space"];
+const movements = [
+ {name:"Quick Feet",icon:"⚡",cat:"Agility",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Stand tall with soft knees and make tiny fast steps in place.",adapt:"March quickly in place while pumping your arms.",elite:"Stay low and alternate five seconds fast, five seconds controlled.",tip:"Stay light on your feet and keep your knees soft.",cue:"Fast feet. Quiet landing."},
+ {name:"Side Shuffle",icon:"↔️",cat:"Agility",equip:"No Equipment",spaces:["Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Face forward and shuffle side to side without crossing your feet.",adapt:"Take controlled side steps instead of shuffling.",elite:"Touch the floor lightly at each direction change.",tip:"Stay low and keep your toes facing forward.",cue:"Control first. Speed second."},
+ {name:"Line Hops",icon:"〰️",cat:"Agility",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Imagine a line on the floor and hop gently from side to side over it.",adapt:"Step side to side across the line without jumping.",elite:"Use quick two-foot hops and keep your landings quiet.",tip:"Bend your knees when you land.",cue:"Soft landings every time."},
+ {name:"High Knees",icon:"🏃",cat:"Cardio",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Run or march in place while lifting your knees toward your waist.",adapt:"Power march in place with tall posture.",elite:"Drive your knees quickly and pump your arms with control.",tip:"Keep your chest tall instead of leaning backward.",cue:"Tall body. Active arms."},
+ {name:"Jumping Jacks",icon:"✳️",cat:"Cardio",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Jump your feet apart as your arms rise, then return to the starting position.",adapt:"Step one foot out at a time while raising your arms.",elite:"Keep a steady rhythm and land softly every repetition.",tip:"Stay under control and keep your knees slightly bent.",cue:"Rhythm beats rushing."},
+ {name:"Invisible Jump Rope",icon:"🪢",cat:"Cardio",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Pretend to turn a jump rope while making small controlled hops.",adapt:"Step heel-to-toe while circling your hands like a rope.",elite:"Alternate feet as if running through the rope.",tip:"Keep hops small and land on the balls of your feet.",cue:"Small hops. Steady beat."},
+ {name:"Mountain Climbers",icon:"⛰️",cat:"Cardio",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["3-5","6-8"],base:"From a strong plank, bring one knee toward your chest, then switch.",adapt:"Stand tall and alternate knee drives toward your chest.",elite:"Increase the pace while keeping your hips steady.",tip:"Keep your shoulders over your hands and your middle strong.",cue:"Strong core. Smooth switches."},
+ {name:"Squats",icon:"🦵",cat:"Strength",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Sit your hips back like you are reaching for a chair, then stand tall.",adapt:"Use a smaller squat range and move slowly.",elite:"Pause for one second at the bottom before standing.",tip:"Keep your chest tall and your knees tracking over your feet.",cue:"Hips back. Chest tall."},
+ {name:"Wall Sit",icon:"🧱",cat:"Strength",equip:"No Equipment",spaces:["Small Space","Gym Space"],grades:["3-5","6-8"],base:"Lean against a wall and slide down until your knees are comfortably bent. Hold steady.",adapt:"Use a higher position with less knee bend.",elite:"Hold a lower position while keeping your back flat on the wall.",tip:"Keep your feet flat and breathe steadily.",cue:"Steady body. Steady breathing."},
+ {name:"Plank Hold",icon:"📏",cat:"Strength",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["3-5","6-8"],base:"Hold a plank with your body in one long line from shoulders to heels.",adapt:"Hold the plank from your knees or use a sturdy elevated surface.",elite:"Alternate slow shoulder taps without rocking your hips.",tip:"Brace your middle and avoid letting your hips sag.",cue:"Long line. Strong middle."},
+ {name:"Calf Raises",icon:"⬆️",cat:"Strength",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Rise slowly onto your toes, pause, then lower with control.",adapt:"Hold a wall or chair for balance.",elite:"Perform the movement on one foot, switching halfway.",tip:"Move slowly instead of bouncing.",cue:"Up slow. Down slow."},
+ {name:"Bear Hold",icon:"🐻",cat:"Strength",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Start on hands and knees, then lift your knees slightly off the floor and hold.",adapt:"Keep knees on the floor and press strongly through your hands.",elite:"Take tiny controlled bear-crawl steps forward and backward.",tip:"Keep your back flat and knees low.",cue:"Quiet knees. Strong shoulders."},
+ {name:"Flamingo Balance",icon:"🦩",cat:"Balance",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Stand on one foot and hold as still as you can. Switch halfway.",adapt:"Keep one toe lightly touching the floor for support.",elite:"Slowly raise and lower your arms while balancing.",tip:"Focus your eyes on one still object.",cue:"Eyes still. Body steady."},
+ {name:"Airplane Balance",icon:"✈️",cat:"Balance",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Stand on one foot, extend your arms, and gently lean forward like an airplane.",adapt:"Keep your back foot touching the floor like a kickstand.",elite:"Hold the airplane position and make three small controlled reaches.",tip:"Move slowly and keep your hips level.",cue:"Slow movement wins."},
+ {name:"Balance Reach",icon:"🌟",cat:"Balance",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["3-5","6-8"],base:"Balance on one foot and reach your free foot forward, sideways, and back.",adapt:"Keep one hand on a wall or stable surface.",elite:"Perform the reaches with a small bend in your standing knee.",tip:"Return to a stable center after every reach.",cue:"Reach. Return. Reset."},
+ {name:"Heel-To-Toe Walk",icon:"👣",cat:"Balance",equip:"No Equipment",spaces:["Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Walk in a straight line placing the heel of one foot directly in front of the toes of the other.",adapt:"Leave a small space between each step.",elite:"Walk backward heel-to-toe slowly and carefully.",tip:"Use your arms for balance and look forward.",cue:"Slow steps. Strong control."},
+ {name:"Cross-Body Taps",icon:"🙌",cat:"Coordination",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Touch your right hand to your left knee, then your left hand to your right knee.",adapt:"Perform the pattern slowly while seated or standing.",elite:"Add a clap between each cross-body touch.",tip:"Keep a steady rhythm before trying to go faster.",cue:"Opposite hand. Opposite knee."},
+ {name:"Clap Pattern",icon:"👏",cat:"Coordination",equip:"No Equipment",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Repeat this pattern: clap, thigh tap, clap, shoulder tap.",adapt:"Perform only clap and thigh tap in a steady rhythm.",elite:"Double the pattern speed without losing accuracy.",tip:"Accuracy matters more than speed.",cue:"Find the beat first."},
+ {name:"Toss & Catch",icon:"🥎",cat:"Coordination",equip:"Ball",spaces:["Small Space","Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Toss the ball gently above your hands and catch it with soft hands.",adapt:"Use a very low toss or roll the ball from one hand to the other.",elite:"Clap once before each catch.",tip:"Watch the ball all the way into your hands.",cue:"Eyes track the ball."},
+ {name:"Beanbag Target Toss",icon:"🎯",cat:"Coordination",equip:"Beanbag",spaces:["Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Choose a safe target and make controlled underhand tosses toward it.",adapt:"Move closer to the target.",elite:"Move farther away or alternate throwing hands.",tip:"Step toward your target and point your tossing hand at it.",cue:"Step. Swing. Point."},
+ {name:"Cone Touches",icon:"🔺",cat:"Agility",equip:"Cones",spaces:["Gym Space","Outdoor Space"],grades:["3-5","6-8"],base:"Move between two cones and touch each one before changing direction.",adapt:"Walk quickly between cones instead of running.",elite:"Use a shuffle one direction and a quick run the other.",tip:"Lower your hips before changing direction.",cue:"Decelerate before turning."},
+ {name:"Jump Rope Rhythm",icon:"🪢",cat:"Coordination",equip:"Jump Rope",spaces:["Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Turn the rope at a steady pace and jump with small, quiet hops.",adapt:"Swing the rope beside your body while stepping to the rhythm.",elite:"Try alternating feet while keeping the rope moving smoothly.",tip:"Use your wrists more than your shoulders.",cue:"Small jumps. Quiet feet."},
+ {name:"Hoop Step Pattern",icon:"⭕",cat:"Coordination",equip:"Hula Hoop",spaces:["Gym Space","Outdoor Space"],grades:["K-2","3-5","6-8"],base:"Step in, out, in, out of the hoop using a steady rhythm.",adapt:"Step one foot at a time and pause as needed.",elite:"Change direction every four counts.",tip:"Stay light on your feet and keep the pattern consistent.",cue:"Pattern first. Pace second."},
+ {name:"Reaction Sprint",icon:"🚦",cat:"Agility",equip:"Cones",spaces:["Gym Space","Outdoor Space"],grades:["3-5","6-8"],base:"Start in an athletic stance. On each self-count of three, move quickly to a cone and return.",adapt:"Power walk to the cone and back.",elite:"Alternate forward sprint, shuffle, and backpedal safely.",tip:"Slow down before changing direction.",cue:"React fast. Stop safely."}
+];
+const questions=[
+ {q:"Why should you land with bent knees after jumping?",a:["To absorb force safely","To make the landing louder","To keep your legs completely stiff"],correct:0,why:"Bent knees help your body absorb the force of landing and stay under control."},
+ {q:"What usually helps balance the most?",a:["Looking around quickly","Focusing your eyes on one still point","Holding your breath"],correct:1,why:"A steady visual focus gives your body a reliable reference point for balance."},
+ {q:"What matters most before adding speed?",a:["Movement control","Being louder","Doing more than a classmate"],correct:0,why:"Good technique and control should come before speed."},
+ {q:"Why do we warm up before harder activity?",a:["To gradually prepare the body to move","To become tired before starting","To avoid drinking water"],correct:0,why:"A warm-up gradually prepares muscles, joints, breathing, and heart rate for activity."}
+];
+const badgeDefs=[
+ {id:"first",icon:"🚀",name:"Quick Starter",desc:"Complete your first mission",test:r=>r.missions>=1},
+ {id:"five",icon:"🔥",name:"Mission Streak",desc:"Complete 5 missions",test:r=>r.missions>=5},
+ {id:"stations10",icon:"⭐",name:"Station Builder",desc:"Complete 10 stations",test:r=>r.stations>=10},
+ {id:"stations25",icon:"🏅",name:"Movement Machine",desc:"Complete 25 stations",test:r=>r.stations>=25},
+ {id:"xp5000",icon:"⚡",name:"5K Mover",desc:"Earn 5,000 XP",test:r=>r.xp>=5000},
+ {id:"allaround",icon:"🌟",name:"All-Around Athlete",desc:"Complete every mission category",test:r=>Object.keys(missions).filter(x=>x!=="Mystery Mission").every(x=>(r.types[x]||0)>0)}
+];
+let state={mission:"Mystery Mission",difficulty:"Athlete",equipment:"No Equipment",space:"Gym Space",adapted:false,grade:"3-5",stations:[],index:0,xp:0,workTime:30,restTime:15,student:"",teacher:false,questionShown:false,feeling:"Just Right",skill:"Coordination"};
+let timerHandle=null,restHandle=null,countdownHandle=null,timeLeft=0;
+function el(id){return document.getElementById(id)}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));el(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function speak(text){if(!('speechSynthesis' in window)) return; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text);u.rate=.95;u.pitch=1;speechSynthesis.speak(u)}
+function beep(freq=640,dur=.12){try{const C=window.AudioContext||window.webkitAudioContext;const c=new C();const o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=freq;g.gain.value=.045;o.start();setTimeout(()=>{o.stop();c.close()},dur*1000)}catch(e){}}
+function saveRecord(){localStorage.setItem('movementMissionRecord',JSON.stringify(getRecord()))}
+function getRecord(){let r;try{r=JSON.parse(localStorage.getItem('movementMissionRecord'))}catch(e){}return Object.assign({missions:0,stations:0,xp:0,types:{},lastName:""},r||{})}
+function updateTop(){el('topProgress').textContent=`${getRecord().xp.toLocaleString()} XP`}
+function renderMissionCards(container,selectable=true){container.innerHTML='';Object.entries(missions).forEach(([name,m])=>{const b=document.createElement('button');b.className='card select-card'+(selectable&&state.mission===name?' selected':'');b.innerHTML=`<div class="icon">${m.icon}</div><strong>${name}</strong><span>${m.desc}</span>`;if(selectable)b.onclick=()=>{state.mission=name;renderMissionCards(container,true)};container.appendChild(b)})}
+function renderDifficulty(){const c=el('difficultyGrid');c.innerHTML='';Object.entries(difficulties).forEach(([name,d])=>{const b=document.createElement('button');b.className='card select-card'+(state.difficulty===name?' selected':'');b.innerHTML=`<div class="icon">${d.icon}</div><strong>${name}</strong><span>${d.desc}</span>`;b.onclick=()=>{state.difficulty=name;renderDifficulty()};c.appendChild(b)})}
+function renderChoices(){el('equipmentChoices').innerHTML='';equipmentList.forEach(x=>{const b=document.createElement('button');b.className='choice'+(state.equipment===x?' selected':'');b.textContent=x;b.onclick=()=>{state.equipment=x;renderChoices()};el('equipmentChoices').appendChild(b)});el('spaceChoices').innerHTML='';spaces.forEach(x=>{const b=document.createElement('button');b.className='choice'+(state.space===x?' selected':'');b.textContent=x;b.onclick=()=>{state.space=x;renderChoices()};el('spaceChoices').appendChild(b)})}
+function showTeacher(){showScreen('teacher')}
+function eligiblePool(){const cats=missions[state.mission].categories;let pool=movements.filter(m=>cats.includes(m.cat)&&m.grades.includes(state.grade)&&m.spaces.includes(state.space));if(state.equipment==='No Equipment')pool=pool.filter(m=>m.equip==='No Equipment');else pool=pool.filter(m=>m.equip==='No Equipment'||m.equip===state.equipment);return pool}
+function buildStations(count=5){let pool=eligiblePool();if(pool.length===0){state.equipment='No Equipment';state.space='Small Space';pool=eligiblePool()}const copy=[...pool].sort(()=>Math.random()-.5);const out=[];while(out.length<count){if(!copy.length)copy.push(...pool.sort(()=>Math.random()-.5));const pick=copy.shift();if(out.length===0||out[out.length-1].name!==pick.name)out.push({...pick});}return out}
+function startStudentMission(randomize){state.student=el('studentName').value.trim()||'Mover';state.grade=el('gradeBand').value;state.adapted=el('adaptiveToggle').checked;state.teacher=false;state.index=0;state.xp=0;state.questionShown=false;if(randomize){state.mission=Object.keys(missions)[Math.floor(Math.random()*Object.keys(missions).length)];state.difficulty=Object.keys(difficulties)[Math.floor(Math.random()*3)]}state.workTime=difficulties[state.difficulty].time;state.restTime=15;state.stations=buildStations(5);renderStation();showScreen('station')}
+function startTeacherMission(){state.student='Class';state.grade=el('tGrade').value;state.mission=el('tMission').value;state.difficulty=el('tDifficulty').value;state.equipment=el('tEquipment').value;state.space=el('tSpace').value;state.adapted=el('tAdapted').value==='true';state.workTime=+el('tWork').value;state.restTime=+el('tRest').value;state.teacher=true;state.index=0;state.xp=0;state.questionShown=false;state.stations=buildStations(+el('tStations').value);renderStation();showScreen('station')}
+function current(){return state.stations[state.index]}
+function stationText(m){if(state.adapted)return m.adapt; if(state.difficulty==='Elite')return m.elite; if(state.grade==='K-2')return simplifyForYoung(m.base); return m.base}
+function simplifyForYoung(text){return text.replace('controlled','careful').replace('alternate','switch').replace('position','shape')}
+function renderStation(){clearInterval(timerHandle);clearInterval(countdownHandle);timerHandle=null;countdownHandle=null;const m=current();if(!m){showReflection();return}timeLeft=state.workTime;el('stationIcon').textContent=m.icon;el('stationCategory').textContent=m.cat.toUpperCase();el('stationName').textContent=m.name;el('stationInstruction').textContent=stationText(m);el('stationGoal').textContent=`Move with control for ${state.workTime} seconds.`;el('stationTip').textContent=m.tip;el('coachCue').textContent=m.cue;el('timer').textContent=formatTime(timeLeft);el('timerLabel').textContent='READY WHEN YOU ARE';el('startTimerBtn').disabled=false;el('completeBtn').disabled=true;el('stationCounter').textContent=`Station ${state.index+1} of ${state.stations.length}`;el('missionLabel').textContent=`${missions[state.mission].icon} ${state.mission}`;el('missionXP').textContent=state.xp;el('difficultyLabel').textContent=state.difficulty;el('gradeLabel').textContent=state.grade;el('missionProgress').style.width=`${(state.index/state.stations.length)*100}%`;el('adaptBtn').textContent=state.adapted?'Use Standard Option':'Use Adapted Option';}
+function speakCurrent(){const m=current();speak(`Station ${state.index+1}. ${m.name}. ${stationText(m)} Your goal is to move with control for ${state.workTime} seconds. Technique tip: ${m.tip}`)}
+function startStationTimer(){
+ clearInterval(timerHandle);clearInterval(countdownHandle);
+ timerHandle=null;countdownHandle=null;
+ timeLeft=state.workTime;
+ el('timer').textContent=formatTime(timeLeft);
+ el('startTimerBtn').disabled=true;
+ el('completeBtn').disabled=true;
+ let count=3;
+ const showCount=()=>{el('timerLabel').textContent=`GET READY • ${count}`;beep(620,.08);speak(String(count));};
+ showCount();
+ countdownHandle=setInterval(()=>{
+  count--;
+  if(count>0){showCount();return;}
+  clearInterval(countdownHandle);countdownHandle=null;
+  el('timerLabel').textContent='KEEP MOVING!';
+  el('timer').textContent=formatTime(timeLeft);
+  beep(820,.12);speak('Go!');
+  let halfway=false,last5=false;
+  timerHandle=setInterval(()=>{
+   timeLeft--;
+   el('timer').textContent=formatTime(timeLeft);
+   if(!halfway&&timeLeft<=Math.ceil(state.workTime/2)){halfway=true;speak('Halfway there. Keep moving with control.');}
+   if(!last5&&timeLeft<=5&&timeLeft>0){last5=true;speak('Five seconds. Finish strong.');beep(850,.12);}
+   if(timeLeft<=0){
+    clearInterval(timerHandle);timerHandle=null;
+    el('timerLabel').textContent='STATION COMPLETE!';
+    el('completeBtn').disabled=false;
+    beep(980,.18);speak('Station complete. Nice work.');
+   }
+  },1000);
+ },1000);
+}
+function completeStation(){clearInterval(timerHandle);state.xp+=100;el('missionXP').textContent=state.xp;state.index++;if(state.index>=state.stations.length){showReflection();return}if(!state.questionShown&&state.stations.length>=5&&state.index===Math.ceil(state.stations.length/2)){state.questionShown=true;showCoachQuestion();return}startRest()}
+function startRest(){showScreen('rest');let r=state.restTime;el('restTimer').textContent=formatTime(r);el('nextStationName').textContent=current().name;clearInterval(restHandle);restHandle=setInterval(()=>{r--;el('restTimer').textContent=formatTime(r);if(r===5)speak('Five seconds until the next station.');if(r<=0){clearInterval(restHandle);renderStation();showScreen('station');speak(`Next station. ${current().name}.`)}} ,1000)}
+function skipRest(){clearInterval(restHandle);renderStation();showScreen('station')}
+function showCoachQuestion(){showScreen('coachQuestion');const q=questions[Math.floor(Math.random()*questions.length)];el('questionText').textContent=q.q;el('answers').innerHTML='';el('questionFeedback').style.display='none';el('continueQuestionBtn').style.display='none';q.a.forEach((ans,i)=>{const b=document.createElement('button');b.className='answer';b.textContent=ans;b.onclick=()=>{document.querySelectorAll('.answer').forEach(x=>x.disabled=true);if(i===q.correct){b.classList.add('correct');state.xp+=25;el('questionFeedback').textContent=`✅ Correct. ${q.why} +25 XP`;beep(900,.14)}else{b.classList.add('wrong');document.querySelectorAll('.answer')[q.correct].classList.add('correct');el('questionFeedback').textContent=`Good try. ${q.why}`;}el('questionFeedback').style.display='block';el('continueQuestionBtn').style.display='inline-block'};el('answers').appendChild(b)})}
+function continueAfterQuestion(){startRest()}
+function toggleAdapted(){state.adapted=!state.adapted;renderStation()}
+function endMissionEarly(){
+ clearInterval(timerHandle);clearInterval(restHandle);clearInterval(countdownHandle);
+ timerHandle=null;restHandle=null;countdownHandle=null;
+ if('speechSynthesis' in window) speechSynthesis.cancel();
+ state.stations=[];state.index=0;state.xp=0;state.questionShown=false;
+ showScreen('home');
+}
+function showReflection(){showScreen('reflection');renderReflection()}
+function renderReflection(){const feelings=[['😄','Easy'],['🙂','Just Right'],['🥵','Challenging']];el('feelGrid').innerHTML='';feelings.forEach(([ic,t])=>{const b=document.createElement('button');b.className='card select-card'+(state.feeling===t?' selected':'');b.innerHTML=`<div class="icon">${ic}</div><strong>${t}</strong>`;b.onclick=()=>{state.feeling=t;renderReflection()};el('feelGrid').appendChild(b)});const skills=['Balance','Strength','Speed','Coordination','Endurance'];el('skillChoices').innerHTML='';skills.forEach(s=>{const b=document.createElement('button');b.className='choice'+(state.skill===s?' selected':'');b.textContent=s;b.onclick=()=>{state.skill=s;renderReflection()};el('skillChoices').appendChild(b)})}
+function finishMission(){state.xp+=250;const r=getRecord();r.missions++;r.stations+=state.stations.length;r.xp+=state.xp;r.lastName=state.student;r.types[state.mission]=(r.types[state.mission]||0)+1;localStorage.setItem('movementMissionRecord',JSON.stringify(r));updateTop();const earned=badgeDefs.filter(b=>b.test(r));el('completeTitle').textContent=`${state.student}, mission accomplished!`;el('completeXP').textContent=`${state.xp} XP`;el('completeStations').textContent=`${state.stations.length} / ${state.stations.length}`;el('completeMission').textContent=state.mission;el('completeDifficulty').textContent=state.difficulty;el('completeFeeling').textContent=state.feeling;el('earnedBadges').innerHTML=earned.map(b=>`<div class="badge">${b.icon} <strong>${b.name}</strong><div class="small">${b.desc}</div></div>`).join('');showScreen('complete');speak(`Mission complete. ${state.xp} XP earned.`)}
+function quickRandomAgain(){state.mission=Object.keys(missions)[Math.floor(Math.random()*Object.keys(missions).length)];state.difficulty=Object.keys(difficulties)[Math.floor(Math.random()*3)];state.workTime=difficulties[state.difficulty].time;state.index=0;state.xp=0;state.questionShown=false;state.stations=buildStations(5);renderStation();showScreen('station')}
+function renderRecords(){const r=getRecord();el('recordStats').innerHTML=`<div class="mini-stat"><span class="small">Missions Completed</span><b>${r.missions}</b></div><div class="mini-stat"><span class="small">Stations Completed</span><b>${r.stations}</b></div><div class="mini-stat"><span class="small">Movement XP</span><b>${r.xp.toLocaleString()}</b></div><div class="mini-stat"><span class="small">Last Mover</span><b>${r.lastName||'—'}</b></div>`;el('recordBadges').innerHTML=badgeDefs.map(b=>`<div class="badge ${b.test(r)?'':'locked'}">${b.icon} <strong>${b.name}</strong><div class="small">${b.desc}</div></div>`).join('')}
+function resetRecords(){if(confirm('Reset all saved Movement Mission progress on this device?')){localStorage.removeItem('movementMissionRecord');updateTop();renderRecords()}}
+function formatTime(s){s=Math.max(0,s);return `00:${String(s).padStart(2,'0')}`}
+function init(){renderMissionCards(el('homeMissionGrid'),false);renderMissionCards(el('missionGrid'),true);renderDifficulty();renderChoices();Object.keys(missions).forEach(x=>{const o=document.createElement('option');o.textContent=x;el('tMission').appendChild(o)});el('tMission').value='Mystery Mission';updateTop();const r=getRecord();if(r.lastName)el('studentName').value=r.lastName}
+init();
+</script>
+</body>
+</html>
