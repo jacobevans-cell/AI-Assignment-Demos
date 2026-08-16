@@ -4,132 +4,280 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AI Assignment Lab</title>
+<title>Explore Academy | AI Assignment Lab</title>
 
 <style>
+
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #f4f7fb;
+  background: #f3f6fa;
   color: #18212f;
 }
 
-/* HERO */
+
+/* =========================================
+   EXPLORE ACADEMY COLORS
+========================================= */
+
+:root {
+  --navy: #0c1829;
+  --navy-light: #14263d;
+  --red: #ea0f3f;
+  --blue: #0050c8;
+  --green: #4bcc75;
+  --white: #ffffff;
+  --light: #f3f6fa;
+  --text: #18212f;
+  --muted: #667085;
+}
+
+
+/* =========================================
+   TOP BRAND BAR
+========================================= */
+
+.brand-bar {
+  background: var(--navy);
+  color: white;
+  padding: 16px 30px;
+  border-bottom: 4px solid var(--red);
+}
+
+.brand-inner {
+  width: min(1450px, 94%);
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brand-logo {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.brand-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
 
 .hero {
-  padding: 70px 20px 55px;
-  text-align: center;
+  background:
+    linear-gradient(
+      135deg,
+      #0c1829 0%,
+      #102b51 55%,
+      #0050c8 100%
+    );
+
   color: white;
-  background: linear-gradient(135deg, #4030ba, #6257ff, #079dbb);
+  text-align: center;
+  padding: 70px 20px 75px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.04);
+  right: -150px;
+  top: -180px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 950px;
+  margin: auto;
 }
 
 .badge {
   display: inline-block;
-  padding: 7px 14px;
-  border: 1px solid rgba(255,255,255,.4);
+  padding: 8px 17px;
+  border: 1px solid rgba(255,255,255,.45);
   border-radius: 30px;
   font-size: 13px;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 1.3px;
+  margin-bottom: 20px;
 }
 
 .hero h1 {
-  font-size: 64px;
-  margin: 20px 0 10px;
+  margin: 0 0 16px;
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 1.05;
 }
 
-.hero p {
-  max-width: 800px;
+.hero h1 span {
+  color: #62dc8b;
+}
+
+.hero-main {
+  max-width: 850px;
   margin: auto;
-  font-size: 19px;
-  line-height: 1.5;
+  font-size: 21px;
+  line-height: 1.55;
 }
 
 .hero-small {
   margin-top: 25px;
-  font-size: 14px;
-  opacity: .8;
+  font-size: 15px;
+  opacity: .82;
 }
 
-/* MAIN */
+.hero-accent {
+  width: 120px;
+  height: 5px;
+  border-radius: 20px;
+  margin: 30px auto 0;
+  background: var(--red);
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
 
 main {
   width: min(1500px, 94%);
   margin: auto;
-  padding: 45px 0 70px;
+  padding: 48px 0 75px;
 }
 
-/* INTRO */
+
+/* =========================================
+   INTRO
+========================================= */
 
 .intro {
   background: white;
   border-radius: 20px;
-  padding: 28px;
-  margin-bottom: 40px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.07);
+  padding: 32px 38px;
+  margin-bottom: 45px;
+  box-shadow: 0 10px 30px rgba(12,24,41,.08);
+  border-top: 5px solid var(--blue);
 }
 
 .intro h2 {
-  margin-top: 0;
+  margin: 0 0 12px;
+  font-size: 28px;
+  color: var(--navy);
 }
 
 .intro p {
-  color: #667085;
-  line-height: 1.6;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 16px;
+  margin: 0;
 }
 
-/* SECTION */
+.intro strong {
+  color: var(--navy);
+}
+
+
+/* =========================================
+   SECTION HEADER
+========================================= */
+
+.section-heading {
+  margin-bottom: 25px;
+}
 
 .section-title {
-  font-size: 30px;
-  margin-bottom: 5px;
+  font-size: 34px;
+  margin: 0 0 7px;
+  color: var(--navy);
 }
 
 .section-subtitle {
-  color: #667085;
-  margin-bottom: 22px;
+  color: var(--muted);
+  margin: 0;
+  font-size: 16px;
 }
 
-/* GRID */
+
+/* =========================================
+   ASSIGNMENT GRID
+========================================= */
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  gap: 20px;
   align-items: stretch;
 }
 
-/* CARDS */
+
+/* =========================================
+   CARDS
+========================================= */
 
 .card {
   background: white;
   border-radius: 20px;
-  padding: 25px;
+  padding: 24px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 25px rgba(0,0,0,.07);
-  transition: .2s;
+  box-shadow: 0 8px 25px rgba(12,24,41,.08);
+  transition: transform .2s, box-shadow .2s;
+  border-top: 5px solid var(--blue);
+}
+
+.card:nth-child(2) {
+  border-top-color: var(--green);
+}
+
+.card:nth-child(3) {
+  border-top-color: var(--red);
+}
+
+.card:nth-child(4) {
+  border-top-color: var(--blue);
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0,0,0,.12);
+  box-shadow: 0 16px 38px rgba(12,24,41,.14);
 }
 
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
 .icon {
-  width: 55px;
-  height: 55px;
-  border-radius: 15px;
-  background: #eeeaff;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #edf3ff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
-  margin-bottom: 15px;
+  font-size: 27px;
+  margin-bottom: 14px;
 }
 
 .tag {
@@ -139,62 +287,70 @@ main {
   color: #08798b;
   padding: 5px 10px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
-  margin-bottom: 12px;
+  margin-bottom: 11px;
+  letter-spacing: .3px;
 }
 
 .card h3 {
   margin: 0 0 18px;
   font-size: 22px;
+  color: var(--navy);
 }
+
+
+/* =========================================
+   CARD CONTENT
+========================================= */
 
 .info-section {
   margin-bottom: 18px;
 }
 
-.info-section h4 {
-  margin: 0 0 7px;
-  color: #4054ed;
-  font-size: 14px;
-  letter-spacing: .5px;
-  text-transform: uppercase;
+.info-label {
+  display: block;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .6px;
+  margin-bottom: 6px;
 }
 
 .info-section p {
-  color: #667085;
+  color: var(--muted);
   line-height: 1.5;
   margin: 0;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .design-box {
-  background: #f2efff;
-  border-left: 4px solid #5367ff;
-  padding: 15px;
+  background: #f1efff;
+  border-left: 4px solid #5368ff;
   border-radius: 10px;
+  padding: 14px;
   margin-bottom: 20px;
 }
 
-.design-box h4 {
-  margin: 0 0 7px;
-  color: #4054ed;
-  font-size: 14px;
-  letter-spacing: .5px;
-  text-transform: uppercase;
+.design-box .info-label {
+  margin-bottom: 7px;
 }
 
 .design-box p {
-  margin: 0;
-  color: #667085;
-  line-height: 1.5;
+  color: #58677d;
   font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
 }
 
-/* PREVIEW AREA */
 
-.preview-area {
+/* =========================================
+   PREVIEW IMAGE
+========================================= */
+
+.preview-wrap {
   margin-top: auto;
+  padding-top: 16px;
 }
 
 .preview {
@@ -202,190 +358,466 @@ main {
   height: 180px;
   object-fit: cover;
   object-position: top;
+  border-radius: 11px;
   display: block;
-  border-radius: 12px;
-  border: 1px solid #d6dce8;
-  margin-bottom: 15px;
-  background: #eef2f7;
+  border: 1px solid #d5dce6;
+  background: #edf1f6;
 }
 
+
+/* =========================================
+   BUTTONS
+========================================= */
+
 .button {
+  margin-top: 15px;
   display: block;
-  width: 100%;
   text-align: center;
-  background: #5658ff;
+  background: var(--blue);
   color: white;
   text-decoration: none;
   padding: 13px;
-  border-radius: 10px;
+  border-radius: 9px;
   font-weight: bold;
+  transition: .2s;
 }
 
 .button:hover {
-  background: #443fe8;
+  background: #003f9e;
+  transform: translateY(-1px);
 }
 
-/* HOW */
+.card:nth-child(2) .button {
+  background: #249c52;
+}
 
-.how {
-  background: #101828;
+.card:nth-child(2) .button:hover {
+  background: #197a3e;
+}
+
+.card:nth-child(3) .button {
+  background: var(--red);
+}
+
+.card:nth-child(3) .button:hover {
+  background: #c20c34;
+}
+
+
+/* =========================================
+   EXPLORE SECTION
+========================================= */
+
+.explore-section {
+  margin-top: 55px;
+  background: var(--navy);
   color: white;
-  border-radius: 22px;
-  padding: 30px;
-  margin-top: 45px;
+  border-radius: 24px;
+  padding: 42px;
+  position: relative;
+  overflow: hidden;
 }
 
-.how h2 {
-  margin-top: 0;
+.explore-section::after {
+  content: "";
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  border-radius: 50%;
+  background: rgba(0,80,200,.18);
+  right: -100px;
+  bottom: -160px;
 }
 
-.how > p {
-  color: #cbd2dc;
+.explore-content {
+  position: relative;
+  z-index: 2;
+}
+
+.explore-section h2 {
+  margin: 0 0 12px;
+  font-size: 32px;
+}
+
+.explore-intro {
+  color: #d5deea;
+  max-width: 900px;
   line-height: 1.6;
+  font-size: 16px;
+}
+
+.explore-ideas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.explore-idea {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.explore-idea:nth-child(1) {
+  border-top: 4px solid var(--blue);
+}
+
+.explore-idea:nth-child(2) {
+  border-top: 4px solid var(--red);
+}
+
+.explore-idea:nth-child(3) {
+  border-top: 4px solid var(--green);
+}
+
+.explore-idea:nth-child(4) {
+  border-top: 4px solid #ffffff;
+}
+
+.explore-idea strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.explore-idea p {
+  color: #cbd5e1;
+  line-height: 1.5;
+  font-size: 14px;
+  margin: 0;
+}
+
+
+/* =========================================
+   PROCESS SECTION
+========================================= */
+
+.process {
+  margin-top: 35px;
+  background: white;
+  border-radius: 22px;
+  padding: 35px;
+  box-shadow: 0 8px 25px rgba(12,24,41,.07);
+}
+
+.process h2 {
+  color: var(--navy);
+  margin: 0 0 8px;
+  font-size: 29px;
+}
+
+.process-intro {
+  color: var(--muted);
+  margin: 0;
 }
 
 .steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-top: 22px;
+  gap: 18px;
+  margin-top: 25px;
 }
 
 .step {
-  background: rgba(255,255,255,.08);
-  border-radius: 15px;
-  padding: 20px;
+  background: #f6f8fb;
+  border-radius: 14px;
+  padding: 21px;
+  border-top: 4px solid var(--blue);
+}
+
+.step:nth-child(2) {
+  border-top-color: var(--red);
+}
+
+.step:nth-child(3) {
+  border-top-color: var(--green);
 }
 
 .step-number {
-  color: #8fe9f5;
+  color: var(--blue);
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 800;
+  letter-spacing: 1px;
   margin-bottom: 8px;
 }
 
-.step p {
-  color: #cbd2dc;
-  font-size: 14px;
-  line-height: 1.5;
+.step:nth-child(2) .step-number {
+  color: var(--red);
 }
 
-/* RESPONSIVE */
+.step:nth-child(3) .step-number {
+  color: #249c52;
+}
 
-@media (max-width: 1200px) {
+.step strong {
+  color: var(--navy);
+  font-size: 17px;
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  background: var(--navy);
+  color: #cbd5e1;
+  text-align: center;
+  padding: 25px 20px;
+  font-size: 13px;
+  border-top: 4px solid var(--red);
+}
+
+footer strong {
+  color: white;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1250px) {
+
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .explore-ideas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 }
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
+
+  .brand-name {
+    font-size: 23px;
+  }
+
+  .brand-logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  .hero {
+    padding: 55px 20px;
+  }
+
+  .hero-main {
+    font-size: 18px;
+  }
+
   .grid,
+  .explore-ideas,
   .steps {
     grid-template-columns: 1fr;
   }
 
-  .hero h1 {
-    font-size: 42px;
+  .intro,
+  .explore-section,
+  .process {
+    padding: 25px;
   }
+
 }
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- ======================================
+     EXPLORE BRAND BAR
+======================================= -->
+
+<div class="brand-bar">
+
+  <div class="brand-inner">
+
+    <img
+      src="explore-logo.png"
+      alt="Explore Academy Logo"
+      class="brand-logo"
+    >
+
+    <div class="brand-name">
+      Explore Academy
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- ======================================
+     HERO
+======================================= -->
 
 <header class="hero">
 
-  <div class="badge">STAFF AI SHOWCASE</div>
+  <div class="hero-content">
 
-  <h1>AI Assignment Lab</h1>
+    <div class="badge">
+      EXPLORE ACADEMY • STAFF AI SHOWCASE
+    </div>
 
-  <p>
-    Explore examples of interactive classroom assignments created with AI.
-    Open a demo, test it like a student, and imagine what you could build
-    for your own class.
-  </p>
+    <h1>
+      Explore <span>AI Assignment Lab</span>
+    </h1>
 
-  <div class="hero-small">
-    Built as a proof of concept for teachers and staff.
+    <p class="hero-main">
+      What happens when we take the curriculum we already teach
+      and rethink how students experience it?
+    </p>
+
+    <p class="hero-small">
+      Four working examples of standards-based lessons, practice,
+      and instructional content redesigned with AI.
+    </p>
+
+    <div class="hero-accent"></div>
+
   </div>
 
 </header>
 
+
+
 <main>
+
+
+<!-- ======================================
+     INTRO
+======================================= -->
 
 <section class="intro">
 
-  <h2>What is this?</h2>
+  <h2>
+    Built for the way we teach at Explore.
+  </h2>
 
   <p>
-    These are not screenshots or mockups. They are working browser-based
-    activities created with AI and published as simple web pages.
-    The goal is to demonstrate how teachers can take existing curriculum,
-    standards, worksheets, readings, videos, or practice activities and
-    redesign them into interactive learning experiences.
+    These are not mockups or screenshots.
+    <strong>Every example below is a working student activity.</strong>
+    Each one began with something teachers already use:
+    standards, practice problems, instructional readings,
+    videos, vocabulary, or skill practice.
+    AI was then used as a design and development tool to turn
+    that material into a more interactive student experience.
   </p>
 
 </section>
 
 
-<h2 class="section-title">Try the assignments</h2>
 
-<p class="section-subtitle">
-  Each example demonstrates a different way AI can support classroom design.
-</p>
+<!-- ======================================
+     ASSIGNMENTS
+======================================= -->
+
+<div class="section-heading">
+
+  <h2 class="section-title">
+    Explore the assignments
+  </h2>
+
+  <p class="section-subtitle">
+    Open any example and experience it from the student's point of view.
+  </p>
+
+</div>
 
 
 <section class="grid">
 
 
-<!-- ===================================================== -->
-<!-- DECIMAL DECEPTION -->
-<!-- ===================================================== -->
+<!-- ======================================
+     DECIMAL DECEPTION
+======================================= -->
 
 <article class="card">
 
   <div class="icon">🚀</div>
 
-  <div class="tag">GAMIFIED MATH</div>
-
-  <h3>Decimal Deception</h3>
-
-  <div class="info-section">
-    <h4>Activity Description</h4>
-    <p>
-      Students navigate a space-station adventure while solving decimal
-      problems. Correct answers help them complete missions, collect
-      Power Crystals, avoid enemies, and unlock new areas.
-    </p>
+  <div class="tag">
+    GAMIFIED MATH
   </div>
 
+  <h3>
+    Decimal Deception
+  </h3>
+
+
   <div class="info-section">
-    <h4>Arizona Math Standard</h4>
+
+    <span class="info-label">
+      ACTIVITY DESCRIPTION
+    </span>
+
     <p>
-      <strong>6.NS.B.3</strong> — Fluently add, subtract, multiply,
-      and divide multi-digit decimals using the standard algorithm.
+      Students navigate a space-station adventure while solving
+      decimal problems. Correct answers help them complete missions,
+      collect Power Crystals, avoid enemies, and unlock new areas.
     </p>
+
   </div>
+
+
+  <div class="info-section">
+
+    <span class="info-label">
+      ARIZONA MATH STANDARD
+    </span>
+
+    <p>
+      <strong>6.NS.B.3</strong> — Fluently add, subtract,
+      multiply, and divide multi-digit decimals using the
+      standard algorithm.
+    </p>
+
+  </div>
+
 
   <div class="design-box">
-    <h4>Intentional Design</h4>
+
+    <span class="info-label">
+      INTENTIONAL DESIGN
+    </span>
+
     <p>
-      What if the same practice problems from a worksheet became part
-      of a game? The academic skill remains the focus, but repetitive
-      practice is built into missions, movement, challenges,
-      immediate feedback, and progression.
+      What if the same practice problems from a worksheet became
+      part of a game? The academic skill remains the focus, but
+      repetitive practice is built into missions, movement,
+      challenges, immediate feedback, and progression.
     </p>
+
   </div>
 
-  <div class="preview-area">
+
+  <div class="preview-wrap">
 
     <img
-      class="preview"
-      src="./decimal-deception-preview.png"
+      src="decimal-deception-preview.png"
       alt="Preview of Decimal Deception"
+      class="preview"
     >
 
-    <a class="button" href="./decimal-deception.html">
+    <a
+      class="button"
+      href="decimal-deception.html"
+    >
       OPEN DEMO
     </a>
 
@@ -394,40 +826,62 @@ main {
 </article>
 
 
-<!-- ===================================================== -->
-<!-- VOLLEYBALL ACADEMY -->
-<!-- ===================================================== -->
+
+<!-- ======================================
+     VOLLEYBALL ACADEMY
+======================================= -->
 
 <article class="card">
 
   <div class="icon">🏐</div>
 
-  <div class="tag">INTERACTIVE LESSON</div>
+  <div class="tag">
+    INTERACTIVE LESSON
+  </div>
 
-  <h3>Volleyball Academy</h3>
+  <h3>
+    Volleyball Academy
+  </h3>
+
 
   <div class="info-section">
-    <h4>Activity Description</h4>
+
+    <span class="info-label">
+      ACTIVITY DESCRIPTION
+    </span>
+
     <p>
-      Students work through a series of volleyball missions combining
-      reading, videos, game situations, multiple-choice comprehension
-      checks, drag-and-drop activities, immediate feedback, scoring,
+      Students work through volleyball missions combining reading,
+      videos, game situations, multiple-choice comprehension checks,
+      drag-and-drop activities, immediate feedback, scoring,
       and progress tracking.
     </p>
+
   </div>
+
 
   <div class="info-section">
-    <h4>Learning Content</h4>
+
+    <span class="info-label">
+      LEARNING CONTENT
+    </span>
+
     <p>
       The lesson was created from existing instructional resources,
-      including web articles, instructional reading, and YouTube videos.
-      Students process the information and apply what they learn to
-      interactive challenges.
+      including web articles, instructional reading, and YouTube
+      videos. Students process the information and apply what they
+      learn to interactive challenges.
     </p>
+
   </div>
 
+
   <div class="design-box">
-    <h4>Intentional Design</h4>
+
+    <span class="info-label">
+      INTENTIONAL DESIGN
+    </span>
+
     <p>
       Instead of simply giving students links to articles and videos,
       the resources were transformed into one structured interactive
@@ -435,17 +889,22 @@ main {
       and demonstrate understanding before progressing.
       <strong>Volleyball is simply the example.</strong>
     </p>
+
   </div>
 
-  <div class="preview-area">
+
+  <div class="preview-wrap">
 
     <img
-      class="preview"
-      src="./volleyball-academy-preview.png"
+      src="volleyball-academy-preview.png"
       alt="Preview of Volleyball Academy"
+      class="preview"
     >
 
-    <a class="button" href="./volleyball-academy.html">
+    <a
+      class="button"
+      href="volleyball-academy.html"
+    >
       OPEN DEMO
     </a>
 
@@ -454,57 +913,84 @@ main {
 </article>
 
 
-<!-- ===================================================== -->
-<!-- LONG DIVISION QUEST -->
-<!-- ===================================================== -->
+
+<!-- ======================================
+     LONG DIVISION QUEST
+======================================= -->
 
 <article class="card">
 
   <div class="icon">➗</div>
 
-  <div class="tag">GUIDED MATH</div>
+  <div class="tag">
+    GUIDED MATH PRACTICE
+  </div>
 
-  <h3>Long Division Quest</h3>
+  <h3>
+    Long Division Quest
+  </h3>
+
 
   <div class="info-section">
-    <h4>Activity Description</h4>
+
+    <span class="info-label">
+      ACTIVITY DESCRIPTION
+    </span>
+
     <p>
       Students solve long-division problems one aligned step at a time.
-      The program guides students through divide, multiply, subtract,
-      and bring down while tracking accuracy, XP, streaks, problems
-      completed, and hints used.
+      The program guides them through Divide, Multiply, Subtract,
+      and Bring Down while tracking accuracy, hints, streaks,
+      progress, and XP.
     </p>
+
   </div>
+
 
   <div class="info-section">
-    <h4>Instructional Support</h4>
+
+    <span class="info-label">
+      INSTRUCTIONAL SUPPORT
+    </span>
+
     <p>
-      Rather than simply marking an entire problem wrong, the activity
-      focuses students on the exact digit and step they are working on.
-      Visual grouping models help students understand how many groups
-      fit into a number before entering the quotient digit.
+      Students work directly inside the long-division structure.
+      Prompts focus attention on the exact digit and step they are
+      working on, while visual grouping models help students understand
+      how many groups fit into a number before entering the quotient digit.
     </p>
+
   </div>
 
+
   <div class="design-box">
-    <h4>Intentional Design</h4>
+
+    <span class="info-label">
+      INTENTIONAL DESIGN
+    </span>
+
     <p>
       Long division is a multi-step process, so the interface was
       intentionally designed to mirror the algorithm. Students receive
       targeted prompts, optional hints, and visual grouping support
       exactly when they need it.
     </p>
+
   </div>
 
-  <div class="preview-area">
+
+  <div class="preview-wrap">
 
     <img
-      class="preview"
-      src="./long-division-quest-preview.png"
+      src="long-division-quest-preview.png"
       alt="Preview of Long Division Quest"
+      class="preview"
     >
 
-    <a class="button" href="./long-division-quest.html">
+    <a
+      class="button"
+      href="long-division-quest.html"
+    >
       OPEN DEMO
     </a>
 
@@ -513,62 +999,91 @@ main {
 </article>
 
 
-<!-- ===================================================== -->
-<!-- SPELLING PRACTICE -->
-<!-- ===================================================== -->
+
+<!-- ======================================
+     SPELLING PRACTICE
+======================================= -->
 
 <article class="card">
 
   <div class="icon">🔤</div>
 
-  <div class="tag">LITERACY + GAMEPLAY</div>
-
-  <h3>Spelling Practice</h3>
-
-  <div class="info-section">
-    <h4>Activity Description</h4>
-    <p>
-      One spelling list becomes a complete learning system. Students
-      can study with instructional flash cards, practice through
-      volleyball and soccer games, and complete an independent
-      listen-and-spell test.
-    </p>
+  <div class="tag">
+    LITERACY & WORD STUDY
   </div>
 
+  <h3>
+    Spelling Practice Lab
+  </h3>
+
+
   <div class="info-section">
-    <h4>Word Study & Pedagogy</h4>
+
+    <span class="info-label">
+      ACTIVITY DESCRIPTION
+    </span>
+
     <p>
-      Each word was intentionally broken apart for instruction.
-      Students study syllables, pronunciation, sound chunks,
-      phonograms, spelling patterns, word structure, visual examples,
-      and targeted spelling reminders before practicing independently.
+      One spelling list becomes a complete study system.
+      Students can study detailed flash cards, practice through
+      volleyball or soccer games, hear words and sentences aloud,
+      and complete an independent spelling test.
     </p>
+
   </div>
+
+
+  <div class="info-section">
+
+    <span class="info-label">
+      WORD STUDY PEDAGOGY
+    </span>
+
+    <p>
+      Each word was intentionally broken apart to teach more than
+      memorization. Students study syllables, pronunciation,
+      sound chunks, phonograms, spelling patterns, word structure,
+      visual examples, and targeted spelling reminders before
+      practicing independently.
+    </p>
+
+  </div>
+
 
   <div class="design-box">
-    <h4>Intentional Design</h4>
+
+    <span class="info-label">
+      INTENTIONAL DESIGN
+    </span>
+
     <p>
       The flash cards make the structure of each word visible.
-      Multi-letter phonograms are automatically highlighted, difficult
-      patterns receive targeted “Watch For” hints, individual sound
-      chunks can be heard aloud, and students can listen to the whole
-      word and an example sentence.
+      Multi-letter phonograms are automatically highlighted,
+      difficult patterns receive targeted “Watch For” hints,
+      and individual sound chunks can be heard aloud.
       <br><br>
-      <strong>Students can see it, hear it, break it apart, study the
-      pattern, practice it, apply it in a game, and finally spell it
-      independently.</strong>
+      <strong>
+        Students can see it, hear it, break it apart,
+        study the pattern, practice it, apply it in a game,
+        and finally spell it independently.
+      </strong>
     </p>
+
   </div>
 
-  <div class="preview-area">
+
+  <div class="preview-wrap">
 
     <img
+      src="spelling-practice-preview.png"
+      alt="Preview of Spelling Practice Lab"
       class="preview"
-      src="./spelling-practice-preview.png"
-      alt="Preview of Spelling Practice"
     >
 
-    <a class="button" href="./spelling-practice.html">
+    <a
+      class="button"
+      href="spelling-practice.html"
+    >
       OPEN DEMO
     </a>
 
@@ -580,62 +1095,87 @@ main {
 </section>
 
 
-<!-- ===================================================== -->
-<!-- HOW IT WAS MADE -->
-<!-- ===================================================== -->
 
-<section class="how">
+<!-- ======================================
+     EXPLORE CONNECTION
+======================================= -->
 
-  <h2>How was this made?</h2>
+<section class="explore-section">
 
-  <p>
-    The teacher does not need to start as a programmer. The process
-    begins with curriculum, an instructional goal, and an idea for
-    how students should experience the learning.
-  </p>
+  <div class="explore-content">
 
-  <div class="steps">
+    <h2>
+      What could this look like at Explore?
+    </h2>
 
-    <div class="step">
-
-      <div class="step-number">STEP 1</div>
-
-      <strong>Start with instruction</strong>
-
-      <p>
-        Identify the standard, skill, lesson content, existing resource,
-        worksheet, or practice students need to complete.
-      </p>
-
-    </div>
+    <p class="explore-intro">
+      The point isn't to replace curriculum or instruction with AI.
+      The opportunity is to use AI to help teachers redesign
+      materials they already have into experiences that give students
+      more opportunities to interact, practice, receive feedback,
+      and demonstrate understanding.
+    </p>
 
 
-    <div class="step">
-
-      <div class="step-number">STEP 2</div>
-
-      <strong>Design with AI</strong>
-
-      <p>
-        Describe the experience you want. AI can help build the webpage,
-        interactions, feedback, visuals, scoring, games, and instructional
-        supports.
-      </p>
-
-    </div>
+    <div class="explore-ideas">
 
 
-    <div class="step">
+      <div class="explore-idea">
 
-      <div class="step-number">STEP 3</div>
+        <strong>
+          📄 Worksheet → Experience
+        </strong>
 
-      <strong>Test, revise & publish</strong>
+        <p>
+          Turn repetitive skill practice into missions,
+          challenges, simulations, games, or guided practice.
+        </p>
 
-      <p>
-        The teacher tests the assignment, requests changes, and continues
-        refining it. The finished HTML can then be published with GitHub
-        Pages and linked or embedded into Google Sites.
-      </p>
+      </div>
+
+
+      <div class="explore-idea">
+
+        <strong>
+          📚 Content → Interaction
+        </strong>
+
+        <p>
+          Combine readings, videos, and instructional resources
+          into one structured learning experience.
+        </p>
+
+      </div>
+
+
+      <div class="explore-idea">
+
+        <strong>
+          🧠 Skill → Scaffolding
+        </strong>
+
+        <p>
+          Build hints, models, immediate feedback, and step-by-step
+          support directly into independent student practice.
+        </p>
+
+      </div>
+
+
+      <div class="explore-idea">
+
+        <strong>
+          🎯 Idea → Prototype
+        </strong>
+
+        <p>
+          A teacher can describe an instructional idea, test it,
+          revise it, and turn it into a working classroom tool
+          without starting as a programmer.
+        </p>
+
+      </div>
+
 
     </div>
 
@@ -643,7 +1183,99 @@ main {
 
 </section>
 
+
+
+<!-- ======================================
+     PROCESS
+======================================= -->
+
+<section class="process">
+
+  <h2>
+    How were these built?
+  </h2>
+
+  <p class="process-intro">
+    The process begins with instruction, not code.
+  </p>
+
+
+  <div class="steps">
+
+
+    <div class="step">
+
+      <div class="step-number">
+        STEP 1
+      </div>
+
+      <strong>
+        Start with the learning
+      </strong>
+
+      <p>
+        Identify the standard, skill, lesson content,
+        student need, or existing classroom material.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-number">
+        STEP 2
+      </div>
+
+      <strong>
+        Design the experience
+      </strong>
+
+      <p>
+        Describe how students should interact with the content,
+        where they need support, and what successful learning
+        should look like.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-number">
+        STEP 3
+      </div>
+
+      <strong>
+        Build, test & revise
+      </strong>
+
+      <p>
+        AI helps generate the webpage. The teacher tests it,
+        identifies problems, requests changes, and continues
+        revising until the activity works for students.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
 </main>
+
+
+
+<footer>
+
+  <strong>Explore Academy AI Assignment Lab</strong>
+  <br>
+  Staff demonstration • Interactive learning prototypes
+
+</footer>
+
 
 </body>
 </html>
