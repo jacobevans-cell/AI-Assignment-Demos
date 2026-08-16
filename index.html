@@ -30,6 +30,7 @@ body {
 :root {
   --navy: #071a2b;
   --navy2: #0c2844;
+  --blue: #075dcc;
 
   --math: #1467d8;
   --math-soft: #edf5ff;
@@ -41,7 +42,7 @@ body {
   --specials-soft: #f4f0ff;
 
   --red: #ef1245;
-  --cyan: #06a9c6;
+  --green: #3cdb87;
 
   --text: #18212f;
   --muted: #617086;
@@ -84,34 +85,36 @@ body {
 
 
 /* =========================================================
-   HERO
+   SHARED STAFF PRESENTATION STYLE
 ========================================================= */
 
-.hero {
+.staff-panel {
   position: relative;
   overflow: hidden;
+
+  color: white;
 
   background:
     linear-gradient(
       120deg,
       #071a2b 0%,
-      #07385d 55%,
+      #07385d 58%,
       #075dcc 100%
     );
-
-  color: white;
-  padding: 58px 20px 63px;
-  text-align: center;
 }
 
-.hero::after {
+.staff-panel::after {
   content: "";
   position: absolute;
+
   width: 520px;
   height: 520px;
-  right: -160px;
-  top: -270px;
+
+  right: -150px;
+  top: -250px;
+
   border-radius: 50%;
+
   border: 1px solid rgba(255,255,255,.08);
 
   box-shadow:
@@ -120,53 +123,84 @@ body {
     0 0 0 105px rgba(255,255,255,.015);
 }
 
-.hero-inner {
+.staff-panel-inner {
   position: relative;
   z-index: 2;
+}
+
+.staff-eyebrow {
+  display: inline-block;
+
+  border: 1px solid rgba(255,255,255,.42);
+
+  border-radius: 999px;
+
+  padding: 7px 14px;
+
+  color: white;
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.1px;
+}
+
+.staff-accent-line {
+  width: 105px;
+  height: 5px;
+
+  border-radius: 99px;
+
+  background: var(--red);
+
+  margin-top: 22px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  padding: 58px 20px 63px;
+  text-align: center;
+}
+
+.hero-inner {
   width: min(1500px, 95%);
   margin: auto;
 }
 
-.hero-badge {
-  display: inline-block;
-  border: 1px solid rgba(255,255,255,.45);
-  border-radius: 999px;
-  padding: 7px 16px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin-bottom: 18px;
-}
-
 .hero h1 {
-  margin: 0;
+  margin: 18px 0 0;
+
   font-size: clamp(45px, 5vw, 74px);
   line-height: 1.04;
 }
 
 .hero h1 span {
-  color: #3cdb87;
+  color: var(--green);
 }
 
 .hero-main {
   max-width: 920px;
+
   margin: 19px auto 0;
+
   font-size: 20px;
   line-height: 1.55;
 }
 
 .hero-small {
   margin-top: 20px;
+
   color: #cfd9e6;
+
   font-size: 14px;
 }
 
-.hero-line {
-  width: 110px;
-  height: 5px;
-  background: var(--red);
-  border-radius: 20px;
-  margin: 27px auto 0;
+.hero .staff-accent-line {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -182,62 +216,89 @@ main {
 
 
 /* =========================================================
-   PURPOSE
+   STAFF FRAMING PANEL
 ========================================================= */
 
-.purpose {
+.staff-intro {
+  border-radius: 23px;
+
+  margin-bottom: 44px;
+
+  padding: 38px 42px;
+
+  box-shadow:
+    0 14px 34px rgba(7,26,43,.16);
+}
+
+.staff-intro-grid {
   display: grid;
-  grid-template-columns: 1.1fr 2fr;
-  gap: 35px;
+
+  grid-template-columns: .9fr 1.8fr;
+
+  gap: 40px;
+
   align-items: center;
-
-  background: white;
-  border-radius: 20px;
-  padding: 28px 34px;
-  border-top: 5px solid #1467d8;
-
-  box-shadow: 0 9px 27px rgba(12,24,41,.07);
-
-  margin-bottom: 43px;
 }
 
-.purpose-title {
-  display: flex;
-  align-items: center;
-  gap: 17px;
+.staff-intro h2 {
+  margin: 10px 0 0;
+
+  font-size: 37px;
+  line-height: 1.1;
 }
 
-.purpose-icon {
-  width: 68px;
-  height: 68px;
-  flex: 0 0 68px;
-
-  border-radius: 50%;
-  background: #eaf3ff;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 32px;
+.staff-intro h2 span {
+  color: var(--green);
 }
 
-.purpose h2 {
-  color: var(--navy);
+.staff-intro p {
   margin: 0;
-  font-size: 29px;
-  line-height: 1.18;
+
+  color: #d9e4ef;
+
+  font-size: 16px;
+  line-height: 1.7;
 }
 
-.purpose p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.65;
+.staff-intro strong {
+  color: white;
 }
 
-.purpose strong {
-  color: var(--navy);
+.staff-points {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+
+  margin-top: 22px;
+}
+
+.staff-point {
+  background: rgba(255,255,255,.085);
+
+  border: 1px solid rgba(255,255,255,.12);
+
+  border-radius: 13px;
+
+  padding: 14px;
+}
+
+.staff-point strong {
+  display: block;
+
+  color: white;
+
+  font-size: 13px;
+
+  margin-bottom: 5px;
+}
+
+.staff-point span {
+  display: block;
+
+  color: #cad8e6;
+
+  font-size: 11px;
+  line-height: 1.4;
 }
 
 
@@ -454,7 +515,6 @@ main {
   max-height: 405px;
 
   object-fit: contain;
-
   object-position: center;
 
   border-radius: 12px;
@@ -516,7 +576,9 @@ main {
 .demo-icon {
   width: 42px;
   height: 42px;
+
   border-radius: 12px;
+
   flex: 0 0 42px;
 
   background: #edf3ff;
@@ -606,7 +668,6 @@ main {
 
 .standard {
   display: grid;
-
   grid-template-columns: auto 1fr;
 
   gap: 10px;
@@ -634,7 +695,6 @@ main {
   padding: 6px 8px;
 
   font-size: 11px;
-
   font-weight: 900;
 
   white-space: nowrap;
@@ -797,123 +857,76 @@ main {
 
 
 /* =========================================================
-   EXPLORE CONNECTION
-   MADE VISUALLY DISTINCT FROM THE DEMOS
+   STAFF FINALE
 ========================================================= */
 
-.explore-connection {
-  position: relative;
-  overflow: hidden;
+.staff-finale {
+  border-radius: 25px;
 
-  margin-top: 55px;
+  padding: 42px;
 
-  color: white;
-
-  border-radius: 24px;
-
-  padding: 38px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #b80f27 0%,
-      #d51028 48%,
-      #97091d 100%
-    );
+  margin-top: 54px;
 
   box-shadow:
-    0 14px 35px rgba(102,8,26,.22);
+    0 16px 38px rgba(7,26,43,.18);
 }
 
-.explore-connection::after {
-  content: "";
-
-  position: absolute;
-
-  width: 420px;
-  height: 420px;
-
-  right: -110px;
-  top: -160px;
-
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.035);
-
-  box-shadow:
-    0 0 0 35px rgba(255,255,255,.025),
-    0 0 0 70px rgba(255,255,255,.018);
-}
-
-.connection-inner {
-  position: relative;
-  z-index: 2;
-}
-
-.connection-top {
+.finale-header {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 18px;
   align-items: start;
 }
 
-.connection-icon {
-  width: 58px;
-  height: 58px;
-
-  border: 3px solid white;
+.finale-icon {
+  width: 62px;
+  height: 62px;
 
   border-radius: 50%;
+
+  border: 3px solid white;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 27px;
+  font-size: 29px;
 }
 
-.eyebrow {
-  color: white;
-
-  font-size: 12px;
-
-  font-weight: 900;
-
-  letter-spacing: 1.3px;
-
-  margin-bottom: 5px;
-}
-
-.explore-connection h2 {
-  margin: 0 0 10px;
+.staff-finale h2 {
+  margin: 10px 0 9px;
 
   color: white;
 
-  font-size: 38px;
+  font-size: 40px;
 }
 
-.connection-intro {
+.staff-finale h2 span {
+  color: var(--green);
+}
+
+.finale-intro {
   max-width: 1250px;
 
   margin: 0;
 
-  color: #fff2f3;
-
-  line-height: 1.65;
+  color: #d8e4ef;
 
   font-size: 15px;
+
+  line-height: 1.65;
 }
 
-.connection-intro strong {
+.finale-intro strong {
   color: white;
 }
 
 
 /* =========================================================
-   FLAVOR FLOW
+   TARGET / FLAVOR / MASTERY FLOW
 ========================================================= */
 
-.flavor-flow {
+.finale-flow {
   display: grid;
 
   grid-template-columns:
@@ -927,23 +940,23 @@ main {
 
   align-items: stretch;
 
-  margin-top: 28px;
+  margin-top: 27px;
 }
 
-.flow-box {
+.finale-step {
   background: rgba(255,255,255,.96);
+
+  color: var(--navy);
 
   border-radius: 15px;
 
   padding: 19px;
 
-  color: var(--navy);
-
   box-shadow:
-    0 7px 18px rgba(71,0,14,.12);
+    0 7px 18px rgba(7,26,43,.14);
 }
 
-.flow-number {
+.finale-number {
   display: inline-flex;
 
   align-items: center;
@@ -954,7 +967,7 @@ main {
 
   border-radius: 50%;
 
-  background: #bf1129;
+  background: var(--blue);
 
   color: white;
 
@@ -963,17 +976,17 @@ main {
   margin-bottom: 9px;
 }
 
-.flow-box strong {
+.finale-step strong {
   display: block;
 
   color: var(--navy);
 
-  margin-bottom: 6px;
-
   font-size: 17px;
+
+  margin-bottom: 6px;
 }
 
-.flow-box p {
+.finale-step p {
   margin: 0;
 
   color: #58677a;
@@ -983,69 +996,66 @@ main {
   line-height: 1.45;
 }
 
-.flow-arrow {
+.finale-arrow {
   display: flex;
 
   align-items: center;
 
   color: white;
 
-  font-size: 29px;
+  font-size: 30px;
 
   font-weight: 900;
 }
 
 
 /* =========================================================
-   FLAVOR OPTIONS
+   FLAVOR STRIP
 ========================================================= */
 
-.flavor-grid {
+.finale-options {
   display: grid;
-
   grid-template-columns: repeat(4,1fr);
-
-  gap: 14px;
 
   margin-top: 22px;
 
-  background: rgba(30,2,9,.65);
-
   border-radius: 16px;
 
-  padding: 14px;
+  overflow: hidden;
+
+  border: 1px solid rgba(255,255,255,.13);
 }
 
-.flavor-card {
-  color: white;
+.finale-option {
+  padding: 19px;
 
-  border-right: 1px solid rgba(255,255,255,.2);
+  background: rgba(3,18,31,.72);
 
-  padding: 10px 16px;
+  border-right: 1px solid rgba(255,255,255,.14);
 }
 
-.flavor-card:last-child {
+.finale-option:last-child {
   border-right: 0;
 }
 
-.flavor-icon {
+.finale-option-icon {
   font-size: 25px;
 
   margin-bottom: 8px;
 }
 
-.flavor-card strong {
+.finale-option strong {
   display: block;
 
-  font-size: 16px;
+  color: white;
 
   margin-bottom: 5px;
 }
 
-.flavor-card p {
+.finale-option p {
   margin: 0;
 
-  color: #f1dfe3;
+  color: #ccdae7;
 
   font-size: 12px;
 
@@ -1054,38 +1064,36 @@ main {
 
 
 /* =========================================================
-   FINAL SELLER CALLOUT
+   FINAL SELLING LINE
 ========================================================= */
 
-.same-target {
+.finale-callout {
   display: grid;
 
   grid-template-columns: auto 1fr;
 
-  gap: 16px;
+  gap: 17px;
 
   align-items: center;
 
   margin-top: 22px;
 
-  padding: 20px 24px;
+  padding: 22px 24px;
 
   border-radius: 15px;
 
   background: white;
 
-  color: var(--navy);
-
-  border-left: 8px solid #6e0717;
+  border-left: 7px solid var(--red);
 }
 
-.same-target-icon {
+.finale-callout-icon {
   width: 52px;
   height: 52px;
 
   border-radius: 50%;
 
-  background: #d5112d;
+  background: var(--blue);
 
   color: white;
 
@@ -1096,17 +1104,17 @@ main {
   font-size: 25px;
 }
 
-.same-target strong {
+.finale-callout strong {
   display: block;
 
-  color: #8a0c1f;
+  color: var(--navy);
 
   font-size: 21px;
 
   margin-bottom: 5px;
 }
 
-.same-target p {
+.finale-callout p {
   margin: 0;
 
   color: #556579;
@@ -1167,24 +1175,28 @@ footer strong {
     grid-template-columns: 1fr;
   }
 
-  .purpose {
+  .staff-intro-grid {
     grid-template-columns: 1fr;
   }
 
-  .flavor-flow {
+  .staff-points {
     grid-template-columns: 1fr;
   }
 
-  .flow-arrow {
+  .finale-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .finale-arrow {
     justify-content: center;
     transform: rotate(90deg);
   }
 
-  .flavor-grid {
+  .finale-options {
     grid-template-columns: repeat(2,1fr);
   }
 
-  .flavor-card {
+  .finale-option {
     border-right: 0;
   }
 
@@ -1219,21 +1231,21 @@ footer strong {
     margin-top: 8px;
   }
 
-  .flavor-grid {
+  .finale-header {
     grid-template-columns: 1fr;
   }
 
-  .connection-top {
+  .finale-options {
     grid-template-columns: 1fr;
   }
 
-  .same-target {
+  .finale-callout {
     grid-template-columns: 1fr;
   }
 
-  .purpose,
-  .explore-connection {
-    padding: 22px;
+  .staff-intro,
+  .staff-finale {
+    padding: 24px;
   }
 
 }
@@ -1272,11 +1284,11 @@ footer strong {
      HERO
 ========================================================= -->
 
-<header class="hero">
+<header class="hero staff-panel">
 
-  <div class="hero-inner">
+  <div class="hero-inner staff-panel-inner">
 
-    <div class="hero-badge">
+    <div class="staff-eyebrow">
       EXPLORE ACADEMY • STAFF AI SHOWCASE
     </div>
 
@@ -1294,7 +1306,7 @@ footer strong {
       world language, and physical education.
     </p>
 
-    <div class="hero-line"></div>
+    <div class="staff-accent-line"></div>
 
   </div>
 
@@ -1305,35 +1317,78 @@ footer strong {
 
 
 <!-- =========================================================
-     PURPOSE
+     STAFF FRAMING
 ========================================================= -->
 
-<section class="purpose">
+<section class="staff-intro staff-panel">
 
-  <div class="purpose-title">
+  <div class="staff-panel-inner">
 
-    <div class="purpose-icon">
-      🎯
+    <div class="staff-intro-grid">
+
+      <div>
+
+        <div class="staff-eyebrow">
+          WHY THIS SHOWCASE EXISTS
+        </div>
+
+        <h2>
+          Built for the way we teach at <span>Explore.</span>
+        </h2>
+
+        <div class="staff-accent-line"></div>
+
+      </div>
+
+
+      <div>
+
+        <p>
+          Explore already asks us to move beyond a single,
+          one-size-fits-all classroom experience.
+          These projects demonstrate how AI can help teachers
+          <strong>
+            preserve the learning target while changing the way
+            students experience the learning.
+          </strong>
+          The examples below show several different approaches,
+          from gamification and responsive scaffolding
+          to multimedia reading, word study,
+          differentiated language practice,
+          and adaptive physical education.
+        </p>
+
+
+        <div class="staff-points">
+
+          <div class="staff-point">
+            <strong>Keep the rigor</strong>
+            <span>
+              The standard or learning target remains the foundation.
+            </span>
+          </div>
+
+          <div class="staff-point">
+            <strong>Change the experience</strong>
+            <span>
+              Adjust context, support, modality, feedback, or interaction.
+            </span>
+          </div>
+
+          <div class="staff-point">
+            <strong>Design for students</strong>
+            <span>
+              Build different pathways without abandoning the destination.
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
-    <h2>
-      Built for the way we teach at Explore.
-    </h2>
-
   </div>
-
-  <p>
-    Explore already asks us to move beyond a single,
-    one-size-fits-all classroom experience.
-    These projects demonstrate how AI can help teachers
-    <strong>
-      preserve the learning target while changing the way
-      students experience the learning.
-    </strong>
-    The examples below include gamification, responsive scaffolding,
-    multimedia reading, word study, differentiated language practice,
-    and adaptive physical education.
-  </p>
 
 </section>
 
@@ -2186,30 +2241,30 @@ footer strong {
 
 
 <!-- =========================================================
-     EXPLORE CONNECTION
+     STAFF FINALE
 ========================================================= -->
 
-<section class="explore-connection">
+<section class="staff-finale staff-panel">
 
-  <div class="connection-inner">
+  <div class="staff-panel-inner">
 
-    <div class="connection-top">
+    <div class="finale-header">
 
-      <div class="connection-icon">
+      <div class="finale-icon">
         ★
       </div>
 
       <div>
 
-        <div class="eyebrow">
+        <div class="staff-eyebrow">
           THE EXPLORE CONNECTION
         </div>
 
         <h2>
-          Build the Flavor
+          Build the <span>Flavor</span>
         </h2>
 
-        <p class="connection-intro">
+        <p class="finale-intro">
           Explore's model recognizes that students do not all need
           the exact same experience to reach the same destination.
           AI can help extend that philosophy by allowing teachers to
@@ -2220,16 +2275,18 @@ footer strong {
           </strong>
         </p>
 
+        <div class="staff-accent-line"></div>
+
       </div>
 
     </div>
 
 
-    <div class="flavor-flow">
+    <div class="finale-flow">
 
-      <div class="flow-box">
+      <div class="finale-step">
 
-        <div class="flow-number">
+        <div class="finale-number">
           1
         </div>
 
@@ -2246,14 +2303,14 @@ footer strong {
       </div>
 
 
-      <div class="flow-arrow">
+      <div class="finale-arrow">
         →
       </div>
 
 
-      <div class="flow-box">
+      <div class="finale-step">
 
-        <div class="flow-number">
+        <div class="finale-number">
           2
         </div>
 
@@ -2271,14 +2328,14 @@ footer strong {
       </div>
 
 
-      <div class="flow-arrow">
+      <div class="finale-arrow">
         →
       </div>
 
 
-      <div class="flow-box">
+      <div class="finale-step">
 
-        <div class="flow-number">
+        <div class="finale-number">
           3
         </div>
 
@@ -2297,11 +2354,11 @@ footer strong {
     </div>
 
 
-    <div class="flavor-grid">
+    <div class="finale-options">
 
-      <div class="flavor-card">
+      <div class="finale-option">
 
-        <div class="flavor-icon">
+        <div class="finale-option-icon">
           🚀 🐉 🏀
         </div>
 
@@ -2318,9 +2375,9 @@ footer strong {
       </div>
 
 
-      <div class="flavor-card">
+      <div class="finale-option">
 
-        <div class="flavor-icon">
+        <div class="finale-option-icon">
           📖 🎥 🎮
         </div>
 
@@ -2337,9 +2394,9 @@ footer strong {
       </div>
 
 
-      <div class="flavor-card">
+      <div class="finale-option">
 
-        <div class="flavor-icon">
+        <div class="finale-option-icon">
           🧠 💡 🪜
         </div>
 
@@ -2357,9 +2414,9 @@ footer strong {
       </div>
 
 
-      <div class="flavor-card">
+      <div class="finale-option">
 
-        <div class="flavor-icon">
+        <div class="finale-option-icon">
           🎯 📈 🏆
         </div>
 
@@ -2379,9 +2436,9 @@ footer strong {
     </div>
 
 
-    <div class="same-target">
+    <div class="finale-callout">
 
-      <div class="same-target-icon">
+      <div class="finale-callout-icon">
         ★
       </div>
 
