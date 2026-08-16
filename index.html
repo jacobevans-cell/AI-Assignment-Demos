@@ -7,7 +7,6 @@
 <title>AI Assignment Lab</title>
 
 <style>
-
 * {
   box-sizing: border-box;
 }
@@ -19,9 +18,7 @@ body {
   color: #18212f;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero {
   padding: 70px 20px 55px;
@@ -46,7 +43,7 @@ body {
 }
 
 .hero p {
-  max-width: 760px;
+  max-width: 800px;
   margin: auto;
   font-size: 19px;
   line-height: 1.5;
@@ -55,12 +52,10 @@ body {
 .hero-small {
   margin-top: 25px;
   font-size: 14px;
-  opacity: .85;
+  opacity: .8;
 }
 
-/* =========================
-   MAIN
-========================= */
+/* MAIN */
 
 main {
   width: min(1500px, 94%);
@@ -68,9 +63,7 @@ main {
   padding: 45px 0 70px;
 }
 
-/* =========================
-   INTRO
-========================= */
+/* INTRO */
 
 .intro {
   background: white;
@@ -87,12 +80,9 @@ main {
 .intro p {
   color: #667085;
   line-height: 1.6;
-  margin-bottom: 0;
 }
 
-/* =========================
-   ASSIGNMENT SECTION
-========================= */
+/* SECTION */
 
 .section-title {
   font-size: 30px;
@@ -104,16 +94,16 @@ main {
   margin-bottom: 22px;
 }
 
+/* GRID */
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
   align-items: stretch;
 }
 
-/* =========================
-   CARDS
-========================= */
+/* CARDS */
 
 .card {
   background: white;
@@ -159,51 +149,52 @@ main {
   font-size: 22px;
 }
 
-.card h4 {
-  color: #4353f5;
-  font-size: 13px;
-  letter-spacing: .6px;
-  margin: 0 0 6px;
+.info-section {
+  margin-bottom: 18px;
 }
 
-.card-section {
-  margin-bottom: 17px;
+.info-section h4 {
+  margin: 0 0 7px;
+  color: #4054ed;
+  font-size: 14px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
 }
 
-.card p {
+.info-section p {
   color: #667085;
   line-height: 1.5;
   margin: 0;
   font-size: 15px;
 }
 
-/* =========================
-   INTENTIONAL DESIGN BOX
-========================= */
-
 .design-box {
   background: #f2efff;
-  border-left: 4px solid #5865ff;
-  padding: 14px;
+  border-left: 4px solid #5367ff;
+  padding: 15px;
   border-radius: 10px;
-  margin: 4px 0 18px;
+  margin-bottom: 20px;
 }
 
 .design-box h4 {
-  margin-bottom: 7px;
+  margin: 0 0 7px;
+  color: #4054ed;
+  font-size: 14px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
 }
 
 .design-box p {
+  margin: 0;
+  color: #667085;
+  line-height: 1.5;
   font-size: 14px;
 }
 
-/* =========================
-   PREVIEW IMAGES
-========================= */
+/* PREVIEW AREA */
 
 .preview-area {
   margin-top: auto;
-  padding-top: 12px;
 }
 
 .preview {
@@ -211,21 +202,18 @@ main {
   height: 180px;
   object-fit: cover;
   object-position: top;
-  border-radius: 12px;
-  border: 1px solid #d9deea;
   display: block;
-  background: #eef1f6;
+  border-radius: 12px;
+  border: 1px solid #d6dce8;
+  margin-bottom: 15px;
+  background: #eef2f7;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
 .button {
-  margin-top: 14px;
   display: block;
+  width: 100%;
   text-align: center;
-  background: #654cff;
+  background: #5658ff;
   color: white;
   text-decoration: none;
   padding: 13px;
@@ -234,18 +222,16 @@ main {
 }
 
 .button:hover {
-  background: #5037e8;
+  background: #443fe8;
 }
 
-/* =========================
-   HOW IT WORKS
-========================= */
+/* HOW */
 
 .how {
   background: #101828;
   color: white;
   border-radius: 22px;
-  padding: 32px;
+  padding: 30px;
   margin-top: 45px;
 }
 
@@ -255,6 +241,7 @@ main {
 
 .how > p {
   color: #cbd2dc;
+  line-height: 1.6;
 }
 
 .steps {
@@ -283,20 +270,15 @@ main {
   line-height: 1.5;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE */
 
 @media (max-width: 1200px) {
-
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
 }
 
 @media (max-width: 700px) {
-
   .grid,
   .steps {
     grid-template-columns: 1fr;
@@ -305,25 +287,15 @@ main {
   .hero h1 {
     font-size: 42px;
   }
-
 }
-
 </style>
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     HERO
-========================= -->
 
 <header class="hero">
 
-  <div class="badge">
-    STAFF AI SHOWCASE
-  </div>
+  <div class="badge">STAFF AI SHOWCASE</div>
 
   <h1>AI Assignment Lab</h1>
 
@@ -339,13 +311,7 @@ main {
 
 </header>
 
-
 <main>
-
-
-<!-- =========================
-     INTRO
-========================= -->
 
 <section class="intro">
 
@@ -354,92 +320,72 @@ main {
   <p>
     These are not screenshots or mockups. They are working browser-based
     activities created with AI and published as simple web pages.
-    The goal is to show how teachers can turn an idea, lesson, review,
-    or practice activity into something students can actually interact with.
+    The goal is to demonstrate how teachers can take existing curriculum,
+    standards, worksheets, readings, videos, or practice activities and
+    redesign them into interactive learning experiences.
   </p>
 
 </section>
 
 
-<h2 class="section-title">
-  Try the assignments
-</h2>
+<h2 class="section-title">Try the assignments</h2>
 
 <p class="section-subtitle">
   Each example demonstrates a different way AI can support classroom design.
 </p>
 
 
-<!-- =========================
-     ASSIGNMENT GRID
-========================= -->
-
 <section class="grid">
 
 
-<!-- =========================
-     DECIMAL DECEPTION
-========================= -->
+<!-- ===================================================== -->
+<!-- DECIMAL DECEPTION -->
+<!-- ===================================================== -->
 
 <article class="card">
 
   <div class="icon">🚀</div>
 
-  <div class="tag">
-    GAMIFIED MATH
-  </div>
+  <div class="tag">GAMIFIED MATH</div>
 
   <h3>Decimal Deception</h3>
 
-
-  <div class="card-section">
-
-    <h4>ACTIVITY DESCRIPTION</h4>
-
+  <div class="info-section">
+    <h4>Activity Description</h4>
     <p>
       Students navigate a space-station adventure while solving decimal
       problems. Correct answers help them complete missions, collect
       Power Crystals, avoid enemies, and unlock new areas.
     </p>
-
   </div>
 
-
-  <div class="card-section">
-
-    <h4>ARIZONA MATH STANDARD</h4>
-
+  <div class="info-section">
+    <h4>Arizona Math Standard</h4>
     <p>
       <strong>6.NS.B.3</strong> — Fluently add, subtract, multiply,
       and divide multi-digit decimals using the standard algorithm.
     </p>
-
   </div>
 
-
   <div class="design-box">
-
-    <h4>INTENTIONAL DESIGN</h4>
-
+    <h4>Intentional Design</h4>
     <p>
       What if the same practice problems from a worksheet became part
       of a game? The academic skill remains the focus, but repetitive
       practice is built into missions, movement, challenges,
       immediate feedback, and progression.
     </p>
-
   </div>
-
 
   <div class="preview-area">
 
     <img
       class="preview"
-      src="decimal-deception-preview.png"
+      src="./decimal-deception-preview.png"
       alt="Preview of Decimal Deception"
     >
 
-    <a class="button" href="decimal-deception.html">
+    <a class="button" href="./decimal-deception.html">
       OPEN DEMO
     </a>
 
@@ -448,54 +394,40 @@ main {
 </article>
 
 
-
-<!-- =========================
-     VOLLEYBALL ACADEMY
-========================= -->
+<!-- ===================================================== -->
+<!-- VOLLEYBALL ACADEMY -->
+<!-- ===================================================== -->
 
 <article class="card">
 
   <div class="icon">🏐</div>
 
-  <div class="tag">
-    INTERACTIVE LESSON
-  </div>
+  <div class="tag">INTERACTIVE LESSON</div>
 
   <h3>Volleyball Academy</h3>
 
-
-  <div class="card-section">
-
-    <h4>ACTIVITY DESCRIPTION</h4>
-
+  <div class="info-section">
+    <h4>Activity Description</h4>
     <p>
-      Students work through a series of volleyball missions that combine
+      Students work through a series of volleyball missions combining
       reading, videos, game situations, multiple-choice comprehension
       checks, drag-and-drop activities, immediate feedback, scoring,
       and progress tracking.
     </p>
-
   </div>
 
-
-  <div class="card-section">
-
-    <h4>LEARNING CONTENT</h4>
-
+  <div class="info-section">
+    <h4>Learning Content</h4>
     <p>
       The lesson was created from existing instructional resources,
       including web articles, instructional reading, and YouTube videos.
       Students process the information and apply what they learn to
       interactive challenges.
     </p>
-
   </div>
 
-
   <div class="design-box">
-
-    <h4>INTENTIONAL DESIGN</h4>
-
+    <h4>Intentional Design</h4>
     <p>
       Instead of simply giving students links to articles and videos,
       the resources were transformed into one structured interactive
@@ -503,19 +435,17 @@ main {
       and demonstrate understanding before progressing.
       <strong>Volleyball is simply the example.</strong>
     </p>
-
   </div>
-
 
   <div class="preview-area">
 
     <img
       class="preview"
-      src="volleyball-academy-preview.png"
+      src="./volleyball-academy-preview.png"
       alt="Preview of Volleyball Academy"
     >
 
-    <a class="button" href="volleyball-academy.html">
+    <a class="button" href="./volleyball-academy.html">
       OPEN DEMO
     </a>
 
@@ -524,71 +454,57 @@ main {
 </article>
 
 
-
-<!-- =========================
-     LONG DIVISION QUEST
-========================= -->
+<!-- ===================================================== -->
+<!-- LONG DIVISION QUEST -->
+<!-- ===================================================== -->
 
 <article class="card">
 
   <div class="icon">➗</div>
 
-  <div class="tag">
-    GUIDED MATH PRACTICE
-  </div>
+  <div class="tag">GUIDED MATH</div>
 
   <h3>Long Division Quest</h3>
 
-
-  <div class="card-section">
-
-    <h4>ACTIVITY DESCRIPTION</h4>
-
+  <div class="info-section">
+    <h4>Activity Description</h4>
     <p>
-      Students solve long division problems one digit at a time using
-      the Divide → Multiply → Subtract → Bring Down sequence. Each
-      digit is entered directly into its correct place-value position.
+      Students solve long-division problems one aligned step at a time.
+      The program guides students through divide, multiply, subtract,
+      and bring down while tracking accuracy, XP, streaks, problems
+      completed, and hints used.
     </p>
-
   </div>
 
-
-  <div class="card-section">
-
-    <h4>LEARNING OBJECTIVE</h4>
-
+  <div class="info-section">
+    <h4>Instructional Support</h4>
     <p>
-      Build accuracy and fluency with multi-digit long division while
-      reinforcing place value, multiplication facts, subtraction,
-      procedural order, and mathematical reasoning.
+      Rather than simply marking an entire problem wrong, the activity
+      focuses students on the exact digit and step they are working on.
+      Visual grouping models help students understand how many groups
+      fit into a number before entering the quotient digit.
     </p>
-
   </div>
-
 
   <div class="design-box">
-
-    <h4>INTENTIONAL DESIGN</h4>
-
+    <h4>Intentional Design</h4>
     <p>
-      Instead of marking an entire quotient wrong, the activity responds
-      to each individual step. Students receive immediate feedback,
+      Long division is a multi-step process, so the interface was
+      intentionally designed to mirror the algorithm. Students receive
       targeted prompts, optional hints, and visual grouping support
       exactly when they need it.
     </p>
-
   </div>
-
 
   <div class="preview-area">
 
     <img
       class="preview"
-      src="long-division-preview.png"
+      src="./long-division-quest-preview.png"
       alt="Preview of Long Division Quest"
     >
 
-    <a class="button" href="long-division-quest.html">
+    <a class="button" href="./long-division-quest.html">
       OPEN DEMO
     </a>
 
@@ -597,89 +513,62 @@ main {
 </article>
 
 
-
-<!-- =========================
-     SPELLING PRACTICE LAB
-========================= -->
+<!-- ===================================================== -->
+<!-- SPELLING PRACTICE -->
+<!-- ===================================================== -->
 
 <article class="card">
 
   <div class="icon">🔤</div>
 
-  <div class="tag">
-    MULTIMODAL LITERACY
-  </div>
+  <div class="tag">LITERACY + GAMEPLAY</div>
 
-  <h3>Spelling Practice Lab</h3>
+  <h3>Spelling Practice</h3>
 
-
-  <div class="card-section">
-
-    <h4>ACTIVITY DESCRIPTION</h4>
-
+  <div class="info-section">
+    <h4>Activity Description</h4>
     <p>
       One spelling list becomes a complete learning system. Students
-      study with interactive flash cards, practice through volleyball
-      and soccer games, hear words and sentences read aloud, and finish
-      with a traditional listen-and-type spelling test.
+      can study with instructional flash cards, practice through
+      volleyball and soccer games, and complete an independent
+      listen-and-spell test.
     </p>
-
   </div>
 
-
-  <div class="card-section">
-
-    <h4>WORD STUDY & PEDAGOGY</h4>
-
+  <div class="info-section">
+    <h4>Word Study & Pedagogy</h4>
     <p>
-      Each word is intentionally broken down for instruction.
-      Students examine syllables, pronunciation, sound-it-out chunks,
-      phonograms, spelling patterns, definitions, example sentences,
-      and visual examples before being expected to spell independently.
+      Each word was intentionally broken apart for instruction.
+      Students study syllables, pronunciation, sound chunks,
+      phonograms, spelling patterns, word structure, visual examples,
+      and targeted spelling reminders before practicing independently.
     </p>
-
   </div>
-
 
   <div class="design-box">
-
-    <h4>INTENTIONAL SCAFFOLDING</h4>
-
+    <h4>Intentional Design</h4>
     <p>
       The flash cards make the structure of each word visible.
-      Multi-letter phonograms are automatically highlighted,
-      difficult patterns receive targeted “Watch For” hints,
-      individual sound chunks can be heard aloud, and students
-      can listen to both the complete word and an example sentence.
+      Multi-letter phonograms are automatically highlighted, difficult
+      patterns receive targeted “Watch For” hints, individual sound
+      chunks can be heard aloud, and students can listen to the whole
+      word and an example sentence.
+      <br><br>
+      <strong>Students can see it, hear it, break it apart, study the
+      pattern, practice it, apply it in a game, and finally spell it
+      independently.</strong>
     </p>
-
   </div>
-
-
-  <div class="design-box">
-
-    <h4>WHY THIS MATTERS</h4>
-
-    <p>
-      Students can <strong>see it, hear it, break it apart,
-      study the pattern, practice it, apply it in a game,
-      and finally spell it independently.</strong>
-      The games are the engagement layer; the word-analysis
-      instruction underneath them is the instructional foundation.
-    </p>
-
-  </div>
-
 
   <div class="preview-area">
 
     <img
       class="preview"
-      src="spelling-practice-preview.png"
-      alt="Spelling Practice Lab showing flash cards, volleyball practice, soccer practice, and spelling test"
+      src="./spelling-practice-preview.png"
+      alt="Preview of Spelling Practice"
     >
 
-    <a class="button" href="spelling-practice.html">
+    <a class="button" href="./spelling-practice.html">
       OPEN DEMO
     </a>
 
@@ -691,37 +580,31 @@ main {
 </section>
 
 
-
-<!-- =========================
-     HOW IT WAS MADE
-========================= -->
+<!-- ===================================================== -->
+<!-- HOW IT WAS MADE -->
+<!-- ===================================================== -->
 
 <section class="how">
 
   <h2>How was this made?</h2>
 
   <p>
-    The teacher doesn't need to be a programmer. The process starts
-    with the learning goal, the instructional content, and an idea
-    for how students should experience it.
+    The teacher does not need to start as a programmer. The process
+    begins with curriculum, an instructional goal, and an idea for
+    how students should experience the learning.
   </p>
-
 
   <div class="steps">
 
-
     <div class="step">
 
-      <div class="step-number">
-        STEP 1
-      </div>
+      <div class="step-number">STEP 1</div>
 
-      <strong>Describe the idea</strong>
+      <strong>Start with instruction</strong>
 
       <p>
-        Give AI the standard, skill, grade level, lesson content,
-        existing resources, and the type of experience you want
-        students to have.
+        Identify the standard, skill, lesson content, existing resource,
+        worksheet, or practice students need to complete.
       </p>
 
     </div>
@@ -729,16 +612,14 @@ main {
 
     <div class="step">
 
-      <div class="step-number">
-        STEP 2
-      </div>
+      <div class="step-number">STEP 2</div>
 
-      <strong>Build & revise</strong>
+      <strong>Design with AI</strong>
 
       <p>
-        AI generates the webpage. The teacher tests it, identifies
-        problems, adds instructional supports, and requests changes
-        until the assignment works the way they want.
+        Describe the experience you want. AI can help build the webpage,
+        interactions, feedback, visuals, scoring, games, and instructional
+        supports.
       </p>
 
     </div>
@@ -746,25 +627,21 @@ main {
 
     <div class="step">
 
-      <div class="step-number">
-        STEP 3
-      </div>
+      <div class="step-number">STEP 3</div>
 
-      <strong>Publish & share</strong>
+      <strong>Test, revise & publish</strong>
 
       <p>
-        The finished HTML file is published with GitHub Pages and
-        can be linked or embedded directly into Google Sites for
-        students or staff to access.
+        The teacher tests the assignment, requests changes, and continues
+        refining it. The finished HTML can then be published with GitHub
+        Pages and linked or embedded into Google Sites.
       </p>
 
     </div>
-
 
   </div>
 
 </section>
-
 
 </main>
 
