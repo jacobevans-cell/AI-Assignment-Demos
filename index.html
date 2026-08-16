@@ -383,8 +383,6 @@ main {
   overflow: hidden;
 
   display: grid;
-
-  /* SCREENSHOT GETS MORE ROOM */
   grid-template-columns: 48% 52%;
 
   min-height: 440px;
@@ -440,18 +438,12 @@ main {
   border-right: 1px solid #e2e8f0;
 }
 
-
-/* CLICKABLE SCREENSHOT FRAME */
-
 .demo-visual a {
   width: 100%;
   display: block;
   position: relative;
   text-decoration: none;
 }
-
-
-/* THE IMPORTANT FIX */
 
 .demo-preview {
   display: block;
@@ -478,9 +470,6 @@ main {
 .demo-card:hover .demo-preview {
   transform: scale(1.012);
 }
-
-
-/* VIEW BUTTON ON IMAGE */
 
 .preview-badge {
   position: absolute;
@@ -809,46 +798,106 @@ main {
 
 /* =========================================================
    EXPLORE CONNECTION
+   MADE VISUALLY DISTINCT FROM THE DEMOS
 ========================================================= */
 
 .explore-connection {
-  margin-top: 48px;
+  position: relative;
+  overflow: hidden;
 
-  background: white;
+  margin-top: 55px;
 
-  border-radius: 22px;
+  color: white;
 
-  border-top: 6px solid #29c56f;
+  border-radius: 24px;
 
-  padding: 35px;
+  padding: 38px;
 
-  box-shadow: 0 8px 26px rgba(12,24,41,.07);
+  background:
+    linear-gradient(
+      135deg,
+      #b80f27 0%,
+      #d51028 48%,
+      #97091d 100%
+    );
+
+  box-shadow:
+    0 14px 35px rgba(102,8,26,.22);
+}
+
+.explore-connection::after {
+  content: "";
+
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  right: -110px;
+  top: -160px;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.035);
+
+  box-shadow:
+    0 0 0 35px rgba(255,255,255,.025),
+    0 0 0 70px rgba(255,255,255,.018);
+}
+
+.connection-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.connection-top {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.connection-icon {
+  width: 58px;
+  height: 58px;
+
+  border: 3px solid white;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
 }
 
 .eyebrow {
-  color: #229a55;
+  color: white;
 
   font-size: 12px;
 
   font-weight: 900;
 
-  letter-spacing: 1.2px;
+  letter-spacing: 1.3px;
+
+  margin-bottom: 5px;
 }
 
 .explore-connection h2 {
-  margin: 6px 0 11px;
+  margin: 0 0 10px;
 
-  color: var(--navy);
+  color: white;
 
-  font-size: 34px;
+  font-size: 38px;
 }
 
 .connection-intro {
-  max-width: 1150px;
+  max-width: 1250px;
 
   margin: 0;
 
-  color: var(--muted);
+  color: #fff2f3;
 
   line-height: 1.65;
 
@@ -856,7 +905,7 @@ main {
 }
 
 .connection-intro strong {
-  color: var(--navy);
+  color: white;
 }
 
 
@@ -874,21 +923,44 @@ main {
     auto
     1fr;
 
-  gap: 13px;
+  gap: 14px;
 
   align-items: stretch;
 
-  margin-top: 25px;
+  margin-top: 28px;
 }
 
 .flow-box {
-  background: #f6f8fb;
+  background: rgba(255,255,255,.96);
 
-  border: 1px solid #e0e6ee;
+  border-radius: 15px;
 
-  border-radius: 13px;
+  padding: 19px;
 
-  padding: 18px;
+  color: var(--navy);
+
+  box-shadow:
+    0 7px 18px rgba(71,0,14,.12);
+}
+
+.flow-number {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: #bf1129;
+
+  color: white;
+
+  font-weight: 900;
+
+  margin-bottom: 9px;
 }
 
 .flow-box strong {
@@ -898,13 +970,13 @@ main {
 
   margin-bottom: 6px;
 
-  font-size: 16px;
+  font-size: 17px;
 }
 
 .flow-box p {
   margin: 0;
 
-  color: var(--muted);
+  color: #58677a;
 
   font-size: 13px;
 
@@ -916,9 +988,9 @@ main {
 
   align-items: center;
 
-  color: #1467d8;
+  color: white;
 
-  font-size: 25px;
+  font-size: 29px;
 
   font-weight: 900;
 }
@@ -933,23 +1005,31 @@ main {
 
   grid-template-columns: repeat(4,1fr);
 
-  gap: 13px;
+  gap: 14px;
 
-  margin-top: 21px;
+  margin-top: 22px;
+
+  background: rgba(30,2,9,.65);
+
+  border-radius: 16px;
+
+  padding: 14px;
 }
 
 .flavor-card {
-  background: var(--navy);
-
   color: white;
 
-  border-radius: 13px;
+  border-right: 1px solid rgba(255,255,255,.2);
 
-  padding: 18px;
+  padding: 10px 16px;
+}
+
+.flavor-card:last-child {
+  border-right: 0;
 }
 
 .flavor-icon {
-  font-size: 23px;
+  font-size: 25px;
 
   margin-bottom: 8px;
 }
@@ -957,42 +1037,71 @@ main {
 .flavor-card strong {
   display: block;
 
-  margin-bottom: 6px;
+  font-size: 16px;
+
+  margin-bottom: 5px;
 }
 
 .flavor-card p {
   margin: 0;
 
-  color: #cbd6e3;
+  color: #f1dfe3;
 
   font-size: 12px;
 
   line-height: 1.45;
 }
 
+
+/* =========================================================
+   FINAL SELLER CALLOUT
+========================================================= */
+
 .same-target {
-  margin-top: 21px;
+  display: grid;
 
-  padding: 20px 22px;
+  grid-template-columns: auto 1fr;
 
-  border-radius: 13px;
+  gap: 16px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #edf7ff,
-      #effcf4
-    );
+  align-items: center;
 
-  border-left: 5px solid #29c56f;
+  margin-top: 22px;
+
+  padding: 20px 24px;
+
+  border-radius: 15px;
+
+  background: white;
+
+  color: var(--navy);
+
+  border-left: 8px solid #6e0717;
+}
+
+.same-target-icon {
+  width: 52px;
+  height: 52px;
+
+  border-radius: 50%;
+
+  background: #d5112d;
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
 }
 
 .same-target strong {
   display: block;
 
-  color: var(--navy);
+  color: #8a0c1f;
 
-  font-size: 19px;
+  font-size: 21px;
 
   margin-bottom: 5px;
 }
@@ -1000,110 +1109,9 @@ main {
 .same-target p {
   margin: 0;
 
-  color: var(--muted);
+  color: #556579;
 
-  line-height: 1.55;
-}
-
-
-/* =========================================================
-   PROCESS
-========================================================= */
-
-.process {
-  margin-top: 34px;
-
-  background: white;
-
-  border-radius: 21px;
-
-  padding: 31px;
-
-  box-shadow: 0 8px 24px rgba(12,24,41,.07);
-}
-
-.process-title {
-  display: flex;
-
-  align-items: center;
-
-  gap: 14px;
-}
-
-.process-icon {
-  font-size: 32px;
-}
-
-.process h2 {
-  margin: 0;
-
-  color: var(--navy);
-
-  font-size: 28px;
-}
-
-.process-sub {
-  margin: 5px 0 0;
-
-  color: var(--muted);
-}
-
-.process-grid {
-  display: grid;
-
-  grid-template-columns: repeat(3,1fr);
-
-  gap: 15px;
-
-  margin-top: 22px;
-}
-
-.process-card {
-  background: #f6f8fb;
-
-  border-radius: 13px;
-
-  padding: 19px;
-
-  border-top: 4px solid var(--math);
-}
-
-.process-card:nth-child(2) {
-  border-top-color: var(--ela);
-}
-
-.process-card:nth-child(3) {
-  border-top-color: var(--specials);
-}
-
-.process-number {
-  font-size: 11px;
-
-  font-weight: 900;
-
-  letter-spacing: 1px;
-
-  color: #1467d8;
-
-  margin-bottom: 7px;
-}
-
-.process-card strong {
-  color: var(--navy);
-
-  display: block;
-
-  margin-bottom: 6px;
-}
-
-.process-card p {
-  color: var(--muted);
-
-  font-size: 12px;
-
-  line-height: 1.45;
-
-  margin: 0;
+  line-height: 1.5;
 }
 
 
@@ -1172,8 +1180,12 @@ footer strong {
     transform: rotate(90deg);
   }
 
-  .process-grid {
-    grid-template-columns: 1fr;
+  .flavor-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .flavor-card {
+    border-right: 0;
   }
 
 }
@@ -1211,9 +1223,16 @@ footer strong {
     grid-template-columns: 1fr;
   }
 
+  .connection-top {
+    grid-template-columns: 1fr;
+  }
+
+  .same-target {
+    grid-template-columns: 1fr;
+  }
+
   .purpose,
-  .explore-connection,
-  .process {
+  .explore-connection {
     padding: 22px;
   }
 
@@ -2172,273 +2191,215 @@ footer strong {
 
 <section class="explore-connection">
 
-  <div class="eyebrow">
-    THE EXPLORE CONNECTION
-  </div>
+  <div class="connection-inner">
 
-  <h2>
-    Build the Flavor
-  </h2>
+    <div class="connection-top">
 
-  <p class="connection-intro">
-    Explore's model recognizes that students do not all need
-    the exact same experience to reach the same destination.
-    AI can help extend that philosophy by allowing teachers to
-    <strong>
-      preserve the academic or performance target while changing
-      the context, scaffolding, modality, challenge,
-      feedback, or student pathway.
-    </strong>
-  </p>
-
-
-  <div class="flavor-flow">
-
-    <div class="flow-box">
-
-      <strong>
-        1. Keep the Target
-      </strong>
-
-      <p>
-        Start with the standard, learning objective,
-        skill, text, vocabulary,
-        movement objective, or assessment goal.
-      </p>
-
-    </div>
-
-
-    <div class="flow-arrow">
-      →
-    </div>
-
-
-    <div class="flow-box">
-
-      <strong>
-        2. Design the Flavor
-      </strong>
-
-      <p>
-        Change the theme, context,
-        interaction, scaffolding,
-        modality, challenge level,
-        or type of practice.
-      </p>
-
-    </div>
-
-
-    <div class="flow-arrow">
-      →
-    </div>
-
-
-    <div class="flow-box">
-
-      <strong>
-        3. Reach the Same Mastery
-      </strong>
-
-      <p>
-        The student experience may look different,
-        but the underlying expectation
-        remains intentional and measurable.
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <div class="flavor-grid">
-
-    <div class="flavor-card">
-
-      <div class="flavor-icon">
-        🚀 🐉 🏀
+      <div class="connection-icon">
+        ★
       </div>
 
-      <strong>
-        Interest-Based
-      </strong>
+      <div>
 
-      <p>
-        Space, sports, fantasy,
-        animals, cooking, history,
-        music, or another student interest.
-      </p>
+        <div class="eyebrow">
+          THE EXPLORE CONNECTION
+        </div>
 
-    </div>
+        <h2>
+          Build the Flavor
+        </h2>
 
+        <p class="connection-intro">
+          Explore's model recognizes that students do not all need
+          the exact same experience to reach the same destination.
+          AI can help extend that philosophy by allowing teachers to
+          <strong>
+            preserve the academic or performance target while changing
+            the context, scaffolding, modality, challenge,
+            feedback, or student pathway.
+          </strong>
+        </p>
 
-    <div class="flavor-card">
-
-      <div class="flavor-icon">
-        📖 🎥 🎮
       </div>
 
-      <strong>
-        Learning Mode
-      </strong>
-
-      <p>
-        Reading, video, audio,
-        simulation, guided practice,
-        games, or visual models.
-      </p>
-
     </div>
 
 
-    <div class="flavor-card">
+    <div class="flavor-flow">
 
-      <div class="flavor-icon">
-        🧠 💡 🪜
+      <div class="flow-box">
+
+        <div class="flow-number">
+          1
+        </div>
+
+        <strong>
+          Keep the Target
+        </strong>
+
+        <p>
+          Start with the standard, learning objective,
+          skill, text, vocabulary,
+          movement objective, or assessment goal.
+        </p>
+
       </div>
 
-      <strong>
-        Support
-      </strong>
 
-      <p>
-        Read-alouds, visual hints,
-        chunking, models,
-        pronunciation support,
-        coaching, and scaffolds.
-      </p>
-
-    </div>
-
-
-    <div class="flavor-card">
-
-      <div class="flavor-icon">
-        🎯 📈 🏆
+      <div class="flow-arrow">
+        →
       </div>
 
-      <strong>
-        Mastery
-      </strong>
 
-      <p>
-        Immediate feedback,
-        retries, targeted reteaching,
-        challenge levels,
-        and progress indicators.
-      </p>
+      <div class="flow-box">
 
-    </div>
+        <div class="flow-number">
+          2
+        </div>
 
-  </div>
+        <strong>
+          Design the Flavor
+        </strong>
 
+        <p>
+          Change the theme, context,
+          interaction, scaffolding,
+          modality, challenge level,
+          or type of practice.
+        </p>
 
-  <div class="same-target">
-
-    <strong>
-      Same target. Different path.
-    </strong>
-
-    <p>
-      A student can work toward the same standard or performance goal
-      through a different theme, level of support,
-      degree of independence, or type of interaction.
-      AI can make those different pathways far more practical
-      for teachers to build, revise, and reuse.
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     PROCESS
-========================================================= -->
-
-<section class="process">
-
-  <div class="process-title">
-
-    <div class="process-icon">
-      ⚙️
-    </div>
-
-    <div>
-
-      <h2>
-        How these are built
-      </h2>
-
-      <p class="process-sub">
-        The process begins with instructional design, not programming.
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <div class="process-grid">
-
-    <div class="process-card">
-
-      <div class="process-number">
-        STEP 1
       </div>
 
-      <strong>
-        Start with the learning
-      </strong>
 
-      <p>
-        Identify the standard, student need,
-        existing resource, assessment,
-        lesson, practice problem,
-        or instructional challenge.
-      </p>
+      <div class="flow-arrow">
+        →
+      </div>
+
+
+      <div class="flow-box">
+
+        <div class="flow-number">
+          3
+        </div>
+
+        <strong>
+          Reach the Same Mastery
+        </strong>
+
+        <p>
+          The student experience may look different,
+          but the underlying expectation
+          remains intentional and measurable.
+        </p>
+
+      </div>
 
     </div>
 
 
-    <div class="process-card">
+    <div class="flavor-grid">
 
-      <div class="process-number">
-        STEP 2
+      <div class="flavor-card">
+
+        <div class="flavor-icon">
+          🚀 🐉 🏀
+        </div>
+
+        <strong>
+          Interest-Based
+        </strong>
+
+        <p>
+          Space, sports, fantasy,
+          animals, cooking, history,
+          music, or another student interest.
+        </p>
+
       </div>
 
-      <strong>
-        Design the experience
-      </strong>
 
-      <p>
-        Decide what students should do,
-        where support is needed,
-        how feedback should work,
-        and which flavor best supports the goal.
-      </p>
+      <div class="flavor-card">
+
+        <div class="flavor-icon">
+          📖 🎥 🎮
+        </div>
+
+        <strong>
+          Learning Mode
+        </strong>
+
+        <p>
+          Reading, video, audio,
+          simulation, guided practice,
+          games, or visual models.
+        </p>
+
+      </div>
+
+
+      <div class="flavor-card">
+
+        <div class="flavor-icon">
+          🧠 💡 🪜
+        </div>
+
+        <strong>
+          Support
+        </strong>
+
+        <p>
+          Read-alouds, visual hints,
+          chunking, models,
+          pronunciation support,
+          coaching, and scaffolds.
+        </p>
+
+      </div>
+
+
+      <div class="flavor-card">
+
+        <div class="flavor-icon">
+          🎯 📈 🏆
+        </div>
+
+        <strong>
+          Mastery
+        </strong>
+
+        <p>
+          Immediate feedback,
+          retries, targeted reteaching,
+          challenge levels,
+          and progress indicators.
+        </p>
+
+      </div>
 
     </div>
 
 
-    <div class="process-card">
+    <div class="same-target">
 
-      <div class="process-number">
-        STEP 3
+      <div class="same-target-icon">
+        ★
       </div>
 
-      <strong>
-        Build, test &amp; revise
-      </strong>
+      <div>
 
-      <p>
-        AI helps build the technology.
-        The teacher tests, adjusts rigor,
-        improves scaffolds, revises directions,
-        and determines whether the experience
-        actually supports learning.
-      </p>
+        <strong>
+          Same target. Different path.
+        </strong>
+
+        <p>
+          A student can work toward the same standard or performance goal
+          through a different theme, level of support,
+          degree of independence, or type of interaction.
+          AI can make those different pathways far more practical
+          for teachers to build, revise, and reuse.
+        </p>
+
+      </div>
 
     </div>
 
