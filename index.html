@@ -23,10 +23,6 @@ body {
   color: #18212f;
 }
 
-/* =====================================================
-   EXPLORE COLORS
-===================================================== */
-
 :root {
   --navy: #0c1829;
   --navy-light: #14263d;
@@ -39,6 +35,7 @@ body {
   --muted: #667085;
   --purple-soft: #f2efff;
 }
+
 
 /* =====================================================
    BRAND BAR
@@ -71,6 +68,7 @@ body {
   font-size: 30px;
   font-weight: bold;
 }
+
 
 /* =====================================================
    HERO
@@ -152,6 +150,7 @@ body {
   background: var(--red);
 }
 
+
 /* =====================================================
    MAIN
 ===================================================== */
@@ -161,6 +160,7 @@ main {
   margin: auto;
   padding: 48px 0 75px;
 }
+
 
 /* =====================================================
    INTRO
@@ -192,6 +192,7 @@ main {
   color: var(--navy);
 }
 
+
 /* =====================================================
    SECTION HEADER
 ===================================================== */
@@ -212,6 +213,7 @@ main {
   font-size: 16px;
 }
 
+
 /* =====================================================
    ASSIGNMENT GRID
 ===================================================== */
@@ -223,6 +225,7 @@ main {
   align-items: stretch;
 }
 
+
 /* =====================================================
    CARD
 ===================================================== */
@@ -233,17 +236,8 @@ main {
   padding: 24px;
   min-width: 0;
 
-  display: grid;
-
-  grid-template-rows:
-    130px
-    205px
-    170px
-    240px
-    250px
-    auto;
-
-  gap: 0;
+  display: flex;
+  flex-direction: column;
 
   box-shadow: 0 8px 25px rgba(12,24,41,.08);
   transition: transform .2s, box-shadow .2s;
@@ -268,12 +262,13 @@ main {
   box-shadow: 0 16px 38px rgba(12,24,41,.14);
 }
 
+
 /* =====================================================
    CARD HEADER
 ===================================================== */
 
 .card-head {
-  overflow: hidden;
+  min-height: 125px;
 }
 
 .icon {
@@ -307,13 +302,29 @@ main {
   color: var(--navy);
 }
 
+
 /* =====================================================
    CONSISTENT CONTENT SECTIONS
 ===================================================== */
 
 .card-section {
-  padding-top: 14px;
-  overflow: hidden;
+  padding-top: 18px;
+}
+
+.activity-section {
+  min-height: 225px;
+}
+
+.standard-section {
+  min-height: 165px;
+}
+
+.build-section {
+  min-height: 245px;
+}
+
+.design-section {
+  min-height: 315px;
 }
 
 .section-label {
@@ -322,44 +333,44 @@ main {
   font-size: 13px;
   font-weight: 900;
   letter-spacing: .7px;
-  margin-bottom: 7px;
+  margin-bottom: 8px;
 }
 
 .card-section p {
   color: var(--muted);
-  line-height: 1.48;
+  line-height: 1.5;
   margin: 0;
   font-size: 14px;
 }
 
+
 /* =====================================================
-   FEATURE BUILD BOX
+   WHAT WAS BUILT
 ===================================================== */
 
 .build-box {
   background: #f6f8fb;
   border: 1px solid #e2e7ef;
   border-radius: 12px;
-  padding: 15px;
-  margin-top: 10px;
-  overflow: hidden;
+  padding: 16px;
 }
 
 .build-box ul {
-  margin: 9px 0 0;
+  margin: 10px 0 0;
   padding-left: 18px;
 }
 
 .build-box li {
   color: #566477;
   font-size: 13px;
-  line-height: 1.42;
-  margin-bottom: 5px;
+  line-height: 1.45;
+  margin-bottom: 7px;
 }
 
 .build-box li:last-child {
   margin-bottom: 0;
 }
+
 
 /* =====================================================
    INTENTIONAL DESIGN
@@ -369,35 +380,36 @@ main {
   background: var(--purple-soft);
   border-left: 4px solid #5368ff;
   border-radius: 10px;
-  padding: 15px;
-  margin-top: 12px;
-  overflow: hidden;
+  padding: 16px;
 }
 
 .design-box .section-label {
-  margin-bottom: 8px;
+  margin-bottom: 9px;
 }
 
 .design-box p {
   color: #536177;
   font-size: 14px;
-  line-height: 1.48;
+  line-height: 1.5;
   margin: 0;
 }
 
 .design-emphasis {
   display: block;
-  margin-top: 10px;
+  margin-top: 12px;
   color: #344054;
   font-weight: 800;
+  line-height: 1.45;
 }
+
 
 /* =====================================================
    PREVIEW
 ===================================================== */
 
 .preview-wrap {
-  align-self: end;
+  margin-top: auto;
+  padding-top: 20px;
 }
 
 .preview {
@@ -410,6 +422,7 @@ main {
   border: 1px solid #d5dce6;
   background: #edf1f6;
 }
+
 
 /* =====================================================
    BUTTONS
@@ -448,6 +461,7 @@ main {
 .card:nth-child(3) .button:hover {
   background: #c20c34;
 }
+
 
 /* =====================================================
    EXPLORE SECTION
@@ -534,6 +548,7 @@ main {
   margin: 0;
 }
 
+
 /* =====================================================
    PROCESS
 ===================================================== */
@@ -607,6 +622,7 @@ main {
   margin-bottom: 0;
 }
 
+
 /* =====================================================
    FOOTER
 ===================================================== */
@@ -624,6 +640,7 @@ footer strong {
   color: white;
 }
 
+
 /* =====================================================
    RESPONSIVE
 ===================================================== */
@@ -634,14 +651,12 @@ footer strong {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .card {
-    grid-template-rows:
-      auto
-      auto
-      auto
-      auto
-      auto
-      auto;
+  .card-head,
+  .activity-section,
+  .standard-section,
+  .build-section,
+  .design-section {
+    min-height: 0;
   }
 
   .explore-ideas {
@@ -688,9 +703,6 @@ footer strong {
 
 <body>
 
-<!-- =====================================================
-     EXPLORE BRAND BAR
-===================================================== -->
 
 <div class="brand-bar">
 
@@ -710,9 +722,6 @@ footer strong {
 
 </div>
 
-<!-- =====================================================
-     HERO
-===================================================== -->
 
 <header class="hero">
 
@@ -742,11 +751,9 @@ footer strong {
 
 </header>
 
+
 <main>
 
-<!-- =====================================================
-     INTRO
-===================================================== -->
 
 <section class="intro">
 
@@ -766,9 +773,6 @@ footer strong {
 
 </section>
 
-<!-- =====================================================
-     ASSIGNMENTS
-===================================================== -->
 
 <div class="section-heading">
 
@@ -782,7 +786,9 @@ footer strong {
 
 </div>
 
+
 <section class="grid">
+
 
 <!-- =====================================================
      DECIMAL DECEPTION
@@ -805,7 +811,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section activity-section">
 
     <span class="section-label">
       ACTIVITY DESCRIPTION
@@ -822,7 +828,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section standard-section">
 
     <span class="section-label">
       ARIZONA STANDARD
@@ -837,7 +843,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section build-section">
 
     <div class="build-box">
 
@@ -857,7 +863,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section design-section">
 
     <div class="design-box">
 
@@ -897,6 +903,7 @@ footer strong {
 
 </article>
 
+
 <!-- =====================================================
      VOLLEYBALL ACADEMY
 ===================================================== -->
@@ -918,7 +925,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section activity-section">
 
     <span class="section-label">
       ACTIVITY DESCRIPTION
@@ -935,7 +942,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section standard-section">
 
     <span class="section-label">
       ARIZONA ELA ALIGNMENT
@@ -950,7 +957,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section build-section">
 
     <div class="build-box">
 
@@ -962,7 +969,7 @@ footer strong {
         <li>Eight complete role-based instructional missions</li>
         <li>5–7 understanding checks within each mission</li>
         <li>Embedded video, reading sections, multiple choice, and drag-and-drop</li>
-        <li>Saved student progress, IQ scoring, high scores, feedback, and reset tools</li>
+        <li>Saved progress, IQ scoring, high scores, feedback, and reset tools</li>
       </ul>
 
     </div>
@@ -970,7 +977,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section design-section">
 
     <div class="design-box">
 
@@ -1011,6 +1018,7 @@ footer strong {
 
 </article>
 
+
 <!-- =====================================================
      LONG DIVISION QUEST
 ===================================================== -->
@@ -1032,7 +1040,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section activity-section">
 
     <span class="section-label">
       ACTIVITY DESCRIPTION
@@ -1049,7 +1057,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section standard-section">
 
     <span class="section-label">
       ARIZONA STANDARD
@@ -1065,7 +1073,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section build-section">
 
     <div class="build-box">
 
@@ -1085,7 +1093,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section design-section">
 
     <div class="design-box">
 
@@ -1126,6 +1134,7 @@ footer strong {
 
 </article>
 
+
 <!-- =====================================================
      SPELLING PRACTICE LAB
 ===================================================== -->
@@ -1147,7 +1156,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section activity-section">
 
     <span class="section-label">
       ACTIVITY DESCRIPTION
@@ -1164,7 +1173,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section standard-section">
 
     <span class="section-label">
       ARIZONA ELA STANDARDS
@@ -1179,7 +1188,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section build-section">
 
     <div class="build-box">
 
@@ -1191,7 +1200,7 @@ footer strong {
         <li>Syllable breakdowns and whole-word pronunciation support</li>
         <li>Clickable Sound It Out chunks with individual audio</li>
         <li>Phonograms with multi-letter patterns automatically highlighted</li>
-        <li>“Watch For” spelling hints, examples, visuals, games, and independent testing</li>
+        <li>“Watch For” hints, examples, visuals, games, and independent testing</li>
       </ul>
 
     </div>
@@ -1199,7 +1208,7 @@ footer strong {
   </div>
 
 
-  <div class="card-section">
+  <div class="card-section design-section">
 
     <div class="design-box">
 
@@ -1240,11 +1249,9 @@ footer strong {
 
 </article>
 
+
 </section>
 
-<!-- =====================================================
-     WHAT THIS SHOWS
-===================================================== -->
 
 <section class="explore-section">
 
@@ -1275,7 +1282,6 @@ footer strong {
 
       </div>
 
-
       <div class="explore-idea">
 
         <strong>
@@ -1289,7 +1295,6 @@ footer strong {
 
       </div>
 
-
       <div class="explore-idea">
 
         <strong>
@@ -1302,7 +1307,6 @@ footer strong {
         </p>
 
       </div>
-
 
       <div class="explore-idea">
 
@@ -1323,9 +1327,6 @@ footer strong {
 
 </section>
 
-<!-- =====================================================
-     PROCESS
-===================================================== -->
 
 <section class="process">
 
@@ -1356,7 +1357,6 @@ footer strong {
 
     </div>
 
-
     <div class="step">
 
       <div class="step-number">
@@ -1374,7 +1374,6 @@ footer strong {
       </p>
 
     </div>
-
 
     <div class="step">
 
@@ -1399,6 +1398,7 @@ footer strong {
 </section>
 
 </main>
+
 
 <footer>
 
