@@ -73,8 +73,6 @@ body {
   height: 62px;
   object-fit: contain;
   display: block;
-
-  /* ONLY logo becomes white */
   filter: brightness(0) invert(1);
 }
 
@@ -92,6 +90,7 @@ body {
 .hero {
   position: relative;
   overflow: hidden;
+
   background:
     linear-gradient(
       120deg,
@@ -114,6 +113,7 @@ body {
   top: -270px;
   border-radius: 50%;
   border: 1px solid rgba(255,255,255,.08);
+
   box-shadow:
     0 0 0 35px rgba(255,255,255,.025),
     0 0 0 70px rgba(255,255,255,.02),
@@ -182,7 +182,7 @@ main {
 
 
 /* =========================================================
-   EXPLORE PURPOSE
+   PURPOSE
 ========================================================= */
 
 .purpose {
@@ -195,7 +195,9 @@ main {
   border-radius: 20px;
   padding: 28px 34px;
   border-top: 5px solid #1467d8;
+
   box-shadow: 0 9px 27px rgba(12,24,41,.07);
+
   margin-bottom: 43px;
 }
 
@@ -209,11 +211,14 @@ main {
   width: 68px;
   height: 68px;
   flex: 0 0 68px;
+
   border-radius: 50%;
   background: #eaf3ff;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 32px;
 }
 
@@ -241,7 +246,7 @@ main {
 ========================================================= */
 
 .subject-section {
-  margin-bottom: 43px;
+  margin-bottom: 45px;
 }
 
 .subject-header {
@@ -251,6 +256,7 @@ main {
   gap: 25px;
 
   padding: 15px 18px;
+
   border-radius: 15px 15px 0 0;
   border-bottom: 2px solid;
 
@@ -266,10 +272,13 @@ main {
 .subject-header-icon {
   width: 47px;
   height: 47px;
+
   border-radius: 13px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 25px;
 }
 
@@ -346,7 +355,7 @@ main {
 
 
 /* =========================================================
-   TWO-COLUMN CARDS
+   TWO-COLUMN LAYOUT
 ========================================================= */
 
 .subject-grid {
@@ -364,17 +373,25 @@ main {
   --accent: var(--math);
 
   background: white;
+
   border-radius: 19px;
   border: 1px solid var(--line);
   border-top: 5px solid var(--accent);
+
   box-shadow: 0 8px 25px rgba(12,24,41,.07);
+
   overflow: hidden;
 
   display: grid;
-  grid-template-columns: 43% 57%;
-  min-height: 410px;
 
-  transition: transform .2s ease, box-shadow .2s ease;
+  /* SCREENSHOT GETS MORE ROOM */
+  grid-template-columns: 48% 52%;
+
+  min-height: 440px;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
 }
 
 .demo-card:hover {
@@ -382,74 +399,105 @@ main {
   box-shadow: 0 17px 38px rgba(12,24,41,.12);
 }
 
-.decimal-card {
-  --accent: #1467d8;
-}
-
+.decimal-card,
 .division-card {
   --accent: #1467d8;
 }
 
-.volleyball-card {
-  --accent: #16a35a;
-}
-
+.volleyball-card,
 .spelling-card {
   --accent: #16a35a;
 }
 
-.spanish-card {
-  --accent: #7556d8;
-}
-
+.spanish-card,
 .movement-card {
   --accent: #7556d8;
 }
 
 
 /* =========================================================
-   VISUAL SIDE
+   SCREENSHOT SIDE
 ========================================================= */
 
 .demo-visual {
   position: relative;
-  background: #e9eef4;
+
+  background:
+    linear-gradient(
+      145deg,
+      #e9eef5,
+      #f6f8fb
+    );
+
   min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px;
+
+  border-right: 1px solid #e2e8f0;
 }
 
+
+/* CLICKABLE SCREENSHOT FRAME */
+
 .demo-visual a {
-  display: block;
   width: 100%;
-  height: 100%;
+  display: block;
+  position: relative;
   text-decoration: none;
 }
 
+
+/* THE IMPORTANT FIX */
+
 .demo-preview {
-  width: 100%;
-  height: 100%;
-  min-height: 410px;
-  object-fit: cover;
-  object-position: center;
   display: block;
+
+  width: 100%;
+  height: auto;
+
+  max-height: 405px;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 7px 20px rgba(8,24,44,.16);
+
+  background: #111827;
+
   transition: transform .25s ease;
 }
 
 .demo-card:hover .demo-preview {
-  transform: scale(1.02);
+  transform: scale(1.012);
 }
+
+
+/* VIEW BUTTON ON IMAGE */
 
 .preview-badge {
   position: absolute;
-  right: 13px;
-  bottom: 13px;
+
+  right: 11px;
+  bottom: 11px;
 
   background: rgba(7,26,43,.9);
   color: white;
 
+  border: 1px solid rgba(255,255,255,.18);
+
   border-radius: 999px;
+
   padding: 8px 12px;
 
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 900;
   letter-spacing: .4px;
 }
@@ -461,8 +509,10 @@ main {
 
 .demo-content {
   padding: 23px;
+
   display: flex;
   flex-direction: column;
+
   min-width: 0;
 }
 
@@ -470,7 +520,8 @@ main {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 11px;
+
+  margin-bottom: 10px;
 }
 
 .demo-icon {
@@ -478,19 +529,26 @@ main {
   height: 42px;
   border-radius: 12px;
   flex: 0 0 42px;
+
   background: #edf3ff;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 22px;
 }
 
 .demo-type {
   display: inline-block;
+
   background: #e9f8fa;
   color: #08798b;
+
   border-radius: 999px;
+
   padding: 5px 10px;
+
   font-size: 10px;
   font-weight: 900;
   letter-spacing: .4px;
@@ -507,9 +565,30 @@ main {
 }
 
 .demo-content h3 {
-  margin: 0 0 15px;
+  margin: 0 0 14px;
+
   color: var(--navy);
+
   font-size: 24px;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.label {
+  display: block;
+
+  color: var(--accent);
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  letter-spacing: .7px;
+
+  margin-bottom: 5px;
 }
 
 
@@ -517,23 +596,17 @@ main {
    ACTIVITY
 ========================================================= */
 
-.label {
-  display: block;
-  color: var(--accent);
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: .7px;
-  margin-bottom: 5px;
-}
-
 .activity {
   margin-bottom: 14px;
 }
 
 .activity p {
   margin: 0;
+
   color: var(--muted);
+
   font-size: 13px;
+
   line-height: 1.48;
 }
 
@@ -544,53 +617,74 @@ main {
 
 .standard {
   display: grid;
+
   grid-template-columns: auto 1fr;
+
   gap: 10px;
+
   align-items: center;
 
   background: #f7f9fc;
+
   border: 1px solid #e0e6ee;
+
   border-radius: 11px;
 
   padding: 10px 12px;
+
   margin-bottom: 14px;
 }
 
 .standard-code {
   background: var(--accent);
+
   color: white;
+
   border-radius: 8px;
+
   padding: 6px 8px;
 
   font-size: 11px;
+
   font-weight: 900;
+
   white-space: nowrap;
 }
 
 .standard-text strong {
   display: block;
+
   color: var(--navy);
+
   font-size: 12px;
+
   margin-bottom: 2px;
 }
 
 .standard-text span {
   display: block;
+
   color: var(--muted);
+
   font-size: 11px;
+
   line-height: 1.35;
 }
 
 
 /* =========================================================
-   WHY THIS MATTERS
+   INTENTIONAL DESIGN
 ========================================================= */
 
 .why {
   background: #f3f1ff;
+
   border-left: 4px solid var(--accent);
+
   border-radius: 10px;
+
   padding: 12px 13px;
+
   margin-bottom: 14px;
 }
 
@@ -604,18 +698,51 @@ main {
 
 .why p {
   margin: 0;
+
   color: #536177;
+
   font-size: 12px;
+
   line-height: 1.45;
 }
 
 .takeaway {
   display: block;
+
   margin-top: 7px;
+
   color: #344054;
+
   font-size: 12px;
+
   font-weight: 900;
+
   line-height: 1.35;
+}
+
+
+/* =========================================================
+   ELA CALLOUT
+========================================================= */
+
+.ela-callout {
+  margin: 0 0 14px;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  background: #eaf9f0;
+
+  border: 1px solid #cfeeda;
+
+  color: #176d42;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+
+  font-weight: 800;
 }
 
 
@@ -626,38 +753,52 @@ main {
 .features {
   display: flex;
   flex-wrap: wrap;
+
   gap: 6px;
+
   margin-bottom: 15px;
 }
 
 .feature {
   background: #eef3f7;
+
   color: #516174;
+
   border-radius: 999px;
+
   padding: 5px 8px;
+
   font-size: 10px;
+
   font-weight: 700;
 }
 
 
 /* =========================================================
-   BUTTON
+   OPEN BUTTON
 ========================================================= */
 
 .open-button {
   display: block;
+
   margin-top: auto;
+
   text-align: center;
+
   text-decoration: none;
 
   background: var(--accent);
+
   color: white;
 
   padding: 12px;
+
   border-radius: 9px;
 
   font-size: 12px;
+
   font-weight: 900;
+
   letter-spacing: .3px;
 }
 
@@ -667,54 +808,50 @@ main {
 
 
 /* =========================================================
-   ELA EMPHASIS CALLOUT
-========================================================= */
-
-.ela-callout {
-  margin: 14px 0 15px;
-  padding: 11px 12px;
-  border-radius: 10px;
-  background: #eaf9f0;
-  border: 1px solid #cfeeda;
-
-  color: #176d42;
-  font-size: 12px;
-  line-height: 1.4;
-  font-weight: 800;
-}
-
-
-/* =========================================================
    EXPLORE CONNECTION
 ========================================================= */
 
 .explore-connection {
   margin-top: 48px;
+
   background: white;
+
   border-radius: 22px;
+
   border-top: 6px solid #29c56f;
+
   padding: 35px;
+
   box-shadow: 0 8px 26px rgba(12,24,41,.07);
 }
 
 .eyebrow {
   color: #229a55;
+
   font-size: 12px;
+
   font-weight: 900;
+
   letter-spacing: 1.2px;
 }
 
 .explore-connection h2 {
   margin: 6px 0 11px;
+
   color: var(--navy);
+
   font-size: 34px;
 }
 
 .connection-intro {
   max-width: 1150px;
+
   margin: 0;
+
   color: var(--muted);
+
   line-height: 1.65;
+
   font-size: 15px;
 }
 
@@ -724,43 +861,65 @@ main {
 
 
 /* =========================================================
-   SAME TARGET FLOW
+   FLAVOR FLOW
 ========================================================= */
 
 .flavor-flow {
   display: grid;
-  grid-template-columns: 1fr auto 1fr auto 1fr;
+
+  grid-template-columns:
+    1fr
+    auto
+    1fr
+    auto
+    1fr;
+
   gap: 13px;
+
   align-items: stretch;
+
   margin-top: 25px;
 }
 
 .flow-box {
   background: #f6f8fb;
+
   border: 1px solid #e0e6ee;
+
   border-radius: 13px;
+
   padding: 18px;
 }
 
 .flow-box strong {
   display: block;
+
   color: var(--navy);
+
   margin-bottom: 6px;
+
   font-size: 16px;
 }
 
 .flow-box p {
   margin: 0;
+
   color: var(--muted);
+
   font-size: 13px;
+
   line-height: 1.45;
 }
 
 .flow-arrow {
   display: flex;
+
   align-items: center;
+
   color: #1467d8;
+
   font-size: 25px;
+
   font-weight: 900;
 }
 
@@ -771,53 +930,78 @@ main {
 
 .flavor-grid {
   display: grid;
+
   grid-template-columns: repeat(4,1fr);
+
   gap: 13px;
+
   margin-top: 21px;
 }
 
 .flavor-card {
   background: var(--navy);
+
   color: white;
+
   border-radius: 13px;
+
   padding: 18px;
 }
 
 .flavor-icon {
   font-size: 23px;
+
   margin-bottom: 8px;
 }
 
 .flavor-card strong {
   display: block;
+
   margin-bottom: 6px;
 }
 
 .flavor-card p {
   margin: 0;
+
   color: #cbd6e3;
+
   font-size: 12px;
+
   line-height: 1.45;
 }
 
 .same-target {
   margin-top: 21px;
+
   padding: 20px 22px;
+
   border-radius: 13px;
-  background: linear-gradient(135deg,#edf7ff,#effcf4);
+
+  background:
+    linear-gradient(
+      135deg,
+      #edf7ff,
+      #effcf4
+    );
+
   border-left: 5px solid #29c56f;
 }
 
 .same-target strong {
   display: block;
+
   color: var(--navy);
+
   font-size: 19px;
+
   margin-bottom: 5px;
 }
 
 .same-target p {
   margin: 0;
+
   color: var(--muted);
+
   line-height: 1.55;
 }
 
@@ -828,15 +1012,21 @@ main {
 
 .process {
   margin-top: 34px;
+
   background: white;
+
   border-radius: 21px;
+
   padding: 31px;
+
   box-shadow: 0 8px 24px rgba(12,24,41,.07);
 }
 
 .process-title {
   display: flex;
+
   align-items: center;
+
   gap: 14px;
 }
 
@@ -846,26 +1036,35 @@ main {
 
 .process h2 {
   margin: 0;
+
   color: var(--navy);
+
   font-size: 28px;
 }
 
 .process-sub {
   margin: 5px 0 0;
+
   color: var(--muted);
 }
 
 .process-grid {
   display: grid;
+
   grid-template-columns: repeat(3,1fr);
+
   gap: 15px;
+
   margin-top: 22px;
 }
 
 .process-card {
   background: #f6f8fb;
+
   border-radius: 13px;
+
   padding: 19px;
+
   border-top: 4px solid var(--math);
 }
 
@@ -879,22 +1078,31 @@ main {
 
 .process-number {
   font-size: 11px;
+
   font-weight: 900;
+
   letter-spacing: 1px;
+
   color: #1467d8;
+
   margin-bottom: 7px;
 }
 
 .process-card strong {
   color: var(--navy);
+
   display: block;
+
   margin-bottom: 6px;
 }
 
 .process-card p {
   color: var(--muted);
+
   font-size: 12px;
+
   line-height: 1.45;
+
   margin: 0;
 }
 
@@ -905,10 +1113,15 @@ main {
 
 footer {
   background: var(--navy);
+
   color: #cad5e2;
+
   text-align: center;
+
   padding: 25px 20px;
+
   border-top: 4px solid var(--red);
+
   font-size: 13px;
 }
 
@@ -921,32 +1134,32 @@ footer strong {
    RESPONSIVE
 ========================================================= */
 
-@media (max-width: 1250px) {
+@media (max-width: 1350px) {
 
   .demo-card {
     grid-template-columns: 1fr;
   }
 
+  .demo-visual {
+    border-right: 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
   .demo-preview {
-    height: auto;
-    min-height: 0;
-    aspect-ratio: 16 / 8;
-  }
-
-  .purpose {
-    grid-template-columns: 1fr;
-  }
-
-  .flavor-grid {
-    grid-template-columns: repeat(2,1fr);
+    width: 100%;
+    max-height: none;
   }
 
 }
 
 
-@media (max-width: 950px) {
+@media (max-width: 1000px) {
 
   .subject-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .purpose {
     grid-template-columns: 1fr;
   }
 
@@ -1171,9 +1384,7 @@ footer strong {
 
         <div class="demo-meta">
 
-          <div class="demo-icon">
-            🚀
-          </div>
+          <div class="demo-icon">🚀</div>
 
           <div class="demo-type">
             GAMIFIED MATH
@@ -1291,9 +1502,7 @@ footer strong {
 
         <div class="demo-meta">
 
-          <div class="demo-icon">
-            ➗
-          </div>
+          <div class="demo-icon">➗</div>
 
           <div class="demo-type">
             RESPONSIVE MATH SCAFFOLD
@@ -1452,9 +1661,7 @@ footer strong {
 
         <div class="demo-meta">
 
-          <div class="demo-icon">
-            🎥
-          </div>
+          <div class="demo-icon">🎥</div>
 
           <div class="demo-type">
             ELA • INTERACTIVE MULTIMEDIA LESSON
@@ -1495,7 +1702,7 @@ footer strong {
             </strong>
 
             <span>
-              Informational reading + integration of text,
+              Informational reading plus integration of text,
               visual, and multimedia sources.
             </span>
 
@@ -1551,7 +1758,7 @@ footer strong {
     </article>
 
 
-    <!-- SPELLING PRACTICE -->
+    <!-- SPELLING -->
 
     <article class="demo-card spelling-card">
 
@@ -1578,9 +1785,7 @@ footer strong {
 
         <div class="demo-meta">
 
-          <div class="demo-icon">
-            🔤
-          </div>
+          <div class="demo-icon">🔤</div>
 
           <div class="demo-type">
             ELA • MULTIMODAL WORD STUDY
@@ -1743,9 +1948,7 @@ footer strong {
 
         <div class="demo-meta">
 
-          <div class="demo-icon">
-            💬
-          </div>
+          <div class="demo-icon">💬</div>
 
           <div class="demo-type">
             WORLD LANGUAGE
@@ -1865,9 +2068,7 @@ footer strong {
 
         <div class="demo-meta">
 
-          <div class="demo-icon">
-            🏃
-          </div>
+          <div class="demo-icon">🏃</div>
 
           <div class="demo-type">
             PHYSICAL EDUCATION
@@ -2153,7 +2354,7 @@ footer strong {
 
 
 <!-- =========================================================
-     HOW THESE ARE BUILT
+     PROCESS
 ========================================================= -->
 
 <section class="process">
@@ -2260,7 +2461,6 @@ footer strong {
   Choice • Customization • Intentional Design • Mastery
 
 </footer>
-
 
 </body>
 </html>
