@@ -235,13 +235,10 @@ main {
   border-radius: 20px;
   padding: 24px;
   min-width: 0;
-
   display: flex;
   flex-direction: column;
-
   box-shadow: 0 8px 25px rgba(12,24,41,.08);
   transition: transform .2s, box-shadow .2s;
-
   border-top: 5px solid var(--blue);
 }
 
@@ -464,11 +461,158 @@ main {
 
 
 /* =====================================================
+   FLAVOR SECTION
+===================================================== */
+
+.flavor-section {
+  margin-top: 55px;
+  background: white;
+  border-radius: 24px;
+  padding: 42px;
+  box-shadow: 0 10px 32px rgba(12,24,41,.09);
+  border-top: 6px solid var(--green);
+}
+
+.flavor-eyebrow {
+  color: #249c52;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.3px;
+  margin-bottom: 8px;
+}
+
+.flavor-section h2 {
+  color: var(--navy);
+  font-size: 36px;
+  margin: 0 0 14px;
+}
+
+.flavor-lead {
+  max-width: 1050px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.flavor-lead strong {
+  color: var(--navy);
+}
+
+.flavor-formula {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: stretch;
+  gap: 14px;
+}
+
+.formula-box {
+  background: #f6f8fb;
+  border-radius: 15px;
+  padding: 22px;
+  border: 1px solid #e1e7ef;
+}
+
+.formula-box .formula-title {
+  color: var(--navy);
+  font-size: 17px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.formula-box p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.formula-arrow {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--blue);
+}
+
+.flavor-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.flavor-card {
+  border-radius: 15px;
+  padding: 20px;
+  background: var(--navy);
+  color: white;
+  min-height: 170px;
+}
+
+.flavor-card:nth-child(1) {
+  border-top: 4px solid var(--blue);
+}
+
+.flavor-card:nth-child(2) {
+  border-top: 4px solid var(--red);
+}
+
+.flavor-card:nth-child(3) {
+  border-top: 4px solid var(--green);
+}
+
+.flavor-card:nth-child(4) {
+  border-top: 4px solid #ffffff;
+}
+
+.flavor-card .flavor-icon {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.flavor-card strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.flavor-card p {
+  margin: 0;
+  color: #d7e0ea;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.flavor-callout {
+  margin-top: 30px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #eef7ff, #effcf4);
+  padding: 24px;
+  border-left: 5px solid var(--green);
+}
+
+.flavor-callout strong {
+  display: block;
+  color: var(--navy);
+  font-size: 20px;
+  margin-bottom: 7px;
+}
+
+.flavor-callout p {
+  color: #506176;
+  line-height: 1.6;
+  margin: 0;
+}
+
+
+/* =====================================================
    EXPLORE SECTION
 ===================================================== */
 
 .explore-section {
-  margin-top: 55px;
+  margin-top: 35px;
   background: var(--navy);
   color: white;
   border-radius: 24px;
@@ -659,8 +803,18 @@ footer strong {
     min-height: 0;
   }
 
-  .explore-ideas {
+  .explore-ideas,
+  .flavor-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .flavor-formula {
+    grid-template-columns: 1fr;
+  }
+
+  .formula-arrow {
+    justify-content: center;
+    transform: rotate(90deg);
   }
 
 }
@@ -686,11 +840,13 @@ footer strong {
 
   .grid,
   .explore-ideas,
+  .flavor-grid,
   .steps {
     grid-template-columns: 1fr;
   }
 
   .intro,
+  .flavor-section,
   .explore-section,
   .process {
     padding: 25px;
@@ -762,13 +918,12 @@ footer strong {
   </h2>
 
   <p>
-    These are not mockups or screenshots.
-    <strong>Every example below is a working student activity.</strong>
-    Each project started with an instructional goal and then went through
-    repeated rounds of planning, testing, revising, troubleshooting,
-    scaffolding, visual design, and classroom-focused refinement.
-    The examples below show what AI can help build when the
-    <strong>teacher remains the instructional designer.</strong>
+    Explore already asks us to think beyond a single one-size-fits-all
+    classroom experience. These projects explore how AI can help us take
+    that philosophy even further.
+    <strong>The academic target can remain consistent while the experience
+    surrounding it can be intentionally designed around student interests,
+    needs, scaffolds, and different ways of engaging with the content.</strong>
   </p>
 
 </section>
@@ -790,9 +945,7 @@ footer strong {
 <section class="grid">
 
 
-<!-- =====================================================
-     DECIMAL DECEPTION
-===================================================== -->
+<!-- DECIMAL DECEPTION -->
 
 <article class="card">
 
@@ -904,9 +1057,7 @@ footer strong {
 </article>
 
 
-<!-- =====================================================
-     VOLLEYBALL ACADEMY
-===================================================== -->
+<!-- VOLLEYBALL ACADEMY -->
 
 <article class="card">
 
@@ -1019,9 +1170,7 @@ footer strong {
 </article>
 
 
-<!-- =====================================================
-     LONG DIVISION QUEST
-===================================================== -->
+<!-- LONG DIVISION -->
 
 <article class="card">
 
@@ -1135,9 +1284,7 @@ footer strong {
 </article>
 
 
-<!-- =====================================================
-     SPELLING PRACTICE LAB
-===================================================== -->
+<!-- SPELLING -->
 
 <article class="card">
 
@@ -1253,6 +1400,193 @@ footer strong {
 </section>
 
 
+<!-- =====================================================
+     BUILD THE FLAVOR
+===================================================== -->
+
+<section class="flavor-section">
+
+  <div class="flavor-eyebrow">
+    THE EXPLORE CONNECTION
+  </div>
+
+  <h2>
+    Build the Flavor
+  </h2>
+
+  <p class="flavor-lead">
+    Explore's model is built around the idea that
+    <strong>students do not all need the exact same experience in order
+    to reach the same academic destination.</strong>
+    AI gives us a new tool for extending that idea.
+    A teacher can preserve the standard, rigor, and learning objective
+    while changing the context, presentation, scaffolding, feedback,
+    or theme around it.
+  </p>
+
+
+  <div class="flavor-formula">
+
+    <div class="formula-box">
+
+      <div class="formula-title">
+        1. Keep the Target
+      </div>
+
+      <p>
+        Start with the same Arizona standard, skill, assessment target,
+        vocabulary, text, or learning objective students are expected to master.
+      </p>
+
+    </div>
+
+
+    <div class="formula-arrow">
+      →
+    </div>
+
+
+    <div class="formula-box">
+
+      <div class="formula-title">
+        2. Change the Flavor
+      </div>
+
+      <p>
+        Build the experience around an interest, theme, mode of practice,
+        student need, level of scaffolding, or type of interaction.
+      </p>
+
+    </div>
+
+
+    <div class="formula-arrow">
+      →
+    </div>
+
+
+    <div class="formula-box">
+
+      <div class="formula-title">
+        3. Reach the Same Mastery
+      </div>
+
+      <p>
+        The experience may look different, but students are still expected
+        to demonstrate the same underlying academic understanding.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="flavor-grid">
+
+
+    <div class="flavor-card">
+
+      <div class="flavor-icon">
+        🚀 🐉 🏀
+      </div>
+
+      <strong>
+        Interest-Based Flavors
+      </strong>
+
+      <p>
+        The same math practice could become space exploration,
+        fantasy, sports, racing, cooking, animals, or another theme
+        that gives a group of students a reason to engage.
+      </p>
+
+    </div>
+
+
+    <div class="flavor-card">
+
+      <div class="flavor-icon">
+        📖 🎥 🎮
+      </div>
+
+      <strong>
+        Learning-Mode Flavors
+      </strong>
+
+      <p>
+        One target could be approached through reading, video,
+        simulation, guided practice, interactive games, visual models,
+        or combinations of several modes.
+      </p>
+
+    </div>
+
+
+    <div class="flavor-card">
+
+      <div class="flavor-icon">
+        🧠 💡 🪜
+      </div>
+
+      <strong>
+        Support Flavors
+      </strong>
+
+      <p>
+        Students who need more structure could receive visual hints,
+        chunked directions, read-aloud support, models, or step-by-step
+        coaching without changing the final learning expectation.
+      </p>
+
+    </div>
+
+
+    <div class="flavor-card">
+
+      <div class="flavor-icon">
+        🎯 📈 🏆
+      </div>
+
+      <strong>
+        Mastery Flavors
+      </strong>
+
+      <p>
+        Practice can include immediate feedback, retries, targeted reteaching,
+        progress indicators, or additional challenge so students continue
+        working toward mastery rather than simply finishing.
+      </p>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="flavor-callout">
+
+    <strong>
+      Same standard. Different path.
+    </strong>
+
+    <p>
+      Imagine a seminar where students are working toward the same academic
+      objective, but one group practices through a sports theme, another
+      through a fantasy challenge, another through a highly scaffolded
+      guided activity, and another through a more independent application.
+      AI can make that level of customization far more practical for a teacher
+      to design, revise, and reuse.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     WHAT COULD THIS LOOK LIKE
+===================================================== -->
+
 <section class="explore-section">
 
   <div class="explore-content">
@@ -1262,10 +1596,12 @@ footer strong {
     </h2>
 
     <p class="explore-intro">
-      These examples are intentionally different. They show that AI does not
-      require teachers to abandon curriculum or replace instruction.
-      It can be used to rethink the experience surrounding the learning goal.
+      The point is not to replace Explore's curriculum or teacher expertise.
+      It is to give teachers another way to create the kind of responsive,
+      choice-driven learning experiences that already fit the philosophy
+      behind our school.
     </p>
+
 
     <div class="explore-ideas">
 
@@ -1282,6 +1618,7 @@ footer strong {
 
       </div>
 
+
       <div class="explore-idea">
 
         <strong>
@@ -1294,6 +1631,7 @@ footer strong {
         </p>
 
       </div>
+
 
       <div class="explore-idea">
 
@@ -1308,15 +1646,16 @@ footer strong {
 
       </div>
 
+
       <div class="explore-idea">
 
         <strong>
-          🔤 Practice → Learning System
+          🎨 Standard → Flavors
         </strong>
 
         <p>
-          Take one learning target and create multiple ways to study,
-          hear, analyze, practice, apply, and assess it.
+          Keep the same academic destination while creating different
+          contexts, themes, supports, or experiences for different learners.
         </p>
 
       </div>
@@ -1328,6 +1667,10 @@ footer strong {
 </section>
 
 
+<!-- =====================================================
+     PROCESS
+===================================================== -->
+
 <section class="process">
 
   <h2>
@@ -1337,6 +1680,7 @@ footer strong {
   <p class="process-intro">
     The process begins with instructional design, not code.
   </p>
+
 
   <div class="steps">
 
@@ -1357,6 +1701,7 @@ footer strong {
 
     </div>
 
+
     <div class="step">
 
       <div class="step-number">
@@ -1364,16 +1709,17 @@ footer strong {
       </div>
 
       <strong>
-        Design & iterate
+        Design the flavor
       </strong>
 
       <p>
-        Describe the desired student experience. Test each version,
-        identify weaknesses, add scaffolds, change interactions,
-        refine directions, and keep revising.
+        Decide how students should experience the learning.
+        Choose the context, interactions, supports, feedback,
+        level of independence, and type of practice.
       </p>
 
     </div>
+
 
     <div class="step">
 
@@ -1382,13 +1728,13 @@ footer strong {
       </div>
 
       <strong>
-        Teacher remains the designer
+        Build, test & revise
       </strong>
 
       <p>
-        AI helps generate and revise the technology, but the teacher
-        determines the learning goal, pedagogy, feedback,
-        difficulty, content, and final classroom experience.
+        AI helps create and revise the technology, while the teacher
+        continues testing, adjusting rigor, improving scaffolds,
+        and determining whether the experience actually supports mastery.
       </p>
 
     </div>
@@ -1397,6 +1743,7 @@ footer strong {
 
 </section>
 
+
 </main>
 
 
@@ -1404,7 +1751,7 @@ footer strong {
 
   <strong>Explore Academy AI Assignment Lab</strong>
   <br>
-  Staff demonstration • Interactive learning prototypes
+  Choice • Customization • Intentional Design • Mastery
 
 </footer>
 
