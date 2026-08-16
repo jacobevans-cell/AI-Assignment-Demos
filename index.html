@@ -58,7 +58,7 @@ body {
 /* MAIN */
 
 main {
-  width: min(1100px, 92%);
+  width: min(1200px, 92%);
   margin: auto;
   padding: 45px 0 70px;
 }
@@ -141,81 +141,52 @@ main {
 }
 
 .card h3 {
-  margin: 0 0 16px;
+  margin: 0 0 18px;
   font-size: 22px;
+}
+
+.info-title {
+  color: #4f46e5;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .7px;
+  margin: 0 0 6px;
 }
 
 .card p {
   color: #667085;
   line-height: 1.5;
+  margin: 0 0 18px;
 }
-
-/* STAFF INFO SECTIONS */
-
-.info-section {
-  margin-bottom: 17px;
-}
-
-.info-label {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .6px;
-  color: #4f46e5;
-  text-transform: uppercase;
-  margin-bottom: 5px;
-}
-
-.info-section p {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.55;
-}
-
-/* INTENTIONAL DESIGN BOX */
 
 .design-box {
-  background: #f5f3ff;
-  border-left: 4px solid #654cff;
-  padding: 12px 13px;
-  border-radius: 8px;
-  margin-bottom: 18px;
+  background: #f3f1ff;
+  border-left: 4px solid #5b5cff;
+  border-radius: 9px;
+  padding: 14px;
+  margin: 2px 0 20px;
 }
 
-.design-box .info-label {
-  color: #5037e8;
+.design-box .info-title {
+  margin-bottom: 6px;
 }
 
 .design-box p {
   margin: 0;
-  color: #505a6b;
   font-size: 14px;
-  line-height: 1.5;
-}
-
-.design-note {
-  display: block;
-  margin-top: 10px;
-  font-weight: bold;
-  color: #4030ba;
 }
 
 /* PREVIEW IMAGE */
 
-.game-preview {
+.preview {
   width: 100%;
-  height: 175px;
+  height: 180px;
   object-fit: cover;
-  object-position: center;
-  border-radius: 14px;
-  margin: 3px 0 20px;
+  object-position: top center;
+  border-radius: 12px;
+  margin: 2px 0 18px;
   border: 1px solid #e4e7ec;
-  box-shadow: 0 6px 18px rgba(0,0,0,.10);
-}
-
-.preview-placeholder {
-  width: 100%;
-  height: 175px;
-  margin: 5px 0 20px;
+  background: #101828;
 }
 
 /* BUTTONS */
@@ -297,6 +268,7 @@ main {
   .hero h1 {
     font-size: 42px;
   }
+
 }
 
 </style>
@@ -361,58 +333,39 @@ main {
 
   <h3>Decimal Deception</h3>
 
+  <div class="info-title">ACTIVITY DESCRIPTION</div>
 
-  <div class="info-section">
+  <p>
+    Students navigate a space-station adventure while solving decimal
+    problems. Correct answers help them complete missions, collect Power
+    Crystals, avoid enemies, and unlock new areas.
+  </p>
 
-    <div class="info-label">
-      Activity Description
-    </div>
+  <div class="info-title">ARIZONA MATH STANDARD</div>
 
-    <p>
-      Students navigate a space-station adventure while solving decimal
-      problems. Correct answers help them complete missions, collect Power
-      Crystals, avoid enemies, and unlock new areas.
-    </p>
-
-  </div>
-
-
-  <div class="info-section">
-
-    <div class="info-label">
-      Arizona Math Standard
-    </div>
-
-    <p>
-      <strong>6.NS.B.3</strong> — Fluently add, subtract, multiply,
-      and divide multi-digit decimals using the standard algorithm.
-    </p>
-
-  </div>
-
+  <p>
+    <strong>6.NS.B.3</strong> — Fluently add, subtract, multiply, and divide
+    multi-digit decimals using the standard algorithm.
+  </p>
 
   <div class="design-box">
 
-    <div class="info-label">
-      Intentional Design
-    </div>
+    <div class="info-title">INTENTIONAL DESIGN</div>
 
     <p>
-      What if the same practice problems from a worksheet became part
-      of a game? The academic skill remains the focus, but repetitive
-      practice is built into missions, movement, challenges, immediate
-      feedback, and progression.
+      What if the same practice problems from a worksheet became part of a
+      game? The academic skill remains the focus, but repetitive practice is
+      built into missions, movement, challenges, immediate feedback, and
+      progression.
     </p>
 
   </div>
 
-
   <img
+    class="preview"
     src="decimal-deception-preview.png"
-    alt="Decimal Deception interactive math game"
-    class="game-preview"
+    alt="Preview of the Decimal Deception interactive math game"
   >
-
 
   <a class="button" href="decimal-deception.html">
     OPEN DEMO
@@ -433,65 +386,45 @@ main {
 
   <h3>Volleyball Academy</h3>
 
+  <div class="info-title">ACTIVITY DESCRIPTION</div>
 
-  <div class="info-section">
+  <p>
+    Students work through a series of volleyball missions that combine
+    reading, videos, game situations, multiple-choice comprehension checks,
+    drag-and-drop activities, immediate feedback, scoring, and progress
+    tracking.
+  </p>
 
-    <div class="info-label">
-      Activity Description
-    </div>
+  <div class="info-title">LEARNING CONTENT</div>
 
-    <p>
-      Students work through an interactive volleyball lesson built from
-      web articles, instructional readings, and YouTube videos. The resources
-      are combined with embedded media, multiple-choice comprehension checks,
-      drag-and-drop activities, immediate feedback, scoring, and progress
-      tracking.
-    </p>
-
-  </div>
-
-
-  <div class="info-section">
-
-    <div class="info-label">
-      Learning Objective
-    </div>
-
-    <p>
-      Students build understanding of volleyball concepts, positions,
-      responsibilities, strategy, and decision-making while demonstrating
-      comprehension of informational text and instructional media.
-    </p>
-
-  </div>
-
+  <p>
+    The lesson was created from existing instructional resources, including
+    web articles, instructional reading, and YouTube videos. Students must
+    process the information and apply what they learn to interactive
+    challenges.
+  </p>
 
   <div class="design-box">
 
-    <div class="info-label">
-      Intentional Design
-    </div>
+    <div class="info-title">INTENTIONAL DESIGN</div>
 
     <p>
-      Instead of sending students to several articles, videos, and separate
-      assignments, AI was used to combine the resources into
-      <strong>one guided learning experience.</strong>
-      Students read, watch, respond, sort, and apply what they learn
-      as they progress.
-
-      <span class="design-note">
-        Volleyball is simply the example. The same process could transform
-        resources from almost any subject into an interactive lesson.
-      </span>
+      Instead of simply giving students links to articles and videos, the
+      resources were transformed into one structured interactive assignment.
+      Students read, watch, respond, sort, make decisions, and demonstrate
+      understanding before progressing.
+      <strong>Volleyball is simply the example.</strong> The same approach
+      could be used with almost any subject, article, video, unit, or existing
+      lesson material.
     </p>
 
   </div>
 
-
-  <!-- Volleyball preview image will go here next -->
-
-  <div class="preview-placeholder"></div>
-
+  <img
+    class="preview"
+    src="volleyball-academy-preview.png"
+    alt="Preview of the Volleyball IQ Academy interactive lesson"
+  >
 
   <a class="button" href="volleyball-academy.html">
     OPEN DEMO
@@ -512,23 +445,24 @@ main {
 
   <h3>Practice & Review</h3>
 
+  <div class="info-title">COMING NEXT</div>
 
-  <div class="info-section">
+  <p>
+    This space will demonstrate another way traditional classroom material
+    can become an interactive student experience.
+  </p>
 
-    <div class="info-label">
-      Activity Description
-    </div>
+  <div class="design-box">
+
+    <div class="info-title">THE IDEA</div>
 
     <p>
-      Transform traditional skill practice into an experience with
-      immediate feedback, hints, scoring, challenges, and student choice.
+      Traditional practice can include immediate feedback, hints, scoring,
+      challenges, student choice, and progression without changing the
+      academic skill being taught.
     </p>
 
   </div>
-
-
-  <div class="preview-placeholder"></div>
-
 
   <a class="button disabled">
     COMING SOON
@@ -540,36 +474,26 @@ main {
 </section>
 
 
-<!-- ================================================= -->
-<!-- HOW IT WAS MADE -->
-<!-- ================================================= -->
-
 <section class="how">
 
   <h2>How was this made?</h2>
 
   <p>
-    The teacher doesn't need to be a programmer. The process starts
-    with describing what students should learn and how the activity
-    should work.
+    The teacher doesn't need to be a programmer. The process starts with
+    describing what students should learn and how the activity should work.
   </p>
-
 
   <div class="steps">
 
-
     <div class="step">
 
-      <div class="step-number">
-        STEP 1
-      </div>
+      <div class="step-number">STEP 1</div>
 
       <strong>Describe the idea</strong>
 
       <p>
-        Give AI the standard, skill, grade level, lesson content,
-        existing resources, and the type of experience you want
-        students to have.
+        Give AI the standard, skill, grade level, lesson content, and the
+        type of experience you want students to have.
       </p>
 
     </div>
@@ -577,15 +501,13 @@ main {
 
     <div class="step">
 
-      <div class="step-number">
-        STEP 2
-      </div>
+      <div class="step-number">STEP 2</div>
 
       <strong>Build & revise</strong>
 
       <p>
-        AI generates the webpage. The teacher tests it and requests
-        changes until the assignment works the way they want.
+        AI generates the webpage. The teacher tests it and requests changes
+        until the assignment works the way they want.
       </p>
 
     </div>
@@ -593,19 +515,16 @@ main {
 
     <div class="step">
 
-      <div class="step-number">
-        STEP 3
-      </div>
+      <div class="step-number">STEP 3</div>
 
       <strong>Publish & share</strong>
 
       <p>
-        The finished HTML file is published with GitHub Pages and
-        can be linked or embedded directly into Google Sites.
+        The finished HTML file is published with GitHub Pages and can be
+        linked or embedded directly into Google Sites.
       </p>
 
     </div>
-
 
   </div>
 
